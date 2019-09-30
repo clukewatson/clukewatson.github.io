@@ -61,11 +61,52 @@
     </item>
     
     <item>
+      <title>Code</title>
+      <link>http://clukewatson.github.io/code/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://clukewatson.github.io/code/</guid>
+      <description>
+
+&lt;h2 id=&#34;matlab&#34;&gt;Matlab&lt;/h2&gt;
+
+&lt;h2 id=&#34;r&#34;&gt;R&lt;/h2&gt;
+
+&lt;h2 id=&#34;stata&#34;&gt;Stata&lt;/h2&gt;
+
+&lt;h2 id=&#34;julia&#34;&gt;Julia&lt;/h2&gt;
+
+&lt;h2 id=&#34;gauss&#34;&gt;Gauss&lt;/h2&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Courses</title>
       <link>http://clukewatson.github.io/courses/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://clukewatson.github.io/courses/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Research</title>
+      <link>http://clukewatson.github.io/research/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://clukewatson.github.io/research/</guid>
+      <description>
+
+&lt;h2 id=&#34;working-papers&#34;&gt;Working papers&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Is the Rent Too High? Land Ownership and Monopoly Power&lt;/strong&gt;,&lt;br /&gt;
+  (joint with Oren Ziv)&lt;br /&gt;
+  &lt;em&gt;Submitted, 2019&lt;/em&gt;&lt;br /&gt;
+  Manuscript: &lt;a href=&#34;http://clukewatson.github.io/files/WZ_ITRTH_FULL.pdf&#34;&gt;WZ_ITRTH_FULL.pdf&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;works-in-progress&#34;&gt;Works in Progress&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;The General Equilibrium Incidence of the EITC&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The GE Effects of State EITC Programs&lt;/strong&gt;&lt;/p&gt;
+</description>
     </item>
     
   </channel>
