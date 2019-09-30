@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C. Luke Watson</title>
+    <link>http://clukewatson.github.io/</link>
+      <atom:link href="http://clukewatson.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <description>C. Luke Watson</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 01 Jun 2030 13:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://clukewatson.github.io/img/icon-192.png</url>
+      <title>C. Luke Watson</title>
+      <link>http://clukewatson.github.io/</link>
+    </image>
+    
+    <item>
+      <title>Recent &amp; Upcoming Talks</title>
+      <link>http://clukewatson.github.io/talk/</link>
+      <pubDate>Sat, 01 Jun 2030 13:00:00 +0000</pubDate>
+      <guid>http://clukewatson.github.io/talk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Posts</title>
+      <link>http://clukewatson.github.io/post/</link>
+      <pubDate>Fri, 12 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>http://clukewatson.github.io/post/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Publications</title>
+      <link>http://clukewatson.github.io/publication/</link>
+      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
+      <guid>http://clukewatson.github.io/publication/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Slides</title>
+      <link>http://clukewatson.github.io/slides/</link>
+      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>http://clukewatson.github.io/slides/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Projects</title>
+      <link>http://clukewatson.github.io/project/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>http://clukewatson.github.io/project/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link></link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid></guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Courses</title>
+      <link>http://clukewatson.github.io/courses/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://clukewatson.github.io/courses/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

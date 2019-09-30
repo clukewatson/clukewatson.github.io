@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Authors | C. Luke Watson</title>
+    <link>http://clukewatson.github.io/authors/</link>
+      <atom:link href="http://clukewatson.github.io/authors/index.xml" rel="self" type="application/rss+xml" />
+    <description>Authors</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sun, 07 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://clukewatson.github.io/img/icon-192.png</url>
+      <title>Authors</title>
+      <link>http://clukewatson.github.io/authors/</link>
+    </image>
+    
+    <item>
+      <title></title>
+      <link>http://clukewatson.github.io/authors/admin/</link>
+      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
+      <guid>http://clukewatson.github.io/authors/admin/</guid>
+      <description>&lt;p&gt;I am a doctoral student in the Department of Economics at Michigan State University. I received a BA and MA in Economics from Old Dominion University in Norfolk, Virginia. I am from Portsmouth, Virginia.&lt;/p&gt;
+
+&lt;p&gt;My primary fields of interest are Public Economics, Urban Economics, and Industrial Organization. I am especially interested in issues related to adverse selection and externalities. Since Fall 2018, I have Special Sworn Status for Census RDC research projects.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Robert Ford</title>
+      <link>http://clukewatson.github.io/authors/robert-ford/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
+      <guid>http://clukewatson.github.io/authors/robert-ford/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
