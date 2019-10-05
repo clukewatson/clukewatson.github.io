@@ -73,7 +73,7 @@
   GMM objective: &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/gmm_obj.m&#34;&gt;gmm_obj.m&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Windmeijer (2019) First-Stage Weighted GMM&lt;/strong&gt;
-&lt;em&gt;Blurb:&lt;/em&gt; this two-step procedure uses the residuals from a linear projection of endogenous variable on the instruments to weights the GMM moments &lt;span  class=&#34;math&#34;&gt;\(E[Z^{\prime} u]\)&lt;/span&gt;, allowing for clustering.
+&lt;em&gt;Blurb:&lt;/em&gt; this two-step procedure uses the residuals from a linear projection of endogenous variable on the instruments to weights the GMM moments &lt;span  class=&#34;math&#34;&gt;\( E[Z^{\prime} u] \)&lt;/span&gt;, allowing for clustering.
   Main file: &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/W_gmm_cluster.m&#34;&gt;W_gmm_cluster.m&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;r&#34;&gt;R&lt;/h2&gt;
