@@ -65,9 +65,7 @@
       <link>http://clukewatson.github.io/code/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://clukewatson.github.io/code/</guid>
-      <description>
-
-&lt;h2 id=&#34;matlab&#34;&gt;Matlab&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;matlab&#34;&gt;Matlab&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;GMM in Matlab&lt;/strong&gt;
 &lt;em&gt;Blurb:&lt;/em&gt; this file explains how to perform GMM in Matlab and calculate White SEs.
@@ -75,7 +73,7 @@
   GMM objective: &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/gmm_obj.m&#34;&gt;gmm_obj.m&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Windmeijer (2019) First-Stage Weighted GMM&lt;/strong&gt;
-&lt;em&gt;Blurb:&lt;/em&gt; this two-step procedure uses the residuals from a linear projection of endogenous variable on the instruments to weights the GMM moments $E[Z^{\prime} u]$, allowing for clustering.
+&lt;em&gt;Blurb:&lt;/em&gt; this two-step procedure uses the residuals from a linear projection of endogenous variable on the instruments to weights the GMM moments &lt;span  class=&#34;math&#34;&gt;\(E[Z^{\prime} u]\)&lt;/span&gt;, allowing for clustering.
   Main file: &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/W_gmm_cluster.m&#34;&gt;W_gmm_cluster.m&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;r&#34;&gt;R&lt;/h2&gt;
