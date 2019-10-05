@@ -69,6 +69,15 @@
 
 &lt;h2 id=&#34;matlab&#34;&gt;Matlab&lt;/h2&gt;
 
+&lt;p&gt;&lt;strong&gt;GMM in Matlab&lt;/strong&gt;
+&lt;em&gt;Blurb:&lt;/em&gt; this file explains how to perform GMM in Matlab and calculate White SEs.
+  Main file: &lt;a href=&#34;http://clukewatson.github.io/files/code/gmm.m&#34;&gt;gmm.m&lt;/a&gt;
+  GMM objective: &lt;a href=&#34;http://clukewatson.github.io/files/code/gmm_obj.m&#34;&gt;gmm_obj.m&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Windmeijer (2019) First-Stage Weighted GMM&lt;/strong&gt;
+&lt;em&gt;Blurb:&lt;/em&gt; this two-step procedure uses the residuals from a linear projection of endogenous variable on the instruments to weights the GMM moments $E[Z^{\prime} u]$, allowing for clustering.
+  Main file: &lt;a href=&#34;http://clukewatson.github.io/files/code/W_gmm_cluster.m&#34;&gt;W_gmm_cluster.m&lt;/a&gt;&lt;/p&gt;
+
 &lt;h2 id=&#34;r&#34;&gt;R&lt;/h2&gt;
 
 &lt;h2 id=&#34;stata&#34;&gt;Stata&lt;/h2&gt;
@@ -99,11 +108,12 @@
 &lt;p&gt;&lt;strong&gt;Is the Rent Too High? Land Ownership and Monopoly Power&lt;/strong&gt;,&lt;br /&gt;
   (joint with Oren Ziv)&lt;br /&gt;
   &lt;em&gt;Submitted, 2019&lt;/em&gt;&lt;br /&gt;
-  Manuscript: &lt;a href=&#34;http://clukewatson.github.io/files/WZ_ITRTH_FULL.pdf&#34;&gt;WZ_ITRTH_FULL.pdf&lt;/a&gt;&lt;/p&gt;
+  Manuscript: &lt;a href=&#34;http://clukewatson.github.io/files/papers/WZ_ITRTH_FULL.pdf&#34;&gt;WZ_ITRTH_FULL.pdf&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;works-in-progress&#34;&gt;Works in Progress&lt;/h2&gt;
 
-&lt;p&gt;&lt;strong&gt;The General Equilibrium Incidence of the EITC&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The General Equilibrium Incidence of the EITC&lt;/strong&gt;
+  Manuscript: &lt;a href=&#34;http://clukewatson.github.io/files/papers/draft_clw_GenEqEITC_Oct4_2019.pdf&#34;&gt;draft_clw_GenEqEITC_Oct4_2019.pdf&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;The GE Effects of State EITC Programs&lt;/strong&gt;&lt;/p&gt;
 </description>
