@@ -107,8 +107,8 @@ The main file is run, which then calls the other files.&lt;/p&gt;
 &lt;em&gt;Blurb:&lt;/em&gt; this two-step procedure uses the residuals from a linear projection of endogenous variable on the instruments to weights the GMM moments &lt;span  class=&#34;math&#34;&gt;\( E[Z^{\prime} u] \)&lt;/span&gt;, allowing for clustering.
   Main file: &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/W_gmm_cluster.m&#34;&gt;W_gmm_cluster.m&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;** BLP IGMM in Matlab **
-&lt;a href=&#34;http://clukewatson.github.io/code/BLP_IGMM&#34;&gt;BLP_IGMM&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;BLP IGMM in Matlab&lt;/strong&gt;
+&lt;a href=&#34;http://clukewatson.github.io/code/BLP_IGMM.md&#34;&gt;BLP_IGMM&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;r&#34;&gt;R&lt;/h2&gt;
 
