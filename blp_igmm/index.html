@@ -28,13 +28,12 @@
   
     
   
-  <meta name="description" content="Matlab GMM in Matlab Blurb: this file explains how to perform GMM in Matlab and calculate White SEs. Main file: gmm.m GMM objective: gmm_obj.m
-Windmeijer (2019) First-Stage Weighted GMM Blurb: this two-step procedure uses the residuals from a linear projection of endogenous variable on the instruments to weights the GMM moments \( E[Z^{\prime} u] \), allowing for clustering. Main file: W_gmm_cluster.m
-** BLP IGMM in Matlab ** BLP_IGMM
-R Stata Julia  Simulating Multivariate Normal Probabilities Probit MLE; Probit Simulated MLE  Gauss ">
+  <meta name="description" content="BLP IGMM in Matlab Blurb The following files implement BLP using an Iterated Efficient IV GMM routine for a single market. The main file is run, which then calls the other files.
+** Files **
+ Main : main_rclogit_igmm.m GMM_Obj : gmmobj_rclogit.m GMM_Gradient : gradient_rclogit.m GMM_Jacobian : jacob_rclogit.m Ind_Share : ind_share.m Mrkt_Share : mrktshare.m Mean_Value : meanvalueCM_mix.m Idiosyncratic_Value : psifunc.m Derivative_alpha : DSDP.m Derivative_sigma : DSDX_VI.m Derivative_mu : DSDX_MU.m   ">
 
   
-  <link rel="alternate" hreflang="en-us" href="http://clukewatson.github.io/code/">
+  <link rel="alternate" hreflang="en-us" href="http://clukewatson.github.io/blp_igmm/">
 
   
 
@@ -100,7 +99,7 @@ R Stata Julia  Simulating Multivariate Normal Probabilities Probit MLE; Probit S
   <link rel="icon" type="image/png" href="/img/icon-32.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="http://clukewatson.github.io/code/">
+  <link rel="canonical" href="http://clukewatson.github.io/blp_igmm/">
 
   
   
@@ -116,12 +115,11 @@ R Stata Julia  Simulating Multivariate Normal Probabilities Probit MLE; Probit S
   <meta property="twitter:creator" content="@clwatsonecon">
   
   <meta property="og:site_name" content="C. Luke Watson">
-  <meta property="og:url" content="http://clukewatson.github.io/code/">
-  <meta property="og:title" content="Code | C. Luke Watson">
-  <meta property="og:description" content="Matlab GMM in Matlab Blurb: this file explains how to perform GMM in Matlab and calculate White SEs. Main file: gmm.m GMM objective: gmm_obj.m
-Windmeijer (2019) First-Stage Weighted GMM Blurb: this two-step procedure uses the residuals from a linear projection of endogenous variable on the instruments to weights the GMM moments \( E[Z^{\prime} u] \), allowing for clustering. Main file: W_gmm_cluster.m
-** BLP IGMM in Matlab ** BLP_IGMM
-R Stata Julia  Simulating Multivariate Normal Probabilities Probit MLE; Probit Simulated MLE  Gauss "><meta property="og:image" content="http://clukewatson.github.io/img/icon-192.png">
+  <meta property="og:url" content="http://clukewatson.github.io/blp_igmm/">
+  <meta property="og:title" content="BLP Code | C. Luke Watson">
+  <meta property="og:description" content="BLP IGMM in Matlab Blurb The following files implement BLP using an Iterated Efficient IV GMM routine for a single market. The main file is run, which then calls the other files.
+** Files **
+ Main : main_rclogit_igmm.m GMM_Obj : gmmobj_rclogit.m GMM_Gradient : gradient_rclogit.m GMM_Jacobian : jacob_rclogit.m Ind_Share : ind_share.m Mrkt_Share : mrktshare.m Mean_Value : meanvalueCM_mix.m Idiosyncratic_Value : psifunc.m Derivative_alpha : DSDP.m Derivative_sigma : DSDX_VI.m Derivative_mu : DSDX_MU.m   "><meta property="og:image" content="http://clukewatson.github.io/img/icon-192.png">
   <meta property="twitter:image" content="http://clukewatson.github.io/img/icon-192.png"><meta property="og:locale" content="en-us">
   
     
@@ -144,7 +142,7 @@ R Stata Julia  Simulating Multivariate Normal Probabilities Probit MLE; Probit S
 
 
 
-  <title>Code | C. Luke Watson</title>
+  <title>BLP Code | C. Luke Watson</title>
 
 </head>
 
@@ -241,7 +239,7 @@ R Stata Julia  Simulating Multivariate Normal Probabilities Probit MLE; Probit S
         
 
         <li class="nav-item">
-          <a class="nav-link  active" href="/code/"><span>Code</span></a>
+          <a class="nav-link " href="/code/"><span>Code</span></a>
         </li>
 
         
@@ -343,7 +341,7 @@ R Stata Julia  Simulating Multivariate Normal Probabilities Probit MLE; Probit S
   
   
 <div class="article-container pt-3">
-  <h1>Code</h1>
+  <h1>BLP Code</h1>
 
   
 
@@ -406,32 +404,29 @@ R Stata Julia  Simulating Multivariate Normal Probabilities Probit MLE; Probit S
   <div class="article-container">
 
     <div class="article-style">
-      <h2 id="matlab">Matlab</h2>
+      <h2 id="blp-igmm-in-matlab">BLP IGMM in Matlab</h2>
 
-<p><strong>GMM in Matlab</strong>
-<em>Blurb:</em> this file explains how to perform GMM in Matlab and calculate White SEs.
-  Main file: <a href="/files/code/matlab/gmm.m">gmm.m</a>
-  GMM objective: <a href="/files/code/matlab/gmm_obj.m">gmm_obj.m</a></p>
+<p><strong>Blurb</strong>
+The following files implement BLP using an Iterated Efficient IV GMM routine for a single market.
+The main file is run, which then calls the other files.</p>
 
-<p><strong>Windmeijer (2019) First-Stage Weighted GMM</strong>
-<em>Blurb:</em> this two-step procedure uses the residuals from a linear projection of endogenous variable on the instruments to weights the GMM moments <span  class="math">\( E[Z^{\prime} u] \)</span>, allowing for clustering.
-  Main file: <a href="/files/code/matlab/W_gmm_cluster.m">W_gmm_cluster.m</a></p>
-
-<p>** BLP IGMM in Matlab **
-<a href="/code/BLP_IGMM">BLP_IGMM</a></p>
-
-<h2 id="r">R</h2>
-
-<h2 id="stata">Stata</h2>
-
-<h2 id="julia">Julia</h2>
+<p>** Files **</p>
 
 <ul>
-<li><a href="https://nbviewer.jupyter.org/github/clukewatson/juptyernotebooks/blob/master/ec821b_hw3_pt1.ipynb">Simulating Multivariate Normal Probabilities</a></li>
-<li><a href="https://nbviewer.jupyter.org/github/clukewatson/juptyernotebooks/blob/master/ec821b_hw3_pt2.ipynb">Probit MLE; Probit Simulated MLE</a></li>
-</ul>
+<li>Main : <a href="/files/code/matlab/blp_igmm/main_rclogit_igmm.m">main_rclogit_igmm.m</a></li>
+<li>GMM_Obj : <a href="/files/code/matlab/blp_igmm/gmmobj_rclogit.m">gmmobj_rclogit.m</a></li>
+<li>GMM_Gradient : <a href="/files/code/matlab/blp_igmm/gradient_rclogit.m">gradient_rclogit.m</a></li>
+<li>GMM_Jacobian : <a href="/files/code/matlab/blp_igmm/jacob_rclogit.m">jacob_rclogit.m</a></li>
+<li>Ind_Share : <a href="/files/code/matlab/blp_igmm/ind_share.m">ind_share.m</a></li>
+<li>Mrkt_Share : <a href="/files/code/matlab/blp_igmm/mrktshare.m">mrktshare.m</a></li>
+<li>Mean_Value : <a href="/files/code/matlab/blp_igmm/meanvalueCM_mix.m">meanvalueCM_mix.m</a></li>
+<li>Idiosyncratic_Value : <a href="/files/code/matlab/blp_igmm/psifunc.m">psifunc.m</a></li>
+<li>Derivative_alpha : <a href="/files/code/matlab/blp_igmm/DSDP.m">DSDP.m</a></li>
+<li>Derivative_sigma : <a href="/files/code/matlab/blp_igmm/DSDX_VI.m">DSDX_VI.m</a></li>
+<li>Derivative_mu : <a href="/files/code/matlab/blp_igmm/DSDX_MU.m">DSDX_MU.m</a>
 
-<h2 id="gauss">Gauss</h2>
+<br></li>
+</ul>
 
     </div>
 

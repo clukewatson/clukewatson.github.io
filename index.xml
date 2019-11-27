@@ -61,6 +61,37 @@
     </item>
     
     <item>
+      <title>BLP Code</title>
+      <link>http://clukewatson.github.io/blp_igmm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://clukewatson.github.io/blp_igmm/</guid>
+      <description>&lt;h2 id=&#34;blp-igmm-in-matlab&#34;&gt;BLP IGMM in Matlab&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Blurb&lt;/strong&gt;
+The following files implement BLP using an Iterated Efficient IV GMM routine for a single market.
+The main file is run, which then calls the other files.&lt;/p&gt;
+
+&lt;p&gt;** Files **&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Main : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/main_rclogit_igmm.m&#34;&gt;main_rclogit_igmm.m&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;GMM_Obj : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/gmmobj_rclogit.m&#34;&gt;gmmobj_rclogit.m&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;GMM_Gradient : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/gradient_rclogit.m&#34;&gt;gradient_rclogit.m&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;GMM_Jacobian : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/jacob_rclogit.m&#34;&gt;jacob_rclogit.m&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Ind_Share : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/ind_share.m&#34;&gt;ind_share.m&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Mrkt_Share : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/mrktshare.m&#34;&gt;mrktshare.m&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Mean_Value : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/meanvalueCM_mix.m&#34;&gt;meanvalueCM_mix.m&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Idiosyncratic_Value : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/psifunc.m&#34;&gt;psifunc.m&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Derivative_alpha : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/DSDP.m&#34;&gt;DSDP.m&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Derivative_sigma : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/DSDX_VI.m&#34;&gt;DSDX_VI.m&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Derivative_mu : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/DSDX_MU.m&#34;&gt;DSDX_MU.m&lt;/a&gt;
+
+&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Code</title>
       <link>http://clukewatson.github.io/code/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -75,6 +106,9 @@
 &lt;p&gt;&lt;strong&gt;Windmeijer (2019) First-Stage Weighted GMM&lt;/strong&gt;
 &lt;em&gt;Blurb:&lt;/em&gt; this two-step procedure uses the residuals from a linear projection of endogenous variable on the instruments to weights the GMM moments &lt;span  class=&#34;math&#34;&gt;\( E[Z^{\prime} u] \)&lt;/span&gt;, allowing for clustering.
   Main file: &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/W_gmm_cluster.m&#34;&gt;W_gmm_cluster.m&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;** BLP IGMM in Matlab **
+&lt;a href=&#34;http://clukewatson.github.io/code/BLP_IGMM&#34;&gt;BLP_IGMM&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;r&#34;&gt;R&lt;/h2&gt;
 
