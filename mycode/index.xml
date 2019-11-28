@@ -23,7 +23,7 @@
 The following files implement BLP using an Iterated Efficient IV GMM routine for a single market.
 The main file is run, which then calls the other files.&lt;/p&gt;
 
-&lt;p&gt;** Files **&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Files&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Main : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/main_rclogit_igmm.m&#34;&gt;main_rclogit_igmm.m&lt;/a&gt;&lt;/li&gt;
