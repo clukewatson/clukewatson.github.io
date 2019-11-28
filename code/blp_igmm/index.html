@@ -28,10 +28,12 @@
   
     
   
-  <meta name="description" content="Economics Doctoral Candidate">
+  <meta name="description" content="BLP IGMM in Matlab Blurb The following files implement BLP using an Iterated Efficient IV GMM routine for a single market. The main file is run, which then calls the other files.
+** Files **
+ Main : main_rclogit_igmm.m GMM_Obj : gmmobj_rclogit.m GMM_Gradient : gradient_rclogit.m GMM_Jacobian : jacob_rclogit.m Ind_Share : ind_share.m Mrkt_Share : mrktshare.m Mean_Value : meanvalueCM_mix.m Idiosyncratic_Value : psifunc.m Derivative_alpha : DSDP.m Derivative_sigma : DSDX_VI.m Derivative_mu : DSDX_MU.m   ">
 
   
-  <link rel="alternate" hreflang="en-us" href="http://clukewatson.github.io/code/">
+  <link rel="alternate" hreflang="en-us" href="http://clukewatson.github.io/code/blp_igmm/">
 
   
 
@@ -92,14 +94,12 @@
   
 
   
-  <link rel="alternate" href="/code/index.xml" type="application/rss+xml" title="C. Luke Watson">
-  
 
   <link rel="manifest" href="/index.webmanifest">
   <link rel="icon" type="image/png" href="/img/icon-32.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="http://clukewatson.github.io/code/">
+  <link rel="canonical" href="http://clukewatson.github.io/code/blp_igmm/">
 
   
   
@@ -115,11 +115,14 @@
   <meta property="twitter:creator" content="@clwatsonecon">
   
   <meta property="og:site_name" content="C. Luke Watson">
-  <meta property="og:url" content="http://clukewatson.github.io/code/">
-  <meta property="og:title" content="Codes | C. Luke Watson">
-  <meta property="og:description" content="Economics Doctoral Candidate"><meta property="og:image" content="http://clukewatson.github.io/img/icon-192.png">
+  <meta property="og:url" content="http://clukewatson.github.io/code/blp_igmm/">
+  <meta property="og:title" content="BLP Code | C. Luke Watson">
+  <meta property="og:description" content="BLP IGMM in Matlab Blurb The following files implement BLP using an Iterated Efficient IV GMM routine for a single market. The main file is run, which then calls the other files.
+** Files **
+ Main : main_rclogit_igmm.m GMM_Obj : gmmobj_rclogit.m GMM_Gradient : gradient_rclogit.m GMM_Jacobian : jacob_rclogit.m Ind_Share : ind_share.m Mrkt_Share : mrktshare.m Mean_Value : meanvalueCM_mix.m Idiosyncratic_Value : psifunc.m Derivative_alpha : DSDP.m Derivative_sigma : DSDX_VI.m Derivative_mu : DSDX_MU.m   "><meta property="og:image" content="http://clukewatson.github.io/img/icon-192.png">
   <meta property="twitter:image" content="http://clukewatson.github.io/img/icon-192.png"><meta property="og:locale" content="en-us">
   
+    
     
   
 
@@ -127,17 +130,19 @@
 
 
 
-
   
 
 
   
 
 
+  
 
 
 
-  <title>Codes | C. Luke Watson</title>
+
+
+  <title>BLP Code | C. Luke Watson</title>
 
 </head>
 
@@ -315,56 +320,234 @@
 </nav>
 
 
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>BLP Code</h1>
+
+  
+
+  
+    
+
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jan 1, 0001
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <h2 id="blp-igmm-in-matlab">BLP IGMM in Matlab</h2>
+
+<p><strong>Blurb</strong>
+The following files implement BLP using an Iterated Efficient IV GMM routine for a single market.
+The main file is run, which then calls the other files.</p>
+
+<p>** Files **</p>
+
+<ul>
+<li>Main : <a href="/files/code/matlab/blp_igmm/main_rclogit_igmm.m">main_rclogit_igmm.m</a></li>
+<li>GMM_Obj : <a href="/files/code/matlab/blp_igmm/gmmobj_rclogit.m">gmmobj_rclogit.m</a></li>
+<li>GMM_Gradient : <a href="/files/code/matlab/blp_igmm/gradient_rclogit.m">gradient_rclogit.m</a></li>
+<li>GMM_Jacobian : <a href="/files/code/matlab/blp_igmm/jacob_rclogit.m">jacob_rclogit.m</a></li>
+<li>Ind_Share : <a href="/files/code/matlab/blp_igmm/ind_share.m">ind_share.m</a></li>
+<li>Mrkt_Share : <a href="/files/code/matlab/blp_igmm/mrktshare.m">mrktshare.m</a></li>
+<li>Mean_Value : <a href="/files/code/matlab/blp_igmm/meanvalueCM_mix.m">meanvalueCM_mix.m</a></li>
+<li>Idiosyncratic_Value : <a href="/files/code/matlab/blp_igmm/psifunc.m">psifunc.m</a></li>
+<li>Derivative_alpha : <a href="/files/code/matlab/blp_igmm/DSDP.m">DSDP.m</a></li>
+<li>Derivative_sigma : <a href="/files/code/matlab/blp_igmm/DSDX_VI.m">DSDX_VI.m</a></li>
+<li>Derivative_mu : <a href="/files/code/matlab/blp_igmm/DSDX_MU.m">DSDX_MU.m</a>
+
+<br></li>
+</ul>
+
+    </div>
+
+    
+
+
+    
+
+
+
+    
+      
+
+
+
+
+
+
+
+
   
 
 
 
 
 
-
-
-
-
-
-
-
-  
 
   
   
   
     
   
-<div class="universal-wrapper pt-3">
-  <h1>Codes</h1>
-
   
-
-  
-</div>
-
-
-
-<div class="universal-wrapper">
-  
-
-  
-  
-  <div>
-    <h2><a href="/code/blp_igmm/">BLP Code</a></h2>
-    <div class="article-style">
+  <div class="media author-card">
+    
       
-      BLP IGMM in Matlab Blurb The following files implement BLP using an Iterated Efficient IV GMM routine for a single market. The main file is run, which then calls the other files.
-** Files **
- Main : main_rclogit_igmm.m GMM_Obj : gmmobj_rclogit.m GMM_Gradient : gradient_rclogit.m GMM_Jacobian : jacob_rclogit.m Ind_Share : ind_share.m Mrkt_Share : mrktshare.m Mean_Value : meanvalueCM_mix.m Idiosyncratic_Value : psifunc.m Derivative_alpha : DSDP.m Derivative_sigma : DSDX_VI.m Derivative_mu : DSDX_MU.m   
-      
+      <img class="portrait mr-3" src="/authors/admin/avatar_hu37884eddcaf45137229486bcef0d8fef_16357347_250x250_fill_lanczos_center_2.png" alt="Avatar">
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="http://clukewatson.github.io">C. Luke Watson</a></h5>
+      <h6 class="card-subtitle">Economics Doctoral Candidate</h6>
+      <p class="card-text">I research the general equilibrium effects of the EITC and how monopoly power interacts in urban residential markets.</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a href="/#contact" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a href="https://twitter.com/clwatsonecon" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a href="https://github.com/clukewatson" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-  
 
-  
 
-</div>
+
+      
+      
+    
+
+    
+
+    
+
+
+  </div>
+</article>
 
       
 
