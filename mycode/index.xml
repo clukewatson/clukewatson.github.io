@@ -26,13 +26,34 @@ The main file is run, which then calls the other files.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Files&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Main : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/main_rclogit_igmm.m&#34;&gt;main_rclogit_igmm.m&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;GMM_Obj : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/gmmobj_rclogit.m&#34;&gt;gmmobj_rclogit.m&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;GMM_Gradient : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/gradient_rclogit.m&#34;&gt;gradient_rclogit.m&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;GMM_Jacobian : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/jacob_rclogit.m&#34;&gt;jacob_rclogit.m&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Main : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/main_rclogit_igmm.m&#34;&gt;main_rclogit_igmm.m&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Supposes that most data already generated&lt;/li&gt;
+&lt;li&gt;Uses Halton psuedo-uniform draws&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Mean_Value : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/meanvalueCM_mix.m&#34;&gt;meanvalueCM_mix.m&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Tries to use SQUAREM but will switch to Contraction Mapping if needed&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;GMM_Obj : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/gmmobj_rclogit.m&#34;&gt;gmmobj_rclogit.m&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Objective function and gradient are calculated&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;GMM_Gradient : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/gradient_rclogit.m&#34;&gt;gradient_rclogit.m&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;File that calculates GMM gradient using IFT&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;GMM_Jacobian : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/jacob_rclogit.m&#34;&gt;jacob_rclogit.m&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Called only for calculating standard errors&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Ind_Share : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/ind_share.m&#34;&gt;ind_share.m&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Mrkt_Share : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/mrktshare.m&#34;&gt;mrktshare.m&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Mean_Value : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/meanvalueCM_mix.m&#34;&gt;meanvalueCM_mix.m&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Idiosyncratic_Value : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/psifunc.m&#34;&gt;psifunc.m&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Derivative_alpha : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/DSDP.m&#34;&gt;DSDP.m&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Derivative_sigma : &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/blp_igmm/DSDX_VI.m&#34;&gt;DSDX_VI.m&lt;/a&gt;&lt;/li&gt;

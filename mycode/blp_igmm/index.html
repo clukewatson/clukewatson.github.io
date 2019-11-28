@@ -30,7 +30,7 @@
   
   <meta name="description" content="BLP IGMM in Matlab Blurb The following files implement BLP using an Iterated Efficient IV GMM routine for a single market. The main file is run, which then calls the other files.
 Files
- Main : main_rclogit_igmm.m GMM_Obj : gmmobj_rclogit.m GMM_Gradient : gradient_rclogit.m GMM_Jacobian : jacob_rclogit.m Ind_Share : ind_share.m Mrkt_Share : mrktshare.m Mean_Value : meanvalueCM_mix.m Idiosyncratic_Value : psifunc.m Derivative_alpha : DSDP.m Derivative_sigma : DSDX_VI.m Derivative_mu : DSDX_MU.m   ">
+ Main : main_rclogit_igmm.m  Supposes that most data already generated Uses Halton psuedo-uniform draws  Mean_Value : meanvalueCM_mix.m  Tries to use SQUAREM but will switch to Contraction Mapping if needed  GMM_Obj : gmmobj_rclogit.m  Objective function and gradient are calculated  GMM_Gradient : gradient_rclogit.">
 
   
   <link rel="alternate" hreflang="en-us" href="http://clukewatson.github.io/mycode/blp_igmm/">
@@ -119,7 +119,7 @@ Files
   <meta property="og:title" content="BLP Code | C. Luke Watson">
   <meta property="og:description" content="BLP IGMM in Matlab Blurb The following files implement BLP using an Iterated Efficient IV GMM routine for a single market. The main file is run, which then calls the other files.
 Files
- Main : main_rclogit_igmm.m GMM_Obj : gmmobj_rclogit.m GMM_Gradient : gradient_rclogit.m GMM_Jacobian : jacob_rclogit.m Ind_Share : ind_share.m Mrkt_Share : mrktshare.m Mean_Value : meanvalueCM_mix.m Idiosyncratic_Value : psifunc.m Derivative_alpha : DSDP.m Derivative_sigma : DSDX_VI.m Derivative_mu : DSDX_MU.m   "><meta property="og:image" content="http://clukewatson.github.io/img/icon-192.png">
+ Main : main_rclogit_igmm.m  Supposes that most data already generated Uses Halton psuedo-uniform draws  Mean_Value : meanvalueCM_mix.m  Tries to use SQUAREM but will switch to Contraction Mapping if needed  GMM_Obj : gmmobj_rclogit.m  Objective function and gradient are calculated  GMM_Gradient : gradient_rclogit."><meta property="og:image" content="http://clukewatson.github.io/img/icon-192.png">
   <meta property="twitter:image" content="http://clukewatson.github.io/img/icon-192.png"><meta property="og:locale" content="en-us">
   
     
@@ -421,13 +421,34 @@ The main file is run, which then calls the other files.</p>
 <p><strong>Files</strong></p>
 
 <ul>
-<li>Main : <a href="/files/code/matlab/blp_igmm/main_rclogit_igmm.m">main_rclogit_igmm.m</a></li>
-<li>GMM_Obj : <a href="/files/code/matlab/blp_igmm/gmmobj_rclogit.m">gmmobj_rclogit.m</a></li>
-<li>GMM_Gradient : <a href="/files/code/matlab/blp_igmm/gradient_rclogit.m">gradient_rclogit.m</a></li>
-<li>GMM_Jacobian : <a href="/files/code/matlab/blp_igmm/jacob_rclogit.m">jacob_rclogit.m</a></li>
+<li>Main : <a href="/files/code/matlab/blp_igmm/main_rclogit_igmm.m">main_rclogit_igmm.m</a>
+
+<ul>
+<li>Supposes that most data already generated</li>
+<li>Uses Halton psuedo-uniform draws</li>
+</ul></li>
+<li>Mean_Value : <a href="/files/code/matlab/blp_igmm/meanvalueCM_mix.m">meanvalueCM_mix.m</a>
+
+<ul>
+<li>Tries to use SQUAREM but will switch to Contraction Mapping if needed</li>
+</ul></li>
+<li>GMM_Obj : <a href="/files/code/matlab/blp_igmm/gmmobj_rclogit.m">gmmobj_rclogit.m</a>
+
+<ul>
+<li>Objective function and gradient are calculated</li>
+</ul></li>
+<li>GMM_Gradient : <a href="/files/code/matlab/blp_igmm/gradient_rclogit.m">gradient_rclogit.m</a>
+
+<ul>
+<li>File that calculates GMM gradient using IFT</li>
+</ul></li>
+<li>GMM_Jacobian : <a href="/files/code/matlab/blp_igmm/jacob_rclogit.m">jacob_rclogit.m</a>
+
+<ul>
+<li>Called only for calculating standard errors</li>
+</ul></li>
 <li>Ind_Share : <a href="/files/code/matlab/blp_igmm/ind_share.m">ind_share.m</a></li>
 <li>Mrkt_Share : <a href="/files/code/matlab/blp_igmm/mrktshare.m">mrktshare.m</a></li>
-<li>Mean_Value : <a href="/files/code/matlab/blp_igmm/meanvalueCM_mix.m">meanvalueCM_mix.m</a></li>
 <li>Idiosyncratic_Value : <a href="/files/code/matlab/blp_igmm/psifunc.m">psifunc.m</a></li>
 <li>Derivative_alpha : <a href="/files/code/matlab/blp_igmm/DSDP.m">DSDP.m</a></li>
 <li>Derivative_sigma : <a href="/files/code/matlab/blp_igmm/DSDX_VI.m">DSDX_VI.m</a></li>
