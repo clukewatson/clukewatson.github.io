@@ -77,7 +77,9 @@
   Main file: &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/W_gmm_cluster.m&#34;&gt;W_gmm_cluster.m&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;BLP (1995) IGMM in Matlab&lt;/strong&gt;&lt;br&gt;
-&lt;a href=&#34;http://clukewatson.github.io/mycode/BLP_IGMM&#34;&gt;BLP_IGMM&lt;/a&gt;&lt;/p&gt;
+&lt;a href=&#34;http://clukewatson.github.io/code/BLP_IGMM&#34;&gt;BLP_IGMM&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;ok&lt;/p&gt;
 
 &lt;h2 id=&#34;r&#34;&gt;R&lt;/h2&gt;
 
@@ -95,18 +97,18 @@
     </item>
     
     <item>
-      <title>Courses</title>
-      <link>http://clukewatson.github.io/courses/</link>
+      <title>Codes</title>
+      <link>http://clukewatson.github.io/code/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://clukewatson.github.io/courses/</guid>
+      <guid>http://clukewatson.github.io/code/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Mycodes</title>
-      <link>http://clukewatson.github.io/mycode/</link>
+      <title>Courses</title>
+      <link>http://clukewatson.github.io/courses/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://clukewatson.github.io/mycode/</guid>
+      <guid>http://clukewatson.github.io/courses/</guid>
       <description></description>
     </item>
     
