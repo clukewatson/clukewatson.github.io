@@ -5,7 +5,7 @@
     <link>http://clukewatson.github.io/mycode/</link>
       <atom:link href="http://clukewatson.github.io/mycode/index.xml" rel="self" type="application/rss+xml" />
     <description>Mycodes</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Fri, 01 Nov 2019 00:00:00 +0000</lastBuildDate>
     <image>
       <url>http://clukewatson.github.io/img/icon-192.png</url>
       <title>Mycodes</title>
@@ -15,7 +15,7 @@
     <item>
       <title>BLP Code</title>
       <link>http://clukewatson.github.io/mycode/blp_igmm/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 01 Nov 2019 00:00:00 +0000</pubDate>
       <guid>http://clukewatson.github.io/mycode/blp_igmm/</guid>
       <description>&lt;h2 id=&#34;blp-igmm-in-matlab&#34;&gt;BLP IGMM in Matlab&lt;/h2&gt;
 
