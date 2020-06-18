@@ -55,14 +55,15 @@ Countries are not at the two extremes of either subsistence or perfectly special
  8. Literacy or Average Grade Level
  9. Corruption Index&lt;/p&gt;
 
+&lt;ol&gt;
+&lt;li&gt;this starts a list &lt;em&gt;with&lt;/em&gt; numbers&lt;/li&gt;
+&lt;li&gt;this will show as number &amp;ldquo;2&amp;rdquo;&lt;/li&gt;
+&lt;/ol&gt;
+
 &lt;p&gt;Each variable captures and misses some aspect of development.
 Typically, we associate developing countries as being `poor&amp;rsquo; but, if we focus solely on income, then we will miss out of the other aspects such as individuals pursuing their passions if they live in an oppressive regime or if they lack the ability to keep their children healthy and educated.
 By and large, there is an assumption that if we can increase people&amp;rsquo;s income then the other aspects of development will follow.
 However, when we study the lives of impoverished people we will see that just giving people more money likely would fail to bring long term change.&lt;/p&gt;
-
-&lt;h2 id=&#34;what-is-the-distribution-of-the-development-indicators&#34;&gt;What is the distribution of the development indicators?&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://clukewatson.github.io/img/life_1960_to_2018.png&#34; alt=&#34;title&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -73,9 +74,14 @@ However, when we study the lives of impoverished people we will see that just gi
       <guid>http://clukewatson.github.io/courses/ec410/section2/</guid>
       <description>
 
-&lt;h2 id=&#34;what-is-the-distribution-economic-development-around-the-world&#34;&gt;What is the distribution economic development around the world?&lt;/h2&gt;
+&lt;h3 id=&#34;what-is-the-distribution-economic-development-around-the-world&#34;&gt;What is the distribution economic development around the world?&lt;/h3&gt;
 
-&lt;p&gt;to be completed&lt;/p&gt;
+&lt;h2 id=&#34;income&#34;&gt;Income&lt;/h2&gt;
+
+&lt;h2 id=&#34;life-expectancy-at-birth&#34;&gt;Life Expectancy at Birth&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://clukewatson.github.io/img/life_1960_to_2018.png&#34; alt=&#34;Life Expectancy 1960 vs 2018&#34; /&gt;
+&lt;img src=&#34;http://clukewatson.github.io/img/ch_ife_1960_to_2018.png&#34; alt=&#34;Change in Life Expectancy since 1960&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
