@@ -76,7 +76,7 @@
       <description>&lt;h2 id=&#34;matlab&#34;&gt;Matlab&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;GMM in Matlab&lt;/strong&gt;
-&lt;em&gt;Blurb:&lt;/em&gt; this file explains how to perform GMM in Matlab and calculate White SEs.
+&lt;em&gt;Blurb:&lt;/em&gt; this file explains how to perform General Method of Moments in Matlab and calculate White SEs.
   Main file: &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/gmm.m&#34;&gt;gmm.m&lt;/a&gt;
   GMM objective: &lt;a href=&#34;http://clukewatson.github.io/files/code/matlab/gmm_obj.m&#34;&gt;gmm_obj.m&lt;/a&gt;&lt;/p&gt;
 
@@ -87,18 +87,12 @@
 &lt;p&gt;&lt;strong&gt;BLP (1995) IGMM in Matlab&lt;/strong&gt;&lt;br&gt;
 &lt;a href=&#34;http://clukewatson.github.io/mycode/blp_igmm/&#34;&gt;BLP_IGMM&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;r&#34;&gt;R&lt;/h2&gt;
-
-&lt;h2 id=&#34;stata&#34;&gt;Stata&lt;/h2&gt;
-
 &lt;h2 id=&#34;julia&#34;&gt;Julia&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://nbviewer.jupyter.org/github/clukewatson/juptyernotebooks/blob/master/ec821b_hw3_pt1.ipynb&#34;&gt;Simulating Multivariate Normal Probabilities&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://nbviewer.jupyter.org/github/clukewatson/juptyernotebooks/blob/master/ec821b_hw3_pt2.ipynb&#34;&gt;Probit MLE; Probit Simulated MLE&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h2 id=&#34;gauss&#34;&gt;Gauss&lt;/h2&gt;
 </description>
     </item>
     
