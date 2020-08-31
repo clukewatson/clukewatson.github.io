@@ -1,0 +1,201 @@
+---
+title: |
+  | Howdy, World!
+  | R Markdown Basics
+author: | 
+  | C. Luke Watson 
+  | Michigan State University
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  pdf_document:
+    number_sections: true
+---
+
+<!-- This is how you add comments that will not show up in final version -->
+<!-- The following will make it so the default for embedded code is to echo -->
+<!-- Echo means it prints the code as well as executes the code  -->
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Why bother learning this?
+
+Short-term: You will use this to turn in your labs and homework.
+
+Long-term: It looks professional. 
+However, I admit that I am not sure that this will be the future.
+I think this is just as good if not better than MS Word.
+
+# My Cool Section Title
+
+That is a cool section title.
+Is there more?
+
+## My Cool Subsection Title
+
+That is a cool subsection title.
+Is there more?
+
+### My Cool Subsubsection Title
+
+That is a cool subsubsection title.
+Is there more?
+
+#### My Cool Subsubsubsection Title
+
+That is a cool subsubsubsection title.
+Is there more?
+
+##### My Cool Subsubsubsection Title
+
+That is a cool subsubsubsubsection title.
+Is there more?
+
+No.
+
+# Ok, but what is R Markdown?
+
+Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. 
+For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+## How to use
+
+First, must use ``install.packages("rmarkdown")`` in \textsf{Rstudio} before use.
+
+## How to Stylize Text
+
+This is a short sentence. It is followed by another without a line break.
+
+This is sentence starts a new paragraph.  
+By ending the above text with two ``spaces`` I get a line break but this text is in the same paragraph.
+
+### Fancy text
+
+*italics* and _italics_  
+**bold** and __bold__  
+superscript^2^  
+~~strikethrough~~  
+
+***
+
+> ``Friends show their love in times of trouble, not in happiness.''  
+-- Euripides
+
+******
+
+### Lists
+
+Does this work?
+* item 1 that I want below
+* item 2 that I want below item 1
+
+What about this?
+
+* ah, I need a blank line between 
+* my text and my list 
+    + for my lists
+    + to actually work 
+
+I can also make the lists be ordered:
+
+1. How do I get subitems?
+ + one ``space`` -- nope
+2. Is this how I get subitems?
+  + one ``tab`` -- nope
+3. What about this? 
+    + two ``tabs`` -- yes!
+    
+### Tables
+
+Table Header  | Second Header
+------------- | ------------- 
+Cell 1 | Cell 2
+Cell 3 | Cell 4
+
+# The Real Power of Markdown
+
+When you click the **Knit** button a document will be generated that includes both text content as well as: 
+<!-- Need a line break to start the list -->
+
+1. the output of any embedded R code chunks within the document
+2. any math content you type
+
+## Add R Code 
+
+You can embed an R code chunk like this:
+
+```{r }
+set.seed(42)
+N <- 1000
+x <- rnorm(N, mean=42, sd=10)
+mean(x)
+summary(x)
+```
+
+The default is to have `echo on'.
+
+### Including Plots
+
+You can also embed plots, for example:
+
+```{r , echo=FALSE}
+set.seed(42)
+N <- 1000
+x <- rnorm(N, mean=42, sd=10)
+plot(density(x), main="PDF of Random Data and Normal",xlab = NULL)
+curve(dnorm(x, mean=42, sd=10), col="darkblue", lwd=2, add=TRUE, yaxt="n")
+```
+
+By adding `echo = FALSE` parameter to the code chunk, you prevent the printing of the R code that generated the plot.
+
+### An example with data
+
+<!-- Below I am suppressing errors,warnings, and messages.  -->
+<!-- Only do this when you are sure of your code! Heed the code's warnings!  -->
+
+```{r qplot, fig.width=4, fig.height=3,message=FALSE,error=FALSE,warning=FALSE}
+# Load libraries
+library(tidyverse)
+library(fixest)
+# Summary, Regression, then Plot
+# Cars is a built in dataset
+summary(cars)
+etable(feols(dist~speed, data=cars))
+qplot(speed,dist,data=cars) +
+  geom_smooth() +
+  geom_smooth(method='lm',color = "red")
+```
+
+## Math in Markdown
+
+I like markdown because you can easily type math and it looks very nice.
+
+### Math in Paragraphs
+
+I am writing about the cool equation I learned, 
+$y = X \beta + \varepsilon$.
+This is a linear equation, but I could also write a non-linear one:
+$y = \beta_0 + \beta_1\log(x) + \beta_2 z^2 + \nu$.
+
+### Math in Display Mode
+The following equation is important, so I want to number it to remember later:
+\begin{equation}
+D_j = \frac{\mathsf{e}^{X_{j}\beta}}{1 + \mathsf{e}^{X_{j}\beta}} \label{eq:myeq}.
+\end{equation}
+
+Hey, remember equation \ref{eq:myeq}? 
+It was cool.
+
+What if I need to show math steps?
+Then I would use the `align` environment:
+\begin{align}
+D_j &= \frac{\mathsf{e}^{X_{j}\beta}}{1 + \mathsf{e}^{X_{j}\beta}} \\
+\implies \ln[D_j] &= X_j \beta - \log[1 + \mathsf{e}^{X_j \beta}] \\ 
+& \text{and} \nonumber \\
+\implies \ln[1 - D_j] &= \underbrace{\ln[1]}_{=0} - \log[1 + \mathsf{e}^{X_j \beta}] \\ 
+\implies \log[D_j] - \log[1-D_j] &= X_j \beta,
+\end{align}
+where the equations are aligned at the equal sign.
+
+Also, look the equation numbers are correctly updating.
