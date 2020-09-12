@@ -102,6 +102,12 @@
 &lt;li&gt;PDF output: &lt;a href=&#34;http://clukewatson.github.io/files/code/r/markdown/howdy.pdf&#34;&gt;howdy.pdf&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;&lt;em&gt;Blurb:&lt;/em&gt; this creates plots for Year to Date JOE ads for US Full Time Academic jobs by REPEC Top 10 and Top 25 US Econ dept institutions&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;- E.g., MIT Mgmt is &amp;quot;Top 10&amp;quot; because MIT Econ is in the REPEC Top 10 US Econ list
+- Rmd file: [joe_usft_academic.R](/files/code/r/joe_usft_academic.R)
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;h2 id=&#34;julia&#34;&gt;Julia&lt;/h2&gt;
 
 &lt;ul&gt;
