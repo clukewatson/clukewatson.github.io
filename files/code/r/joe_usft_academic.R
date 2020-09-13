@@ -10,7 +10,7 @@ library(cowplot)
 setwd("/Users/lukewatson/Documents/R_JOE/")
 
 repec.t10 <- c("harvard","mit ","Massachusetts Institute of Technology","Princeton","Berkeley","University of Chicago",
-               "Stanford","Columbia University","New York University","NYU","Yale","Brown")
+               "Stanford","Columbia","New York University","NYU","Yale","Brown")
 repec.t25 <- c(repec.t10,"Boston University","University of California-San Diego","University of California San Diego","UCSD",
                "University of Michigan","University of Pennsylvania","UPenn","Dartmouth","Northwestern","Boston College",
                "University of Wisconsin-Madison", "University of Wisconsin Madison","University of California-Los Angeles",
@@ -79,7 +79,23 @@ aea.20.tot <- aea.20.txt %>%
   group_by(top.10) %>% 
   mutate(total_ads = cumsum(n_ads), day_in_year = yday(date), year = as.factor(year(date)), month=month(date))
 
+## This is annoying but day_in_year does not match due to calenday; ugh.
+aea.20.top10.mrv <- aea.20.tot[aea.20.tot$day_in_year==max(aea.20.tot$day_in_year[aea.20.tot$top.10==T]) & aea.20.tot$top.10==T,
+                               c("total_ads","day_in_year")]
+aea.20.nottop10.mrv <- aea.20.tot[aea.20.tot$day_in_year==max(aea.20.tot$day_in_year[aea.20.tot$top.10==F]) & aea.20.tot$top.10==F,
+                                  c("total_ads","day_in_year")]
+aea.19.top10.mrv <- aea.19.tot[aea.19.tot$top.10==T,]
+aea.19.top10.mrv <- aea.19.top10.mrv[
+  which.min(abs(aea.19.top10.mrv$day_in_year - max(aea.20.tot$day_in_year[aea.20.tot$top.10==T]))), 
+  c("total_ads","day_in_year")]
+aea.19.nottop10.mrv <- aea.19.tot[aea.19.tot$top.10==F,]
+aea.19.nottop10.mrv <- aea.19.nottop10.mrv[
+  which.min(abs(aea.19.nottop10.mrv$day_in_year - max(aea.20.tot$day_in_year[aea.20.tot$top.10==F]))), 
+  c("total_ads","day_in_year")]
 
+down.top10 <- round((aea.20.top10.mrv$total_ads/aea.19.top10.mrv$total_ads)-1,2)
+down.nottop10 <- round((aea.20.nottop10.mrv$total_ads/aea.19.nottop10.mrv$total_ads)-1,2)
+  
 all_aea <- bind_rows(aea.19.tot, aea.20.tot)
 
 aea.19.txt.3 %>% 
@@ -110,7 +126,11 @@ gp <- all_aea %>%
        x="Day in Year (Aug 1 = 213)",
        y="Cumulative Ads Posted on JOE",
        caption = "Based on John Voorheis") +
-  theme(legend.position = "bottom") 
+  theme(legend.position = "bottom") +
+  annotate("text", x = 225, y = 375, label = paste0("Top10 down: ",down.top10*100,"pct YTD"), hjust = -0.1) +
+  annotate("text", x = 225, y = 325, label = paste0("NotTop10 down: ",down.nottop10*100,"pct YTD"),hjust = -0.1) +
+  annotate("text", x = 225, y = 275, label = paste0("Top10 Ads: ",aea.20.top10.mrv$total_ads), hjust = -0.2) +
+  annotate("text", x = 225, y = 225, label = paste0("NotTop10 Ads: ",aea.20.nottop10.mrv$total_ads), hjust = -0.18) 
 gp
 save_plot("joe_us_ft_repec10.pdf", gp)
 save_plot("joe_us_ft_repec10.png", gp)
@@ -131,6 +151,22 @@ aea.20.tot <- aea.20.txt %>%
   group_by(top.25) %>% 
   mutate(total_ads = cumsum(n_ads), day_in_year = yday(date), year = as.factor(year(date)), month=month(date))
 
+## This is annoying but day_in_year does not match due to calenday; ugh.
+aea.20.top25.mrv <- aea.20.tot[aea.20.tot$day_in_year==max(aea.20.tot$day_in_year[aea.20.tot$top.25==T]) & aea.20.tot$top.25==T,
+                               c("total_ads","day_in_year")]
+aea.20.nottop25.mrv <- aea.20.tot[aea.20.tot$day_in_year==max(aea.20.tot$day_in_year[aea.20.tot$top.25==F]) & aea.20.tot$top.25==F,
+                                  c("total_ads","day_in_year")]
+aea.19.top25.mrv <- aea.19.tot[aea.19.tot$top.25==T,]
+aea.19.top25.mrv <- aea.19.top25.mrv[
+  which.min(abs(aea.19.top25.mrv$day_in_year - max(aea.20.tot$day_in_year[aea.20.tot$top.25==T]))), 
+  c("total_ads","day_in_year")]
+aea.19.nottop25.mrv <- aea.19.tot[aea.19.tot$top.25==F,]
+aea.19.nottop25.mrv <- aea.19.nottop25.mrv[
+  which.min(abs(aea.19.nottop25.mrv$day_in_year - max(aea.20.tot$day_in_year[aea.20.tot$top.25==F]))), 
+  c("total_ads","day_in_year")]
+
+down.top25 <- round((aea.20.top25.mrv$total_ads/aea.19.top25.mrv$total_ads)-1,2)
+down.nottop25 <- round((aea.20.nottop25.mrv$total_ads/aea.19.nottop25.mrv$total_ads)-1,2)
 
 all_aea <- bind_rows(aea.19.tot, aea.20.tot)
 all_aea$top_25 <- "top25"
@@ -154,7 +190,11 @@ gp <- all_aea %>%
        x="Day in Year (Aug 1 = 213)",
        y="Cumulative Ads Posted on JOE",
        caption = "Based on John Voorheis") +
-  theme(legend.position = "bottom") 
+  theme(legend.position = "bottom")  +
+  annotate("text", x = 225, y = 375, label = paste0("Top25 down: ",down.top25*100,"pct YTD"), hjust = -0.1) +
+  annotate("text", x = 225, y = 325, label = paste0("NotTop25 down: ",down.nottop25*100,"pct YTD"),hjust = -0.1) +
+  annotate("text", x = 225, y = 275, label = paste0("Top25 Ads: ",aea.20.top25.mrv$total_ads), hjust = -0.2) +
+  annotate("text", x = 225, y = 225, label = paste0("NotTop25 Ads: ",aea.20.nottop25.mrv$total_ads), hjust = -0.18) 
 gp
 save_plot("joe_us_ft_repec25.pdf", gp)
 save_plot("joe_us_ft_repec25.png", gp)
