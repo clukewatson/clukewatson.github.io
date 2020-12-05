@@ -41,33 +41,96 @@
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;tentative-course-outline&#34;&gt;Tentative Course Outline:&lt;/h2&gt;
+&lt;h2 id=&#34;syllabus&#34;&gt;Syllabus&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://clukewatson.github.io/files/class/ec410/ec410_syllabus_fall2020.pdf&#34;&gt;ec410_syllabus_fall2020.pdf&lt;/a&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;course-outline&#34;&gt;Course Outline:&lt;/h2&gt;
 
 &lt;ol&gt;
-&lt;li&gt;Measuring Economic Development and Policy Evaluation
+&lt;li&gt;Introduction to Class
+
+&lt;ol&gt;
+&lt;li&gt;Class logistics and expectations&lt;/li&gt;
+&lt;li&gt;Lab: Setting up R and Rmarkdown&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;Measuring Economic Development
 
 &lt;ol&gt;
 &lt;li&gt;How is economic development measured?&lt;/li&gt;
 &lt;li&gt;What is the distribution economic development around the world?&lt;/li&gt;
-&lt;li&gt;What are current economic development policies taking place?&lt;/li&gt;
-&lt;li&gt;How do we evaluate development programs?&lt;/li&gt;
+&lt;li&gt;Lab: make time series plots and maps of world development indicators&lt;/li&gt;
+&lt;li&gt;PE: Chapter 1&lt;/li&gt;
 &lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;Causes and Consequences of Global Poverty
+&lt;li&gt;Economic Growth
 
 &lt;ol&gt;
-&lt;li&gt;What causes economic growth in aggregate?&lt;/li&gt;
-&lt;li&gt;Why are many people poor?&lt;/li&gt;
+&lt;li&gt;Why are countries poor?&lt;/li&gt;
+&lt;li&gt;What causes economic growth?&lt;/li&gt;
+&lt;li&gt;Lab: Numerically solve growth models&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;Global Poverty and Policy Evaluation
+
+&lt;ol&gt;
 &lt;li&gt;What keeps people from growing richer?&lt;/li&gt;
-&lt;li&gt;What can make lives better?&lt;/li&gt;
+&lt;li&gt;Why are family sizes so large in developing countries?&lt;/li&gt;
+&lt;li&gt;Why are education rates so low in developing countries?&lt;/li&gt;
+&lt;li&gt;Why is health care bad in developing countries?&lt;/li&gt;
+&lt;li&gt;Lab: Causal Inference; correlations, regressions, scatterplots&lt;/li&gt;
+&lt;li&gt;PE: Chapters 2,3,4,5&lt;/li&gt;
 &lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;Institutions, Migration, Environment
+&lt;li&gt;Institutions, Urbanization, Environment, RCTs
 
 &lt;ol&gt;
-&lt;li&gt;Why are institutions important for economic development?&lt;/li&gt;
-&lt;li&gt;How does corruption and conflict affect economic development?&lt;/li&gt;
-&lt;li&gt;How does migration  affect economic development?&lt;/li&gt;
-&lt;li&gt;How does the environment  affect economic development?&lt;/li&gt;
+&lt;li&gt;Why do developing counties have weaker governments?&lt;/li&gt;
+&lt;li&gt;Why do developing countries use VATs and tariffs?&lt;/li&gt;
+&lt;li&gt;Why do the poor move to cities?&lt;/li&gt;
+&lt;li&gt;Why are there mega-cities and slums?&lt;/li&gt;
+&lt;li&gt;How does development and globalization affect the environment?&lt;/li&gt;
+&lt;li&gt;How do RCTs work and why are they so popular?&lt;/li&gt;
+&lt;li&gt;Lab: Replications&lt;/li&gt;
+&lt;li&gt;PE: Chapter 10, Conclusion&lt;/li&gt;
 &lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;papers-referenced-discussed-in-lectures-labs&#34;&gt;Papers Referenced / Discussed In Lectures / Labs&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Solow (1956): A Contribution to the Theory of Economic Growth&lt;/li&gt;
+&lt;li&gt;Romer (1986): Increasing Returns and Long Run Growth&lt;/li&gt;
+&lt;li&gt;Romer (1990): Endogenous Technological Change&lt;/li&gt;
+&lt;li&gt;Lucas (1988): On the Mechanics of Economic Development&lt;/li&gt;
+&lt;li&gt;Ravallion (2013): The Idea of Antipoverty Policy&lt;/li&gt;
+&lt;li&gt;Kuznets (1955): Economic Growth and Income Inequality&lt;/li&gt;
+&lt;li&gt;Banerjee &amp;amp; Duflo (2007): Economic Lives of the Poor&lt;/li&gt;
+&lt;li&gt;Glewwe, Ilias &amp;amp; Kremer (2010): Teacher Incentives&lt;/li&gt;
+&lt;li&gt;Duflo, Hanna &amp;amp; Ryan (2012): Incentives Work: Getting Teachers to Come to School&lt;/li&gt;
+&lt;li&gt;Miguel &amp;amp; Kremer (2004): Worms: Identifying Impacts on Education and Health in the Presence of Treatment Externalities&lt;/li&gt;
+&lt;li&gt;Duflo (2001): Schooling and Labor Market Consequences of School Construction in Indonesia: Evidence from an Unusual Policy Experiment&lt;/li&gt;
+&lt;li&gt;Hjort, Moreira, Rao &amp;amp;  Santini (2019): How Research Affects Policy - Experimental Evidence from 2,150 Brazilian Municipalities&lt;/li&gt;
+&lt;li&gt;Rice &amp;amp; Patrick (2008): Index of State Weakness in the Developing World&lt;/li&gt;
+&lt;li&gt;Fergusson, Molina, &amp;amp; Robinson (2020): The Weak State Trap&lt;/li&gt;
+&lt;li&gt;Aceemoglu, De Feo, &amp;amp; De Luca (2020): Weak States: Causes and Consequences of thee Sicilian Mafia&lt;/li&gt;
+&lt;li&gt;Johnson &amp;amp; Koyama (2016): States and economic growth: Capacity and Constraints&lt;/li&gt;
+&lt;li&gt;Bai, Jayachandran, Malesky, &amp;amp; Olken (2019): Firm growth and corruption: empirical evidence from Vietnam&lt;/li&gt;
+&lt;li&gt;Dell, Lane, &amp;amp; Querubin (2018): The Historical State, Local Collective Action, and Economic Development in Vietnam&lt;/li&gt;
+&lt;li&gt;Besley &amp;amp; Persson (2014): Why Do Developing Countries Tax So Little?&lt;/li&gt;
+&lt;li&gt;Kleven (2014): How Can Scandinavians Tax So Much?&lt;/li&gt;
+&lt;li&gt;Keen &amp;amp; Lockwood (2010): The value added tax: Its causes and consequences&lt;/li&gt;
+&lt;li&gt;Carrillo, Pomeranz, Singhal (2017): Dodging the Taxman: Firm Misreporting and Limits to Tax Enforcement&lt;/li&gt;
+&lt;li&gt;Pomeranz (2015): No Taxation without Information: Deterrence and Self-Enforcement in the Value Added Tax&lt;/li&gt;
+&lt;li&gt;Marx, Stoker, &amp;amp; Suri (2013): The Economics of Slums in the Developing World&lt;/li&gt;
+&lt;li&gt;Fox (2014): the Political Economy of Slums: Theory and Evidence from Sub-Saharan Africa&lt;/li&gt;
+&lt;li&gt;Cavalcanti, Da Mata, Santos (2018): On the Determinants of Slum Formation&lt;/li&gt;
+&lt;li&gt;Brotherhood, Cavalcanti, da Mata, &amp;amp; Santos (2020): Slums and Pandemics&lt;/li&gt;
+&lt;li&gt;Nunn &amp;amp; Qian (2011): The Potato&amp;rsquo;s Contribution to Population and Urbanization: Evidence from a Historical Experiment&lt;/li&gt;
+&lt;li&gt;Greenstone &amp;amp; Jack (2015): Envirodevonomics: A Research Agenda for an Emerging Field&lt;/li&gt;
+&lt;li&gt;Carleton et al. (2020): Valuing the Global Mortality Consequences of Climate Change Accounting for Adaptation Costs and Benefits&lt;/li&gt;
+&lt;li&gt;Shapiro (2016): Trade Costs, CO2, and the Environment&lt;/li&gt;
+&lt;li&gt;Shapiro (2020): The Environmental Bias of Trade Policy&lt;/li&gt;
+&lt;li&gt;Bombardini &amp;amp; Li (2020): Trade, Pollution, and Mortality in China&lt;/li&gt;
 &lt;/ol&gt;
 </description>
     </item>
