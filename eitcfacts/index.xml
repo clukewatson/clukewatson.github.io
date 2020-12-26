@@ -27,7 +27,9 @@ Here are some facts about the EITC that I find are not frequently documented.&lt
 &lt;ul&gt;
 &lt;li&gt;Investment income limits were introduced in via Public Law 104-7&lt;/li&gt;
 &lt;li&gt;Investment income about the limit precludes a worker from receiving any EITC&lt;/li&gt;
-&lt;li&gt;Falk, Gene. The Earned Income Tax Credit (EITC): An Overview, report, October 22, 2014.&lt;/li&gt;
+&lt;li&gt;Sources
+    -  Falk, Gene. The Earned Income Tax Credit (EITC): An Overview, report, October 22, 2014.
+    -  &lt;a href=&#34;https://www.irs.gov/pub/irs-prior/p596--XXXX.pdf&#34;&gt;https://www.irs.gov/pub/irs-prior/p596--XXXX.pdf&lt;/a&gt; for XXXX 1995-2018.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;| Tax Year | Limit |
@@ -62,17 +64,17 @@ Here are some facts about the EITC that I find are not frequently documented.&lt
 
 &lt;ul&gt;
 &lt;li&gt;One typically pictures the EITC schedule as a trapezoid.
-    *  Initially the credit increases with income in the phase-in portion.
-    *  Between the two kink points is the max credit portion that is constant with income.
-    *  After the second kink point the credit declines with income.&lt;/li&gt;
+    -  Initially the credit increases with income in the phase-in portion.
+    -  Between the two kink points is the max credit portion that is constant with income.
+    -  After the second kink point the credit declines with income.&lt;/li&gt;
 &lt;li&gt;However, after the first kink point, the credit is determined by the max of earned income and adjusted gross income (AGI).
-    *  AGI is gross income minus some deductions and weakly greater than earned income.
-    *  Thus AGI includes some unearned income.&lt;/li&gt;
+    -  AGI is gross income minus some deductions and weakly greater than earned income.
+    -  Thus AGI includes some unearned income.&lt;/li&gt;
 &lt;li&gt;Increasing income past the first kink point reduces the credit
-    *  For some tax units, this erases the max credit portion and makes the EITC look triangular.&lt;/li&gt;
+    -  For some tax units, this erases the max credit portion and makes the EITC look triangular.&lt;/li&gt;
 &lt;li&gt;Weber (2016) discusses and uses this for identifying variation
-    *  Caroline Weber, 2016. &amp;quot;Does the Earned Income Tax Credit Reduce Saving by Low-Income Households?,&amp;quot; National Tax Journal, vol. 69(1), pages 41-76, March.
-    *  She finds that the EITC disincentivizes saving because of this feature.&lt;/li&gt;
+    -  Caroline Weber, 2016. &amp;quot;Does the Earned Income Tax Credit Reduce Saving by Low-Income Households?,&amp;quot; National Tax Journal, vol. 69(1), pages 41-76, March.
+    -  She finds that the EITC disincentivizes saving because of this feature.&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
