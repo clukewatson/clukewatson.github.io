@@ -27,43 +27,149 @@ Here are some facts about the EITC that I find are not frequently documented.&lt
 &lt;ul&gt;
 &lt;li&gt;Investment income limits were introduced in via Public Law 104-7&lt;/li&gt;
 &lt;li&gt;Investment income about the limit precludes a worker from receiving any EITC&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Sources&lt;/p&gt;
+&lt;li&gt;Sources
 
 &lt;ul&gt;
 &lt;li&gt;Falk, Gene. The Earned Income Tax Credit (EITC): An Overview, report, October 22, 2014.&lt;/li&gt;
 &lt;li&gt;IRS guidance: &lt;a href=&#34;https://www.irs.gov/pub/irs-prior/p596--XXXX.pdf&#34;&gt;https://www.irs.gov/pub/irs-prior/p596--XXXX.pdf&lt;/a&gt; for XXXX 1995-2018.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;|  |   | |
-| :---: | :---: |
-| Tax Year |  Limit |
-| 1996 | 2200 |
-| 1997 | 2250 |
-| 1998 | 2300 |
-| 1999 | 2350 |
-| 2000 | 2400 |
-| 2001 | 2450 |
-| 2002 | 2550 |
-| 2003 | 2600 |
-| 2004 | 2650 |
-| 2005 | 2700 |
-| 2006 | 2800 |
-| 2007 | 2900 |
-| 2008 | 2950 |
-| 2009 | 3100 |
-| 2010 | 3100 |
-| 2011 | 3150 |
-| 2012 | 3200 |
-| 2013 | 3300 |
-| 2014 | 3350 |
-| 2015 | 3400 |
-| 2016 | 3400 |
-| 2017 | 3450 |
-| 2018 | 3500 |
-| 2019 | 3600 |
-| 2020 | 3650 |&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Tax Year&lt;/th&gt;
+&lt;th&gt;Limit&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1996&lt;/td&gt;
+&lt;td&gt;2200&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;1997&lt;/td&gt;
+&lt;td&gt;2250&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;1998&lt;/td&gt;
+&lt;td&gt;2300&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;1999&lt;/td&gt;
+&lt;td&gt;2350&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2000&lt;/td&gt;
+&lt;td&gt;2400&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2001&lt;/td&gt;
+&lt;td&gt;2450&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2002&lt;/td&gt;
+&lt;td&gt;2550&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2003&lt;/td&gt;
+&lt;td&gt;2600&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2004&lt;/td&gt;
+&lt;td&gt;2650&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2005&lt;/td&gt;
+&lt;td&gt;2700&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2006&lt;/td&gt;
+&lt;td&gt;2800&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2007&lt;/td&gt;
+&lt;td&gt;2900&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2008&lt;/td&gt;
+&lt;td&gt;2950&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2009&lt;/td&gt;
+&lt;td&gt;3100&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2010&lt;/td&gt;
+&lt;td&gt;3100&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2011&lt;/td&gt;
+&lt;td&gt;3150&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2012&lt;/td&gt;
+&lt;td&gt;3200&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2013&lt;/td&gt;
+&lt;td&gt;3300&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2014&lt;/td&gt;
+&lt;td&gt;3350&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2015&lt;/td&gt;
+&lt;td&gt;3400&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2016&lt;/td&gt;
+&lt;td&gt;3400&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2017&lt;/td&gt;
+&lt;td&gt;3450&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2018&lt;/td&gt;
+&lt;td&gt;3500&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2019&lt;/td&gt;
+&lt;td&gt;3600&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2020&lt;/td&gt;
+&lt;td&gt;3650&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;h2 id=&#34;earned-income-and-agi&#34;&gt;Earned Income and AGI&lt;/h2&gt;
 
