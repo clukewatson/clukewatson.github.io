@@ -5,12 +5,20 @@
     <link>http://clukewatson.github.io/</link>
       <atom:link href="http://clukewatson.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>C. Luke Watson</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Fri, 01 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Fri, 25 Dec 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>http://clukewatson.github.io/img/icon-192.png</url>
       <title>C. Luke Watson</title>
       <link>http://clukewatson.github.io/</link>
     </image>
+    
+    <item>
+      <title>Eitcfacts</title>
+      <link>http://clukewatson.github.io/eitcfacts/</link>
+      <pubDate>Fri, 25 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>http://clukewatson.github.io/eitcfacts/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Mycodes</title>
@@ -87,14 +95,16 @@
 
 &lt;h2 id=&#34;r--rmarkdown&#34;&gt;R + Rmarkdown&lt;/h2&gt;
 
-&lt;p&gt;&lt;em&gt;Blurb:&lt;/em&gt; this provides a template for using Rmarkdown; assumes necessary packages installed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Make Markdown file&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;Blurb:&lt;/em&gt; this provides a template for using Rmarkdown; assumes necessary packages installed.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Rmd file: &lt;a href=&#34;http://clukewatson.github.io/files/code/r/markdown/howdy.Rmd&#34;&gt;howdy.Rmd&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;PDF output: &lt;a href=&#34;http://clukewatson.github.io/files/code/r/markdown/howdy.pdf&#34;&gt;howdy.pdf&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;em&gt;Blurb:&lt;/em&gt; this creates plots for Year to Date JOE ads for US Full Time Academic jobs by REPEC Top 10 and Top 25 US Econ dept institutions&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;R JOE Graph&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;Blurb:&lt;/em&gt; this creates plots for Year to Date JOE ads for US Full Time Academic jobs by REPEC Top 10 and Top 25 US Econ dept institutions&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;E.g., MIT Mgmt is &amp;quot;Top 10&amp;quot; because MIT Econ is Top 10&lt;/li&gt;
@@ -150,6 +160,11 @@
 
 &lt;p&gt;&lt;strong&gt;What Does An EITC DID Estimate?&lt;/strong&gt;&lt;br /&gt;
 - In progress&lt;/p&gt;
+
+&lt;h2 id=&#34;research-notes&#34;&gt;Research Notes&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;EITC Facts&lt;/strong&gt;&lt;br /&gt;
+&lt;a href=&#34;http://clukewatson.github.io/eitcfacts/eitc_facts/&#34; target=&#34;_blank&#34;&gt;EITC Facts&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
