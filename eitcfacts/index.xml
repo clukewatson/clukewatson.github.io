@@ -20,7 +20,7 @@
       <description>&lt;h1 id=&#34;eitc-facts&#34;&gt;EITC Facts&lt;/h1&gt;
 
 &lt;p&gt;&lt;strong&gt;Blurb&lt;/strong&gt;
-Here are some facts about the EITC that I find are not frequently documented.&lt;/p&gt;
+Here are some facts about the EITC that I find are not frequently documented (except in legal discussions of the EITC).&lt;/p&gt;
 
 &lt;h2 id=&#34;investment-limits&#34;&gt;Investment Limits&lt;/h2&gt;
 
@@ -198,6 +198,27 @@ Here are some facts about the EITC that I find are not frequently documented.&lt
 &lt;li&gt;Caroline Weber, 2016. &amp;quot;Does the Earned Income Tax Credit Reduce Saving by Low-Income Households?,&amp;quot; National Tax Journal, vol. 69(1), pages 41-76, March.&lt;/li&gt;
 &lt;li&gt;She finds that the EITC disincentivizes saving because of this feature.&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;eitc-and-snap&#34;&gt;EITC and SNAP&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The EITC and SNAP are &lt;em&gt;mostly&lt;/em&gt; independent of each other.&lt;/li&gt;
+&lt;li&gt;The EITC is part of the federal (and some state) tax system whereas SNAP must be applied for at state level.&lt;/li&gt;
+&lt;li&gt;However some limits do exist:
+
+&lt;ul&gt;
+&lt;li&gt;If a household  member has SNAP of TANF reporting violations, this may make some EITC count towards assets&lt;/li&gt;
+&lt;li&gt;If the claimant is over 60 or disabled but not getting SSI, then there is an income limit which may make EITC count towards assets&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;eitc-and-unemployment-benefits&#34;&gt;EITC and Unemployment Benefits&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Unemployment benefits count as unearned income.&lt;/li&gt;
+&lt;li&gt;Unemployment benefits do not increase EITC but would count in AGI, which can decrease EITC.&lt;/li&gt;
+&lt;li&gt;The earned income vs AGI rules would then apply.&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
