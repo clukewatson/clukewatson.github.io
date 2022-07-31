@@ -1,0 +1,14 @@
+{
+  "hash": "7b9c31473650c4bc378836ae4a321e46",
+  "result": {
+    "markdown": "---\ntitle: \"Estimating Both Supply and Demand Elasticities Using Variation in a Single Tax Rate with General Equilibrium Spillovers\"\ndate: 2021-10-01\ndescription: A note about using tax IVs\nauthor: C. Luke Watson\nimage: prop2.png\noutput:\n  distill::distill_article:\n    self_contained: false\n---\n\n\n## Abstract\n\nZoutman, Gavrilova, & Hopland (Econometrica, 2018) show that by knowing on ‘which side of the market’ an ‘exogenous’ tax is levied one can use a single tax instrument to estimate both a supply and a demand elasticity. This seemingly goes against the intuition that one needs two instruments for two parameters; i.e., a ‘supply’ and a ‘demand’ instrument. I show that the result is only true with partial equilibrium assumptions. Without further assumptions, tax reform induced general equilibrium price spillover effects imply that the tax rates are correlated with the unobserved structural errors. Thus, tax rates on their own are invalid instruments for at least one of the parameters. However, I show that if one can calculate a measure of spillovers, then one can still estimate the two elasticities using one tax reform, but with the spillover measure as an additional instrument.\n\n## Author's Notes\n\nI do not expect to revise this paper anytime soon.\nI submitted it to Economics Letters in Oct 2021, and the paper was rejected with referee reports.\nThe turn-around was quick and I have no complaints about the process.  \n\nI do not wish the paper to be seen as a comment on ZGH 2018; rather, a warning for others looking to follow their advice.\nOne referee claimed that if one includes the other markets' prices in the structural function (and as expected the first stage), then identification is possible based on results from a 1970s J.Hausman paper.\nWhile I trust that referee's argument is sound, I have not worked this out myself.\nI do worry that this would not work in finite samples, but then in this case maybe the IV will not work either.\n\n\n## BibTeX citation\n\n```bibtex\n@techreport{watson_tax_iv_ge:2021,\n    Author = {C. Luke Watson},\n    Month = {10},\n    Title = {Estimating Both Supply and Demand Elasticities Using Variation in a Single Tax Rate with General Equilibrium Spillovers},\n    Type = {Manuscript},\n    Year = {2021}}\n```\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

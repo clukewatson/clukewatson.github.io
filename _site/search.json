@@ -1,0 +1,156 @@
+[
+  {
+    "objectID": "research/nyc-monopoly/index.html#important-links",
+    "href": "research/nyc-monopoly/index.html#important-links",
+    "title": "Is the Rent Too High? Land Ownership and Monopoly Power",
+    "section": "Important links",
+    "text": "Important links\n\nPaper (Jan 2022)\nSlides (June 2022)"
+  },
+  {
+    "objectID": "research/nyc-monopoly/index.html#abstract",
+    "href": "research/nyc-monopoly/index.html#abstract",
+    "title": "Is the Rent Too High? Land Ownership and Monopoly Power",
+    "section": "Abstract",
+    "text": "Abstract\nWe investigate the sources, scope, and implications of landowner market power. We show how monopolistic landownership creates contemporary scarcity and truncates future redevelopment relative to social optimum. We discuss how popular subsidies for redevelopment, zoning regulations, and ownership concentration restrictions in- teract with monopoly power. Using new building-level data from New York City, we quantify the scope and impact of monopoly power. A 10% increase in ownership concentration in a Census tract is correlated with a 1% increase in rent. Market power is a substantial economic force: markups account for at least a fifth of rents in the city.\nNote: the paper is out of date with the slides due to disclosure rules by the FDIC."
+  },
+  {
+    "objectID": "research/nyc-monopoly/index.html#bibtex-citation",
+    "href": "research/nyc-monopoly/index.html#bibtex-citation",
+    "title": "Is the Rent Too High? Land Ownership and Monopoly Power",
+    "section": "BibTeX citation",
+    "text": "BibTeX citation\n@techreport{watson_istherenttoohigh:2022,\n    Author = {Watson, C. Luke and Ziv, Oren},\n    Month = {1},\n    Title = {Is the Rent Too High? Land Ownership and Monopoly Power},\n    Type = {Manuscript},\n    Year = {2022}}"
+  },
+  {
+    "objectID": "research/tax-iv-ge/index.html",
+    "href": "research/tax-iv-ge/index.html",
+    "title": "Estimating Both Supply and Demand Elasticities Using Variation in a Single Tax Rate with General Equilibrium Spillovers",
+    "section": "",
+    "text": "Zoutman, Gavrilova, & Hopland (Econometrica, 2018) show that by knowing on ‘which side of the market’ an ‘exogenous’ tax is levied one can use a single tax instrument to estimate both a supply and a demand elasticity. This seemingly goes against the intuition that one needs two instruments for two parameters; i.e., a ‘supply’ and a ‘demand’ instrument. I show that the result is only true with partial equilibrium assumptions. Without further assumptions, tax reform induced general equilibrium price spillover effects imply that the tax rates are correlated with the unobserved structural errors. Thus, tax rates on their own are invalid instruments for at least one of the parameters. However, I show that if one can calculate a measure of spillovers, then one can still estimate the two elasticities using one tax reform, but with the spillover measure as an additional instrument."
+  },
+  {
+    "objectID": "research/tax-iv-ge/index.html#authors-notes",
+    "href": "research/tax-iv-ge/index.html#authors-notes",
+    "title": "Estimating Both Supply and Demand Elasticities Using Variation in a Single Tax Rate with General Equilibrium Spillovers",
+    "section": "Author’s Notes",
+    "text": "Author’s Notes\nI do not expect to revise this paper anytime soon. I submitted it to Economics Letters in Oct 2021, and the paper was rejected with referee reports. The turn-around was quick and I have no complaints about the process.\nI do not wish the paper to be seen as a comment on ZGH 2018; rather, a warning for others looking to follow their advice. One referee claimed that if one includes the other markets’ prices in the structural function (and as expected the first stage), then identification is possible based on results from a 1970s J.Hausman paper. While I trust that referee’s argument is sound, I have not worked this out myself. I do worry that this would not work in finite samples, but then in this case maybe the IV will not work either."
+  },
+  {
+    "objectID": "research/tax-iv-ge/index.html#bibtex-citation",
+    "href": "research/tax-iv-ge/index.html#bibtex-citation",
+    "title": "Estimating Both Supply and Demand Elasticities Using Variation in a Single Tax Rate with General Equilibrium Spillovers",
+    "section": "BibTeX citation",
+    "text": "BibTeX citation\n@techreport{watson_tax_iv_ge:2021,\n    Author = {C. Luke Watson},\n    Month = {10},\n    Title = {Estimating Both Supply and Demand Elasticities Using Variation in a Single Tax Rate with General Equilibrium Spillovers},\n    Type = {Manuscript},\n    Year = {2021}}"
+  },
+  {
+    "objectID": "research/state-eitc/index.html",
+    "href": "research/state-eitc/index.html",
+    "title": "The Local Effects of State EITC Expansions",
+    "section": "",
+    "text": "Paper"
+  },
+  {
+    "objectID": "research/state-eitc/index.html#abstract",
+    "href": "research/state-eitc/index.html#abstract",
+    "title": "The Local Effects of State EITC Expansions",
+    "section": "Abstract",
+    "text": "Abstract\nTwenty eight states spend $4 billion to supplement the federal Earned Income Tax Credit, with several justifying the tax expenditure as a pro-work incentive. Yet no systematic evaluation of these supplements exists. I use state border policy variation to identify state supplements effects. I first document that subsidy rates are greater when a state’s neighbor already has a supplement. Next, I assess whether supplements affect county level EITC take-up, migration, commuting, employment, and earnings. Estimates are sensitive to the estimation design and sample used. While supplements increase benefits to low-income workers, results fail to provide robust evidence of increased economic activity.\nNote: the empirics on this paper are not finalized and should not be cited."
+  },
+  {
+    "objectID": "research/state-eitc/index.html#graph-from-the-paper",
+    "href": "research/state-eitc/index.html#graph-from-the-paper",
+    "title": "The Local Effects of State EITC Expansions",
+    "section": "Graph from the paper",
+    "text": "Graph from the paper\n\nTiming and intensity of use\n\n\n\n\n\n\n\nPossible policy coordination"
+  },
+  {
+    "objectID": "research/state-eitc/index.html#bibtex-citation",
+    "href": "research/state-eitc/index.html#bibtex-citation",
+    "title": "The Local Effects of State EITC Expansions",
+    "section": "BibTeX citation",
+    "text": "BibTeX citation\n@techreport{watson_state_eitc:2021,\n    Author = {C. Luke Watson},\n    Month = {8},\n    Title = {The Local Effects of State EITC Expansions},\n    Type = {Manuscript},\n    Year = {2021}}"
+  },
+  {
+    "objectID": "research/ge-eitc/index.html#important-links",
+    "href": "research/ge-eitc/index.html#important-links",
+    "title": "The General Equilibrium Incidence of the Earned Income Tax Credit",
+    "section": "Important links",
+    "text": "Important links\n\nPaper"
+  },
+  {
+    "objectID": "research/ge-eitc/index.html#abstract",
+    "href": "research/ge-eitc/index.html#abstract",
+    "title": "The General Equilibrium Incidence of the Earned Income Tax Credit",
+    "section": "Abstract",
+    "text": "Abstract\nThe Earned Income Tax Credit is a $67 billion tax expenditure that subsidizes 20% of all workers. Yet all prior analysis uses partial equilibrium assumptions on gross wages. I derive the general equilibrium incidence of wage subsidies and quantify the importance of EITC spillovers in three ways. I calculate the GE incidence of the 1993 and 2009 EITC expansions using new elasticity estimates. I contrast the incidence of counterfactual EITC and Welfare expansions. I quantify the effect of equalizing the EITC for workers with and without children. In all cases, I find spillovers are economically meaningful."
+  },
+  {
+    "objectID": "research/ge-eitc/index.html#bibtex-citation",
+    "href": "research/ge-eitc/index.html#bibtex-citation",
+    "title": "The General Equilibrium Incidence of the Earned Income Tax Credit",
+    "section": "BibTeX citation",
+    "text": "BibTeX citation\n@techreport{watson_geeitc:2021,\n    Author = {C. Luke Watson},\n    Month = {9},\n    Title = {The General Equilibrium Incidence of the Earned Income Tax Credit},\n    Type = {Manuscript},\n    Year = {2021}}"
+  },
+  {
+    "objectID": "research.html",
+    "href": "research.html",
+    "title": "C. Luke Watson",
+    "section": "",
+    "text": "The General Equilibrium Incidence of the Earned Income Tax Credit\n\n\n\n\n\nMy JMP\n\n\n\n\n\n\nJul 31, 2022\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nIs the Rent Too High? Land Ownership and Monopoly Power\n\n\n\n\n\nIs it?\n\n\n\n\n\n\nJan 1, 2022\n\n\nC. Luke Watson, Oren Ziv\n\n\n\n\n\n\n  \n\n\n\n\nEstimating Both Supply and Demand Elasticities Using Variation in a Single Tax Rate with General Equilibrium Spillovers\n\n\n\n\n\nA note about using tax IVs\n\n\n\n\n\n\nOct 1, 2021\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nThe Local Effects of State EITC Expansions\n\n\n\n\n\nChapter 2 of my dissertation\n\n\n\n\n\n\nAug 1, 2021\n\n\nC. Luke Watson\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/2020-06-09_preference_relations/index.html",
+    "href": "posts/2020-06-09_preference_relations/index.html",
+    "title": "First year notes on preference relations",
+    "section": "",
+    "text": "These are notes I wrote on preference relations for first year phd micro: notes01_preferences.pdf. I typed the notes to learn LaTeX and pass the time waiting on getting prelim results. I think they are pretty good. I started a companion set for utility maximization problems, but only got through the math parts without getting to the micro. Maybe I will try to finish it."
+  },
+  {
+    "objectID": "posts/2022-07-31-something-new/index.html",
+    "href": "posts/2022-07-31-something-new/index.html",
+    "title": "A New Website",
+    "section": "",
+    "text": "I saw a couple of websites and thought mine could do with an update. In particular, Andrew Heiss has an amazing website… but I don’t know how to replicate it. Thus, I am borrowing from Mike Mahoney before he creates something too advanced for me to follow."
+  },
+  {
+    "objectID": "posts/2018-06-18-tfp-guide/index.html",
+    "href": "posts/2018-06-18-tfp-guide/index.html",
+    "title": "TFP Guide",
+    "section": "",
+    "text": "These are notes I wrote on Total Factor Productivity (TFP) and production function estimation as a research assistant: TFP_guide.pdf. These notes are a mix of theory and code to estimate. I should liberate the code from the pdf. I think there is now a Stata or R package that does several different methods."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "C. Luke Watson",
+    "section": "",
+    "text": "I am Financial Economist in the Center for Financial Research at the Federal Deposit Insurance Corporation. I earned my PhD in economics from Michigan State University’s College of Social Science in 2021. I earned my BA and MA in economics for Old Dominion University’s Strome College of Business.\nFor the FDIC, I research bank branching decisions, consumer access to banking services, and the emergence of online banking. In addition, my corporate work includes methodological and performance evaluation of bank financial models as part of the Quantitative Risk Analysis section. My dissertation work focused on the general equilibrium effects of the Earned Income Tax Credit and market power in urban rental markets.\nOn this site I maintain my CV and research, as well as a blog.\nThe views and opinions expressed on this website do not reflect those of the FDIC, the United States, nor anyone else."
+  },
+  {
+    "objectID": "people/index.html",
+    "href": "people/index.html",
+    "title": "People I Know",
+    "section": "",
+    "text": "I know people who do interesting things. Here are some of them:"
+  },
+  {
+    "objectID": "people/index.html#advisors",
+    "href": "people/index.html#advisors",
+    "title": "People I Know",
+    "section": "Advisors",
+    "text": "Advisors\n\nGary Wagner\nTim Komarek\nOren Ziv\nJay Wilson"
+  },
+  {
+    "objectID": "people/index.html#grad-school-friends",
+    "href": "people/index.html#grad-school-friends",
+    "title": "People I Know",
+    "section": "Grad School friends",
+    "text": "Grad School friends\n\nRiley Acton\nChristian Cox\nHannah Gabriel\nCody Orr\nGabrielle Pepin"
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "C. Luke Watson",
+    "section": "",
+    "text": "A New Website\n\n\n\n\n\nTrying something new\n\n\n\n\n\n\nJul 31, 2022\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nFirst year notes on preference relations\n\n\n\n\n\nFirst year notes on preference relations\n\n\n\n\n\n\nJun 9, 2020\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nTFP Guide\n\n\n\n\n\nA TFP guide I made\n\n\n\n\n\n\nJun 18, 2018\n\n\nC. Luke Watson\n\n\n\n\n\n\nNo matching items"
+  }
+]

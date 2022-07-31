@@ -1,0 +1,14 @@
+{
+  "hash": "f78f47badf9b41aa62018b3c34313d74",
+  "result": {
+    "markdown": "---\ntitle: \"A New Website\"\ndescription: \"Trying something new\"\nauthor: C. Luke Watson\ndate: 2022-07-31\nimage: jeffpeterson.png\noutput:\n  distill::distill_article:\n    self_contained: false\n---\n\n::: {.cell}\n::: {.cell-output-display}\n![](jeffpeterson.png){width=1256}\n:::\n:::\n\n\n\nI saw a couple of websites and thought mine could do with an update. \nIn particular, [Andrew Heiss](https://www.andrewheiss.com) has an **amazing** website... but I don't know how to replicate it.\nThus, I am borrowing from [Mike Mahoney](https://www.mm218.dev) before *he* creates something too advanced for me to follow.",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

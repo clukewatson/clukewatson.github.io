@@ -1,0 +1,53 @@
+---
+title: "C. Luke Watson"
+image: avatar.jpg
+about:
+  template: trestles
+  links:
+    - text: Twitter
+      icon: twitter
+      url: "https://twitter.com/clwatsonecon"
+    - text: GitHub
+      icon: github
+      url: "https://github.com/clukewatson"
+    - text: Email
+      url: "mailto:chwatson@fdic.gov"
+    - text: Blog
+      url: "blog.html"
+    - text: CV
+      url: "cv_clw.pdf"
+comments: false
+---
+:::: {.column-page}
+
+## Howdy, world!
+
+I am Financial Economist in the [Center for Financial Research](https://www.fdic.gov/analysis/cfr/index.html) at the [Federal Deposit Insurance Corporation](https://www.fdic.gov). I earned my PhD in economics from [Michigan State University's College of Social Science](http://econ.msu.edu) in 2021. I earned my BA and MA in economics for [Old Dominion University's Strome College of Business](https://www.odu.edu/business).
+
+For the FDIC, I research bank branching decisions, consumer access to banking services, and the emergence of online banking.
+In addition, my corporate work includes methodological and performance evaluation of bank financial models as part of the Quantitative Risk Analysis section.
+My dissertation work focused on the general equilibrium effects of the Earned Income Tax Credit and market power in urban rental markets.
+
+On this site I maintain my [CV](cv_clw.pdf) and [research](research), as well as a [blog](blog.html).
+
+The views and opinions expressed on this website do not reflect those of the FDIC, the United States, nor anyone else.
+
+<p></p>
+
+<!-- ## Selected Projects -->
+
+<!-- #### Publications -->
+
+<!-- **unifir: A Unifying API for Interacting with Unity from R.** Mahoney, MJ, Beier, CM, and Ackerman, AC. 2022. Journal of Open Source Software 7(73): 4388. [https://doi.org/10.21105/joss.04388](https://doi.org/10.21105/joss.04388) -->
+
+<!-- **terrainr: An R package for creating immersive virtual environments.** Mahoney, MJ, Beier, CM, and Ackerman, AC. 2022. Journal of Open Source Software, 7(69): 4060. [https://doi.org/10.21105/joss.04060](https://doi.org/10.21105/joss.04060) -->
+
+<!-- **Stem size selectivity is stronger than species preferences for beaver, a central place forager.**  Mahoney, M. J. and Stella, J. C. 2020. Forest Ecology and Management, 475, 118331. [https://doi.org/10.1016/j.foreco.2020.118331](https://doi.org/10.1016/j.foreco.2020.118331). -->
+
+<!-- #### R Packages -->
+
+<!-- **[unifir](https://github.com/mikemahoney218/unifir)** | A Unifying API for Working with Unity in R | 2022   -->
+<!-- **[terrainr](https://github.com/ropensci/terrainr)** | Retrieve Data from the USGS National Map and Transform it for 3D Landscape Visualizations | 2021   -->
+<!-- **[heddlr](https://github.com/mikemahoney218/heddlr)** | Functional Programming Concepts for R Markdown Documents | 2020 -->
+
+::::

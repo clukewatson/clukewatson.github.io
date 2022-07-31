@@ -1,0 +1,19 @@
+---
+title: "A New Website"
+description: "Trying something new"
+author: C. Luke Watson
+date: 2022-07-31
+image: jeffpeterson.png
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r echo=FALSE}
+knitr::include_graphics("jeffpeterson.png")
+```
+
+
+I saw a couple of websites and thought mine could do with an update. 
+In particular, [Andrew Heiss](https://www.andrewheiss.com) has an **amazing** website... but I don't know how to replicate it.
+Thus, I am borrowing from [Mike Mahoney](https://www.mm218.dev) before *he* creates something too advanced for me to follow.

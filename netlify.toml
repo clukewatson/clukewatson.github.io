@@ -1,0 +1,15 @@
+[[redirects]]
+  from = "/orcid"
+  to = "https://orcid.org/0000-0002-1825-5453"
+
+[[redirects]]
+  from = "/github"
+  to = "https://github.com/clukewatson"
+
+[[redirects]]
+  from = "/twitter"
+  to = "https://www.twitter.com/clwatsonecon"
+
+[[redirects]]
+  from = "/cv"
+  to = "/cv.pdf"

@@ -1,0 +1,14 @@
+{
+  "hash": "b3a8c05b93932e903a650bbd1cd2bfb7",
+  "result": {
+    "markdown": "---\ntitle: \"The Local Effects of State EITC Expansions\"\ndate: 2021-08-01\nauthor: C. Luke Watson\ndescription: Chapter 2 of my dissertation\nimage: treatment.png\noutput:\n  distill::distill_article:\n    self_contained: false\n---\n\n\n## PDF links\n\n- [Paper](watson_state_eitc.pdf)\n<!-- - [Appendix (preprint)](chaudhry-dotson-heiss-who-cares-crackdowns-appendix.pdf) -->\n<!-- - [Statistical analysis notebook](https://stats.andrewheiss.com/who-cares-about-crackdowns/) -->\n<!-- - [GitHub repository](https://github.com/andrewheiss/who-cares-about-crackdown)\n- [Experiment preregistration](https://osf.io/hsbyd) (research question #2) -->\n\n\n## Abstract\n\nTwenty eight states spend $4 billion to supplement the federal Earned Income Tax Credit, with several justifying the tax expenditure as a pro-work incentive. Yet no systematic evaluation of these supplements exists. I use state border policy variation to identify state supplements effects. I first document that subsidy rates are greater when a state’s neighbor already has a supplement. Next, I assess whether supplements affect county level EITC take-up, migration, commuting, employment, and earnings. Estimates are sensitive to the estimation design and sample used. While supplements increase benefits to low-income workers, results fail to provide robust evidence of increased economic activity.\n\n**Note: the empirics on this paper are not finalized and should not be cited.**\n\n## Graph from the paper\n\n### Timing and intensity of use\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](timing.png){width=1120}\n:::\n:::\n\n\n### Possible policy coordination\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](coordination.png){width=1154}\n:::\n:::\n\n\n\n## BibTeX citation\n\n```bibtex\n@techreport{watson_state_eitc:2021,\n    Author = {C. Luke Watson},\n    Month = {8},\n    Title = {The Local Effects of State EITC Expansions},\n    Type = {Manuscript},\n    Year = {2021}}\n```\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

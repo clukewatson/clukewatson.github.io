@@ -1,0 +1,14 @@
+{
+  "hash": "c2a3bbfa9b50c0629506064e4aa26098",
+  "result": {
+    "markdown": "---\ntitle: \"TFP Guide\"\ndescription: | \n  TFP Guide\nauthor: \n  - name: C. Luke Watson\n    url: {}\ndate: 2018-06-18\noutput:\n  distill::distill_article:\n    self_contained: false\n---\n\n\nThese are notes I wrote on Total Factor Productivity (TFP) and production function estimation as a research assistant: [TFP_guide.pdf](TFP_guide.pdf).\nThese notes are a mix of theory and code to estimate.\nI should liberate the code from the pdf.\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

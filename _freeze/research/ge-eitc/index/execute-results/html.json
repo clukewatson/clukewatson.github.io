@@ -1,0 +1,14 @@
+{
+  "hash": "f4c0182bb53147c209726ec97d574749",
+  "result": {
+    "markdown": "---\ntitle: \"The General Equilibrium Incidence of the Earned Income Tax Credit\"\ndescription: \"My JMP\"\nauthor: C. Luke Watson\ndate: 2022-07-31\nimage: ge-eitc-plot-1.png\noutput:\n  distill::distill_article:\n    self_contained: false\n---\n\n\n\n## Favorite Graph\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](ge-eitc-plot-1.png){width=595}\n:::\n:::\n\n\n\n## Important links\n\n- [Paper](watson_geeitc.pdf)\n<!-- - [Appendix (preprint)](chaudhry-dotson-heiss-who-cares-crackdowns-appendix.pdf) -->\n<!-- - [Statistical analysis notebook](https://stats.andrewheiss.com/who-cares-about-crackdowns/) -->\n<!-- - [GitHub repository](https://github.com/andrewheiss/who-cares-about-crackdown)\n- [Experiment preregistration](https://osf.io/hsbyd) (research question #2) -->\n\n\n## Abstract\n\nThe Earned Income Tax Credit is a $67 billion tax expenditure that subsidizes 20% of all workers. Yet all prior analysis uses partial equilibrium assumptions on gross wages. I derive the general equilibrium incidence of wage subsidies and quantify the importance of EITC spillovers in three ways. I calculate the GE incidence of the 1993 and 2009 EITC expansions using new elasticity estimates. I contrast the incidence of counterfactual EITC and Welfare expansions. I quantify the effect of equalizing the EITC for workers with and without children. In all cases, I find spillovers are economically meaningful.\n\n\n\n## BibTeX citation\n\n```bibtex\n@techreport{watson_geeitc:2021,\n    Author = {C. Luke Watson},\n    Month = {9},\n    Title = {The General Equilibrium Incidence of the Earned Income Tax Credit},\n    Type = {Manuscript},\n    Year = {2021}}\n```\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

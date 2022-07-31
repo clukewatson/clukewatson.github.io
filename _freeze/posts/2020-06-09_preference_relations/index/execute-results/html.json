@@ -1,0 +1,14 @@
+{
+  "hash": "e0021180410fa63ff4edb64410ba310b",
+  "result": {
+    "markdown": "---\ntitle: First year notes on preference relations\nauthor: C. Luke Watson\ndate: 2020-06-09\ndescription: First year notes on preference relations\nimage: binary.png\noutput:\n  distill::distill_article:\n    self_contained: false\n---\n\n\nThese are notes I wrote on preference relations for first year phd micro: [notes01_preferences.pdf](notes01_preferences.pdf).\nI typed the notes to learn LaTeX and pass the time waiting on getting prelim results.\nI think they are pretty good.\nI started a companion set for utility maximization problems, but only got through the math parts without getting to the micro.\nMaybe I will try to finish it.\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
