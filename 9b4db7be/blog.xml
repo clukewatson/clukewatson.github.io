@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>C. Luke Watson</title>
+<link>https://clukewatson.github.io/blog.html</link>
+<atom:link href="https://clukewatson.github.io/blog.xml" rel="self" type="application/rss+xml"/>
+<description>Financial Economist</description>
+<generator>quarto-1.0.37</generator>
+<lastBuildDate>Fri, 30 Sep 2022 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Discussant Slides for UEA 2022</title>
+  <dc:creator>C. Luke Watson</dc:creator>
+  <link>https://clukewatson.github.io/posts/2022-09-30-discussant/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Discussant slides for ``Racial Discrimination and Housing Outcomes in the United States Rental Market’’ by Christensen, Sarmiento-Barbieri &amp; Timmins: <a href="discussant_uea2022.pdf">discussant_uea2022.pdf</a>.</p>
+
+
+
+ ]]></description>
+  <category>Discussant</category>
+  <category>UEA</category>
+  <guid>https://clukewatson.github.io/posts/2022-09-30-discussant/index.html</guid>
+  <pubDate>Fri, 30 Sep 2022 04:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>A New Website</title>
+  <dc:creator>C. Luke Watson</dc:creator>
+  <link>https://clukewatson.github.io/posts/2022-07-31-something-new/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://clukewatson.github.io/posts/2022-07-31-something-new/jeffpeterson.png" class="img-fluid" width="1256"></p>
+</div>
+</div>
+<p>I saw a couple of websites and thought mine could do with an update. In particular, <a href="https://www.andrewheiss.com">Andrew Heiss</a> has an <strong>amazing</strong> website… but I don’t know how to replicate it. Thus, I am borrowing from <a href="https://www.mm218.dev">Mike Mahoney</a> before <em>he</em> creates something too advanced for me to follow.</p>
+<section id="how-did-i-do-it" class="level2">
+<h2 class="anchored" data-anchor-id="how-did-i-do-it">How did I do it</h2>
+<section id="tools" class="level3">
+<h3 class="anchored" data-anchor-id="tools">Tools</h3>
+<ol type="1">
+<li>I used Rstudio + quarto, which I learned about through <a href="https://www.andrewheiss.com">Andrew Heiss</a>’s twitter.</li>
+<li>I saw <a href="https://www.mm218.dev">Mike Mahoney</a>’s website in the quarto gallery</li>
+<li>I already had Github account and the desktop app</li>
+</ol>
+</section>
+<section id="steps" class="level3">
+<h3 class="anchored" data-anchor-id="steps">Steps</h3>
+<ol type="1">
+<li>I downloaded <a href="https://www.mm218.dev">Mike Mahoney</a>’s website</li>
+<li>I changed all the content to match what I wanted</li>
+<li>I used the <a href="https://quarto.org/docs/publishing/github-pages.html">Quarto guide on Github Pages</a>, but I also had to google a bit to figure out some stuff
+<ol type="a">
+<li>Name the folder with the website content something (e.g., tmp_website)</li>
+<li>On Github, new repository named “username.github.io”, initialize with a readme file, then “create”</li>
+<li>On code-tab, create new branch called “gh-pages”, next, in same tab, click “2 branches”, next switch branch to “gh-pages” from “main”, and then delete “main”</li>
+<li>Create “username.github.io” folder, paste website contents into the folder</li>
+<li>Add the “Ignore Content” item to the .gitignore folder (will likely need to use ‘open with’ and pick a program)</li>
+<li>Using the Github desktop app, sync the new items to Github website</li>
+<li>In terminal (or command line), cd to username.github.io, next type quarto publish gh-pages and hit enter, and say yes to any questions</li>
+</ol></li>
+<li>The website should go live within a few minutes (as long as not uploading big data files)</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://clukewatson.github.io/posts/2022-07-31-something-new/name-it.png" class="img-fluid" width="737"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://clukewatson.github.io/posts/2022-07-31-something-new/add-branch.png" class="img-fluid" width="794"></p>
+</div>
+</div>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>Website</category>
+  <category>Quarto</category>
+  <category>Tutorials</category>
+  <category>Github</category>
+  <guid>https://clukewatson.github.io/posts/2022-07-31-something-new/index.html</guid>
+  <pubDate>Sun, 31 Jul 2022 04:00:00 GMT</pubDate>
+  <media:content url="https://clukewatson.github.io/posts/2022-07-31-something-new/jeffpeterson.png" medium="image" type="image/png" height="75" width="144"/>
+</item>
+<item>
+  <title>A New Website</title>
+  <dc:creator>C. Luke Watson</dc:creator>
+  <link>https://clukewatson.github.io/3a458cd7/posts/2022-07-31-something-new/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://clukewatson.github.io/3a458cd7/posts/2022-07-31-something-new/jeffpeterson.png" class="img-fluid" width="1256"></p>
+</div>
+</div>
+<p>I saw a couple of websites and thought mine could do with an update. In particular, <a href="https://www.andrewheiss.com">Andrew Heiss</a> has an <strong>amazing</strong> website… but I don’t know how to replicate it. Thus, I am borrowing from <a href="https://www.mm218.dev">Mike Mahoney</a> before <em>he</em> creates something too advanced for me to follow.</p>
+
+
+
+ ]]></description>
+  <guid>https://clukewatson.github.io/3a458cd7/posts/2022-07-31-something-new/index.html</guid>
+  <pubDate>Sun, 31 Jul 2022 04:00:00 GMT</pubDate>
+  <media:content url="https://clukewatson.github.io/3a458cd7/posts/2022-07-31-something-new/jeffpeterson.png" medium="image" type="image/png" height="75" width="144"/>
+</item>
+<item>
+  <title>First year notes on preference relations</title>
+  <dc:creator>C. Luke Watson</dc:creator>
+  <link>https://clukewatson.github.io/posts/2020-06-09_preference_relations/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>These are notes I wrote on preference relations for first year phd micro: <a href="notes01_preferences.pdf">notes01_preferences.pdf</a>. I typed the notes to learn LaTeX and pass the time waiting on getting prelim results. I think they are pretty good. I started a companion set for utility maximization problems, but only got through the math parts without getting to the micro. Maybe I will try to finish it.</p>
+
+
+
+ ]]></description>
+  <category>Notes</category>
+  <category>Preferences</category>
+  <category>PHD Micro</category>
+  <guid>https://clukewatson.github.io/posts/2020-06-09_preference_relations/index.html</guid>
+  <pubDate>Tue, 09 Jun 2020 04:00:00 GMT</pubDate>
+  <media:content url="https://clukewatson.github.io/posts/2020-06-09_preference_relations/binary.png" medium="image" type="image/png" height="68" width="144"/>
+</item>
+<item>
+  <title>First year notes on preference relations</title>
+  <dc:creator>C. Luke Watson</dc:creator>
+  <link>https://clukewatson.github.io/3a458cd7/posts/2020-06-09_preference_relations/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>These are notes I wrote on preference relations for first year phd micro: <a href="notes01_preferences.pdf">notes01_preferences.pdf</a>. I typed the notes to learn LaTeX and pass the time waiting on getting prelim results. I think they are pretty good. I started a companion set for utility maximization problems, but only got through the math parts without getting to the micro. Maybe I will try to finish it.</p>
+
+
+
+ ]]></description>
+  <guid>https://clukewatson.github.io/3a458cd7/posts/2020-06-09_preference_relations/index.html</guid>
+  <pubDate>Tue, 09 Jun 2020 04:00:00 GMT</pubDate>
+  <media:content url="https://clukewatson.github.io/3a458cd7/posts/2020-06-09_preference_relations/binary.png" medium="image" type="image/png" height="68" width="144"/>
+</item>
+<item>
+  <title>TFP Guide</title>
+  <dc:creator>C. Luke Watson</dc:creator>
+  <link>https://clukewatson.github.io/posts/2018-06-18-tfp-guide/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>These are notes I wrote on Total Factor Productivity (TFP) and production function estimation as a research assistant: <a href="TFP_guide.pdf">TFP_guide.pdf</a>. These notes are a mix of theory and code to estimate. I should liberate the code from the pdf. I think there is now a Stata or R package that does several different methods.</p>
+
+
+
+ ]]></description>
+  <category>Notes</category>
+  <category>TFP</category>
+  <category>Production Function Estimation</category>
+  <guid>https://clukewatson.github.io/posts/2018-06-18-tfp-guide/index.html</guid>
+  <pubDate>Mon, 18 Jun 2018 04:00:00 GMT</pubDate>
+  <media:content url="https://clukewatson.github.io/posts/2018-06-18-tfp-guide/tfp.png" medium="image" type="image/png" height="98" width="144"/>
+</item>
+<item>
+  <title>TFP Guide</title>
+  <dc:creator>C. Luke Watson</dc:creator>
+  <link>https://clukewatson.github.io/3a458cd7/posts/2018-06-18-tfp-guide/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>These are notes I wrote on Total Factor Productivity (TFP) and production function estimation as a research assistant: <a href="TFP_guide.pdf">TFP_guide.pdf</a>. These notes are a mix of theory and code to estimate. I should liberate the code from the pdf. I think there is now a Stata or R package that does several different methods.</p>
+
+
+
+ ]]></description>
+  <guid>https://clukewatson.github.io/3a458cd7/posts/2018-06-18-tfp-guide/index.html</guid>
+  <pubDate>Mon, 18 Jun 2018 04:00:00 GMT</pubDate>
+  <media:content url="https://clukewatson.github.io/3a458cd7/posts/2018-06-18-tfp-guide/tfp.png" medium="image" type="image/png" height="98" width="144"/>
+</item>
+</channel>
+</rss>
