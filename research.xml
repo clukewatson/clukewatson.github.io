@@ -28,8 +28,7 @@
 <section id="pdf-links" class="level2">
 <h2 class="anchored" data-anchor-id="pdf-links">PDF links</h2>
 <ul>
-<li><a href="monopoly_watsonziv.pdf">Paper (Feb 2023)</a></li>
-<li><a href="watsonziv_itrth_slides.pdf">Slides (April 2023)</a> <!-- - [Appendix (preprint)](chaudhry-dotson-heiss-who-cares-crackdowns-appendix.pdf) --> <!-- - [Statistical analysis notebook](https://stats.andrewheiss.com/who-cares-about-crackdowns/) --> <!-- - [GitHub repository](https://github.com/andrewheiss/who-cares-about-crackdown)
+<li><a href="monopoly_watsonziv.pdf">Paper (Feb 2023)</a> <!-- - [Slides (April 2023)](watsonziv_itrth_slides.pdf) --> <!-- - [Appendix (preprint)](chaudhry-dotson-heiss-who-cares-crackdowns-appendix.pdf) --> <!-- - [Statistical analysis notebook](https://stats.andrewheiss.com/who-cares-about-crackdowns/) --> <!-- - [GitHub repository](https://github.com/andrewheiss/who-cares-about-crackdown)
 - [Experiment preregistration](https://osf.io/hsbyd) (research question #2) --></li>
 </ul>
 </section>
@@ -60,7 +59,7 @@ This project includes the following data files:
 background-color: null;
 font-style: inherit;">@techreport</span>{<span class="ot" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">watson_istherenttoohigh:2022</span>,</span>
+font-style: inherit;">watson_istherenttoohigh:2023</span>,</span>
 <span id="cb1-2">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">Author</span> = {Watson, C. Luke and Ziv, Oren},</span>

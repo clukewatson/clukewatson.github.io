@@ -4,7 +4,7 @@
     "href": "research/nyc-monopoly/index.html#pdf-links",
     "title": "Is the Rent Too High? Land Ownership and Monopoly Power",
     "section": "PDF links",
-    "text": "PDF links\n\nPaper (Feb 2023)\nSlides (April 2023)"
+    "text": "PDF links\n\nPaper (Feb 2023)"
   },
   {
     "objectID": "research/nyc-monopoly/index.html#abstract",
@@ -18,7 +18,7 @@
     "href": "research/nyc-monopoly/index.html#bibtex-citation",
     "title": "Is the Rent Too High? Land Ownership and Monopoly Power",
     "section": "BibTeX citation",
-    "text": "BibTeX citation\n@techreport{watson_istherenttoohigh:2022,\n    Author = {Watson, C. Luke and Ziv, Oren},\n    Month = {2},\n    Title = {Is the Rent Too High? Land Ownership and Monopoly Power},\n    Type = {Manuscript},\n    Year = {2023}}"
+    "text": "BibTeX citation\n@techreport{watson_istherenttoohigh:2023,\n    Author = {Watson, C. Luke and Ziv, Oren},\n    Month = {2},\n    Title = {Is the Rent Too High? Land Ownership and Monopoly Power},\n    Type = {Manuscript},\n    Year = {2023}}"
   },
   {
     "objectID": "research/tax-iv-ge/index.html",
@@ -126,13 +126,6 @@
     "text": "These are notes I wrote on preference relations for first year phd micro: notes01_preferences.pdf. I typed the notes to learn LaTeX and pass the time waiting on getting prelim results. I think they are pretty good. I started a companion set for utility maximization problems, but only got through the math parts without getting to the micro. Maybe I will try to finish it."
   },
   {
-    "objectID": "posts/2022-09-30-discussant/index.html",
-    "href": "posts/2022-09-30-discussant/index.html",
-    "title": "Discussant Slides for UEA 2022",
-    "section": "",
-    "text": "Discussant slides for ``Racial Discrimination and Housing Outcomes in the United States Rental Market’’ by Christensen, Sarmiento-Barbieri & Timmins: discussant_uea2022.pdf."
-  },
-  {
     "objectID": "posts/2022-07-31-something-new/index.html",
     "href": "posts/2022-07-31-something-new/index.html",
     "title": "A New Website",
@@ -193,6 +186,6 @@
     "href": "blog.html",
     "title": "C. Luke Watson",
     "section": "",
-    "text": "A personal blog for data projects as well as my goings-on.\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nDiscussant Slides for UEA 2022\n\n\n\n\n\n\n\nDiscussant\n\n\nUEA\n\n\n\n\nDiscussant Slides for UEA 2022\n\n\n\n\n\n\nSep 30, 2022\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nA New Website\n\n\n\n\n\n\n\nWebsite\n\n\nQuarto\n\n\nTutorials\n\n\nGithub\n\n\n\n\nTrying something new\n\n\n\n\n\n\nJul 31, 2022\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nFirst year notes on preference relations\n\n\n\n\n\n\n\nNotes\n\n\nPreferences\n\n\nPHD Micro\n\n\n\n\nFirst year notes on preference relations\n\n\n\n\n\n\nJun 9, 2020\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nTFP Guide\n\n\n\n\n\n\n\nNotes\n\n\nTFP\n\n\nProduction Function Estimation\n\n\n\n\nA TFP guide I made\n\n\n\n\n\n\nJun 18, 2018\n\n\nC. Luke Watson\n\n\n\n\n\n\nNo matching items"
+    "text": "A personal blog for data projects as well as my goings-on.\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nA New Website\n\n\n\n\n\n\n\nWebsite\n\n\nQuarto\n\n\nTutorials\n\n\nGithub\n\n\n\n\nTrying something new\n\n\n\n\n\n\nJul 31, 2022\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nFirst year notes on preference relations\n\n\n\n\n\n\n\nNotes\n\n\nPreferences\n\n\nPHD Micro\n\n\n\n\nFirst year notes on preference relations\n\n\n\n\n\n\nJun 9, 2020\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nTFP Guide\n\n\n\n\n\n\n\nNotes\n\n\nTFP\n\n\nProduction Function Estimation\n\n\n\n\nA TFP guide I made\n\n\n\n\n\n\nJun 18, 2018\n\n\nC. Luke Watson\n\n\n\n\n\n\nNo matching items"
   }
 ]
