@@ -11,6 +11,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/2023-09-17-isolated-places/index.html",
       "/posts/2022-07-31-something-new/index.html",
       "/posts/2020-06-09_preference_relations/index.html",
       "/posts/2018-06-18-tfp-guide/index.html"

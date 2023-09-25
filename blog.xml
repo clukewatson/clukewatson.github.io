@@ -10,7 +10,1299 @@
 <atom:link href="https://clukewatson.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Financial Economist</description>
 <generator>quarto-1.3.340</generator>
-<lastBuildDate>Sun, 31 Jul 2022 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 17 Sep 2023 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Isolated Places</title>
+  <dc:creator>C. Luke Watson</dc:creator>
+  <link>https://clukewatson.github.io/posts/2023-09-17-isolated-places/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://clukewatson.github.io/posts/2023-09-17-isolated-places/PahrumpNV.png" class="img-fluid" width="897"></p>
+</div>
+</div>
+<section id="isolated-towns" class="level1">
+<h1>Isolated Towns</h1>
+<p>I am interested in IO and urban econ, so it is inevitable that I would start thinking about isolated towns. A few papers have used the idea of an isolated town to study industry dynamics and entry conditions. I will try to dig into those more later, but I wanted to start with how to even get a dataset of isolated towns.</p>
+<section id="what-town-data-do-we-have" class="level2">
+<h2 class="anchored" data-anchor-id="what-town-data-do-we-have">What ‘town’ data do we have?</h2>
+<p>The closest data-product we have for a town is the Cenus Designated Place (CDP). These are “population concentrations” used for statistical purposes. CDPs include large incorporated cities, such as all five boroughs of New York as the <em>New York place</em>, and unincorporated areas, such as <em>Manchester Center, VT</em>. CDPs are <strong>not</strong> nested within any other geography; i.e., they do not respect counties or ZCTAs.</p>
+<p>For this project, we want three pieces of data: (1) place demographics, (2) place distance relationships, and (3) place-ZCTA concordances. We want demographics so that we know population of the areas; we want distances so that we can tell who is close to whom; we want concordances so that we can link to firm data. Luckily, we have all three readily available!</p>
+<p>The <a href="https://www.nhgis.org">NHGIS</a> has collected demographic data for places. The <a href="https://www.nber.org/research/data/city-distance-database-place-distance-database">NBER</a> has created distance relationships using geographic interior points. Finally, the Missouri Census Data Center manages <a href="https://mcdc.missouri.edu/applications/geocorr2000.html">GEOCORR</a> to create crosswalks between geography types (within a year, not across); although, I do not use this in this post.</p>
+</section>
+<section id="starting-point-allan-collard-wexler" class="level2">
+<h2 class="anchored" data-anchor-id="starting-point-allan-collard-wexler">Starting Point: Allan Collard-Wexler</h2>
+<p>Prof.&nbsp;Allan Collard-Wexler has created an example, which certainly inspired me, for creating an isolated towns dataset. You can find his data <a href="https://sites.duke.edu/collardwexler/data/">here</a> and his tutorial <a href="https://sites.duke.edu/collardwexler/data/constructing-isolated-towns-and-zip-code-information/">here</a>. I should note two things. First, I cannot replicate his towns. Second, I think there could be some issues with the towns he identifies. I will discuss both points later.</p>
+<p>For his tutorial:</p>
+<ol type="1">
+<li>Data : 1990 and 2000 Census Place Gazette file
+<ol type="a">
+<li>He says cuts are based on 1990 population, but the data have 2000 population</li>
+<li>I am not sure how he is geolocating the places</li>
+<li>The Gazette files have an interior point, but it is possible he calculates his own</li>
+<li>I use the NBER place-distances</li>
+</ol></li>
+<li>A town must have greater than 4000 people
+<ol type="a">
+<li>The tutorial table says 2000, but the minimum population in his data is just above 4000</li>
+</ol></li>
+<li>To be a neighboring town, a neighbor must have 4000 people</li>
+<li>Any town within 1 mile is not considered a separate town</li>
+</ol>
+<p>Thus, I will try to replicate his dataset. Point 1 highlights that I do not know how ACW geolocates the places and I use the NBER file. Although, I have done the analysis using population weighted centroids from GEOCORR, and find essentially no differences. Point 4 is actually a little tricky to deal with, so I am going to skip it for now and merge the ACW data with NBER distance data (and population data from NHGIS).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Load libraries</span></span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)  </span>
+<span id="cb1-3"></span>
+<span id="cb1-4"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">### ACW data</span></span>
+<span id="cb1-5">acw.df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lonesome449.csv"</span>)</span>
+<span id="cb1-6">acw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>placefip <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(acw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>stfips,acw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>placefip)</span>
+<span id="cb1-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Note, ACW's lowest pop is 4k not 2k and is for year 2000</span></span>
+<span id="cb1-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">min</span>(acw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>population)</span>
+<span id="cb1-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Also, AK is still in the data </span></span>
+<span id="cb1-10"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(acw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>placefip[acw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>stfips<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"02"</span>])</span>
+<span id="cb1-11"></span>
+<span id="cb1-12"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">### NHGIS data on places in 2000</span></span>
+<span id="cb1-13">place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dat <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"nhgis0058_ds146_2000_place.csv"</span>)</span>
+<span id="cb1-14"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">colnames</span>(place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dat) <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tolower</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">colnames</span>(place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dat))</span>
+<span id="cb1-15">place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dat<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place.fip <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dat<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>statea,place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dat<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>placea)</span>
+<span id="cb1-16">place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dat <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dat <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb1-17">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(year, stusab,statea, place,place.fip,placecc,placedc,arealand,areawatr,intptlat,intplon,</span>
+<span id="cb1-18">         fl5001,fnh001,fki001)</span>
+<span id="cb1-19"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># </span></span>
+<span id="cb1-20"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">colnames</span>(place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dat) <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"year"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"stabbr"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"state.fip"</span>, </span>
+<span id="cb1-21">                            <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"place.nm"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"place.fip"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"placecc"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"placedc"</span>,</span>
+<span id="cb1-22">                            <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"place.area.land"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"place.area.water"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"place.lat"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"place.lng"</span>,</span>
+<span id="cb1-23">                            <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pop"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"households"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"housing.units"</span>)</span>
+<span id="cb1-24"></span>
+<span id="cb1-25"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">### NBER data on place distances in 2000</span></span>
+<span id="cb1-26">place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dist <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"sf12000placedistance50miles.csv"</span>)</span>
+<span id="cb1-27">place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dist <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dist <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb1-28">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">place1 =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(state1,place1),</span>
+<span id="cb1-29">         <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">place2 =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(state2,place2)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb1-30">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(place1,mi_to_place,place2)</span>
+<span id="cb1-31"></span>
+<span id="cb1-32"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">### Drop HI and other areas</span></span>
+<span id="cb1-33"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ACW says it is only continental US, but data has AK</span></span>
+<span id="cb1-34"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># NHGIS file only has 50states place DC, so filter out HI</span></span>
+<span id="cb1-35">place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dat <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dat <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb1-36">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(stabbr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"HI"</span>)</span>
+<span id="cb1-37"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># filter out from NBER file</span></span>
+<span id="cb1-38">place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dist <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dist <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb1-39">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">tmp =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_sub</span>(place1,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb1-40">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(tmp <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%in%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unique</span>(place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dat<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>state.fip)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb1-41">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>tmp)</span>
+<span id="cb1-42"></span>
+<span id="cb1-43"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">### Combine the NHGIS and NBER</span></span>
+<span id="cb1-44"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># need to add pop data to the NBER file</span></span>
+<span id="cb1-45"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># probably a better way to do this, but creating helper file, delete later</span></span>
+<span id="cb1-46">place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dat.use <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dat <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb1-47">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(place.fip,pop,place.nm)</span>
+<span id="cb1-48"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">colnames</span>(place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dat.use) <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"place1"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pop"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"place.nm"</span>)</span>
+<span id="cb1-49"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># </span></span>
+<span id="cb1-50">place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">full_join</span>(place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dat.use,place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dist) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb1-51">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">left_join</span>(place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dat.use,<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by=</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"place2"</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"place1"</span>))</span>
+<span id="cb1-52"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add places with minimum distances greater than 50</span></span>
+<span id="cb1-53">place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>tmp <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">is.na</span>(place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>mi_to_place)</span>
+<span id="cb1-54">place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place2[place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>tmp<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span>T] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"9999999"</span></span>
+<span id="cb1-55">place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place.nm.y[place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>tmp<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span>T] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span></span>
+<span id="cb1-56">place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>pop.y[place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>tmp<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span>T] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span></span>
+<span id="cb1-57">place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>mi_to_place[place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>tmp<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span>T] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">999</span></span>
+<span id="cb1-58">place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>tmp <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NULL</span></span>
+<span id="cb1-59"></span>
+<span id="cb1-60"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rm</span>(place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dat.use)</span>
+<span id="cb1-61"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gc</span>()</span>
+<span id="cb1-62"></span>
+<span id="cb1-63"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">#### Combine Dist with ACW</span></span>
+<span id="cb1-64">acw.dist <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> acw.df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb1-65">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">left_join</span>(place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>df, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by=</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"placefip"</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"place1"</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb1-66">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(class,stfips,nbr30,nbr40,autoroute))</span>
+<span id="cb1-67"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># how many of the places have neighbors with pop&gt;4000 within (5,15) miles</span></span>
+<span id="cb1-68"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># note: use (5,15) since there could be some error in the distances from NBER and ACW</span></span>
+<span id="cb1-69"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unique</span>(acw.dist<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>placefip[acw.dist<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>mi_to_place<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span> </span>
+<span id="cb1-70">                                <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> acw.dist<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>mi_to_place<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span> </span>
+<span id="cb1-71">                                <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> acw.dist<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>pop.y<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4000</span>]))</span>
+<span id="cb1-72"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># = 20</span></span></code></pre></div>
+</div>
+<p>So there are 20 places that seemingly violate the ACW rule. One example is Oak Grove city of KY (pop 7,064) and Clarksville city of TN (pop 103,455) that are 7.64 miles apart. Another is Two Rivers city of WI (pop 12,639) and Manitowoc city also of WI (pop 34,053) that are 6.34 miles apart. Ultimately, there are 82 places that have population above 4000 and between (1,20) miles based on NBER.</p>
+</section>
+<section id="taking-a-stab-at-isolated-towns" class="level2">
+<h2 class="anchored" data-anchor-id="taking-a-stab-at-isolated-towns">Taking a stab at isolated towns</h2>
+<p>The following code uses the first three rules to create a list of towns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">clw.df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb2-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ungroup</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb2-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(pop.x<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4000</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb2-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">issue =</span> pop.y<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4000</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> mi_to_place<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb2-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(place1) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb2-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">issues =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(issue,<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> T),</span>
+<span id="cb2-7">         <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">num.around =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(mi_to_place<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>,<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm=</span>T),</span>
+<span id="cb2-8">         <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pop.around =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(pop.y<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>(mi_to_place<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>),<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> T)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb2-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(issues<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb2-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrange</span>(mi_to_place) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb2-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">row_number</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb2-12"></span>
+<span id="cb2-13"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place1)</span>
+<span id="cb2-14"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># =541</span></span>
+<span id="cb2-15"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unique</span>(clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place1[<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>(clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place1 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%in%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unique</span>(acw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>placefip) )]))</span>
+<span id="cb2-16"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># =174 places in CLW list that are not in the ACW list</span></span>
+<span id="cb2-17"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unique</span>(clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place1[(clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place1 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%in%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unique</span>(acw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>placefip) )]))</span>
+<span id="cb2-18"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># =367 places in both CLW list and ACW list</span></span>
+<span id="cb2-19"></span>
+<span id="cb2-20"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pop Around</span></span>
+<span id="cb2-21"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summary</span>(clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>num.around)</span>
+<span id="cb2-22"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb2-23"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#  0.000   3.000   7.000   8.072  12.000  32.000 </span></span>
+<span id="cb2-24"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summary</span>(clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>pop.around)</span>
+<span id="cb2-25"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb2-26"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#    0    2338    5832    6597    9160   29508 </span></span>
+<span id="cb2-27"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># </span></span>
+<span id="cb2-28"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place1[clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>pop.around<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10000</span>])</span>
+<span id="cb2-29"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># =112</span></span>
+<span id="cb2-30"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place1[clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>pop.around<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5000</span>])</span>
+<span id="cb2-31"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># =243</span></span></code></pre></div>
+</div>
+<p>But one thing that I noticed is that many of these towns still have many neighbors and high surrounding populations even if no place has a large population. The mean population within 20 miles of an isolated town is about 6,600 people and the median is about 5,800. There are 112 towns with over 10,000 around them () There are only 243 isolated towns using the three rules with a surrounding population less than 5,000. This issue is also present in the ACW data.</p>
+</section>
+<section id="using-all-four-rules-to-make-isolated-towns" class="level2">
+<h2 class="anchored" data-anchor-id="using-all-four-rules-to-make-isolated-towns">Using all four rules to make isolated towns</h2>
+<p>I am going to interpret rule 4 (again, this is if the centroid is within X miles then the same town) to include any place no matter the population (whereas, I expect that ACW meant it only for those places with over 4,000 population), I am going to do this in a network way (so that if A is close to B and B is close to C, then {A,B,C} are in a group together), and I am going to use 2 miles rather than 1 mile as in ACW. I am going to find groups by using the <code>igraph</code> package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(igraph)</span>
+<span id="cb3-2"></span>
+<span id="cb3-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># isolate the places that are very close -- 2miles</span></span>
+<span id="cb3-4">v.close.places <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(mi_to_place<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(place1,place2)</span>
+<span id="cb3-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># using the igraph package, find the network of places</span></span>
+<span id="cb3-8">v.close.places.graph <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">graph.data.frame</span>(v.close.places)</span>
+<span id="cb3-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># manipulate to get the places in a data.frame</span></span>
+<span id="cb3-10">v.close.members <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">place.groups =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">clusters</span>(v.close.places.graph)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>membership)</span>
+<span id="cb3-11">v.close.members<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_pad</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">row.names</span>(v.close.members),<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">width=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7</span>,<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pad=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"0"</span>)</span>
+<span id="cb3-12"></span>
+<span id="cb3-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># join with the place data, we are going to use the place in the network that has the highest population</span></span>
+<span id="cb3-14">v.close.members <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> v.close.members <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-15">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">left_join</span>(place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>dat[,<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"place.fip"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pop"</span>)], <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by=</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"place"</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"place.fip"</span>)) </span>
+<span id="cb3-16"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># create the data.frame we will merge into place.00.df</span></span>
+<span id="cb3-17">v.close.members <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> v.close.members <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-18">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(place.groups) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-19">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(pop<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>(pop)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-20">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>pop) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-21">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rename</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rep.place=</span>place) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-22">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">full_join</span>(v.close.members) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-23">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ungroup</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-24">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(place.groups) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-25">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pop.z =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(pop)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-26">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>pop)</span>
+<span id="cb3-27"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># clean up </span></span>
+<span id="cb3-28"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rm</span>(v.close.places,v.close.places.graph)</span>
+<span id="cb3-29"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gc</span>()</span>
+<span id="cb3-30"></span>
+<span id="cb3-31"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># create dataset of places where the very close ones are merged together</span></span>
+<span id="cb3-32"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># remove if place1=place2</span></span>
+<span id="cb3-33"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># keep the places with minimum distance (conservative method)</span></span>
+<span id="cb3-34">v.place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span>   place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-35">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">left_join</span>(v.close.members, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by=</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"place1"</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"place"</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-36">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">left_join</span>(v.close.members, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by=</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"place2"</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"place"</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-37">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">place1 =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">if_else</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">is.na</span>(rep.place.x),place1,rep.place.x)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-38">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">place2 =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">if_else</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">is.na</span>(rep.place.y),place2,rep.place.y)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-39">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">tmp =</span> place1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span>place2,</span>
+<span id="cb3-40">         <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pop.x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">if_else</span>(tmp<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span>T,pop.z.x,pop.x),</span>
+<span id="cb3-41">         <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pop.y =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">if_else</span>(tmp<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span>T,pop.z.x,pop.y)</span>
+<span id="cb3-42">         ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-43">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ungroup</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-44">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(place1,place2) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-45">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(mi_to_place<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">min</span>(mi_to_place)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-46">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ungroup</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-47">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(tmp<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span>F) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-48">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(place1,pop.x,place.nm.x,mi_to_place,place2,pop.y,place.nm.y)</span>
+<span id="cb3-49"></span>
+<span id="cb3-50"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># use the same code as before to get the isolated towns</span></span>
+<span id="cb3-51">v.clw.df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> v.place.<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">00.</span>df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-52">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ungroup</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-53">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(pop.x<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4000</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-54">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">issue =</span> pop.y<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4000</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> mi_to_place<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-55">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(place1) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-56">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">issues =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(issue,<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> T),</span>
+<span id="cb3-57">         <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">num.around =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>((mi_to_place<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>),<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm=</span>T),</span>
+<span id="cb3-58">         <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pop.around =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(pop.y<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>(mi_to_place<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>),<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm=</span>T)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-59">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(issues<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-60">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrange</span>(mi_to_place) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-61">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">row_number</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-62">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(issue,issues))</span>
+<span id="cb3-63"></span>
+<span id="cb3-64"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(v.clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place1)</span>
+<span id="cb3-65"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># =651</span></span>
+<span id="cb3-66"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(v.clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place1[<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>(v.clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place1 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%in%</span> clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place1)])</span>
+<span id="cb3-67"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 112</span></span>
+<span id="cb3-68"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(v.clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place1[(v.clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place1 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%in%</span> clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place1)])</span>
+<span id="cb3-69"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 539</span></span>
+<span id="cb3-70"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place1[<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>(clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place1 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%in%</span> v.clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place1)])</span>
+<span id="cb3-71"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2</span></span>
+<span id="cb3-72"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summary</span>(v.clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>num.around)</span>
+<span id="cb3-73"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb3-74"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#  0.000   3.000   6.000   7.329  11.000  34.000 </span></span>
+<span id="cb3-75"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summary</span>(v.clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>pop.around)</span>
+<span id="cb3-76"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb3-77"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#      0    2100    5126    6221    8785   31483 </span></span>
+<span id="cb3-78"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(v.clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place1[v.clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>pop.around<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10000</span>])</span>
+<span id="cb3-79"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># =122</span></span>
+<span id="cb3-80"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(v.clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>place1[v.clw.df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>pop.around<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5000</span>])</span>
+<span id="cb3-81"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># =316</span></span></code></pre></div>
+</div>
+<p>This increases the number of isolated towns because there are small close places that end up being added together to get above 4,000 population. There are 112 places that are in <strong>v.clw.df</strong> but not <strong>clw.df</strong> and two in <strong>clw.df</strong> but not in <strong>v.clw.df</strong>. The mean and median population around a town has gone down, likely because some have been absorbed into the new combined place. Finally, there are again 112 places that have surrounding populations over 10,000.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>I have pointed out some data sources, looked at the ACW data, and tried to come up with two alternative lists. ACW also connects the towns with zipcodes, which helps when combining with the ZBP, which I have not done. <!-- As an alternative, Seim (2006) uses Census tracts to get competition within towns.  --></p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>Structural IO</category>
+  <category>Urban</category>
+  <category>Entry Model</category>
+  <category>Data</category>
+  <guid>https://clukewatson.github.io/posts/2023-09-17-isolated-places/index.html</guid>
+  <pubDate>Sun, 17 Sep 2023 04:00:00 GMT</pubDate>
+  <media:content url="https://clukewatson.github.io/posts/2023-09-17-isolated-places/PahrumpNV.png" medium="image" type="image/png" height="115" width="144"/>
+</item>
 <item>
   <title>A New Website</title>
   <dc:creator>C. Luke Watson</dc:creator>
