@@ -4,21 +4,21 @@
     "href": "research/nyc-monopoly/index.html#pdf-links",
     "title": "Is the Rent Too High? Land Ownership and Monopoly Power",
     "section": "PDF links",
-    "text": "PDF links\n\nPaper (Feb 2023)"
+    "text": "PDF links\n\nPaper (March 2021)"
   },
   {
     "objectID": "research/nyc-monopoly/index.html#abstract",
     "href": "research/nyc-monopoly/index.html#abstract",
     "title": "Is the Rent Too High? Land Ownership and Monopoly Power",
     "section": "Abstract",
-    "text": "Abstract\nPricing power in real estate markets can reduce housing supply and redevelopment relative to the social optimum. We show how popular redevelopment subsidies, zoning regulations, and ownership concentration restrictions interact with pricing power. To test for the presence and quantify the scope of pricing power, we construct a new building-level dataset from New York City. First, using a synthetic tax instrument, we find cost pass-through rates that are inconsistent with competitive pricing and consistent with markups. Second, we find a 10% increase in Census tract ownership concentration is correlated with a 0.5% increase in rent. Finally, we estimate that markups account for between ten and thirty percent of rents in the city."
+    "text": "Abstract\nWe investigate the sources, scope, and implications of landowner market power. We show how zoning regulations generate spillovers through increased markups and derive conditions under which restricting landownership concentration reduces rents. Using new building-level data from New York City, we fnd that a 10% increase in ownership concentration in a Census tract is correlated with a 1% increase in rent. Market power is substantial: on average, markups account for nearly a third of rents in Manhattan. Furthermore, pecuniary spillovers between zoning constraints and markups at other buildings are appreciable. Up-zoning that results in 417 additional housing units at zoning-constrained buildings reduces markups on policy-unconstrained units and generates between 5 and 19 additional units through increased competition."
   },
   {
     "objectID": "research/nyc-monopoly/index.html#bibtex-citation",
     "href": "research/nyc-monopoly/index.html#bibtex-citation",
     "title": "Is the Rent Too High? Land Ownership and Monopoly Power",
     "section": "BibTeX citation",
-    "text": "BibTeX citation\n@techreport{watson_istherenttoohigh:2023,\n    Author = {Watson, C. Luke and Ziv, Oren},\n    Month = {2},\n    Title = {Is the Rent Too High? Land Ownership and Monopoly Power},\n    Type = {Manuscript},\n    Year = {2023}}"
+    "text": "BibTeX citation\n@techreport{watson_istherenttoohigh:2021,\n    Author = {Watson, C. Luke and Ziv, Oren},\n    Month = {3},\n    Title = {Is the Rent Too High? Land Ownership and Monopoly Power},\n    Type = {Manuscript},\n    Year = {2021}}"
   },
   {
     "objectID": "research/tax-iv-ge/index.html",
@@ -112,11 +112,32 @@
     "text": "BibTeX citation\n@techreport{watson_geeitc:2021,\n    Author = {C. Luke Watson},\n    Month = {9},\n    Title = {The General Equilibrium Incidence of the Earned Income Tax Credit},\n    Type = {Manuscript},\n    Year = {2021}}"
   },
   {
+    "objectID": "research/tfpp/index.html#pdf-links",
+    "href": "research/tfpp/index.html#pdf-links",
+    "title": "A Test for Pricing Power in Urban Housing Markets",
+    "section": "PDF links",
+    "text": "PDF links\n\nPaper (Dec 2023)"
+  },
+  {
+    "objectID": "research/tfpp/index.html#abstract",
+    "href": "research/tfpp/index.html#abstract",
+    "title": "A Test for Pricing Power in Urban Housing Markets",
+    "section": "Abstract",
+    "text": "Abstract\nPricing power in real estate markets constrains supply and alters key theoretical and empirical findings. Using a series of tax policy shifts in New York City, we test for pricing power by conducting complementary difference-in-differences and instrumental variable designs. Holding fixed market prices, an increase in a single building’s idiosyncratic costs results in a similar magnitude increase in its rents, consistent with the existence of pricing power and inconsistent with perfect competition. Pricing power alters our understand of the housing supply and land-use policies. It biases estimates of housing supply functions and elasticities and the results of quantitative spatial models."
+  },
+  {
+    "objectID": "research/tfpp/index.html#bibtex-citation",
+    "href": "research/tfpp/index.html#bibtex-citation",
+    "title": "A Test for Pricing Power in Urban Housing Markets",
+    "section": "BibTeX citation",
+    "text": "BibTeX citation\n@techreport{watson_testforpricingpower:2023,\n    Author = {Watson, C. Luke and Ziv, Oren},\n    Month = {12},\n    Title = {A Test for Pricing Power in Urban Housing Markets},\n    Type = {Manuscript},\n    Year = {2023}}"
+  },
+  {
     "objectID": "research.html",
     "href": "research.html",
     "title": "C. Luke Watson",
     "section": "",
-    "text": "Is the Rent Too High? Land Ownership and Monopoly Power\n\n\n\n\n\n\n\nRental Markets\n\n\nMarkups\n\n\nMonopoly Power\n\n\nHousing Demand\n\n\nDevelopment Subsidies\n\n\n\n\nIs it?\n\n\n\n\n\n\nFeb 8, 2023\n\n\nC. Luke Watson, Oren Ziv\n\n\n\n\n\n\n  \n\n\n\n\nEstimating Both Supply and Demand Elasticities Using Variation in a Single Tax Rate with General Equilibrium Spillovers\n\n\n\n\n\n\n\nIV\n\n\nTax Incidence\n\n\nSpillovers\n\n\nApplied Econometrics\n\n\n\n\nA note about using tax IVs\n\n\n\n\n\n\nOct 1, 2021\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nThe General Equilibrium Incidence of the Earned Income Tax Credit\n\n\n\n\n\n\n\nEITC\n\n\nLabor Supply\n\n\nLabor Demand\n\n\nIV\n\n\nTax Incidence\n\n\n\n\nMy JMP\n\n\n\n\n\n\nSep 1, 2021\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nThe Local Effects of State EITC Expansions\n\n\n\n\n\n\n\nEITC\n\n\nLabor Supply\n\n\nLabor Demand\n\n\nBorder Discontinuity\n\n\n\n\nChapter 2 of my dissertation\n\n\n\n\n\n\nAug 1, 2021\n\n\nC. Luke Watson\n\n\n\n\n\n\nNo matching items"
+    "text": "A Test for Pricing Power in Urban Housing Markets\n\n\n\n\n\n\n\nRental Markets\n\n\nMarkups\n\n\nMonopoly Power\n\n\nHousing Demand\n\n\n\n\nBuilding demand slope down.\n\n\n\n\n\n\nDec 30, 2023\n\n\nC. Luke Watson, Oren Ziv\n\n\n\n\n\n\n  \n\n\n\n\nEstimating Both Supply and Demand Elasticities Using Variation in a Single Tax Rate with General Equilibrium Spillovers\n\n\n\n\n\n\n\nIV\n\n\nTax Incidence\n\n\nSpillovers\n\n\nApplied Econometrics\n\n\n\n\nA note about using tax IVs\n\n\n\n\n\n\nOct 1, 2021\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nThe General Equilibrium Incidence of the Earned Income Tax Credit\n\n\n\n\n\n\n\nEITC\n\n\nLabor Supply\n\n\nLabor Demand\n\n\nIV\n\n\nTax Incidence\n\n\n\n\nMy JMP\n\n\n\n\n\n\nSep 1, 2021\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nThe Local Effects of State EITC Expansions\n\n\n\n\n\n\n\nEITC\n\n\nLabor Supply\n\n\nLabor Demand\n\n\nBorder Discontinuity\n\n\n\n\nChapter 2 of my dissertation\n\n\n\n\n\n\nAug 1, 2021\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nIs the Rent Too High? Land Ownership and Monopoly Power\n\n\n\n\n\n\n\nRental Markets\n\n\nMarkups\n\n\nMonopoly Power\n\n\nHousing Demand\n\n\nZoning\n\n\n\n\nIs it?\n\n\n\n\n\n\nMar 1, 2021\n\n\nC. Luke Watson, Oren Ziv\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/2020-06-09_preference_relations/index.html",
