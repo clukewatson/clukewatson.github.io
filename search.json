@@ -123,7 +123,7 @@
     "href": "research/tfpp/index.html#abstract",
     "title": "A Test for Pricing Power in Urban Housing Markets",
     "section": "Abstract",
-    "text": "Abstract\nPricing power in real estate markets constrains supply and alters key theoretical and empirical findings. Using a series of tax policy shifts in New York City, we test for pricing power by conducting complementary difference-in-differences and instrumental variable designs. Holding fixed market prices, an increase in a single building’s idiosyncratic costs results in a similar magnitude increase in its rents, consistent with the existence of pricing power and inconsistent with perfect competition. Pricing power alters our understand of the housing supply and land-use policies. It biases estimates of housing supply functions and elasticities and the results of quantitative spatial models."
+    "text": "Abstract\nThe presence of pricing power in housing markets alters our understand of the housing supply and land-use policies. It biases estimates of housing production functions and supply elasticities and the results of quantitative spatial models. We test for pricing power in the New York City rental market. We make use of a series of tax policy shifts to conduct complementary difference-in-differences and instrumental variable designs. Holding fixed market prices, we find an increase in a single building’s idiosyncratic costs results in a similar magnitude increase in its rents, consistent with the existence of pricing power and inconsistent with perfect competition."
   },
   {
     "objectID": "research/tfpp/index.html#bibtex-citation",
