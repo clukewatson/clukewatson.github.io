@@ -22,7 +22,7 @@
 
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="https://clukewatson.github.io/research/tfpp/pc_passthru.png" class="img-fluid" width="632"></p>
+<p><img src="https://clukewatson.github.io/research/tfpp/passthru_fig1.png" class="img-fluid" width="1193"></p>
 </div>
 </div>
 <section id="pdf-links" class="level2">
@@ -33,7 +33,8 @@
 </section>
 <section id="abstract" class="level2">
 <h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>The presence of pricing power in housing markets alters our understand of the housing supply and land-use policies. It biases estimates of housing production functions and supply elasticities and the results of quantitative spatial models. We test for pricing power in the New York City rental market. We make use of a series of tax policy shifts to conduct complementary difference-in-differences and instrumental variable designs. Holding fixed market prices, we find an increase in a single building’s idiosyncratic costs results in a similar magnitude increase in its rents, consistent with the existence of pricing power and inconsistent with perfect competition.</p>
+<p>The presence of pricing power in housing markets significantly impacts our understanding of the housing supply. It biases estimates of housing production functions, supply elasticities, and the effects of land-use policies as well as the results of quantitative spatial models. We test for the existence of pricing power in the New York City rental market. Using tax policy changes, we conduct complementary difference-in-differences and instrumental variable analyses. An idiosyncratic increase in a single building’s costs leads to a proportional rent increase, holding market-level rents constant.<br>
+Our findings support the existence of pricing power and challenge the prevailing perfect competition framework.</p>
 <!-- ## Important figure
 
 Figure 4: Average predicted donation market shares across all personas, segmented by persona public affairs knowledge, political ideology, and social trust across different NGO–host government relationships
@@ -85,7 +86,7 @@ font-style: inherit;">Year</span> = {2023}}</span></code></pre></div>
   <category>Housing Demand</category>
   <guid>https://clukewatson.github.io/research/tfpp/index.html</guid>
   <pubDate>Sat, 30 Dec 2023 05:00:00 GMT</pubDate>
-  <media:content url="https://clukewatson.github.io/research/tfpp/pc_passthru.png" medium="image" type="image/png" height="141" width="144"/>
+  <media:content url="https://clukewatson.github.io/research/tfpp/passthru_fig1.png" medium="image" type="image/png" height="81" width="144"/>
 </item>
 <item>
   <title>Estimating Both Supply and Demand Elasticities Using Variation in a Single Tax Rate with General Equilibrium Spillovers</title>
