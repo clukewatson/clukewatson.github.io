@@ -116,7 +116,7 @@
     "href": "research/tfpp/index.html#pdf-links",
     "title": "A Test for Pricing Power in Urban Housing Markets",
     "section": "PDF links",
-    "text": "PDF links\n\nPaper (Dec 2023)"
+    "text": "PDF links\n\nPaper (April 2024)"
   },
   {
     "objectID": "research/tfpp/index.html#abstract",
@@ -137,7 +137,7 @@
     "href": "research.html",
     "title": "C. Luke Watson",
     "section": "",
-    "text": "A Test for Pricing Power in Urban Housing Markets\n\n\n\n\n\n\n\nRental Markets\n\n\nMarkups\n\n\nMonopoly Power\n\n\nHousing Demand\n\n\n\n\nBuilding demand slopes down.\n\n\n\n\n\n\nDec 30, 2023\n\n\nC. Luke Watson, Oren Ziv\n\n\n\n\n\n\n  \n\n\n\n\nEstimating Both Supply and Demand Elasticities Using Variation in a Single Tax Rate with General Equilibrium Spillovers\n\n\n\n\n\n\n\nIV\n\n\nTax Incidence\n\n\nSpillovers\n\n\nApplied Econometrics\n\n\n\n\nA note about using tax IVs\n\n\n\n\n\n\nOct 1, 2021\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nThe General Equilibrium Incidence of the Earned Income Tax Credit\n\n\n\n\n\n\n\nEITC\n\n\nLabor Supply\n\n\nLabor Demand\n\n\nIV\n\n\nTax Incidence\n\n\n\n\nMy JMP\n\n\n\n\n\n\nSep 1, 2021\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nThe Local Effects of State EITC Expansions\n\n\n\n\n\n\n\nEITC\n\n\nLabor Supply\n\n\nLabor Demand\n\n\nBorder Discontinuity\n\n\n\n\nChapter 2 of my dissertation\n\n\n\n\n\n\nAug 1, 2021\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nIs the Rent Too High? Land Ownership and Monopoly Power\n\n\n\n\n\n\n\nRental Markets\n\n\nMarkups\n\n\nMonopoly Power\n\n\nHousing Demand\n\n\nZoning\n\n\n\n\nIs it?\n\n\n\n\n\n\nMar 1, 2021\n\n\nC. Luke Watson, Oren Ziv\n\n\n\n\n\n\nNo matching items"
+    "text": "A Test for Pricing Power in Urban Housing Markets\n\n\n\n\n\n\n\nRental Markets\n\n\nMarkups\n\n\nMonopoly Power\n\n\nHousing Demand\n\n\n\n\nBuilding demand slopes down.\n\n\n\n\n\n\nApr 1, 2024\n\n\nC. Luke Watson, Oren Ziv\n\n\n\n\n\n\n  \n\n\n\n\nEstimating Both Supply and Demand Elasticities Using Variation in a Single Tax Rate with General Equilibrium Spillovers\n\n\n\n\n\n\n\nIV\n\n\nTax Incidence\n\n\nSpillovers\n\n\nApplied Econometrics\n\n\n\n\nA note about using tax IVs\n\n\n\n\n\n\nOct 1, 2021\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nThe General Equilibrium Incidence of the Earned Income Tax Credit\n\n\n\n\n\n\n\nEITC\n\n\nLabor Supply\n\n\nLabor Demand\n\n\nIV\n\n\nTax Incidence\n\n\n\n\nMy JMP\n\n\n\n\n\n\nSep 1, 2021\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nThe Local Effects of State EITC Expansions\n\n\n\n\n\n\n\nEITC\n\n\nLabor Supply\n\n\nLabor Demand\n\n\nBorder Discontinuity\n\n\n\n\nChapter 2 of my dissertation\n\n\n\n\n\n\nAug 1, 2021\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nIs the Rent Too High? Land Ownership and Monopoly Power\n\n\n\n\n\n\n\nRental Markets\n\n\nMarkups\n\n\nMonopoly Power\n\n\nHousing Demand\n\n\nZoning\n\n\n\n\nIs it?\n\n\n\n\n\n\nMar 1, 2021\n\n\nC. Luke Watson, Oren Ziv\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/2020-06-09_preference_relations/index.html",
@@ -180,6 +180,90 @@
     "title": "Isolated Places",
     "section": "Conclusion",
     "text": "Conclusion\nI have pointed out some data sources, looked at the ACW data, and tried to come up with two alternative lists. ACW also connects the towns with zipcodes, which helps when combining with the ZBP, which I have not done."
+  },
+  {
+    "objectID": "posts/2024-02-26-abnormal-returns-es/index.html",
+    "href": "posts/2024-02-26-abnormal-returns-es/index.html",
+    "title": "Regression Cumulative (Average) Abnormal Returns",
+    "section": "",
+    "text": "I am working on a project estimating abnormal return event studies, and I am a little too pleased with how some coding was simplified by realizing it could be done as a regression. Note, I do not know all the citations for the intellectual history of these ideas."
+  },
+  {
+    "objectID": "posts/2024-02-26-abnormal-returns-es/index.html#cumulative-abnormal-returns",
+    "href": "posts/2024-02-26-abnormal-returns-es/index.html#cumulative-abnormal-returns",
+    "title": "Regression Cumulative (Average) Abnormal Returns",
+    "section": "Cumulative Abnormal Returns",
+    "text": "Cumulative Abnormal Returns\nFor some reason, a statistic that is more frequently used is the cumulative abnormal return (CAR): \\[ CAR : c^{s,t}_{j} = \\sum_{s &lt; t} a_{js}.\\]\nThis can be estimated by summing the estimated firm abnormal returns."
+  },
+  {
+    "objectID": "posts/2024-02-26-abnormal-returns-es/index.html#cumulative-average-abnormal-returns",
+    "href": "posts/2024-02-26-abnormal-returns-es/index.html#cumulative-average-abnormal-returns",
+    "title": "Regression Cumulative (Average) Abnormal Returns",
+    "section": "Cumulative Average Abnormal Returns",
+    "text": "Cumulative Average Abnormal Returns\nSupposing we have a cross section of firms, \\(j\\in J\\), then we can likewise estimate the average abnormal return (AAR) and the cumulative average abnormal return (CAAR): \\[\n\\begin{aligned}\nAAR : A_t = \\frac{1}{N_J} \\sum_{j\\in J} a_{jt}  \\\\\nCAAR : C^{s,t} = \\frac{1}{N_J} \\sum_{j\\in J} c^{s,t}_{j}.  \\\\\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "posts/2024-02-26-abnormal-returns-es/index.html#cumulative-average-abnormal-return-event-studies",
+    "href": "posts/2024-02-26-abnormal-returns-es/index.html#cumulative-average-abnormal-return-event-studies",
+    "title": "Regression Cumulative (Average) Abnormal Returns",
+    "section": "(Cumulative Average) Abnormal Return Event Studies",
+    "text": "(Cumulative Average) Abnormal Return Event Studies\nSuppose we think that there is an event that is (at some point) unexpected but that does not affect the expectation function, so the price effect of the event is only observed in the abnormal return. We could estimate the expectation function in a pre-period (or a training period to use machine learning vocabulary), and then forecast the function into an event period and take the residuals as estimates of the abnormal returns. By construction, the average of the training period estimated abnormal returns will be zero; however, the event period estimated abnormal returns would, under the assumptions, deviate from zero only if the event affected the price. We could plot the residuals in ‘event time’ to see if the residuals show deviations from zero near the event. Note, the event studies in in the DID / program evaluation literature are named after the finance event studies because of similarities with such a plot."
+  },
+  {
+    "objectID": "posts/2024-02-26-abnormal-returns-es/index.html#statistical-testing-of-ar-car-aar-caar",
+    "href": "posts/2024-02-26-abnormal-returns-es/index.html#statistical-testing-of-ar-car-aar-caar",
+    "title": "Regression Cumulative (Average) Abnormal Returns",
+    "section": "Statistical Testing of AR, CAR, AAR, CAAR",
+    "text": "Statistical Testing of AR, CAR, AAR, CAAR\nHow do we know if the abnormal returns (and functions thereof) are statistically different from zero? There are two views about this: parametric vs non-parametric. Under the assumption that the abnormal returns have some distribution, the parametric side relies on the CLT to use Z-stats of functions of the random variables we are estimated. Under the same assumption about the stochastic nature of the abnormal returns but without relying on the CLT, one could use tests that use fewer assumptions about the distributions that lead to ‘sign’ and ‘rank’ tests.\nIn addition to the two views, we face the question are the abnormal returns completely independently drawn or is there some sort of correlation between the stock returns / abnormal returns. For the time being, I am going to ignore this… but I am actively interested in how to deal with this.\nSo, assuming you are willing to assume independence, the typical way to do statistical testing for these abnormal return variables is to the empirical distribution of the estimated variables; that is, we use the sample standard deviation. For the AR variable, we get: \\[ t(a_{jt}) := \\frac{a_{jt}}{ \\mathsf{sqrt}\\left( ((t-s)+1 - df_{m})^{-1} \\cdot \\sum_{\\tau\\in \\{s,t\\}} a_{j\\tau}^2 \\right) } = \\frac{a_{jt}}{s^{s,t}_{j}}, \\] where \\(s^{s,t}_{j}\\) is the degrees-of-freedom adjusted sample standard deviation. For example, if one uses the three factor Fama-French model for the expectations function, then \\(df_m = 4\\). Under CLT, \\(t(a_{jt}) \\sim \\mathcal{N}(0,1)\\).\nFor CAR, we get: \\[ t( c^{s,t}_{j} ) := \\frac{ c^{s,t}_{j} }{ \\mathsf{sqrt}\\left( (t-s)\\cdot ((t-s)+1 - df_{m})^{-1} \\cdot \\sum_{\\tau\\in \\{s,t\\}} a_{j\\tau}^2 \\right) } = \\frac{c^{s,t}_{j}}{ \\mathsf{sqrt}(t-s)\\cdot s^{s,t}_{j}}. \\] For AAR, we get: \\[ t( A_{t} ) := \\mathsf{sqrt}(\\mathcal{N_{j}}) \\frac{ A_{t} }{ \\mathsf{sqrt}\\left( (N_{J}-1)^{-1} \\sum_{j\\in J} (a_{jt}- A_t)^2 \\right) } = \\frac{A_{t}}{ S^A_{t}}. \\]\nFor CAAR, we get: \\[ t( C^{s,t} ) := \\mathsf{sqrt}(\\mathcal{N_{j}}) \\frac{ C^{s,t} }{ \\mathsf{sqrt}\\left( (N_{J}-1)^{-1} \\sum_{j\\in J} (c^{s,t}_{j}- C^{s,t})^2 \\right) } = \\frac{ C^{s,t} }{ S^C_{t}}. \\]"
+  },
+  {
+    "objectID": "posts/2024-02-26-abnormal-returns-es/index.html#event-time",
+    "href": "posts/2024-02-26-abnormal-returns-es/index.html#event-time",
+    "title": "Regression Cumulative (Average) Abnormal Returns",
+    "section": "Event Time",
+    "text": "Event Time\nLet \\(\\tau \\in \\mathcal{T}\\) index event time, so that \\(\\tau=0\\) denotes the event. Let \\(\\mathcal{T} = \\{\\mathcal{Y},\\mathcal{Z}\\}\\), where \\(\\mathcal{Y}\\) is the training period and \\(\\mathcal{Z}\\) is the event period."
+  },
+  {
+    "objectID": "posts/2024-02-26-abnormal-returns-es/index.html#two-sets-of-dummy-variables",
+    "href": "posts/2024-02-26-abnormal-returns-es/index.html#two-sets-of-dummy-variables",
+    "title": "Regression Cumulative (Average) Abnormal Returns",
+    "section": "Two Sets of Dummy Variables",
+    "text": "Two Sets of Dummy Variables\nFirst, define \\(D_{s} = 1[\\tau=s]\\), which is a standard dummy variable for event time periods. Second, define \\(Q_{s} = 1[\\tau=s] - 1[\\tau=(s+1)]\\), which is a quasi-dummy variable that takes the value of \\(1\\) when \\(s=\\tau\\) and \\(-1\\) when \\(s=\\tau +1\\). Note, for \\(\\tau\\in \\mathcal{Z}\\), the ‘last’ \\(Q\\)-dummy is for period \\(\\tau=Z_1\\), such that there is no \\((\\tau+1)th\\) period."
+  },
+  {
+    "objectID": "posts/2024-02-26-abnormal-returns-es/index.html#parameterize-expectation-function",
+    "href": "posts/2024-02-26-abnormal-returns-es/index.html#parameterize-expectation-function",
+    "title": "Regression Cumulative (Average) Abnormal Returns",
+    "section": "Parameterize expectation function",
+    "text": "Parameterize expectation function\nLet \\(m_j(X_t) = \\beta_{j,0} + f^1_t\\beta_{j,1} + f^2_t\\beta_{j,2} + f^3_t\\beta_{j,3}\\) be three variables (and the constant) for the expectation model."
+  },
+  {
+    "objectID": "posts/2024-02-26-abnormal-returns-es/index.html#regression-for-ar",
+    "href": "posts/2024-02-26-abnormal-returns-es/index.html#regression-for-ar",
+    "title": "Regression Cumulative (Average) Abnormal Returns",
+    "section": "Regression for AR",
+    "text": "Regression for AR\nRun the following regression for each firm: \\[ r_{jt} = \\beta_{j,0} + f^1_t\\beta_{j,1} + f^2_t\\beta_{j,2} + f^3_t\\beta_{j,3} + \\sum_{\\tau \\in \\mathcal{Z}} D_{\\tau}\\pi_{j,\\tau} + u_{jt}, \\] where \\(\\pi_{j,\\tau} = a_{jt}\\).\n\nStata\nLet the training period be \\(\\tau \\in [Y_0,Y_1]\\) and the event period be \\(\\tau \\in [Z_0,Z_1]\\).\nreg rj f* D* if firm==j & ( inrange(et,Y0,Y1) | inrange(et,Z0,Z1) )"
+  },
+  {
+    "objectID": "posts/2024-02-26-abnormal-returns-es/index.html#regression-for-car",
+    "href": "posts/2024-02-26-abnormal-returns-es/index.html#regression-for-car",
+    "title": "Regression Cumulative (Average) Abnormal Returns",
+    "section": "Regression for CAR",
+    "text": "Regression for CAR\nRun the following regression for each firm: \\[ r_{jt} = \\beta_{j,0} + f^1_t\\beta_{j,1} + f^2_t\\beta_{j,2} + f^3_t\\beta_{j,3} + \\sum_{\\tau \\in \\mathcal{Z}} Q_{\\tau}\\gamma_{j,\\tau} + u_{jt}, \\] where \\(\\gamma_{j,\\tau} = c^{Z_0,Z_1}_{j}\\).\n\nStata\nLet the training period be \\(\\tau \\in [Y_0,Y_1]\\) and the event period be \\(\\tau \\in [Z_0,Z_1]\\).\nreg rj f* Q* if firm==j & ( inrange(et,Y0,Y1) | inrange(et,Z0,Z1) )"
+  },
+  {
+    "objectID": "posts/2024-02-26-abnormal-returns-es/index.html#regressions-for-aar-and-caar",
+    "href": "posts/2024-02-26-abnormal-returns-es/index.html#regressions-for-aar-and-caar",
+    "title": "Regression Cumulative (Average) Abnormal Returns",
+    "section": "Regressions for AAR and CAAR",
+    "text": "Regressions for AAR and CAAR\nTo get the AAR and CAAR variables, one ‘stacks’ the firm data, then implements the same regressions as above.\n\nStata\nLet the training period be \\(\\tau \\in [Y_0,Y_1]\\) and the event period be \\(\\tau \\in [Z_0,Z_1]\\). Let \\(G\\) be an categorical (factor) variable for firms. Note, we are still letting the expectation function be firm-specific, but are forcing the variables on the dummies to be equal across firms, which has the effect of calculating the AAR and CAAR.\n* AAR\nreghdfe rj D* if ( inrange(et,Y0,Y1) | inrange(et,Z0,Z1) ), absorb(i.G##c.(f*)) vce(cluster G)\n* CAAR\nreghdfe rj Q* if ( inrange(et,Y0,Y1) | inrange(et,Z0,Z1) ), absorb(i.G##c.(f*)) vce(cluster G)"
+  },
+  {
+    "objectID": "posts/2024-02-26-abnormal-returns-es/index.html#standard-errors",
+    "href": "posts/2024-02-26-abnormal-returns-es/index.html#standard-errors",
+    "title": "Regression Cumulative (Average) Abnormal Returns",
+    "section": "Standard Errors",
+    "text": "Standard Errors\nIt turns out that the standard errors from the regressions are correct for the parameters. Salinger (1992) discusses this."
   },
   {
     "objectID": "posts/2022-07-31-something-new/index.html",
@@ -242,6 +326,6 @@
     "href": "blog.html",
     "title": "C. Luke Watson",
     "section": "",
-    "text": "A personal blog for data projects as well as my goings-on.\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nIsolated Places\n\n\n\n\n\n\n\nStructural IO\n\n\nUrban\n\n\nEntry Model\n\n\nData\n\n\n\n\nIsolating Isolated Places\n\n\n\n\n\n\nSep 17, 2023\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nA New Website\n\n\n\n\n\n\n\nWebsite\n\n\nQuarto\n\n\nTutorials\n\n\nGithub\n\n\n\n\nTrying something new\n\n\n\n\n\n\nJul 31, 2022\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nFirst year notes on preference relations\n\n\n\n\n\n\n\nNotes\n\n\nPreferences\n\n\nPHD Micro\n\n\n\n\nFirst year notes on preference relations\n\n\n\n\n\n\nJun 9, 2020\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nTFP Guide\n\n\n\n\n\n\n\nNotes\n\n\nTFP\n\n\nProduction Function Estimation\n\n\n\n\nA TFP guide I made\n\n\n\n\n\n\nJun 18, 2018\n\n\nC. Luke Watson\n\n\n\n\n\n\nNo matching items"
+    "text": "A personal blog for data projects as well as my goings-on.\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nRegression Cumulative (Average) Abnormal Returns\n\n\n\n\n\n\n\nFinance\n\n\nEvent Study\n\n\nAbnormal Returns\n\n\nRegression\n\n\nStata\n\n\n\n\nUsing regression to estimate CAAR\n\n\n\n\n\n\nFeb 26, 2024\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nIsolated Places\n\n\n\n\n\n\n\nStructural IO\n\n\nUrban\n\n\nEntry Model\n\n\nData\n\n\n\n\nIsolating Isolated Places\n\n\n\n\n\n\nSep 17, 2023\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nA New Website\n\n\n\n\n\n\n\nWebsite\n\n\nQuarto\n\n\nTutorials\n\n\nGithub\n\n\n\n\nTrying something new\n\n\n\n\n\n\nJul 31, 2022\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nFirst year notes on preference relations\n\n\n\n\n\n\n\nNotes\n\n\nPreferences\n\n\nPHD Micro\n\n\n\n\nFirst year notes on preference relations\n\n\n\n\n\n\nJun 9, 2020\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nTFP Guide\n\n\n\n\n\n\n\nNotes\n\n\nTFP\n\n\nProduction Function Estimation\n\n\n\n\nA TFP guide I made\n\n\n\n\n\n\nJun 18, 2018\n\n\nC. Luke Watson\n\n\n\n\n\n\nNo matching items"
   }
 ]
