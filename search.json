@@ -182,6 +182,13 @@
     "text": "Conclusion\nI have pointed out some data sources, looked at the ACW data, and tried to come up with two alternative lists. ACW also connects the towns with zipcodes, which helps when combining with the ZBP, which I have not done."
   },
   {
+    "objectID": "posts/2024-04-18-nested-logit-gradient/index.html",
+    "href": "posts/2024-04-18-nested-logit-gradient/index.html",
+    "title": "Nested Logit Gradient",
+    "section": "",
+    "text": "I am working on a project that uses the nested logit model and non-linear optimization. I figured I would want to find the gradient of my estimation moment that requires the derivative of the nested logit function with respect to the parameters. This is pretty tedious to calculate, so I was hoping someone else had already done it. I was hopeful when I saw Nathan Miller’s note on nested logit derivatives based on the Berry1994 / BLP1995 framework, but it was not what I needed. This is because the structural error in the Berry/BLP tradition is different than my procedure, and as such they require different derivatives.\nThus, here are some notes on the direct derivatives of the nested logit function with respect to the parameters: watson_nested_logit_gradient.pdf. Please let me know if I calculated anything wrong."
+  },
+  {
     "objectID": "posts/2024-02-26-abnormal-returns-es/index.html",
     "href": "posts/2024-02-26-abnormal-returns-es/index.html",
     "title": "Regression Cumulative (Average) Abnormal Returns",
@@ -326,6 +333,6 @@
     "href": "blog.html",
     "title": "C. Luke Watson",
     "section": "",
-    "text": "A personal blog for data projects as well as my goings-on.\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nRegression Cumulative (Average) Abnormal Returns\n\n\n\n\n\n\n\nFinance\n\n\nEvent Study\n\n\nAbnormal Returns\n\n\nRegression\n\n\nStata\n\n\n\n\nUsing regression to estimate CAAR\n\n\n\n\n\n\nFeb 26, 2024\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nIsolated Places\n\n\n\n\n\n\n\nStructural IO\n\n\nUrban\n\n\nEntry Model\n\n\nData\n\n\n\n\nIsolating Isolated Places\n\n\n\n\n\n\nSep 17, 2023\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nA New Website\n\n\n\n\n\n\n\nWebsite\n\n\nQuarto\n\n\nTutorials\n\n\nGithub\n\n\n\n\nTrying something new\n\n\n\n\n\n\nJul 31, 2022\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nFirst year notes on preference relations\n\n\n\n\n\n\n\nNotes\n\n\nPreferences\n\n\nPHD Micro\n\n\n\n\nFirst year notes on preference relations\n\n\n\n\n\n\nJun 9, 2020\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nTFP Guide\n\n\n\n\n\n\n\nNotes\n\n\nTFP\n\n\nProduction Function Estimation\n\n\n\n\nA TFP guide I made\n\n\n\n\n\n\nJun 18, 2018\n\n\nC. Luke Watson\n\n\n\n\n\n\nNo matching items"
+    "text": "A personal blog for data projects as well as my goings-on.\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nNested Logit Gradient\n\n\n\n\n\n\n\nNotes\n\n\nNested Logit\n\n\nGradient\n\n\n\n\nTaking a hard derivative\n\n\n\n\n\n\nApr 18, 2024\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nRegression Cumulative (Average) Abnormal Returns\n\n\n\n\n\n\n\nFinance\n\n\nEvent Study\n\n\nAbnormal Returns\n\n\nRegression\n\n\nStata\n\n\n\n\nUsing regression to estimate CAAR\n\n\n\n\n\n\nFeb 26, 2024\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nIsolated Places\n\n\n\n\n\n\n\nStructural IO\n\n\nUrban\n\n\nEntry Model\n\n\nData\n\n\n\n\nIsolating Isolated Places\n\n\n\n\n\n\nSep 17, 2023\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nA New Website\n\n\n\n\n\n\n\nWebsite\n\n\nQuarto\n\n\nTutorials\n\n\nGithub\n\n\n\n\nTrying something new\n\n\n\n\n\n\nJul 31, 2022\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nFirst year notes on preference relations\n\n\n\n\n\n\n\nNotes\n\n\nPreferences\n\n\nPHD Micro\n\n\n\n\nFirst year notes on preference relations\n\n\n\n\n\n\nJun 9, 2020\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nTFP Guide\n\n\n\n\n\n\n\nNotes\n\n\nTFP\n\n\nProduction Function Estimation\n\n\n\n\nA TFP guide I made\n\n\n\n\n\n\nJun 18, 2018\n\n\nC. Luke Watson\n\n\n\n\n\n\nNo matching items"
   }
 ]

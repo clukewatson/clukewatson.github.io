@@ -10,7 +10,29 @@
 <atom:link href="https://clukewatson.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Financial Economist</description>
 <generator>quarto-1.3.340</generator>
-<lastBuildDate>Mon, 26 Feb 2024 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 18 Apr 2024 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Nested Logit Gradient</title>
+  <dc:creator>C. Luke Watson</dc:creator>
+  <link>https://clukewatson.github.io/posts/2024-04-18-nested-logit-gradient/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I am working on a project that uses the nested logit model and non-linear optimization. I figured I would want to find the gradient of my estimation moment that requires the derivative of the nested logit function with respect to the parameters. This is pretty tedious to calculate, so I was hoping someone else had already done it. I was hopeful when I saw <a href="http://www.nathanhmiller.org/nlnotes.pdf">Nathan Miller’s note on nested logit derivatives</a> based on the Berry1994 / BLP1995 framework, but it was not what I needed. This is because the structural error in the Berry/BLP tradition is different than my procedure, and as such they require different derivatives.</p>
+<p>Thus, here are some notes on the direct derivatives of the nested logit function with respect to the parameters: <a href="watson_nested_logit_gradient.pdf">watson_nested_logit_gradient.pdf</a>. Please let me know if I calculated anything wrong.</p>
+
+
+
+ ]]></description>
+  <category>Notes</category>
+  <category>Nested Logit</category>
+  <category>Gradient</category>
+  <guid>https://clukewatson.github.io/posts/2024-04-18-nested-logit-gradient/index.html</guid>
+  <pubDate>Thu, 18 Apr 2024 04:00:00 GMT</pubDate>
+  <media:content url="https://clukewatson.github.io/posts/2024-04-18-nested-logit-gradient/gradient.png" medium="image" type="image/png" height="59" width="144"/>
+</item>
 <item>
   <title>Regression Cumulative (Average) Abnormal Returns</title>
   <dc:creator>C. Luke Watson</dc:creator>
