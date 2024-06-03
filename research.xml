@@ -28,7 +28,7 @@
 <section id="pdf-links" class="level2">
 <h2 class="anchored" data-anchor-id="pdf-links">PDF links</h2>
 <ul>
-<li><a href="tfpp_watsonziv.pdf">Paper (April 2024)</a></li>
+<li><a href="tfpp_watsonziv.pdf">Paper (April 2024)</a> – Revision requested, Review of Economics and Statistics</li>
 </ul>
 </section>
 <section id="abstract" class="level2">
@@ -59,7 +59,7 @@ This project includes the following data files:
 background-color: null;
 font-style: inherit;">@techreport</span>{<span class="ot" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">watson_testforpricingpower:2023</span>,</span>
+font-style: inherit;">watson_testforpricingpower:2024</span>,</span>
 <span id="cb1-2">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">Author</span> = {Watson, C. Luke and Ziv, Oren},</span>
@@ -74,7 +74,7 @@ background-color: null;
 font-style: inherit;">Type</span> = {Manuscript},</span>
 <span id="cb1-6">    <span class="dt" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">Year</span> = {2023}}</span></code></pre></div>
+font-style: inherit;">Year</span> = {2024}}</span></code></pre></div>
 
 
 </section>

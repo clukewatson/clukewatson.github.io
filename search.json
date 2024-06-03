@@ -116,7 +116,7 @@
     "href": "research/tfpp/index.html#pdf-links",
     "title": "A Test for Pricing Power in Urban Housing Markets",
     "section": "PDF links",
-    "text": "PDF links\n\nPaper (April 2024)"
+    "text": "PDF links\n\nPaper (April 2024) – Revision requested, Review of Economics and Statistics"
   },
   {
     "objectID": "research/tfpp/index.html#abstract",
@@ -130,7 +130,7 @@
     "href": "research/tfpp/index.html#bibtex-citation",
     "title": "A Test for Pricing Power in Urban Housing Markets",
     "section": "BibTeX citation",
-    "text": "BibTeX citation\n@techreport{watson_testforpricingpower:2023,\n    Author = {Watson, C. Luke and Ziv, Oren},\n    Month = {12},\n    Title = {A Test for Pricing Power in Urban Housing Markets},\n    Type = {Manuscript},\n    Year = {2023}}"
+    "text": "BibTeX citation\n@techreport{watson_testforpricingpower:2024,\n    Author = {Watson, C. Luke and Ziv, Oren},\n    Month = {12},\n    Title = {A Test for Pricing Power in Urban Housing Markets},\n    Type = {Manuscript},\n    Year = {2024}}"
   },
   {
     "objectID": "research.html",
@@ -287,6 +287,83 @@
     "text": "How did I do it\n\nTools\n\nI used Rstudio + quarto, which I learned about through Andrew Heiss’s twitter.\nI saw Mike Mahoney’s website in the quarto gallery\nI already had Github account and the desktop app\n\n\n\nSteps\n\nI downloaded Mike Mahoney’s website\nI changed all the content to match what I wanted\nI used the Quarto guide on Github Pages, but I also had to google a bit to figure out some stuff\n\nName the folder with the website content something (e.g., tmp_website)\nOn Github, new repository named “username.github.io”, initialize with a readme file, then “create”\nOn code-tab, create new branch called “gh-pages”, next, in same tab, click “2 branches”, next switch branch to “gh-pages” from “main”, and then delete “main”\nCreate “username.github.io” folder, paste website contents into the folder\nAdd the “Ignore Content” item to the .gitignore folder (will likely need to use ‘open with’ and pick a program)\nUsing the Github desktop app, sync the new items to Github website\nIn terminal (or command line), cd to username.github.io, next type quarto publish gh-pages and hit enter, and say yes to any questions\n\nThe website should go live within a few minutes (as long as not uploading big data files)"
   },
   {
+    "objectID": "posts/2024-04-26-logit-ident/index.html",
+    "href": "posts/2024-04-26-logit-ident/index.html",
+    "title": "Logit Market Definition",
+    "section": "",
+    "text": "Suppose there are\nFor those like me who have never taken a finance class, an abnormal return can be called the portion of a change in stock price not easily explained by ‘fundamentals.’ Let’s call the ‘fundamentals’ explanation the expected value, then the abnormal return (AR) is the deviation from that expectation: \\[ AR : a_{jt} = r_{jt} - \\mathsf{E}[r_{jt} \\mid X_t].\\] If we assume a functional form for the expectation, then we know that we can estimate that residual. Let \\(\\mathsf{E}[r_{jt} \\mid X_{t}] = \\alpha_j + \\beta_j X_{t} := m_{j}(X_t)\\); that is, we let the expectation function of market-wide explanatory variables vary by firm. Clearly, we could estimate this firm-by-firm.\n\n\nFor some reason, a statistic that is more frequently used is the cumulative abnormal return (CAR): \\[ CAR : c^{s,t}_{j} = \\sum_{s &lt; t} a_{js}.\\]\nThis can be estimated by summing the estimated firm abnormal returns.\n\n\n\nSupposing we have a cross section of firms, \\(j\\in J\\), then we can likewise estimate the average abnormal return (AAR) and the cumulative average abnormal return (CAAR): \\[\n\\begin{aligned}\nAAR : A_t = \\frac{1}{N_J} \\sum_{j\\in J} a_{jt}  \\\\\nCAAR : C^{s,t} = \\frac{1}{N_J} \\sum_{j\\in J} c^{s,t}_{j}.  \\\\\n\\end{aligned}\n\\]\n\n\n\nSuppose we think that there is an event that is (at some point) unexpected but that does not affect the expectation function, so the price effect of the event is only observed in the abnormal return. We could estimate the expectation function in a pre-period (or a training period to use machine learning vocabulary), and then forecast the function into an event period and take the residuals as estimates of the abnormal returns. By construction, the average of the training period estimated abnormal returns will be zero; however, the event period estimated abnormal returns would, under the assumptions, deviate from zero only if the event affected the price. We could plot the residuals in ‘event time’ to see if the residuals show deviations from zero near the event. Note, the event studies in in the DID / program evaluation literature are named after the finance event studies because of similarities with such a plot.\n\n\n\nHow do we know if the abnormal returns (and functions thereof) are statistically different from zero? There are two views about this: parametric vs non-parametric. Under the assumption that the abnormal returns have some distribution, the parametric side relies on the CLT to use Z-stats of functions of the random variables we are estimated. Under the same assumption about the stochastic nature of the abnormal returns but without relying on the CLT, one could use tests that use fewer assumptions about the distributions that lead to ‘sign’ and ‘rank’ tests.\nIn addition to the two views, we face the question are the abnormal returns completely independently drawn or is there some sort of correlation between the stock returns / abnormal returns. For the time being, I am going to ignore this… but I am actively interested in how to deal with this.\nSo, assuming you are willing to assume independence, the typical way to do statistical testing for these abnormal return variables is to the empirical distribution of the estimated variables; that is, we use the sample standard deviation. For the AR variable, we get: \\[ t(a_{jt}) := \\frac{a_{jt}}{ \\mathsf{sqrt}\\left( ((t-s)+1 - df_{m})^{-1} \\cdot \\sum_{\\tau\\in \\{s,t\\}} a_{j\\tau}^2 \\right) } = \\frac{a_{jt}}{s^{s,t}_{j}}, \\] where \\(s^{s,t}_{j}\\) is the degrees-of-freedom adjusted sample standard deviation. For example, if one uses the three factor Fama-French model for the expectations function, then \\(df_m = 4\\). Under CLT, \\(t(a_{jt}) \\sim \\mathcal{N}(0,1)\\).\nFor CAR, we get: \\[ t( c^{s,t}_{j} ) := \\frac{ c^{s,t}_{j} }{ \\mathsf{sqrt}\\left( (t-s)\\cdot ((t-s)+1 - df_{m})^{-1} \\cdot \\sum_{\\tau\\in \\{s,t\\}} a_{j\\tau}^2 \\right) } = \\frac{c^{s,t}_{j}}{ \\mathsf{sqrt}(t-s)\\cdot s^{s,t}_{j}}. \\] For AAR, we get: \\[ t( A_{t} ) := \\mathsf{sqrt}(\\mathcal{N_{j}}) \\frac{ A_{t} }{ \\mathsf{sqrt}\\left( (N_{J}-1)^{-1} \\sum_{j\\in J} (a_{jt}- A_t)^2 \\right) } = \\frac{A_{t}}{ S^A_{t}}. \\]\nFor CAAR, we get: \\[ t( C^{s,t} ) := \\mathsf{sqrt}(\\mathcal{N_{j}}) \\frac{ C^{s,t} }{ \\mathsf{sqrt}\\left( (N_{J}-1)^{-1} \\sum_{j\\in J} (c^{s,t}_{j}- C^{s,t})^2 \\right) } = \\frac{ C^{s,t} }{ S^C_{t}}. \\]"
+  },
+  {
+    "objectID": "posts/2024-04-26-logit-ident/index.html#cumulative-abnormal-returns",
+    "href": "posts/2024-04-26-logit-ident/index.html#cumulative-abnormal-returns",
+    "title": "Logit Market Definition",
+    "section": "",
+    "text": "For some reason, a statistic that is more frequently used is the cumulative abnormal return (CAR): \\[ CAR : c^{s,t}_{j} = \\sum_{s &lt; t} a_{js}.\\]\nThis can be estimated by summing the estimated firm abnormal returns."
+  },
+  {
+    "objectID": "posts/2024-04-26-logit-ident/index.html#cumulative-average-abnormal-returns",
+    "href": "posts/2024-04-26-logit-ident/index.html#cumulative-average-abnormal-returns",
+    "title": "Logit Market Definition",
+    "section": "",
+    "text": "Supposing we have a cross section of firms, \\(j\\in J\\), then we can likewise estimate the average abnormal return (AAR) and the cumulative average abnormal return (CAAR): \\[\n\\begin{aligned}\nAAR : A_t = \\frac{1}{N_J} \\sum_{j\\in J} a_{jt}  \\\\\nCAAR : C^{s,t} = \\frac{1}{N_J} \\sum_{j\\in J} c^{s,t}_{j}.  \\\\\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "posts/2024-04-26-logit-ident/index.html#cumulative-average-abnormal-return-event-studies",
+    "href": "posts/2024-04-26-logit-ident/index.html#cumulative-average-abnormal-return-event-studies",
+    "title": "Logit Market Definition",
+    "section": "",
+    "text": "Suppose we think that there is an event that is (at some point) unexpected but that does not affect the expectation function, so the price effect of the event is only observed in the abnormal return. We could estimate the expectation function in a pre-period (or a training period to use machine learning vocabulary), and then forecast the function into an event period and take the residuals as estimates of the abnormal returns. By construction, the average of the training period estimated abnormal returns will be zero; however, the event period estimated abnormal returns would, under the assumptions, deviate from zero only if the event affected the price. We could plot the residuals in ‘event time’ to see if the residuals show deviations from zero near the event. Note, the event studies in in the DID / program evaluation literature are named after the finance event studies because of similarities with such a plot."
+  },
+  {
+    "objectID": "posts/2024-04-26-logit-ident/index.html#statistical-testing-of-ar-car-aar-caar",
+    "href": "posts/2024-04-26-logit-ident/index.html#statistical-testing-of-ar-car-aar-caar",
+    "title": "Logit Market Definition",
+    "section": "",
+    "text": "How do we know if the abnormal returns (and functions thereof) are statistically different from zero? There are two views about this: parametric vs non-parametric. Under the assumption that the abnormal returns have some distribution, the parametric side relies on the CLT to use Z-stats of functions of the random variables we are estimated. Under the same assumption about the stochastic nature of the abnormal returns but without relying on the CLT, one could use tests that use fewer assumptions about the distributions that lead to ‘sign’ and ‘rank’ tests.\nIn addition to the two views, we face the question are the abnormal returns completely independently drawn or is there some sort of correlation between the stock returns / abnormal returns. For the time being, I am going to ignore this… but I am actively interested in how to deal with this.\nSo, assuming you are willing to assume independence, the typical way to do statistical testing for these abnormal return variables is to the empirical distribution of the estimated variables; that is, we use the sample standard deviation. For the AR variable, we get: \\[ t(a_{jt}) := \\frac{a_{jt}}{ \\mathsf{sqrt}\\left( ((t-s)+1 - df_{m})^{-1} \\cdot \\sum_{\\tau\\in \\{s,t\\}} a_{j\\tau}^2 \\right) } = \\frac{a_{jt}}{s^{s,t}_{j}}, \\] where \\(s^{s,t}_{j}\\) is the degrees-of-freedom adjusted sample standard deviation. For example, if one uses the three factor Fama-French model for the expectations function, then \\(df_m = 4\\). Under CLT, \\(t(a_{jt}) \\sim \\mathcal{N}(0,1)\\).\nFor CAR, we get: \\[ t( c^{s,t}_{j} ) := \\frac{ c^{s,t}_{j} }{ \\mathsf{sqrt}\\left( (t-s)\\cdot ((t-s)+1 - df_{m})^{-1} \\cdot \\sum_{\\tau\\in \\{s,t\\}} a_{j\\tau}^2 \\right) } = \\frac{c^{s,t}_{j}}{ \\mathsf{sqrt}(t-s)\\cdot s^{s,t}_{j}}. \\] For AAR, we get: \\[ t( A_{t} ) := \\mathsf{sqrt}(\\mathcal{N_{j}}) \\frac{ A_{t} }{ \\mathsf{sqrt}\\left( (N_{J}-1)^{-1} \\sum_{j\\in J} (a_{jt}- A_t)^2 \\right) } = \\frac{A_{t}}{ S^A_{t}}. \\]\nFor CAAR, we get: \\[ t( C^{s,t} ) := \\mathsf{sqrt}(\\mathcal{N_{j}}) \\frac{ C^{s,t} }{ \\mathsf{sqrt}\\left( (N_{J}-1)^{-1} \\sum_{j\\in J} (c^{s,t}_{j}- C^{s,t})^2 \\right) } = \\frac{ C^{s,t} }{ S^C_{t}}. \\]"
+  },
+  {
+    "objectID": "posts/2024-04-26-logit-ident/index.html#event-time",
+    "href": "posts/2024-04-26-logit-ident/index.html#event-time",
+    "title": "Logit Market Definition",
+    "section": "Event Time",
+    "text": "Event Time\nLet \\(\\tau \\in \\mathcal{T}\\) index event time, so that \\(\\tau=0\\) denotes the event. Let \\(\\mathcal{T} = \\{\\mathcal{Y},\\mathcal{Z}\\}\\), where \\(\\mathcal{Y}\\) is the training period and \\(\\mathcal{Z}\\) is the event period."
+  },
+  {
+    "objectID": "posts/2024-04-26-logit-ident/index.html#two-sets-of-dummy-variables",
+    "href": "posts/2024-04-26-logit-ident/index.html#two-sets-of-dummy-variables",
+    "title": "Logit Market Definition",
+    "section": "Two Sets of Dummy Variables",
+    "text": "Two Sets of Dummy Variables\nFirst, define \\(D_{s} = 1[\\tau=s]\\), which is a standard dummy variable for event time periods. Second, define \\(Q_{s} = 1[\\tau=s] - 1[\\tau=(s+1)]\\), which is a quasi-dummy variable that takes the value of \\(1\\) when \\(s=\\tau\\) and \\(-1\\) when \\(s=\\tau +1\\). Note, for \\(\\tau\\in \\mathcal{Z}\\), the ‘last’ \\(Q\\)-dummy is for period \\(\\tau=Z_1\\), such that there is no \\((\\tau+1)th\\) period."
+  },
+  {
+    "objectID": "posts/2024-04-26-logit-ident/index.html#parameterize-expectation-function",
+    "href": "posts/2024-04-26-logit-ident/index.html#parameterize-expectation-function",
+    "title": "Logit Market Definition",
+    "section": "Parameterize expectation function",
+    "text": "Parameterize expectation function\nLet \\(m_j(X_t) = \\beta_{j,0} + f^1_t\\beta_{j,1} + f^2_t\\beta_{j,2} + f^3_t\\beta_{j,3}\\) be three variables (and the constant) for the expectation model. Thus, \\(df_{m}=3\\) since we do not count the constant."
+  },
+  {
+    "objectID": "posts/2024-04-26-logit-ident/index.html#regression-for-ar",
+    "href": "posts/2024-04-26-logit-ident/index.html#regression-for-ar",
+    "title": "Logit Market Definition",
+    "section": "Regression for AR",
+    "text": "Regression for AR\nRun the following regression for each firm: \\[ r_{jt} = \\beta_{j,0} + f^1_t\\beta_{j,1} + f^2_t\\beta_{j,2} + f^3_t\\beta_{j,3} + \\sum_{\\tau \\in \\mathcal{Z}} D_{\\tau}\\pi_{j,\\tau} + u_{jt}, \\] where \\(\\pi_{j,\\tau} = a_{jt}\\).\n\nStata\nLet the training period be \\(\\tau \\in [Y_0,Y_1]\\) and the event period be \\(\\tau \\in [Z_0,Z_1]\\).\nreg rj f* D* if firm==j & ( inrange(et,Y0,Y1) | inrange(et,Z0,Z1) )"
+  },
+  {
+    "objectID": "posts/2024-04-26-logit-ident/index.html#regression-for-car",
+    "href": "posts/2024-04-26-logit-ident/index.html#regression-for-car",
+    "title": "Logit Market Definition",
+    "section": "Regression for CAR",
+    "text": "Regression for CAR\nRun the following regression for each firm: \\[ r_{jt} = \\beta_{j,0} + f^1_t\\beta_{j,1} + f^2_t\\beta_{j,2} + f^3_t\\beta_{j,3} + \\sum_{\\tau \\in \\mathcal{Z}} Q_{\\tau}\\gamma_{j,\\tau} + u_{jt}, \\] where \\(\\gamma_{j,\\tau} = c^{Z_0,Z_1}_{j}\\). It turns out that that the standard errors for this regression are correct for each CAR estimate.\n\nStata\nLet the training period be \\(\\tau \\in [Y_0,Y_1]\\) and the event period be \\(\\tau \\in [Z_0,Z_1]\\).\nreg rj f* Q* if firm==j & ( inrange(et,Y0,Y1) | inrange(et,Z0,Z1) )"
+  },
+  {
+    "objectID": "posts/2024-04-26-logit-ident/index.html#regressions-for-aar-and-caar",
+    "href": "posts/2024-04-26-logit-ident/index.html#regressions-for-aar-and-caar",
+    "title": "Logit Market Definition",
+    "section": "Regressions for AAR and CAAR",
+    "text": "Regressions for AAR and CAAR\nTo get the AAR and CAAR variables, one ‘stacks’ the firm data, then implements the same regressions as above, but clusters the standard errors by the firms. Interestingly, the stacked regression gives a different standard error than doing the firm-by-firm regression method. It turns out this is due to an implicit degrees-of-freedom adjustment.\nIn the the firm-by-firm method, one estimates \\(c_j^{s,t}\\) for each firm \\(j\\in J\\), then computes the average to get \\(C^{s,t}\\), and then computes the standard error of the mean, where the degree of freedom is \\(N_J - 1\\), to get \\(\\hat{\\sigma}^{s,t}.\\) To make the point, call the estimator of the firm-by-firm CAAR standard error \\(\\hat{\\textsf{s}}^{s,t}_0\\). When one does the stacked version, the coefficient for \\(\\gamma_{\\tau}\\) is numerically identical to \\(C^{s,t}\\), but the standard error is different. It turns out that it is equal to \\[ \\textsf{se}(\\gamma_\\tau) := \\hat{\\textsf{s}}^{s,t}_{K} = \\sqrt{\\frac{(T_{\\text{Train}} \\cdot N_J - 1)}{(T_{\\text{Train}}\\cdot N_J - 1) - (K-N_J)}}\\cdot\\hat{\\textsf{s}}^{s,t}_0,\\] where \\(T_{\\text{Train}}\\) is the length of the training period and \\(K=(df_m+1)\\cdot N_j + T_{\\text{Event}} - 1\\) is the number of parameters. I suspect that the stacked version is actually correct when using the three-factor model for the expectation function, since those parameters are also estimated in the firm-by-firm method, but implicitly ignored.\nThus, the firm-by-firm method, because it is taking the standard error of estimated CARs, implicitly assumes that the degrees of freedom term \\((K-N_J)=0\\); i.e., that the CAR are correctly estimated. Whereas, the stacked version (I think, correctly) aknowledges that the CARs are estimated and therefore a degree-of-freedom adjustment is required.\n\nStata\nLet the training period be \\(\\tau \\in [Y_0,Y_1]\\) and the event period be \\(\\tau \\in [Z_0,Z_1]\\). Let \\(G\\) be an categorical (factor) variable for firms. Note, we are still letting the expectation function be firm-specific, but are forcing the variables on the dummies to be equal across firms, which has the effect of calculating the AAR and CAAR.\n* AAR\nreghdfe rj D* if ( inrange(et,Y0,Y1) | inrange(et,Z0,Z1) ), absorb(i.G##c.(f*)) vce(cluster G)\n* CAAR\nreghdfe rj Q* if ( inrange(et,Y0,Y1) | inrange(et,Z0,Z1) ), absorb(i.G##c.(f*)) vce(cluster G)"
+  },
+  {
     "objectID": "posts/2018-06-18-tfp-guide/index.html",
     "href": "posts/2018-06-18-tfp-guide/index.html",
     "title": "TFP Guide",
@@ -333,6 +410,6 @@
     "href": "blog.html",
     "title": "C. Luke Watson",
     "section": "",
-    "text": "A personal blog for data projects as well as my goings-on.\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nNested Logit Gradient\n\n\n\n\n\n\n\nNotes\n\n\nNested Logit\n\n\nGradient\n\n\n\n\nTaking a hard derivative\n\n\n\n\n\n\nApr 18, 2024\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nRegression Cumulative (Average) Abnormal Returns\n\n\n\n\n\n\n\nFinance\n\n\nEvent Study\n\n\nAbnormal Returns\n\n\nRegression\n\n\nStata\n\n\n\n\nUsing regression to estimate CAAR\n\n\n\n\n\n\nFeb 26, 2024\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nIsolated Places\n\n\n\n\n\n\n\nStructural IO\n\n\nUrban\n\n\nEntry Model\n\n\nData\n\n\n\n\nIsolating Isolated Places\n\n\n\n\n\n\nSep 17, 2023\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nA New Website\n\n\n\n\n\n\n\nWebsite\n\n\nQuarto\n\n\nTutorials\n\n\nGithub\n\n\n\n\nTrying something new\n\n\n\n\n\n\nJul 31, 2022\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nFirst year notes on preference relations\n\n\n\n\n\n\n\nNotes\n\n\nPreferences\n\n\nPHD Micro\n\n\n\n\nFirst year notes on preference relations\n\n\n\n\n\n\nJun 9, 2020\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nTFP Guide\n\n\n\n\n\n\n\nNotes\n\n\nTFP\n\n\nProduction Function Estimation\n\n\n\n\nA TFP guide I made\n\n\n\n\n\n\nJun 18, 2018\n\n\nC. Luke Watson\n\n\n\n\n\n\nNo matching items"
+    "text": "A personal blog for data projects as well as my goings-on.\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nLogit Market Definition\n\n\n\n\n\n\n\nLogit\n\n\nMarket Definition\n\n\nIIA\n\n\n\n\nThe Power of IIA\n\n\n\n\n\n\nApr 24, 2024\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nNested Logit Gradient\n\n\n\n\n\n\n\nNotes\n\n\nNested Logit\n\n\nGradient\n\n\n\n\nTaking a hard derivative\n\n\n\n\n\n\nApr 18, 2024\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nRegression Cumulative (Average) Abnormal Returns\n\n\n\n\n\n\n\nFinance\n\n\nEvent Study\n\n\nAbnormal Returns\n\n\nRegression\n\n\nStata\n\n\n\n\nUsing regression to estimate CAAR\n\n\n\n\n\n\nFeb 26, 2024\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nIsolated Places\n\n\n\n\n\n\n\nStructural IO\n\n\nUrban\n\n\nEntry Model\n\n\nData\n\n\n\n\nIsolating Isolated Places\n\n\n\n\n\n\nSep 17, 2023\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nA New Website\n\n\n\n\n\n\n\nWebsite\n\n\nQuarto\n\n\nTutorials\n\n\nGithub\n\n\n\n\nTrying something new\n\n\n\n\n\n\nJul 31, 2022\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nFirst year notes on preference relations\n\n\n\n\n\n\n\nNotes\n\n\nPreferences\n\n\nPHD Micro\n\n\n\n\nFirst year notes on preference relations\n\n\n\n\n\n\nJun 9, 2020\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nTFP Guide\n\n\n\n\n\n\n\nNotes\n\n\nTFP\n\n\nProduction Function Estimation\n\n\n\n\nA TFP guide I made\n\n\n\n\n\n\nJun 18, 2018\n\n\nC. Luke Watson\n\n\n\n\n\n\nNo matching items"
   }
 ]
