@@ -294,6 +294,69 @@
     "text": "These are notes I wrote on Total Factor Productivity (TFP) and production function estimation as a research assistant: TFP_guide.pdf. These notes are a mix of theory and code to estimate. I should liberate the code from the pdf. I think there is now a Stata or R package that does several different methods."
   },
   {
+    "objectID": "posts/2024-09-04-robust-ses-manual/index.html",
+    "href": "posts/2024-09-04-robust-ses-manual/index.html",
+    "title": "Manual Calculation of SEs from Optimization",
+    "section": "",
+    "text": "For a project, I plan on calculating standard errors for a Non-linear Least Squares estimation approach, but before I can do that I need a refresher. After some googling and checking my reference books, I was surprised that I could not find a simple yet comprehensive bit of example code for a non-ML, NLS approach. For below, I consulted two sets of slides from A. Colin Cameron (slides1, slides2), as well as F.Hayashi’s book. I also used Claude.ai to debug some errors."
+  },
+  {
+    "objectID": "posts/2024-09-04-robust-ses-manual/index.html#set-up",
+    "href": "posts/2024-09-04-robust-ses-manual/index.html#set-up",
+    "title": "Manual Calculation of SEs from Optimization",
+    "section": "Set up",
+    "text": "Set up\n\n# clear workspace\nrm(list=ls())\ngc()\n\n          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)\nNcells  615546 32.9    1253300   67         NA   957516 51.2\nVcells 1109513  8.5    8388608   64     102400  1840064 14.1\n\n# libraries\nlibrary(tidyverse)  # general data manipulation\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.1     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(broom)      # model results to data.frame for compact viewing\nlibrary(optimx)     # optim + extras\nlibrary(sandwich)   # Adjust standard errors\nlibrary(lmtest)     # Recalculate model errors with sandwich functions with coeftest()\n\nLoading required package: zoo\n\nAttaching package: 'zoo'\n\nThe following objects are masked from 'package:base':\n\n    as.Date, as.Date.numeric\n\n# Set random seed for reproducibility\nset.seed(1701)"
+  },
+  {
+    "objectID": "posts/2024-09-04-robust-ses-manual/index.html#create-data",
+    "href": "posts/2024-09-04-robust-ses-manual/index.html#create-data",
+    "title": "Manual Calculation of SEs from Optimization",
+    "section": "Create Data",
+    "text": "Create Data\nI am adding heteroskedasticity so that I can see the difference between non-robust and robust SEs.\n\n# obs - high so that coeficients are well estimated\nn &lt;- 10000\n\n# two x vars (will add a constant)\nx1=rnorm(n,1,1)\nx2=rnorm(n,1,2)\n\n# heteroskedasticity\nsd &lt;- runif(n, min=0.5, max=4)\ns.true &lt;- sd*(x1/5 + 1) # need to ensure that all s's are positive\nerror &lt;- rnorm(n,0,s.true)\n\n# true coefficents\ncoef.true &lt;- c(1,-4,2)\n\n#Generate the dependent variable\ny1 &lt;- coef.true[1] + (coef.true[2]*x1) + (coef.true[3]*x2) + error"
+  },
+  {
+    "objectID": "posts/2024-09-04-robust-ses-manual/index.html#canned-ols",
+    "href": "posts/2024-09-04-robust-ses-manual/index.html#canned-ols",
+    "title": "Manual Calculation of SEs from Optimization",
+    "section": "Canned OLS",
+    "text": "Canned OLS\n\n# OLS with canned procedure \nm1 &lt;- lm(y1 ~ x1 + x2)\ntidy(m1)\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic   p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept)     1.01    0.0450      22.4 2.02e-108\n2 x1             -3.98    0.0299    -133.  0        \n3 x2              1.99    0.0152     131.  0"
+  },
+  {
+    "objectID": "posts/2024-09-04-robust-ses-manual/index.html#estimating-via-optimization",
+    "href": "posts/2024-09-04-robust-ses-manual/index.html#estimating-via-optimization",
+    "title": "Manual Calculation of SEs from Optimization",
+    "section": "Estimating via Optimization",
+    "text": "Estimating via Optimization\nThis is really where I need the refresher. I found that most treatments wrote up the theory using general functions, but gave the examples with application specific functional forms. To me, this obscured more than helped. I find that the best thing to do is to directly code the theory to really get what is going on and get the most generalizable (application agnostic) code… plus I think it helps one understand the theory more.\nMy goal is to replicate the standard errors using as general coding as possible. I think the key to this is by specifying a residual function directly and calling that within the SSR function. Even though I am doing OLS, I never actually use any functional form related to OLS outside of the residual function.\n\n# We are going to code of our sum of squared residuals function\n# first, write the residual function \nf.resid &lt;- function(coef.arg){\n  b0 &lt;- coef.arg[1]\n  b1 &lt;- coef.arg[2]\n  b2 &lt;- coef.arg[3]\n  u.i &lt;- (y1 - (b0 + b1*x1 + b2*x2))\n  return(u.i)\n}\n# second, write the SSR function\n# note: that we divide by 2! \n#       if we do not, then coefs are true but SEs are wrong!\nf.ssr &lt;- function(coef.arg){\n  # coef.arg &lt;- coef.init\n  u2 &lt;- (f.resid(coef.arg))^2\n  ssr &lt;- sum(u2)/2\n  if(is.na(ssr) | is.nan(ssr)) return(Inf)\n  return(ssr)\n}\n\n# initial coef values\ncoef.init &lt;- c(1,1,1)\n\n# run optimx\n# note: (1) use BFGS since no constraints, (2) request hessian \nout.reg &lt;- optimx(coef.init,\n                  f.ssr,method = c(\"BFGS\"),\n                  control = list(maxit=500000,trace=1),\n                  hessian=T\n)\n\nfn is  fn1 \nLooking for method =  BFGS \nFunction has  3  arguments\nAnalytic gradient not made available.\nAnalytic Hessian not made available.\nScale check -- log parameter ratio= 0   log bounds ratio= NA \nMethod:  BFGS \ninitial  value 268911.921901 \nfinal  value 45464.216631 \nconverged\nPost processing for method  BFGS \nSuccessful convergence! \nCompute Hessian approximation at finish of  BFGS \nCompute gradient approximation at finish of  BFGS \nSave results from method  BFGS \n$par\n[1]  1.007687 -3.977331  1.991223\n\n$value\n[1] 45464.22\n\n$message\nNULL\n\n$convcode\n[1] 0\n\n$fevals\nfunction \n      31 \n\n$gevals\ngradient \n       6 \n\n$nitns\n[1] NA\n\n$kkt1\n[1] TRUE\n\n$kkt2\n[1] TRUE\n\n$xtimes\nuser.self \n     0.02 \n\nAssemble the answers\n\n# final coefs\ncoef.fin &lt;- as.numeric(out.reg[1,1:3])\ncoef.fin\n\n[1]  1.007687 -3.977331  1.991223"
+  },
+  {
+    "objectID": "posts/2024-09-04-robust-ses-manual/index.html#non-robust-ses",
+    "href": "posts/2024-09-04-robust-ses-manual/index.html#non-robust-ses",
+    "title": "Manual Calculation of SEs from Optimization",
+    "section": "Non-robust SEs",
+    "text": "Non-robust SEs\nNon-robust SEs are the degrees-of-freedom adjusted residual SD scaled squared root of the inverse hessian.\n\n# calculate residuals at final estimate\nresid &lt;- f.resid(coef.fin)\n\n# get DoF adjusted SD of resid(b.star)\ns2.hat &lt;- sd(resid)*sqrt(((n-1)/(n-3)))\n# get hessian from details\nhessian &lt;- attributes(out.reg)$details[\"BFGS\", \"nhatend\"][[1]]\n# calculate the non-robust SEs \nse.hessian &lt;- sqrt(diag(base::solve(hessian)))*s2.hat\n\n\n# compare SEs from canned and manual\ntidy(m1)\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic   p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept)     1.01    0.0450      22.4 2.02e-108\n2 x1             -3.98    0.0299    -133.  0        \n3 x2              1.99    0.0152     131.  0        \n\nprint(round(se.hessian,4))\n\n[1] 0.0450 0.0299 0.0152"
+  },
+  {
+    "objectID": "posts/2024-09-04-robust-ses-manual/index.html#canned-robust-ses",
+    "href": "posts/2024-09-04-robust-ses-manual/index.html#canned-robust-ses",
+    "title": "Manual Calculation of SEs from Optimization",
+    "section": "Canned Robust SEs",
+    "text": "Canned Robust SEs\n\n# Robust standard errors with lm()\nm1.robust &lt;- coeftest(m1,vcov = vcovHC)\ntidy(m1)\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic   p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept)     1.01    0.0450      22.4 2.02e-108\n2 x1             -3.98    0.0299    -133.  0        \n3 x2              1.99    0.0152     131.  0        \n\ntidy(m1.robust)\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic   p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept)     1.01    0.0382      26.3 5.89e-148\n2 x1             -3.98    0.0312    -127.  0        \n3 x2              1.99    0.0155     129.  0        \n\n# # Stata's robust standard errors with lm()\n# m1.robust.stata &lt;- coeftest(m1,vcov = vcovHC,type = \"HC1\")\n# tidy(m1.robust.stata)"
+  },
+  {
+    "objectID": "posts/2024-09-04-robust-ses-manual/index.html#manual-robust-ses",
+    "href": "posts/2024-09-04-robust-ses-manual/index.html#manual-robust-ses",
+    "title": "Manual Calculation of SEs from Optimization",
+    "section": "Manual Robust SEs",
+    "text": "Manual Robust SEs\nNote, for the robust SEs we need a more intensive estimator. First, we needed the jacobian (vector valued gradient) of the residual function, which is in n-by-k. Second, we need to form the meat using that jacobian and the covariance matrix of the residuals. Third, we need to get the inverse of the covariance of the jacobian. Finally, we make a sandwich.\nAnd that’s it.\n\n# Robust SEs manual need the jacobian (multivalued function gradient) wrt the parameters\n# we will do this numerically (although it is analytic for OLS)\nresid.grad &lt;- numDeriv::jacobian(func = f.resid, x = coef.fin)\n\n# Robust SEs use the 'sandwich' estimator:\n# BREAD * MEAT * BREAD\n# MEAT = gT * diag(resid^2) * g\n# BREAD = [ gT*g ]^{-1}\n# this is a 'plug-in' estimator where we use our estimates to get \n#     sample analogues of the things we want (similar to avg as sample version of mean)\n\n# bc data are independent, the diag version is correct\n# if not independent, then we could use the fully dense (resid %*% t(resid))\nmeat &lt;- t(resid.grad) %*% diag(resid^2) %*% resid.grad\n\n# solve(A) = A^{-1}\n# E[gTg] is the covariance of g\nbread &lt;- solve(t(resid.grad) %*% resid.grad)\n\n# Calculate the sandwich\nsandwich &lt;- bread %*% meat %*% bread\n\n# Calculate robust standard errors\nrobust_se &lt;- sqrt(diag(sandwich))\n# \ntidy(m1.robust)\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic   p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept)     1.01    0.0382      26.3 5.89e-148\n2 x1             -3.98    0.0312    -127.  0        \n3 x2              1.99    0.0155     129.  0        \n\nprint(round(robust_se,4))\n\n[1] 0.0382 0.0312 0.0154"
+  },
+  {
+    "objectID": "posts/2024-09-04-robust-ses-manual/index.html#future-work",
+    "href": "posts/2024-09-04-robust-ses-manual/index.html#future-work",
+    "title": "Manual Calculation of SEs from Optimization",
+    "section": "Future work",
+    "text": "Future work\nI may come back and update this to include clustering."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "C. Luke Watson",
@@ -333,6 +396,6 @@
     "href": "blog.html",
     "title": "C. Luke Watson",
     "section": "",
-    "text": "A personal blog for data projects as well as my goings-on.\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nNested Logit Gradient\n\n\n\n\n\n\n\nNotes\n\n\nNested Logit\n\n\nGradient\n\n\n\n\nTaking a hard derivative\n\n\n\n\n\n\nApr 18, 2024\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nRegression Cumulative (Average) Abnormal Returns\n\n\n\n\n\n\n\nFinance\n\n\nEvent Study\n\n\nAbnormal Returns\n\n\nRegression\n\n\nStata\n\n\n\n\nUsing regression to estimate CAAR\n\n\n\n\n\n\nFeb 26, 2024\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nIsolated Places\n\n\n\n\n\n\n\nStructural IO\n\n\nUrban\n\n\nEntry Model\n\n\nData\n\n\n\n\nIsolating Isolated Places\n\n\n\n\n\n\nSep 17, 2023\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nA New Website\n\n\n\n\n\n\n\nWebsite\n\n\nQuarto\n\n\nTutorials\n\n\nGithub\n\n\n\n\nTrying something new\n\n\n\n\n\n\nJul 31, 2022\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nFirst year notes on preference relations\n\n\n\n\n\n\n\nNotes\n\n\nPreferences\n\n\nPHD Micro\n\n\n\n\nFirst year notes on preference relations\n\n\n\n\n\n\nJun 9, 2020\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nTFP Guide\n\n\n\n\n\n\n\nNotes\n\n\nTFP\n\n\nProduction Function Estimation\n\n\n\n\nA TFP guide I made\n\n\n\n\n\n\nJun 18, 2018\n\n\nC. Luke Watson\n\n\n\n\n\n\nNo matching items"
+    "text": "A personal blog for data projects as well as my goings-on.\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nManual Calculation of SEs from Optimization\n\n\n\n\n\n\n\nNotes\n\n\nOptimx\n\n\nStandard Errors\n\n\nRobust\n\n\nGradient\n\n\nHessian\n\n\nSandwich\n\n\n\n\nSEs after Optimx\n\n\n\n\n\n\nSep 4, 2024\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nNested Logit Gradient\n\n\n\n\n\n\n\nNotes\n\n\nNested Logit\n\n\nGradient\n\n\n\n\nTaking a hard derivative\n\n\n\n\n\n\nApr 18, 2024\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nRegression Cumulative (Average) Abnormal Returns\n\n\n\n\n\n\n\nFinance\n\n\nEvent Study\n\n\nAbnormal Returns\n\n\nRegression\n\n\nStata\n\n\n\n\nUsing regression to estimate CAAR\n\n\n\n\n\n\nFeb 26, 2024\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nIsolated Places\n\n\n\n\n\n\n\nStructural IO\n\n\nUrban\n\n\nEntry Model\n\n\nData\n\n\n\n\nIsolating Isolated Places\n\n\n\n\n\n\nSep 17, 2023\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nA New Website\n\n\n\n\n\n\n\nWebsite\n\n\nQuarto\n\n\nTutorials\n\n\nGithub\n\n\n\n\nTrying something new\n\n\n\n\n\n\nJul 31, 2022\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nFirst year notes on preference relations\n\n\n\n\n\n\n\nNotes\n\n\nPreferences\n\n\nPHD Micro\n\n\n\n\nFirst year notes on preference relations\n\n\n\n\n\n\nJun 9, 2020\n\n\nC. Luke Watson\n\n\n\n\n\n\n  \n\n\n\n\nTFP Guide\n\n\n\n\n\n\n\nNotes\n\n\nTFP\n\n\nProduction Function Estimation\n\n\n\n\nA TFP guide I made\n\n\n\n\n\n\nJun 18, 2018\n\n\nC. Luke Watson\n\n\n\n\n\n\nNo matching items"
   }
 ]

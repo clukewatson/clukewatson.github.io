@@ -10,7 +10,750 @@
 <atom:link href="https://clukewatson.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Financial Economist</description>
 <generator>quarto-1.3.340</generator>
-<lastBuildDate>Thu, 18 Apr 2024 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 04 Sep 2024 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Manual Calculation of SEs from Optimization</title>
+  <dc:creator>C. Luke Watson</dc:creator>
+  <link>https://clukewatson.github.io/posts/2024-09-04-robust-ses-manual/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>For a project, I plan on calculating standard errors for a Non-linear Least Squares estimation approach, but before I can do that I need a refresher. After some googling and checking my reference books, I was surprised that I could not find a simple yet comprehensive bit of example code for a non-ML, NLS approach. For below, I consulted two sets of slides from A. Colin Cameron (<a href="https://cameron.econ.ucdavis.edu/mmabook/transparencies/ct05d_nls.pdf">slides1</a>, <a href="https://cameron.econ.ucdavis.edu/bgpe2011/bgpev2_nonlinear.pdf">slides2</a>), as well as F.Hayashi’s book. I also used Claude.ai to debug some errors.</p>
+<section id="set-up" class="level2">
+<h2 class="anchored" data-anchor-id="set-up">Set up</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># clear workspace</span></span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rm</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">list=</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ls</span>())</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gc</span>()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
+Ncells  615546 32.9    1253300   67         NA   957516 51.2
+Vcells 1109513  8.5    8388608   64     102400  1840064 14.1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># libraries</span></span>
+<span id="cb3-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># general data manipulation</span></span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(broom)      <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># model results to data.frame for compact viewing</span></span>
+<span id="cb5-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(optimx)     <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># optim + extras</span></span>
+<span id="cb5-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(sandwich)   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Adjust standard errors</span></span>
+<span id="cb5-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(lmtest)     <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Recalculate model errors with sandwich functions with coeftest()</span></span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: zoo
+
+Attaching package: 'zoo'
+
+The following objects are masked from 'package:base':
+
+    as.Date, as.Date.numeric</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Set random seed for reproducibility</span></span>
+<span id="cb7-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">set.seed</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1701</span>)</span></code></pre></div>
+</div>
+</section>
+<section id="create-data" class="level2">
+<h2 class="anchored" data-anchor-id="create-data">Create Data</h2>
+<p>I am adding heteroskedasticity so that I can see the difference between non-robust and robust SEs.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># obs - high so that coeficients are well estimated</span></span>
+<span id="cb8-2">n <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10000</span></span>
+<span id="cb8-3"></span>
+<span id="cb8-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># two x vars (will add a constant)</span></span>
+<span id="cb8-5">x1<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(n,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb8-6">x2<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(n,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span>
+<span id="cb8-7"></span>
+<span id="cb8-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># heteroskedasticity</span></span>
+<span id="cb8-9">sd <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">runif</span>(n, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">min=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">max=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>)</span>
+<span id="cb8-10">s.true <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> sd<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>(x1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># need to ensure that all s's are positive</span></span>
+<span id="cb8-11">error <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(n,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,s.true)</span>
+<span id="cb8-12"></span>
+<span id="cb8-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># true coefficents</span></span>
+<span id="cb8-14">coef.true <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span>
+<span id="cb8-15"></span>
+<span id="cb8-16"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#Generate the dependent variable</span></span>
+<span id="cb8-17">y1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> coef.true[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>] <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> (coef.true[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>]<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>x1) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> (coef.true[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>]<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>x2) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> error</span></code></pre></div>
+</div>
+</section>
+<section id="canned-ols" class="level2">
+<h2 class="anchored" data-anchor-id="canned-ols">Canned OLS</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># OLS with canned procedure </span></span>
+<span id="cb9-2">m1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lm</span>(y1 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> x1 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> x2)</span>
+<span id="cb9-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tidy</span>(m1)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  term        estimate std.error statistic   p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept)     1.01    0.0450      22.4 2.02e-108
+2 x1             -3.98    0.0299    -133.  0        
+3 x2              1.99    0.0152     131.  0        </code></pre>
+</div>
+</div>
+</section>
+<section id="estimating-via-optimization" class="level2">
+<h2 class="anchored" data-anchor-id="estimating-via-optimization">Estimating via Optimization</h2>
+<p>This is really where I need the refresher. I found that most treatments wrote up the theory using general functions, but gave the examples with application specific functional forms. To me, this obscured more than helped. I find that the best thing to do is to directly code the theory to really get what is going on and get the most generalizable (application agnostic) code… plus I think it helps one understand the theory more.</p>
+<p>My goal is to replicate the standard errors using as general coding as possible. I think the key to this is by specifying a residual function directly and calling that within the SSR function. Even though I am doing OLS, I never actually use any functional form related to OLS outside of the residual function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># We are going to code of our sum of squared residuals function</span></span>
+<span id="cb11-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># first, write the residual function </span></span>
+<span id="cb11-3">f.resid <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(coef.arg){</span>
+<span id="cb11-4">  b0 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> coef.arg[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]</span>
+<span id="cb11-5">  b1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> coef.arg[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>]</span>
+<span id="cb11-6">  b2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> coef.arg[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>]</span>
+<span id="cb11-7">  u.i <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> (y1 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> (b0 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> b1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>x1 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> b2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>x2))</span>
+<span id="cb11-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(u.i)</span>
+<span id="cb11-9">}</span>
+<span id="cb11-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># second, write the SSR function</span></span>
+<span id="cb11-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># note: that we divide by 2! </span></span>
+<span id="cb11-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#       if we do not, then coefs are true but SEs are wrong!</span></span>
+<span id="cb11-13">f.ssr <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(coef.arg){</span>
+<span id="cb11-14">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># coef.arg &lt;- coef.init</span></span>
+<span id="cb11-15">  u2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">f.resid</span>(coef.arg))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span>
+<span id="cb11-16">  ssr <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(u2)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span>
+<span id="cb11-17">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">is.na</span>(ssr) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">is.nan</span>(ssr)) <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(<span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">Inf</span>)</span>
+<span id="cb11-18">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(ssr)</span>
+<span id="cb11-19">}</span>
+<span id="cb11-20"></span>
+<span id="cb11-21"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># initial coef values</span></span>
+<span id="cb11-22">coef.init <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb11-23"></span>
+<span id="cb11-24"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># run optimx</span></span>
+<span id="cb11-25"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># note: (1) use BFGS since no constraints, (2) request hessian </span></span>
+<span id="cb11-26">out.reg <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">optimx</span>(coef.init,</span>
+<span id="cb11-27">                  f.ssr,<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">method =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"BFGS"</span>),</span>
+<span id="cb11-28">                  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">control =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">maxit=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">500000</span>,<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">trace=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>),</span>
+<span id="cb11-29">                  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hessian=</span>T</span>
+<span id="cb11-30">)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>fn is  fn1 
+Looking for method =  BFGS 
+Function has  3  arguments
+Analytic gradient not made available.
+Analytic Hessian not made available.
+Scale check -- log parameter ratio= 0   log bounds ratio= NA 
+Method:  BFGS 
+initial  value 268911.921901 
+final  value 45464.216631 
+converged
+Post processing for method  BFGS 
+Successful convergence! 
+Compute Hessian approximation at finish of  BFGS 
+Compute gradient approximation at finish of  BFGS 
+Save results from method  BFGS 
+$par
+[1]  1.007687 -3.977331  1.991223
+
+$value
+[1] 45464.22
+
+$message
+NULL
+
+$convcode
+[1] 0
+
+$fevals
+function 
+      31 
+
+$gevals
+gradient 
+       6 
+
+$nitns
+[1] NA
+
+$kkt1
+[1] TRUE
+
+$kkt2
+[1] TRUE
+
+$xtimes
+user.self 
+     0.02 
+
+Assemble the answers</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># final coefs</span></span>
+<span id="cb13-2">coef.fin <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(out.reg[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>])</span>
+<span id="cb13-3">coef.fin</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  1.007687 -3.977331  1.991223</code></pre>
+</div>
+</div>
+</section>
+<section id="non-robust-ses" class="level2">
+<h2 class="anchored" data-anchor-id="non-robust-ses">Non-robust SEs</h2>
+<p>Non-robust SEs are the degrees-of-freedom adjusted residual SD scaled squared root of the inverse hessian.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># calculate residuals at final estimate</span></span>
+<span id="cb15-2">resid <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">f.resid</span>(coef.fin)</span>
+<span id="cb15-3"></span>
+<span id="cb15-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># get DoF adjusted SD of resid(b.star)</span></span>
+<span id="cb15-5">s2.hat <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd</span>(resid)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(((n<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">-1</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>(n<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">-3</span>)))</span>
+<span id="cb15-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># get hessian from details</span></span>
+<span id="cb15-7">hessian <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">attributes</span>(out.reg)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>details[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"BFGS"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"nhatend"</span>][[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]]</span>
+<span id="cb15-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># calculate the non-robust SEs </span></span>
+<span id="cb15-9">se.hessian <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">diag</span>(base<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">solve</span>(hessian)))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>s2.hat</span>
+<span id="cb15-10"></span>
+<span id="cb15-11"></span>
+<span id="cb15-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># compare SEs from canned and manual</span></span>
+<span id="cb15-13"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tidy</span>(m1)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  term        estimate std.error statistic   p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept)     1.01    0.0450      22.4 2.02e-108
+2 x1             -3.98    0.0299    -133.  0        
+3 x2              1.99    0.0152     131.  0        </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">print</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(se.hessian,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0450 0.0299 0.0152</code></pre>
+</div>
+</div>
+</section>
+<section id="canned-robust-ses" class="level2">
+<h2 class="anchored" data-anchor-id="canned-robust-ses">Canned Robust SEs</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Robust standard errors with lm()</span></span>
+<span id="cb19-2">m1.robust <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">coeftest</span>(m1,<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">vcov =</span> vcovHC)</span>
+<span id="cb19-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tidy</span>(m1)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  term        estimate std.error statistic   p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept)     1.01    0.0450      22.4 2.02e-108
+2 x1             -3.98    0.0299    -133.  0        
+3 x2              1.99    0.0152     131.  0        </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tidy</span>(m1.robust)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  term        estimate std.error statistic   p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept)     1.01    0.0382      26.3 5.89e-148
+2 x1             -3.98    0.0312    -127.  0        
+3 x2              1.99    0.0155     129.  0        </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># # Stata's robust standard errors with lm()</span></span>
+<span id="cb23-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># m1.robust.stata &lt;- coeftest(m1,vcov = vcovHC,type = "HC1")</span></span>
+<span id="cb23-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># tidy(m1.robust.stata)</span></span></code></pre></div>
+</div>
+</section>
+<section id="manual-robust-ses" class="level2">
+<h2 class="anchored" data-anchor-id="manual-robust-ses">Manual Robust SEs</h2>
+<p>Note, for the robust SEs we need a more intensive estimator. First, we needed the jacobian (vector valued gradient) of the residual function, which is in n-by-k. Second, we need to form the meat using that jacobian and the covariance matrix of the residuals. Third, we need to get the inverse of the covariance of the jacobian. Finally, we make a sandwich.</p>
+<p>And that’s it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Robust SEs manual need the jacobian (multivalued function gradient) wrt the parameters</span></span>
+<span id="cb24-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># we will do this numerically (although it is analytic for OLS)</span></span>
+<span id="cb24-3">resid.grad <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> numDeriv<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">jacobian</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">func =</span> f.resid, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> coef.fin)</span>
+<span id="cb24-4"></span>
+<span id="cb24-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Robust SEs use the 'sandwich' estimator:</span></span>
+<span id="cb24-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># BREAD * MEAT * BREAD</span></span>
+<span id="cb24-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># MEAT = gT * diag(resid^2) * g</span></span>
+<span id="cb24-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># BREAD = [ gT*g ]^{-1}</span></span>
+<span id="cb24-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># this is a 'plug-in' estimator where we use our estimates to get </span></span>
+<span id="cb24-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#     sample analogues of the things we want (similar to avg as sample version of mean)</span></span>
+<span id="cb24-11"></span>
+<span id="cb24-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># bc data are independent, the diag version is correct</span></span>
+<span id="cb24-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># if not independent, then we could use the fully dense (resid %*% t(resid))</span></span>
+<span id="cb24-14">meat <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">t</span>(resid.grad) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%*%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">diag</span>(resid<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%*%</span> resid.grad</span>
+<span id="cb24-15"></span>
+<span id="cb24-16"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># solve(A) = A^{-1}</span></span>
+<span id="cb24-17"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># E[gTg] is the covariance of g</span></span>
+<span id="cb24-18">bread <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">solve</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">t</span>(resid.grad) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%*%</span> resid.grad)</span>
+<span id="cb24-19"></span>
+<span id="cb24-20"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Calculate the sandwich</span></span>
+<span id="cb24-21">sandwich <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> bread <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%*%</span> meat <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%*%</span> bread</span>
+<span id="cb24-22"></span>
+<span id="cb24-23"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Calculate robust standard errors</span></span>
+<span id="cb24-24">robust_se <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">diag</span>(sandwich))</span>
+<span id="cb24-25"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># </span></span>
+<span id="cb24-26"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tidy</span>(m1.robust)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  term        estimate std.error statistic   p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept)     1.01    0.0382      26.3 5.89e-148
+2 x1             -3.98    0.0312    -127.  0        
+3 x2              1.99    0.0155     129.  0        </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">print</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(robust_se,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0382 0.0312 0.0154</code></pre>
+</div>
+</div>
+</section>
+<section id="future-work" class="level2">
+<h2 class="anchored" data-anchor-id="future-work">Future work</h2>
+<p>I may come back and update this to include clustering.</p>
+<!-- ##  -->
+<!-- ```{r} -->
+<!-- ``` -->
+
+
+</section>
+
+ ]]></description>
+  <category>Notes</category>
+  <category>Optimx</category>
+  <category>Standard Errors</category>
+  <category>Robust</category>
+  <category>Gradient</category>
+  <category>Hessian</category>
+  <category>Sandwich</category>
+  <guid>https://clukewatson.github.io/posts/2024-09-04-robust-ses-manual/index.html</guid>
+  <pubDate>Wed, 04 Sep 2024 04:00:00 GMT</pubDate>
+  <media:content url="https://clukewatson.github.io/posts/2024-09-04-robust-ses-manual/theory.png" medium="image" type="image/png" height="84" width="144"/>
+</item>
 <item>
   <title>Nested Logit Gradient</title>
   <dc:creator>C. Luke Watson</dc:creator>
