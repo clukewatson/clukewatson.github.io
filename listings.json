@@ -12,6 +12,8 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/2024-09-13-bootstrap/index.html",
+      "/posts/2024-09-13-robust-ses-manual-2/index.html",
       "/posts/2024-09-04-robust-ses-manual/index.html",
       "/posts/2024-04-18-nested-logit-gradient/index.html",
       "/posts/2024-02-26-abnormal-returns-es/index.html",
