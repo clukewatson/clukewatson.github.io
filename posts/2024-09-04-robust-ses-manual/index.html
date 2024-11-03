@@ -129,17 +129,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="../../blog.html" rel="" target="">
  <span class="menu-text">Blog</span></a>
   </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="../../blog.xml" rel="" target=""><i class="bi bi-rss" role="img">
-</i> 
- <span class="menu-text"></span></a>
-  </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../people" rel="" target="">
  <span class="menu-text">Other People</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../clw_cv.pdf" rel="" target="">
+    <a class="nav-link" href="../../cv_clw.pdf" rel="" target="">
  <span class="menu-text">CV</span></a>
   </li>  
 </ul>
@@ -150,57 +145,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Manual Calculation of SEs from Optimization</h1>
-                  <div>
-        <div class="description">
-          SEs after Optimx
-        </div>
-      </div>
-                          <div class="quarto-categories">
-                <div class="quarto-category">Notes</div>
-                <div class="quarto-category">Optimx</div>
-                <div class="quarto-category">Standard Errors</div>
-                <div class="quarto-category">Robust</div>
-                <div class="quarto-category">Gradient</div>
-                <div class="quarto-category">Hessian</div>
-                <div class="quarto-category">Sandwich</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>C. Luke Watson </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">September 4, 2024</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Manual Calculation of SEs from Optimization</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Notes</div>
+    <div class="quarto-category">Optimx</div>
+    <div class="quarto-category">Standard Errors</div>
+    <div class="quarto-category">Robust</div>
+    <div class="quarto-category">Gradient</div>
+    <div class="quarto-category">Hessian</div>
+    <div class="quarto-category">Sandwich</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    SEs after Optimx
+  </div>
+</div>
 
 
+<div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>C. Luke Watson </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 4, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
 
 <p>For a project, I plan on calculating standard errors for a Non-linear Least Squares estimation approach, but before I can do that I need a refresher. After some googling and checking my reference books, I was surprised that I could not find a simple yet comprehensive bit of example code for a non-ML, NLS approach. For below, I consulted two sets of slides from A. Colin Cameron (<a href="https://cameron.econ.ucdavis.edu/mmabook/transparencies/ct05d_nls.pdf">slides1</a>, <a href="https://cameron.econ.ucdavis.edu/bgpe2011/bgpev2_nonlinear.pdf">slides2</a>), as well as F.Hayashi’s book. I also used Claude.ai to debug some errors.</p>
 <section id="set-up" class="level2">
@@ -211,8 +204,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
-Ncells  615546 32.9    1253300   67         NA   957516 51.2
-Vcells 1109513  8.5    8388608   64     102400  1840064 14.1</code></pre>
+Ncells  615509 32.9    1253197   67         NA   953309 51.0
+Vcells 1109191  8.5    8388608   64     102400  1839961 14.1</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># libraries</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co"># general data manipulation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -366,7 +359,7 @@ $kkt2
 
 $xtimes
 user.self 
-     0.02 
+    0.019 
 
 Assemble the answers</code></pre>
 </div>
@@ -392,9 +385,8 @@ Assemble the answers</code></pre>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the non-robust SEs </span></span>
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>se.hessian <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(base<span class="sc">::</span><span class="fu">solve</span>(hessian)))<span class="sc">*</span>s2.hat</span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># compare SEs from canned and manual</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># compare SEs from canned and manual</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   term        estimate std.error statistic   p.value
@@ -432,9 +424,6 @@ Assemble the answers</code></pre>
 2 x1             -3.98    0.0312    -127.  0        
 3 x2              1.99    0.0155     129.  0        </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># # Stata's robust standard errors with lm()</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># m1.robust.stata &lt;- coeftest(m1,vcov = vcovHC,type = "HC1")</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># tidy(m1.robust.stata)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="manual-robust-ses" class="level2">
@@ -442,32 +431,32 @@ Assemble the answers</code></pre>
 <p>Note, for the robust SEs we need a more intensive estimator. First, we needed the jacobian (vector valued gradient) of the residual function, which is in n-by-k. Second, we need to form the meat using that jacobian and the covariance matrix of the residuals. Third, we need to get the inverse of the covariance of the jacobian. Finally, we make a sandwich.</p>
 <p>And that’s it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Robust SEs manual need the jacobian (multivalued function gradient) wrt the parameters</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we will do this numerically (although it is analytic for OLS)</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>resid.grad <span class="ot">&lt;-</span> numDeriv<span class="sc">::</span><span class="fu">jacobian</span>(<span class="at">func =</span> f.resid, <span class="at">x =</span> coef.fin)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Robust SEs use the 'sandwich' estimator:</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># BREAD * MEAT * BREAD</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># MEAT = gT * diag(resid^2) * g</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co"># BREAD = [ gT*g ]^{-1}</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co"># this is a 'plug-in' estimator where we use our estimates to get </span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co">#     sample analogues of the things we want (similar to avg as sample version of mean)</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="co"># bc data are independent, the diag version is correct</span></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co"># if not independent, then we could use the fully dense (resid %*% t(resid))</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>meat <span class="ot">&lt;-</span> <span class="fu">t</span>(resid.grad) <span class="sc">%*%</span> <span class="fu">diag</span>(resid<span class="sc">^</span><span class="dv">2</span>) <span class="sc">%*%</span> resid.grad</span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="co"># solve(A) = A^{-1}</span></span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="co"># E[gTg] is the covariance of g</span></span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>bread <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(resid.grad) <span class="sc">%*%</span> resid.grad)</span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the sandwich</span></span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>sandwich <span class="ot">&lt;-</span> bread <span class="sc">%*%</span> meat <span class="sc">%*%</span> bread</span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate robust standard errors</span></span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>robust_se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(sandwich))</span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(m1.robust)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Robust SEs manual need the jacobian (multivalued function gradient) wrt the parameters</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we will do this numerically (although it is analytic for OLS)</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>resid.grad <span class="ot">&lt;-</span> numDeriv<span class="sc">::</span><span class="fu">jacobian</span>(<span class="at">func =</span> f.resid, <span class="at">x =</span> coef.fin)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Robust SEs use the 'sandwich' estimator:</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co"># BREAD * MEAT * BREAD</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># MEAT = gT * diag(resid^2) * g</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># BREAD = [ gT*g ]^{-1}</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co"># this is a 'plug-in' estimator where we use our estimates to get </span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">#     sample analogues of the things we want (similar to avg as sample version of mean)</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co"># bc data are independent, the diag version is correct</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co"># if not independent, then we could use the fully dense (resid %*% t(resid))</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>meat <span class="ot">&lt;-</span> <span class="fu">t</span>(resid.grad) <span class="sc">%*%</span> <span class="fu">diag</span>(resid<span class="sc">^</span><span class="dv">2</span>) <span class="sc">%*%</span> resid.grad</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co"># solve(A) = A^{-1}</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="co"># E[gTg] is the covariance of g</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>bread <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(resid.grad) <span class="sc">%*%</span> resid.grad)</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the sandwich</span></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>sandwich <span class="ot">&lt;-</span> bread <span class="sc">%*%</span> meat <span class="sc">%*%</span> bread</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate robust standard errors</span></span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>robust_se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(sandwich))</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(m1.robust)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   term        estimate std.error statistic   p.value
@@ -476,7 +465,7 @@ Assemble the answers</code></pre>
 2 x1             -3.98    0.0312    -127.  0        
 3 x2              1.99    0.0155     129.  0        </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(robust_se,<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(robust_se,<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.0382 0.0312 0.0154</code></pre>
 </div>
@@ -485,9 +474,6 @@ Assemble the answers</code></pre>
 <section id="future-work" class="level2">
 <h2 class="anchored" data-anchor-id="future-work">Future work</h2>
 <p>I may come back and update this to include clustering.</p>
-<!-- ##  -->
-<!-- ```{r} -->
-<!-- ``` -->
 
 
 </section>

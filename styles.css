@@ -1,1 +1,54 @@
 /* css styles */
+/*-- scss:defaults --*/
+// Previous defaults remain the same...
+
+/*-- scss:rules --*/
+// Increase maximum container width
+#quarto-content {
+  max-width: 1800px !important;  // Significantly wider
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+// Ensure content blocks take full width
+.content-block {
+  max-width: 100% !important;
+  margin: 0;
+}
+
+// Grid layout for profile section
+.profile-layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) 3fr;  // Adjusted ratio
+  gap: 4rem;
+  align-items: start;
+  padding: 2rem 0;
+}
+
+// Override any default width constraints
+.quarto-title-block {
+  max-width: 100% !important;
+}
+
+.page-columns {
+  display: grid;
+  gap: 4rem;
+  grid-template-columns: minmax(300px, 1fr) 3fr;
+}
+
+// Make sure navbar spans full width
+.navbar {
+  max-width: 100% !important;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+@media (max-width: 768px) {
+  .profile-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  #quarto-content {
+    padding: 0 1rem;
+  }
+}

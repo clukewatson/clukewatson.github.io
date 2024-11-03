@@ -131,17 +131,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="../../blog.html" rel="" target="">
  <span class="menu-text">Blog</span></a>
   </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="../../blog.xml" rel="" target=""><i class="bi bi-rss" role="img">
-</i> 
- <span class="menu-text"></span></a>
-  </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../people" rel="" target="">
  <span class="menu-text">Other People</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../clw_cv.pdf" rel="" target="">
+    <a class="nav-link" href="../../cv_clw.pdf" rel="" target="">
  <span class="menu-text">CV</span></a>
   </li>  
 </ul>
@@ -152,71 +147,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Regression Cumulative (Average) Abnormal Returns</h1>
-                  <div>
-        <div class="description">
-          Using regression to estimate CAAR
-        </div>
-      </div>
-                          <div class="quarto-categories">
-                <div class="quarto-category">Finance</div>
-                <div class="quarto-category">Event Study</div>
-                <div class="quarto-category">Abnormal Returns</div>
-                <div class="quarto-category">Regression</div>
-                <div class="quarto-category">Stata</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>C. Luke Watson </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">February 26, 2024</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Regression Cumulative (Average) Abnormal Returns</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Finance</div>
+    <div class="quarto-category">Event Study</div>
+    <div class="quarto-category">Abnormal Returns</div>
+    <div class="quarto-category">Regression</div>
+    <div class="quarto-category">Stata</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Using regression to estimate CAAR
+  </div>
+</div>
 
 
+<div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>C. Luke Watson </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 26, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
 
 <p>I am working on a project estimating abnormal return event studies, and I am a little too pleased with how some coding was simplified by realizing it could be done as a regression. Note, I do not know all the citations for the intellectual history of these ideas.</p>
 <section id="abnormal-returns" class="level1">
 <h1>Abnormal Returns</h1>
-<p>For those like me who have never taken a finance class, an abnormal return can be called the portion of a change in stock price not easily explained by ‘fundamentals.’ Let’s call the ‘fundamentals’ explanation the expected value, then the abnormal return (AR) is the deviation from that expectation: <span class="math display">\[ AR : a_{jt} = r_{jt} - \mathsf{E}[r_{jt} \mid X_t].\]</span> If we assume a functional form for the expectation, then we know that we can estimate that residual. Let <span class="math inline">\(\mathsf{E}[r_{jt} \mid X_{t}] = \alpha_j + \beta_j X_{t} := m_{j}(X_t)\)</span>; that is, we let the expectation function of market-wide explanatory variables vary by firm. Clearly, we could estimate this firm-by-firm.</p>
+<p>For those like me who have never taken a finance class, an abnormal return can be called the portion of a change in stock price not easily explained by ‘fundamentals.’ Let’s call the ‘fundamentals’ explanation the expected value, then the abnormal return (AR) is the deviation from that expectation:</p>
+<p><span class="math display">\[
+AR : a_{jt} = r_{jt} - \mathsf{E}[r_{jt} \mid X_t].
+\]</span></p>
+<p>If we assume a functional form for the expectation, then we know that we can estimate that residual. Let <span class="math inline">\(\mathsf{E}[r_{jt} \mid X_{t}] = \alpha_j + \beta_j X_{t} := m_{j}(X_t)\)</span>; that is, we let the expectation function of market-wide explanatory variables vary by firm. Clearly, we could estimate this firm-by-firm.</p>
 <section id="cumulative-abnormal-returns" class="level2">
 <h2 class="anchored" data-anchor-id="cumulative-abnormal-returns">Cumulative Abnormal Returns</h2>
-<p>For some reason, a statistic that is more frequently used is the <em>cumulative</em> abnormal return (CAR): <span class="math display">\[ CAR : c^{s,t}_{j} = \sum_{s &lt; t} a_{js}.\]</span></p>
+<p>For some reason, a statistic that is more frequently used is the <em>cumulative</em> abnormal return (CAR):</p>
+<p><span class="math display">\[
+CAR : c^{s,t}_{j} = \sum_{s &lt; t} a_{js}.
+\]</span></p>
 <p>This can be estimated by summing the estimated firm abnormal returns.</p>
 </section>
 <section id="cumulative-average-abnormal-returns" class="level2">
 <h2 class="anchored" data-anchor-id="cumulative-average-abnormal-returns">Cumulative Average Abnormal Returns</h2>
-<p>Supposing we have a cross section of firms, <span class="math inline">\(j\in J\)</span>, then we can likewise estimate the average abnormal return (AAR) and the cumulative average abnormal return (CAAR): <span class="math display">\[
+<p>Supposing we have a cross section of firms, <span class="math inline">\(j\in J\)</span>, then we can likewise estimate the average abnormal return (AAR) and the cumulative average abnormal return (CAAR):</p>
+<p><span class="math display">\[
 \begin{aligned}
-AAR : A_t = \frac{1}{N_J} \sum_{j\in J} a_{jt}  \\
-CAAR : C^{s,t} = \frac{1}{N_J} \sum_{j\in J} c^{s,t}_{j}.  \\
+AAR : A_t &amp;= \frac{1}{N_J} \sum_{j\in J} a_{jt} \\
+CAAR : C^{s,t} &amp;= \frac{1}{N_J} \sum_{j\in J} c^{s,t}_{j}.
 \end{aligned}
 \]</span></p>
 </section>
@@ -228,9 +229,23 @@ CAAR : C^{s,t} = \frac{1}{N_J} \sum_{j\in J} c^{s,t}_{j}.  \\
 <h2 class="anchored" data-anchor-id="statistical-testing-of-ar-car-aar-caar">Statistical Testing of AR, CAR, AAR, CAAR</h2>
 <p>How do we know if the abnormal returns (and functions thereof) are statistically different from zero? There are two views about this: parametric vs non-parametric. Under the assumption that the abnormal returns have some distribution, the parametric side relies on the CLT to use Z-stats of functions of the random variables we are estimated. Under the same assumption about the stochastic nature of the abnormal returns but without relying on the CLT, one could use tests that use fewer assumptions about the distributions that lead to ‘sign’ and ‘rank’ tests.</p>
 <p>In addition to the two views, we face the question are the abnormal returns completely independently drawn or is there some sort of correlation between the stock returns / abnormal returns. For the time being, I am going to ignore this… but I am actively interested in how to deal with this.</p>
-<p>So, assuming you are willing to assume independence, the typical way to do statistical testing for these abnormal return variables is to the empirical distribution of the estimated variables; that is, we use the sample standard deviation. For the AR variable, we get: <span class="math display">\[ t(a_{jt}) := \frac{a_{jt}}{ \mathsf{sqrt}\left( ((t-s)+1 - df_{m})^{-1} \cdot \sum_{\tau\in \{s,t\}} a_{j\tau}^2 \right) } = \frac{a_{jt}}{s^{s,t}_{j}}, \]</span> where <span class="math inline">\(s^{s,t}_{j}\)</span> is the degrees-of-freedom adjusted sample standard deviation. For example, if one uses the three factor Fama-French model for the expectations function, then <span class="math inline">\(df_m = 4\)</span>. Under CLT, <span class="math inline">\(t(a_{jt}) \sim \mathcal{N}(0,1)\)</span>.</p>
-<p>For CAR, we get: <span class="math display">\[ t( c^{s,t}_{j} ) := \frac{ c^{s,t}_{j} }{ \mathsf{sqrt}\left( (t-s)\cdot ((t-s)+1 - df_{m})^{-1} \cdot \sum_{\tau\in \{s,t\}} a_{j\tau}^2 \right) } = \frac{c^{s,t}_{j}}{ \mathsf{sqrt}(t-s)\cdot s^{s,t}_{j}}. \]</span> For AAR, we get: <span class="math display">\[ t( A_{t} ) := \mathsf{sqrt}(\mathcal{N_{j}}) \frac{ A_{t} }{ \mathsf{sqrt}\left( (N_{J}-1)^{-1} \sum_{j\in J} (a_{jt}- A_t)^2 \right) } = \frac{A_{t}}{ S^A_{t}}. \]</span></p>
-<p>For CAAR, we get: <span class="math display">\[ t( C^{s,t} ) := \mathsf{sqrt}(\mathcal{N_{j}}) \frac{ C^{s,t} }{ \mathsf{sqrt}\left( (N_{J}-1)^{-1} \sum_{j\in J} (c^{s,t}_{j}- C^{s,t})^2 \right) } = \frac{ C^{s,t} }{ S^C_{t}}. \]</span></p>
+<p>So, assuming you are willing to assume independence, the typical way to do statistical testing for these abnormal return variables is to the empirical distribution of the estimated variables; that is, we use the sample standard deviation. For the AR variable, we get:</p>
+<p><span class="math display">\[
+t(a_{jt}) := \frac{a_{jt}}{ \mathsf{sqrt}\left( ((t-s)+1 - df_{m})^{-1} \cdot \sum_{\tau\in \{s,t\}} a_{j\tau}^2 \right) } = \frac{a_{jt}}{s^{s,t}_{j}},
+\]</span></p>
+<p>where <span class="math inline">\(s^{s,t}_{j}\)</span> is the degrees-of-freedom adjusted sample standard deviation. For example, if one uses the three factor Fama-French model for the expectations function, then <span class="math inline">\(df_m = 4\)</span>. Under CLT, <span class="math inline">\(t(a_{jt}) \sim \mathcal{N}(0,1)\)</span>.</p>
+<p>For CAR, we get:</p>
+<p><span class="math display">\[
+t( c^{s,t}_{j} ) := \frac{ c^{s,t}_{j} }{ \mathsf{sqrt}\left( (t-s)\cdot ((t-s)+1 - df_{m})^{-1} \cdot \sum_{\tau\in \{s,t\}} a_{j\tau}^2 \right) } = \frac{c^{s,t}_{j}}{ \mathsf{sqrt}(t-s)\cdot s^{s,t}_{j}}.
+\]</span></p>
+<p>For AAR, we get:</p>
+<p><span class="math display">\[
+t( A_{t} ) := \mathsf{sqrt}(\mathcal{N_{j}}) \frac{ A_{t} }{ \mathsf{sqrt}\left( (N_{J}-1)^{-1} \sum_{j\in J} (a_{jt}- A_t)^2 \right) } = \frac{A_{t}}{ S^A_{t}}.
+\]</span></p>
+<p>For CAAR, we get:</p>
+<p><span class="math display">\[
+t( C^{s,t} ) := \mathsf{sqrt}(\mathcal{N_{j}}) \frac{ C^{s,t} }{ \mathsf{sqrt}\left( (N_{J}-1)^{-1} \sum_{j\in J} (c^{s,t}_{j}- C^{s,t})^2 \right) } = \frac{ C^{s,t} }{ S^C_{t}}.
+\]</span></p>
 </section>
 </section>
 <section id="estimating-ar-car-aar-caar-via-regression" class="level1">
@@ -250,20 +265,28 @@ CAAR : C^{s,t} = \frac{1}{N_J} \sum_{j\in J} c^{s,t}_{j}.  \\
 </section>
 <section id="regression-for-ar" class="level2">
 <h2 class="anchored" data-anchor-id="regression-for-ar">Regression for AR</h2>
-<p>Run the following regression for each firm: <span class="math display">\[ r_{jt} = \beta_{j,0} + f^1_t\beta_{j,1} + f^2_t\beta_{j,2} + f^3_t\beta_{j,3} + \sum_{\tau \in \mathcal{Z}} D_{\tau}\pi_{j,\tau} + u_{jt}, \]</span> where <span class="math inline">\(\pi_{j,\tau} = a_{jt}\)</span>.</p>
+<p>Run the following regression for each firm:</p>
+<p><span class="math display">\[
+r_{jt} = \beta_{j,0} + f^1_t\beta_{j,1} + f^2_t\beta_{j,2} + f^3_t\beta_{j,3} + \sum_{\tau \in \mathcal{Z}} D_{\tau}\pi_{j,\tau} + u_{jt},
+\]</span></p>
+<p>where <span class="math inline">\(\pi_{j,\tau} = a_{jt}\)</span>.</p>
 <section id="stata" class="level3">
 <h3 class="anchored" data-anchor-id="stata">Stata</h3>
 <p>Let the training period be <span class="math inline">\(\tau \in [Y_0,Y_1]\)</span> and the event period be <span class="math inline">\(\tau \in [Z_0,Z_1]\)</span>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>reg rj f* D* if firm==j &amp; ( inrange(et,Y0,Y1) | inrange(et,Z0,Z1) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> rj f* D* <span class="kw">if</span> firm==j &amp; ( <span class="fu">inrange</span>(et,Y0,Y1) | <span class="fu">inrange</span>(et,Z0,Z1) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="regression-for-car" class="level2">
 <h2 class="anchored" data-anchor-id="regression-for-car">Regression for CAR</h2>
-<p>Run the following regression for each firm: <span class="math display">\[ r_{jt} = \beta_{j,0} + f^1_t\beta_{j,1} + f^2_t\beta_{j,2} + f^3_t\beta_{j,3} + \sum_{\tau \in \mathcal{Z}} Q_{\tau}\gamma_{j,\tau} + u_{jt}, \]</span> where <span class="math inline">\(\gamma_{j,\tau} = c^{Z_0,Z_1}_{j}\)</span>.</p>
+<p>Run the following regression for each firm:</p>
+<p><span class="math display">\[
+r_{jt} = \beta_{j,0} + f^1_t\beta_{j,1} + f^2_t\beta_{j,2} + f^3_t\beta_{j,3} + \sum_{\tau \in \mathcal{Z}} Q_{\tau}\gamma_{j,\tau} + u_{jt},
+\]</span></p>
+<p>where <span class="math inline">\(\gamma_{j,\tau} = c^{Z_0,Z_1}_{j}\)</span>.</p>
 <section id="stata-1" class="level3">
 <h3 class="anchored" data-anchor-id="stata-1">Stata</h3>
 <p>Let the training period be <span class="math inline">\(\tau \in [Y_0,Y_1]\)</span> and the event period be <span class="math inline">\(\tau \in [Z_0,Z_1]\)</span>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>reg rj f* Q* if firm==j &amp; ( inrange(et,Y0,Y1) | inrange(et,Z0,Z1) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> rj f* Q* <span class="kw">if</span> firm==j &amp; ( <span class="fu">inrange</span>(et,Y0,Y1) | <span class="fu">inrange</span>(et,Z0,Z1) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="regressions-for-aar-and-caar" class="level2">
@@ -272,20 +295,16 @@ CAAR : C^{s,t} = \frac{1}{N_J} \sum_{j\in J} c^{s,t}_{j}.  \\
 <section id="stata-2" class="level3">
 <h3 class="anchored" data-anchor-id="stata-2">Stata</h3>
 <p>Let the training period be <span class="math inline">\(\tau \in [Y_0,Y_1]\)</span> and the event period be <span class="math inline">\(\tau \in [Z_0,Z_1]\)</span>. Let <span class="math inline">\(G\)</span> be an categorical (factor) variable for firms. Note, we are still letting the expectation function be firm-specific, but are forcing the variables on the dummies to be equal across firms, which has the effect of calculating the AAR and CAAR.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>AAR</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>reghdfe rj D* if ( inrange(et,Y0,Y1) | inrange(et,Z0,Z1) ), absorb(i.G##c.(f*)) vce(cluster G)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>CAAR</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>reghdfe rj Q* if ( inrange(et,Y0,Y1) | inrange(et,Z0,Z1) ), absorb(i.G##c.(f*)) vce(cluster G)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>* AAR</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>reghdfe rj D* <span class="kw">if</span> ( <span class="fu">inrange</span>(et,Y0,Y1) | <span class="fu">inrange</span>(et,Z0,Z1) ), absorb(i.G##c.(f*)) <span class="kw">vce</span>(<span class="kw">cluster</span> G)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>* CAAR</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>reghdfe rj Q* <span class="kw">if</span> ( <span class="fu">inrange</span>(et,Y0,Y1) | <span class="fu">inrange</span>(et,Z0,Z1) ), absorb(i.G##c.(f*)) <span class="kw">vce</span>(<span class="kw">cluster</span> G)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="standard-errors" class="level2">
 <h2 class="anchored" data-anchor-id="standard-errors">Standard Errors</h2>
 <p>It turns out that the standard errors from the regressions are correct for the parameters. Salinger (1992) discusses this.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="salinger1992.png" class="img-fluid" width="936"></p>
-</div>
-</div>
+<p><img src="salinger1992.png" class="img-fluid"></p>
 
 
 </section>

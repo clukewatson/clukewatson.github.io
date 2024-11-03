@@ -131,17 +131,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="../../blog.html" rel="" target="">
  <span class="menu-text">Blog</span></a>
   </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="../../blog.xml" rel="" target=""><i class="bi bi-rss" role="img">
-</i> 
- <span class="menu-text"></span></a>
-  </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../people" rel="" target="">
  <span class="menu-text">Other People</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../clw_cv.pdf" rel="" target="">
+    <a class="nav-link" href="../../cv_clw.pdf" rel="" target="">
  <span class="menu-text">CV</span></a>
   </li>  
 </ul>
@@ -152,155 +147,174 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Manual Calculation of SEs from Optimization - Pt.2</h1>
-                  <div>
-        <div class="description">
-          SEs after Optimx
-        </div>
-      </div>
-                          <div class="quarto-categories">
-                <div class="quarto-category">Notes</div>
-                <div class="quarto-category">Optimx</div>
-                <div class="quarto-category">Standard Errors</div>
-                <div class="quarto-category">Robust</div>
-                <div class="quarto-category">Gradient</div>
-                <div class="quarto-category">Sandwich</div>
-                <div class="quarto-category">Clustered</div>
-                <div class="quarto-category">Random Weights</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>C. Luke Watson </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">September 12, 2024</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Manual Calculation of SEs from Optimization - Pt.2</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Notes</div>
+    <div class="quarto-category">Optimx</div>
+    <div class="quarto-category">Standard Errors</div>
+    <div class="quarto-category">Robust</div>
+    <div class="quarto-category">Gradient</div>
+    <div class="quarto-category">Sandwich</div>
+    <div class="quarto-category">Clustered</div>
+    <div class="quarto-category">Random Weights</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    SEs after Optimx
+  </div>
+</div>
 
 
+<div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>C. Luke Watson </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 12, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
-<p>This is a sequel to my last post. Turns out I had a ‘think-o’: ‘’if not independent, then we could use the fully dense [variance-covariance matrix].’’ This was in the context of robust standard errors using <code>diag(resid^2)</code> as the error variance-covariance matrix, <span class="math inline">\(\Omega\)</span>, within the ‘meat’ of the ‘sandwich.’ Let’s say I was …uhh… thinking how in clustered standard errors we allow for <span class="math inline">\(\Omega\)</span> to have a block-diagonal structure, where each block is a conditional variance-covariance sub-matrix, <span class="math inline">\(\Omega_g\)</span>, is fully dense … like me!</p>
+</header>
+
+<p>This is a sequel to my last post. Turns out I had a ‘think-o’: “if not independent, then we could use the fully dense [variance-covariance matrix].” This was in the context of robust standard errors using <code>diag(resid^2)</code> as the error variance-covariance matrix, <span class="math inline">\(\Omega\)</span>, within the ‘meat’ of the ‘sandwich.’ Let’s say I was …uhh… thinking how in clustered standard errors we allow for <span class="math inline">\(\Omega\)</span> to have a block-diagonal structure, where each block is a conditional variance-covariance sub-matrix, <span class="math inline">\(\Omega_g\)</span>, is fully dense … like me!</p>
 <p>In this post, I will demonstrate how to do clustering and how to use weights when manually calculating SEs. For this post, I consulted <a href="https://lukesonnet.com/teaching/inference/200d_standard_errors.pdf">Luke Sonnnet’s slides</a>, <a href="https://friosavila.github.io/app_metrics/app_metrics7.html">Rios-Avila’s slides</a>, <a href="https://www.stata.com/meeting/mexico11/materials/cameron.pdf">Cameron’s (third set of) slides</a>, <a href="https://doi.org/10.1016/j.ecosta.2021.11.009">MacKinnon’s 2023 paper</a>, as well as <a href="https://doi.org/10.1016/j.jeconom.2023.105517">Wooldridge’s 2023 paper</a>. I also used Claude.ai to debug some errors.</p>
 <section id="set-up" class="level2">
 <h2 class="anchored" data-anchor-id="set-up">Set up</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clear workspace</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># libraries</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co"># general data manipulation</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)      <span class="co"># model results to data.frame for compact viewing</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(optimx)     <span class="co"># optim + extras</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)   <span class="co"># Adjust standard errors</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)     <span class="co"># Recalculate model errors with sandwich functions with coeftest()</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># library(knitr)      # Used to display the table</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Set random seed for reproducibility</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">101</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
+Ncells  615746 32.9    1253420   67         NA   967889 51.7
+Vcells 1112880  8.5    8388608   64     102400  1839961 14.1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># libraries</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co"># general data manipulation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)      <span class="co"># model results to data.frame for compact viewing</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(optimx)     <span class="co"># optim + extras</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)   <span class="co"># Adjust standard errors</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)     <span class="co"># Recalculate model errors with sandwich functions with coeftest()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: zoo
+
+Attaching package: 'zoo'
+
+The following objects are masked from 'package:base':
+
+    as.Date, as.Date.numeric</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set random seed for reproducibility</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">101</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="create-data" class="level2">
 <h2 class="anchored" data-anchor-id="create-data">Create Data</h2>
 <p>I am going to create data where clustering should matter.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># obs - high so that coeficients are well estimated</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># clusters</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>num.clusters <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>grps <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">floor</span>(<span class="fu">runif</span>(n)<span class="sc">*</span>num.clusters)<span class="sc">+</span><span class="dv">1</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># cluster effects</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>cluster.y.effect <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(num.clusters,<span class="dv">0</span>,<span class="dv">2</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>cluster.u.effect <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(num.clusters,<span class="dv">0</span>,<span class="dv">2</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>cluster.x1.effect <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(num.clusters,<span class="dv">0</span>,<span class="fl">0.2</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>cluster.x2.effect <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(num.clusters,<span class="dv">0</span>,<span class="fl">0.2</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>cluster.x1.x2.effect <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(num.clusters,<span class="dv">0</span>,<span class="fl">0.2</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># two x vars (will add a constant)</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>x1<span class="ot">=</span><span class="fu">rnorm</span>(n,<span class="dv">1</span>,<span class="dv">1</span> <span class="sc">+</span> cluster.x1.effect<span class="sc">/</span><span class="dv">3</span>)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>x2<span class="ot">=</span><span class="fu">rnorm</span>(n,<span class="dv">1</span>,<span class="dv">2</span>)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># clustered errors</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="at">min=</span><span class="fl">0.5</span>, <span class="at">max=</span><span class="dv">4</span>)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>s.true <span class="ot">&lt;-</span> sd<span class="sc">*</span>(x1<span class="sc">/</span><span class="dv">5</span> <span class="sc">+</span> <span class="dv">1</span>) <span class="co"># need to ensure that all s's are positive</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>error <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n,<span class="dv">0</span>,s.true) <span class="sc">+</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  cluster.u.effect[grps] <span class="sc">+</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  x1<span class="sc">*</span>cluster.x1.effect[grps] <span class="sc">+</span> x2<span class="sc">*</span>cluster.x2.effect[grps] <span class="sc">+</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  x1<span class="sc">*</span>x2<span class="sc">*</span>cluster.x1.x2.effect[grps]</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>error <span class="ot">&lt;-</span> error <span class="sc">-</span> <span class="fu">mean</span>(error)</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># true coefficents</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>coef.true <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span><span class="dv">4</span>,<span class="dv">2</span>)</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co">#Generate the dependent variable</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> coef.true[<span class="dv">1</span>] <span class="sc">+</span> (coef.true[<span class="dv">2</span>]<span class="sc">*</span>x1) <span class="sc">+</span> (coef.true[<span class="dv">3</span>]<span class="sc">*</span>x2) <span class="sc">+</span> error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># obs - high so that coeficients are well estimated</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># clusters</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>num.clusters <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>grps <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">floor</span>(<span class="fu">runif</span>(n)<span class="sc">*</span>num.clusters)<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># cluster effects</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>cluster.y.effect <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(num.clusters,<span class="dv">0</span>,<span class="dv">2</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>cluster.u.effect <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(num.clusters,<span class="dv">0</span>,<span class="dv">2</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>cluster.x1.effect <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(num.clusters,<span class="dv">0</span>,<span class="fl">0.2</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>cluster.x2.effect <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(num.clusters,<span class="dv">0</span>,<span class="fl">0.2</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>cluster.x1.x2.effect <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(num.clusters,<span class="dv">0</span>,<span class="fl">0.2</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># two x vars (will add a constant)</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>x1<span class="ot">=</span><span class="fu">rnorm</span>(n,<span class="dv">1</span>,<span class="dv">1</span> <span class="sc">+</span> cluster.x1.effect<span class="sc">/</span><span class="dv">3</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>x2<span class="ot">=</span><span class="fu">rnorm</span>(n,<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># clustered errors</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="at">min=</span><span class="fl">0.5</span>, <span class="at">max=</span><span class="dv">4</span>)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>s.true <span class="ot">&lt;-</span> sd<span class="sc">*</span>(x1<span class="sc">/</span><span class="dv">5</span> <span class="sc">+</span> <span class="dv">1</span>) <span class="co"># need to ensure that all s's are positive</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>error <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n,<span class="dv">0</span>,s.true) <span class="sc">+</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  cluster.u.effect[grps] <span class="sc">+</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  x1<span class="sc">*</span>cluster.x1.effect[grps] <span class="sc">+</span> x2<span class="sc">*</span>cluster.x2.effect[grps] <span class="sc">+</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  x1<span class="sc">*</span>x2<span class="sc">*</span>cluster.x1.x2.effect[grps]</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>error <span class="ot">&lt;-</span> error <span class="sc">-</span> <span class="fu">mean</span>(error)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="co"># true coefficents</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>coef.true <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span><span class="dv">4</span>,<span class="dv">2</span>)</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co">#Generate the dependent variable</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> coef.true[<span class="dv">1</span>] <span class="sc">+</span> (coef.true[<span class="dv">2</span>]<span class="sc">*</span>x1) <span class="sc">+</span> (coef.true[<span class="dv">3</span>]<span class="sc">*</span>x2) <span class="sc">+</span> error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="canned-ses" class="level2">
 <h2 class="anchored" data-anchor-id="canned-ses">Canned SEs</h2>
 <p>Here, I’ll quickly show how to get non-robust, robust, and clustered SEs. Note, this approach uses <code>lmtest</code> and <code>sandwich</code>. If I had a lot of FEs, then I would likely use <code>feols</code> package.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model, non robust</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>m1.nonrobust <span class="ot">&lt;-</span> <span class="fu">lm</span>(y1 <span class="sc">~</span> x1 <span class="sc">+</span> x2)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Robust standard errors</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>m1.robust <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(m1.nonrobust,<span class="at">vcov =</span> vcovHC)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># clustered</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>m1.clu <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(m1.nonrobust, <span class="at">vcov =</span> vcovCL, <span class="at">cluster =</span> <span class="sc">~</span>grps)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming m1.nonrobust, m1.robust, and m1.clu are already estimated</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to extract standard errors</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>get_se <span class="ot">&lt;-</span> <span class="cf">function</span>(model) {</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">class</span>(model)[<span class="dv">1</span>] <span class="sc">==</span> <span class="st">"lm"</span>) {</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcov</span>(model))))</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(model[, <span class="st">"Std. Error"</span>])</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame with all standard errors</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>se_comparison <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( </span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">Coef =</span> m1.nonrobust<span class="sc">$</span>coefficients,</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">Non_Robust =</span> <span class="fu">get_se</span>(m1.nonrobust),</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">Robust =</span> <span class="fu">get_se</span>(m1.robust),</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">Clustered =</span> <span class="fu">get_se</span>(m1.clu)</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Round all numeric columns to 4 decimal places</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>se_comparison <span class="ot">&lt;-</span> se_comparison <span class="sc">%&gt;%</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span><span class="fu">round</span>(., <span class="dv">4</span>)))</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the table</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>se_comparison</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model, non robust</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>m1.nonrobust <span class="ot">&lt;-</span> <span class="fu">lm</span>(y1 <span class="sc">~</span> x1 <span class="sc">+</span> x2)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Robust standard errors</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>m1.robust <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(m1.nonrobust,<span class="at">vcov =</span> vcovHC)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># clustered</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>m1.clu <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(m1.nonrobust, <span class="at">vcov =</span> vcovCL, <span class="at">cluster =</span> <span class="sc">~</span>grps)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to extract standard errors</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>get_se <span class="ot">&lt;-</span> <span class="cf">function</span>(model) {</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">class</span>(model)[<span class="dv">1</span>] <span class="sc">==</span> <span class="st">"lm"</span>) {</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcov</span>(model))))</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(model[, <span class="st">"Std. Error"</span>])</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame with all standard errors</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>se_comparison <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( </span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">Coef =</span> m1.nonrobust<span class="sc">$</span>coefficients,</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">Non_Robust =</span> <span class="fu">get_se</span>(m1.nonrobust),</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">Robust =</span> <span class="fu">get_se</span>(m1.robust),</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">Clustered =</span> <span class="fu">get_se</span>(m1.clu)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Round all numeric columns to 4 decimal places</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>se_comparison <span class="ot">&lt;-</span> se_comparison <span class="sc">%&gt;%</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span><span class="fu">round</span>(., <span class="dv">4</span>)))</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the table</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>se_comparison</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Coef Non_Robust Robust Clustered
 (Intercept)  0.9445     0.0541 0.0482    0.2640
@@ -313,41 +327,40 @@ x2           2.0216     0.0181 0.0189    0.0456</code></pre>
 <h2 class="anchored" data-anchor-id="estimating-via-optimization">Estimating via Optimization</h2>
 <p>As before, my goal is to write the functions as generally as possible. I do this by first writing a residual function, then a SSR function that calls the residual function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We are going to code of our sum of squared residuals function</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># first, write the residual function </span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>f.resid <span class="ot">&lt;-</span> <span class="cf">function</span>(coef.arg){</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  b0 <span class="ot">&lt;-</span> coef.arg[<span class="dv">1</span>]</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  b1 <span class="ot">&lt;-</span> coef.arg[<span class="dv">2</span>]</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  b2 <span class="ot">&lt;-</span> coef.arg[<span class="dv">3</span>]</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  u.i <span class="ot">&lt;-</span> (y1 <span class="sc">-</span> (b0 <span class="sc">+</span> b1<span class="sc">*</span>x1 <span class="sc">+</span> b2<span class="sc">*</span>x2))</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(u.i)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># second, write the SSR function</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># note: that we divide by 2! </span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#       if we do not, then coefs are true but SEs are wrong!</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>f.ssr <span class="ot">&lt;-</span> <span class="cf">function</span>(coef.arg){</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># coef.arg &lt;- coef.init</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  u2 <span class="ot">&lt;-</span> (<span class="fu">f.resid</span>(coef.arg))<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  ssr <span class="ot">&lt;-</span> <span class="fu">sum</span>(u2)<span class="sc">/</span><span class="dv">2</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.na</span>(ssr) <span class="sc">|</span> <span class="fu">is.nan</span>(ssr)) <span class="fu">return</span>(<span class="cn">Inf</span>)</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ssr)</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co"># initial coef values</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>coef.init <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co"># run optimx</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co"># note: (1) use BFGS since no constraints, (2) request hessian </span></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>out.reg <span class="ot">&lt;-</span> <span class="fu">optimx</span>(coef.init,</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>                  f.ssr,<span class="at">method =</span> <span class="fu">c</span>(<span class="st">"BFGS"</span>),</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>                  <span class="at">control =</span> <span class="fu">list</span>(<span class="at">maxit=</span><span class="dv">500000</span>,<span class="at">trace=</span><span class="dv">0</span>),</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>                  <span class="at">hessian=</span>T</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="co"># final coefs</span></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>coef.fin <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(out.reg[<span class="dv">1</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>coef.fin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We are going to code of our sum of squared residuals function</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># first, write the residual function </span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>f.resid <span class="ot">&lt;-</span> <span class="cf">function</span>(coef.arg){</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  b0 <span class="ot">&lt;-</span> coef.arg[<span class="dv">1</span>]</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  b1 <span class="ot">&lt;-</span> coef.arg[<span class="dv">2</span>]</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  b2 <span class="ot">&lt;-</span> coef.arg[<span class="dv">3</span>]</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  u.i <span class="ot">&lt;-</span> (y1 <span class="sc">-</span> (b0 <span class="sc">+</span> b1<span class="sc">*</span>x1 <span class="sc">+</span> b2<span class="sc">*</span>x2))</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(u.i)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># second, write the SSR function</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># note: that we divide by 2! </span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#       if we do not, then coefs are true but SEs are wrong!</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>f.ssr <span class="ot">&lt;-</span> <span class="cf">function</span>(coef.arg){</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># coef.arg &lt;- coef.init</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  u2 <span class="ot">&lt;-</span> (<span class="fu">f.resid</span>(coef.arg))<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  ssr <span class="ot">&lt;-</span> <span class="fu">sum</span>(u2)<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.na</span>(ssr) <span class="sc">|</span> <span class="fu">is.nan</span>(ssr)) <span class="fu">return</span>(<span class="cn">Inf</span>)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ssr)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co"># initial coef values</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>coef.init <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="co"># run optimx</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="co"># note: (1) use BFGS since no constraints, (2) request hessian </span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>out.reg <span class="ot">&lt;-</span> <span class="fu">optimx</span>(coef.init,</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>                  f.ssr,<span class="at">method =</span> <span class="fu">c</span>(<span class="st">"BFGS"</span>),</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>                  <span class="at">control =</span> <span class="fu">list</span>(<span class="at">maxit=</span><span class="dv">500000</span>,<span class="at">trace=</span><span class="dv">0</span>),</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>                  <span class="at">hessian=</span>T</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a><span class="co"># final coefs</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>coef.fin <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(out.reg[<span class="dv">1</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>coef.fin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  0.9444571 -3.9659487  2.0215917</code></pre>
 </div>
@@ -357,77 +370,75 @@ x2           2.0216     0.0181 0.0189    0.0456</code></pre>
 <h2 class="anchored" data-anchor-id="manual-non-robust-ses">Manual Non-robust SEs</h2>
 <p>As before, non-robust SEs are the degrees-of-freedom adjusted residual SD scaled squared root of the inverse hessian.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate residuals at final estimate</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>resid <span class="ot">&lt;-</span> <span class="fu">f.resid</span>(coef.fin)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># get DoF adjusted SD of resid(b.star)</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>s2.hat <span class="ot">&lt;-</span> <span class="fu">sd</span>(resid)<span class="sc">*</span><span class="fu">sqrt</span>(((n<span class="dv">-1</span>)<span class="sc">/</span>(n<span class="dv">-3</span>)))</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># get hessian from details</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>hessian <span class="ot">&lt;-</span> <span class="fu">attributes</span>(out.reg)<span class="sc">$</span>details[<span class="st">"BFGS"</span>, <span class="st">"nhatend"</span>][[<span class="dv">1</span>]]</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the non-robust SEs </span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>se.non.robust <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(base<span class="sc">::</span><span class="fu">solve</span>(hessian)))<span class="sc">*</span>s2.hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate residuals at final estimate</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>resid <span class="ot">&lt;-</span> <span class="fu">f.resid</span>(coef.fin)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># get DoF adjusted SD of resid(b.star)</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>s2.hat <span class="ot">&lt;-</span> <span class="fu">sd</span>(resid)<span class="sc">*</span><span class="fu">sqrt</span>(((n<span class="dv">-1</span>)<span class="sc">/</span>(n<span class="dv">-3</span>)))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># get hessian from details</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>hessian <span class="ot">&lt;-</span> <span class="fu">attributes</span>(out.reg)<span class="sc">$</span>details[<span class="st">"BFGS"</span>, <span class="st">"nhatend"</span>][[<span class="dv">1</span>]]</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the non-robust SEs </span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>se.non.robust <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(base<span class="sc">::</span><span class="fu">solve</span>(hessian)))<span class="sc">*</span>s2.hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="manual-robust-ses" class="level2">
 <h2 class="anchored" data-anchor-id="manual-robust-ses">Manual Robust SEs</h2>
 <p>Note, for the robust SEs we need a more intensive estimator. It is called the sandwich estimator. First, we calculate the jacobian, <span class="math inline">\(\nabla g\)</span>, (vector valued gradient) of the residual function, <span class="math inline">\(u\)</span>, which is in n-by-k. The ‘meat’ of the sandwich by calculating product of the score with itself, under the assumption of heteroskedasticity but independent draws. So, second, we calculate <span class="math inline">\(m = \nabla g^\mathsf{T} \times \mathsf{diag}(u^2)\times \nabla g\)</span>. The ‘bread’ is the the inverse of the covariance of the jacobian. So, third, we calculate <span class="math inline">\(b = \nabla g^\mathsf{T} \nabla g\)</span>. Finally, we make a sandwich: <span class="math inline">\(\mathsf{vcov}_{\mathsf{robust}}(\hat{\beta}) = b\times m\times b\)</span>. And that’s it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Robust SEs manual need the jacobian (multivalued function gradient) wrt the parameters</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we will do this numerically (although it is analytic for OLS)</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>gradient.of.residual <span class="ot">&lt;-</span> numDeriv<span class="sc">::</span><span class="fu">jacobian</span>(<span class="at">func =</span> f.resid, <span class="at">x =</span> coef.fin)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># robust meat assumes independent but not identically distributed</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># the meat is the cross product of score = gT*u, which is the FOC</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>meat.robust <span class="ot">&lt;-</span> <span class="fu">t</span>(gradient.of.residual) <span class="sc">%*%</span> <span class="fu">diag</span>(resid<span class="sc">^</span><span class="dv">2</span>) <span class="sc">%*%</span> gradient.of.residual</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># E[gTg] is the covariance of g</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>bread.robust <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(gradient.of.residual) <span class="sc">%*%</span> gradient.of.residual)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the sandwich</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>sandwich.robust <span class="ot">&lt;-</span> bread.robust <span class="sc">%*%</span> meat.robust <span class="sc">%*%</span> bread.robust</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate robust standard errors</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>se.robust <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(sandwich.robust))</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co"># print(round(se.robust,4))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Robust SEs manual need the jacobian (multivalued function gradient) wrt the parameters</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we will do this numerically (although it is analytic for OLS)</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>gradient.of.residual <span class="ot">&lt;-</span> numDeriv<span class="sc">::</span><span class="fu">jacobian</span>(<span class="at">func =</span> f.resid, <span class="at">x =</span> coef.fin)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># robust meat assumes independent but not identically distributed</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># the meat is the cross product of score = gT*u, which is the FOC</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>meat.robust <span class="ot">&lt;-</span> <span class="fu">t</span>(gradient.of.residual) <span class="sc">%*%</span> <span class="fu">diag</span>(resid<span class="sc">^</span><span class="dv">2</span>) <span class="sc">%*%</span> gradient.of.residual</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># E[gTg] is the covariance of g</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>bread.robust <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(gradient.of.residual) <span class="sc">%*%</span> gradient.of.residual)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the sandwich</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>sandwich.robust <span class="ot">&lt;-</span> bread.robust <span class="sc">%*%</span> meat.robust <span class="sc">%*%</span> bread.robust</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate robust standard errors</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>se.robust <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(sandwich.robust))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="manual-cluster-robust-ses" class="level2">
 <h2 class="anchored" data-anchor-id="manual-cluster-robust-ses">Manual Cluster Robust SEs</h2>
 <p>The cluster robust SEs use the same sandwich principal as the robust; however, we allow the variance-covariance matrix of the errors, <span class="math inline">\(\Omega\)</span>, to have a block diagonal structure such that each cluster-group has a dense conditional variance-covariance matrix <span class="math inline">\(\Omega_{c}\)</span>. Calculating the block diagonal matrix could be a little complicated, but it turns out that, assuming <span class="math inline">\(\Omega\)</span> has the block diagonal structure, <span class="math inline">\(g^{\mathsf{T}}\Omega g\)</span> is <span class="math inline">\(k\times k\)</span> and can be calculated by <span class="math inline">\(\sum_{c\in C} \nabla g_{c}^{\mathsf{T}}\Omega_{c} \nabla g_{c}\)</span> (which are also <span class="math inline">\(k\times k\)</span>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cluster Robust estimate of V[\hat{\bbeta}]</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   in Robust, just use diag</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   for cluster, theory says use block diagonal</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#     however, that is a big matrix (tho we do not need to invert)</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#     rather, can sum cluster group specific score matrices</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># bread is the same</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   bread.robust &lt;- solve(t(gradient.of.residual) %*% gradient.of.residual)</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># also has an adjustment factor since summing over clusters</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>meat.cl <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> <span class="fu">ncol</span>(gradient.of.residual), <span class="at">ncol =</span> <span class="fu">ncol</span>(gradient.of.residual))</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (g <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num.clusters) {</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># g &lt;- 1</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  meat.cl <span class="ot">&lt;-</span> meat.cl <span class="sc">+</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    ( (<span class="fu">t</span>(gradient.of.residual[grps <span class="sc">==</span> g, ]) <span class="sc">%*%</span> resid[grps <span class="sc">==</span> g]) <span class="sc">%*%</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        (<span class="fu">t</span>(resid[grps <span class="sc">==</span> g]) <span class="sc">%*%</span> gradient.of.residual[grps <span class="sc">==</span> g, ])</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>adj.factor <span class="ot">&lt;-</span> ((num.clusters<span class="sc">/</span>(num.clusters<span class="dv">-1</span>)) <span class="sc">*</span> ((n <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">/</span>(n <span class="sc">-</span> <span class="dv">3</span>)))</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>sandwich.clu <span class="ot">&lt;-</span>  (adj.factor <span class="sc">*</span> (bread.robust <span class="sc">%*%</span> (meat.cl <span class="sc">%*%</span> bread.robust)))</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>se.clustered <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(sandwich.clu))</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co"># print(round(se.clustered,4))</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame with all standard errors</span></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>se_comparison<span class="sc">$</span>Non_Robust<span class="fl">.2</span> <span class="ot">&lt;-</span> se.non.robust</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>se_comparison<span class="sc">$</span>Robust<span class="fl">.2</span> <span class="ot">&lt;-</span> se.robust</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>se_comparison<span class="sc">$</span>Clustered<span class="fl">.2</span> <span class="ot">&lt;-</span> se.clustered</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Round all numeric columns to 4 decimal places</span></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>se_comparison <span class="ot">&lt;-</span> se_comparison <span class="sc">%&gt;%</span></span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span><span class="fu">round</span>(., <span class="dv">4</span>)))</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the table</span></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>se_comparison</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cluster Robust estimate of V[\hat{\bbeta}]</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   in Robust, just use diag</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   for cluster, theory says use block diagonal</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#     however, that is a big matrix (tho we do not need to invert)</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#     rather, can sum cluster group specific score matrices</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># bread is the same</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   bread.robust &lt;- solve(t(gradient.of.residual) %*% gradient.of.residual)</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># also has an adjustment factor since summing over clusters</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>meat.cl <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> <span class="fu">ncol</span>(gradient.of.residual), <span class="at">ncol =</span> <span class="fu">ncol</span>(gradient.of.residual))</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (g <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num.clusters) {</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># g &lt;- 1</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  meat.cl <span class="ot">&lt;-</span> meat.cl <span class="sc">+</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    ( (<span class="fu">t</span>(gradient.of.residual[grps <span class="sc">==</span> g, ]) <span class="sc">%*%</span> resid[grps <span class="sc">==</span> g]) <span class="sc">%*%</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>        (<span class="fu">t</span>(resid[grps <span class="sc">==</span> g]) <span class="sc">%*%</span> gradient.of.residual[grps <span class="sc">==</span> g, ])</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>adj.factor <span class="ot">&lt;-</span> ((num.clusters<span class="sc">/</span>(num.clusters<span class="dv">-1</span>)) <span class="sc">*</span> ((n <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">/</span>(n <span class="sc">-</span> <span class="dv">3</span>)))</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>sandwich.clu <span class="ot">&lt;-</span>  (adj.factor <span class="sc">*</span> (bread.robust <span class="sc">%*%</span> (meat.cl <span class="sc">%*%</span> bread.robust)))</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>se.clustered <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(sandwich.clu))</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame with all standard errors</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>se_comparison<span class="sc">$</span>Non_Robust<span class="fl">.2</span> <span class="ot">&lt;-</span> se.non.robust</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>se_comparison<span class="sc">$</span>Robust<span class="fl">.2</span> <span class="ot">&lt;-</span> se.robust</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>se_comparison<span class="sc">$</span>Clustered<span class="fl">.2</span> <span class="ot">&lt;-</span> se.clustered</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Round all numeric columns to 4 decimal places</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>se_comparison <span class="ot">&lt;-</span> se_comparison <span class="sc">%&gt;%</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span><span class="fu">round</span>(., <span class="dv">4</span>)))</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the table</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>se_comparison</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Coef Non_Robust Robust Clustered Non_Robust.2 Robust.2
 (Intercept)  0.9445     0.0541 0.0482    0.2640       0.0541   0.0482
@@ -446,30 +457,30 @@ x2               0.0456</code></pre>
 <section id="first-lets-look-at-our-target" class="level2">
 <h2 class="anchored" data-anchor-id="first-lets-look-at-our-target">First Let’s look at our target</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arbitrary weights for now to highlight difference</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> ((<span class="dv">1</span><span class="sc">:</span>n<span class="sc">/</span>n)<span class="sc">-</span><span class="fl">0.5</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fl">0.001</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>m1.nonrobust.w <span class="ot">&lt;-</span> <span class="fu">lm</span>(y1 <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">weights =</span> w)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Robust standard errors</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>m1.robust.w <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(m1.nonrobust.w,<span class="at">vcov =</span> vcovHC)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>m1.clu.w <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(m1.nonrobust.w, <span class="at">vcov =</span> vcovCL, <span class="at">cluster =</span> <span class="sc">~</span>grps, <span class="at">type =</span> <span class="st">"HC1"</span>)</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame with all standard errors</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>se.comparison.w <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( </span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">Coef =</span> m1.nonrobust.w<span class="sc">$</span>coefficients,</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">Non_Robust =</span> <span class="fu">get_se</span>(m1.nonrobust.w),</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">Robust =</span> <span class="fu">get_se</span>(m1.robust.w),</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">Clustered =</span> <span class="fu">get_se</span>(m1.clu.w)</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Round all numeric columns to 4 decimal places</span></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>se.comparison.w <span class="ot">&lt;-</span> se.comparison.w <span class="sc">%&gt;%</span></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span><span class="fu">round</span>(., <span class="dv">4</span>)))</span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the table</span></span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>se.comparison.w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arbitrary weights for now to highlight difference</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> ((<span class="dv">1</span><span class="sc">:</span>n<span class="sc">/</span>n)<span class="sc">-</span><span class="fl">0.5</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fl">0.001</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>m1.nonrobust.w <span class="ot">&lt;-</span> <span class="fu">lm</span>(y1 <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">weights =</span> w)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Robust standard errors </span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>m1.robust.w <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(m1.nonrobust.w,<span class="at">vcov =</span> vcovHC)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>m1.clu.w <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(m1.nonrobust.w, <span class="at">vcov =</span> vcovCL, <span class="at">cluster =</span> <span class="sc">~</span>grps, <span class="at">type =</span> <span class="st">"HC1"</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame with all standard errors</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>se.comparison.w <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( </span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">Coef =</span> m1.nonrobust.w<span class="sc">$</span>coefficients,</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">Non_Robust =</span> <span class="fu">get_se</span>(m1.nonrobust.w),</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">Robust =</span> <span class="fu">get_se</span>(m1.robust.w),</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">Clustered =</span> <span class="fu">get_se</span>(m1.clu.w)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Round all numeric columns to 4 decimal places</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>se.comparison.w <span class="ot">&lt;-</span> se.comparison.w <span class="sc">%&gt;%</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span><span class="fu">round</span>(., <span class="dv">4</span>)))</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the table</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>se.comparison.w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Coef Non_Robust Robust Clustered
 (Intercept)  1.2316     0.0547 0.0653    0.3740
@@ -482,28 +493,28 @@ x2           2.0300     0.0184 0.0251    0.0586</code></pre>
 <h2 class="anchored" data-anchor-id="manual-wls-estimates">Manual WLS estimates</h2>
 <p>Adding weights to our estimation set up is trivial for coefficients.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>f.ssr.w <span class="ot">&lt;-</span> <span class="cf">function</span>(coef.arg){</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># coef.arg &lt;- coef.init</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  u2 <span class="ot">&lt;-</span> w<span class="sc">*</span>((<span class="fu">f.resid</span>(coef.arg))<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  ssr <span class="ot">&lt;-</span> <span class="fu">sum</span>(u2)<span class="sc">/</span><span class="dv">2</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.na</span>(ssr) <span class="sc">|</span> <span class="fu">is.nan</span>(ssr)) <span class="fu">return</span>(<span class="cn">Inf</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ssr)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># initial coef values</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>coef.init <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># run optimx</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># note: (1) use BFGS since no constraints, (2) request hessian </span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>out.reg.w <span class="ot">&lt;-</span> <span class="fu">optimx</span>(coef.init,</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>                  f.ssr.w,<span class="at">method =</span> <span class="fu">c</span>(<span class="st">"BFGS"</span>),</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>                  <span class="at">control =</span> <span class="fu">list</span>(<span class="at">maxit=</span><span class="dv">500000</span>,<span class="at">trace=</span><span class="dv">0</span>),</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>                  <span class="at">hessian=</span>T</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co"># final coefs</span></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>coef.fin.w <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(out.reg.w[<span class="dv">1</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>coef.fin.w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>f.ssr.w <span class="ot">&lt;-</span> <span class="cf">function</span>(coef.arg){</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># coef.arg &lt;- coef.init</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  u2 <span class="ot">&lt;-</span> w<span class="sc">*</span>((<span class="fu">f.resid</span>(coef.arg))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  ssr <span class="ot">&lt;-</span> <span class="fu">sum</span>(u2)<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.na</span>(ssr) <span class="sc">|</span> <span class="fu">is.nan</span>(ssr)) <span class="fu">return</span>(<span class="cn">Inf</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ssr)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># initial coef values</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>coef.init <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co"># run optimx</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co"># note: (1) use BFGS since no constraints, (2) request hessian </span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>out.reg.w <span class="ot">&lt;-</span> <span class="fu">optimx</span>(coef.init,</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>                  f.ssr.w,<span class="at">method =</span> <span class="fu">c</span>(<span class="st">"BFGS"</span>),</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>                  <span class="at">control =</span> <span class="fu">list</span>(<span class="at">maxit=</span><span class="dv">500000</span>,<span class="at">trace=</span><span class="dv">0</span>),</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>                  <span class="at">hessian=</span>T</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="co"># final coefs</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>coef.fin.w <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(out.reg.w[<span class="dv">1</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>coef.fin.w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  1.231613 -3.887036  2.029959</code></pre>
 </div>
@@ -513,71 +524,68 @@ x2           2.0300     0.0184 0.0251    0.0586</code></pre>
 <h2 class="anchored" data-anchor-id="non-robust-ses-of-wls">Non-Robust SEs of WLS</h2>
 <p>Non-robust weighed SEs only require adjusting the scaling factor for the weights.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the residual function does not change but the estimates do!</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>resid.w <span class="ot">&lt;-</span> <span class="fu">f.resid</span>(coef.fin.w)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># new DoF adjusted SD of resid(b.star)</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>s2.hat.w <span class="ot">&lt;-</span> <span class="fu">sd</span>(resid.w)<span class="sc">*</span><span class="fu">sqrt</span>(((n<span class="dv">-1</span>)<span class="sc">/</span>(n<span class="dv">-3</span>)))</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># get hessian from details</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>hessian.w <span class="ot">&lt;-</span> <span class="fu">attributes</span>(out.reg)<span class="sc">$</span>details[<span class="st">"BFGS"</span>, <span class="st">"nhatend"</span>][[<span class="dv">1</span>]]</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the non-robust SEs </span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>se.non.robust.w <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(base<span class="sc">::</span><span class="fu">solve</span>(hessian.w)))<span class="sc">*</span>s2.hat.w</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># print(round(se.non.robust.w,4))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the residual function does not change but the estimates do!</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>resid.w <span class="ot">&lt;-</span> <span class="fu">f.resid</span>(coef.fin.w)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># new DoF adjusted SD of resid(b.star)</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>s2.hat.w <span class="ot">&lt;-</span> <span class="fu">sd</span>(resid.w)<span class="sc">*</span><span class="fu">sqrt</span>(((n<span class="dv">-1</span>)<span class="sc">/</span>(n<span class="dv">-3</span>)))</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># get hessian from details</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>hessian.w <span class="ot">&lt;-</span> <span class="fu">attributes</span>(out.reg)<span class="sc">$</span>details[<span class="st">"BFGS"</span>, <span class="st">"nhatend"</span>][[<span class="dv">1</span>]]</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the non-robust SEs </span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>se.non.robust.w <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(base<span class="sc">::</span><span class="fu">solve</span>(hessian.w)))<span class="sc">*</span>s2.hat.w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="robust-ses-of-wls" class="level2">
 <h2 class="anchored" data-anchor-id="robust-ses-of-wls">Robust SEs of WLS</h2>
 <p>Robust weighed SEs require a weighting matrix be added to the sandwich formula.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># can use the same gradient function, but new coef! </span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>gradient.of.residual.w <span class="ot">&lt;-</span> numDeriv<span class="sc">::</span><span class="fu">jacobian</span>(<span class="at">func =</span> f.resid, <span class="at">x =</span> coef.fin.w)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># weight matrix</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">diag</span>(w)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>bread.w <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(gradient.of.residual.w) <span class="sc">%*%</span> W <span class="sc">%*%</span> gradient.of.residual.w)</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>meat.w <span class="ot">&lt;-</span> (<span class="fu">t</span>(gradient.of.residual.w) <span class="sc">%*%</span> W <span class="sc">%*%</span> <span class="fu">diag</span>((resid.w)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">%*%</span> <span class="fu">t</span>(W) <span class="sc">%*%</span> gradient.of.residual.w)</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>vcov.w <span class="ot">&lt;-</span> bread.w <span class="sc">%*%</span> meat.w <span class="sc">%*%</span> <span class="fu">t</span>(bread.w)</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>se.robust.w <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(vcov.w))</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co"># se.robust.w</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># can use the same gradient function, but new coef! </span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>gradient.of.residual.w <span class="ot">&lt;-</span> numDeriv<span class="sc">::</span><span class="fu">jacobian</span>(<span class="at">func =</span> f.resid, <span class="at">x =</span> coef.fin.w)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># weight matrix</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">diag</span>(w)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>bread.w <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(gradient.of.residual.w) <span class="sc">%*%</span> W <span class="sc">%*%</span> gradient.of.residual.w)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>meat.w <span class="ot">&lt;-</span> (<span class="fu">t</span>(gradient.of.residual.w) <span class="sc">%*%</span> W <span class="sc">%*%</span> <span class="fu">diag</span>((resid.w)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">%*%</span> <span class="fu">t</span>(W) <span class="sc">%*%</span> gradient.of.residual.w)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>vcov.w <span class="ot">&lt;-</span> bread.w <span class="sc">%*%</span> meat.w <span class="sc">%*%</span> <span class="fu">t</span>(bread.w)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>se.robust.w <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(vcov.w))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="robust-clustered-ses-of-wls" class="level2">
 <h2 class="anchored" data-anchor-id="robust-clustered-ses-of-wls">Robust Clustered SEs of WLS</h2>
 <p>Cluster robust weighed SEs require a weighting matrix be added to the sandwich formula.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># can use the same gradient</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># gradient.of.residual.w &lt;- numDeriv::jacobian(func = f.resid, x = coef.fin.w)</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># weight matrix</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># W &lt;- diag(w)</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># bread.w &lt;- solve(t(gradient.of.residual.w) %*% W %*% gradient.of.residual.w)</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>meat.cl.w <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> <span class="fu">ncol</span>(gradient.of.residual.w), <span class="at">ncol =</span> <span class="fu">ncol</span>(gradient.of.residual.w))</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (g <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num.clusters) {</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># g &lt;- 1</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  meat.cl.w <span class="ot">&lt;-</span> meat.cl.w <span class="sc">+</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    ( (<span class="fu">t</span>(gradient.of.residual.w[grps <span class="sc">==</span> g, ]) <span class="sc">%*%</span> <span class="fu">diag</span>(w[grps <span class="sc">==</span> g]) <span class="sc">%*%</span> resid.w[grps <span class="sc">==</span> g]) <span class="sc">%*%</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>        (<span class="fu">t</span>(resid.w[grps <span class="sc">==</span> g]) <span class="sc">%*%</span> <span class="fu">t</span>(<span class="fu">diag</span>(w[grps <span class="sc">==</span> g])) <span class="sc">%*%</span> gradient.of.residual.w[grps <span class="sc">==</span> g, ])</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>adj.factor <span class="ot">&lt;-</span> ((num.clusters<span class="sc">/</span>(num.clusters<span class="dv">-1</span>)) <span class="sc">*</span> ((n <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">/</span>(n <span class="sc">-</span> <span class="dv">3</span>)))</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>sandwich.clu.w <span class="ot">&lt;-</span>  (adj.factor <span class="sc">*</span> (bread.w <span class="sc">%*%</span> (meat.cl.w <span class="sc">%*%</span> bread.w)))</span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>se.clustered.w <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(sandwich.clu.w))</span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co"># print(round(se.clustered.w,4))</span></span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame with all standard errors</span></span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>se.comparison.w<span class="sc">$</span>Non_Robust<span class="fl">.2</span> <span class="ot">&lt;-</span> se.non.robust.w</span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>se.comparison.w<span class="sc">$</span>Robust<span class="fl">.2</span> <span class="ot">&lt;-</span> se.robust.w</span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>se.comparison.w<span class="sc">$</span>Clustered<span class="fl">.2</span> <span class="ot">&lt;-</span> se.clustered.w</span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Round all numeric columns to 4 decimal places</span></span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>se.comparison.w <span class="ot">&lt;-</span> se.comparison.w <span class="sc">%&gt;%</span></span>
-<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span><span class="fu">round</span>(., <span class="dv">4</span>)))</span>
-<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the table</span></span>
-<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>se.comparison.w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># can use the same gradient</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># gradient.of.residual.w &lt;- numDeriv::jacobian(func = f.resid, x = coef.fin.w)</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># weight matrix</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># W &lt;- diag(w)</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co"># bread.w &lt;- solve(t(gradient.of.residual.w) %*% W %*% gradient.of.residual.w)</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>meat.cl.w <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> <span class="fu">ncol</span>(gradient.of.residual.w), <span class="at">ncol =</span> <span class="fu">ncol</span>(gradient.of.residual.w))</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (g <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num.clusters) {</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># g &lt;- 1</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  meat.cl.w <span class="ot">&lt;-</span> meat.cl.w <span class="sc">+</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    ( (<span class="fu">t</span>(gradient.of.residual.w[grps <span class="sc">==</span> g, ]) <span class="sc">%*%</span> <span class="fu">diag</span>(w[grps <span class="sc">==</span> g]) <span class="sc">%*%</span> resid.w[grps <span class="sc">==</span> g]) <span class="sc">%*%</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>        (<span class="fu">t</span>(resid.w[grps <span class="sc">==</span> g]) <span class="sc">%*%</span> <span class="fu">t</span>(<span class="fu">diag</span>(w[grps <span class="sc">==</span> g])) <span class="sc">%*%</span> gradient.of.residual.w[grps <span class="sc">==</span> g, ])</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>adj.factor <span class="ot">&lt;-</span> ((num.clusters<span class="sc">/</span>(num.clusters<span class="dv">-1</span>)) <span class="sc">*</span> ((n <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">/</span>(n <span class="sc">-</span> <span class="dv">3</span>)))</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>sandwich.clu.w <span class="ot">&lt;-</span>  (adj.factor <span class="sc">*</span> (bread.w <span class="sc">%*%</span> (meat.cl.w <span class="sc">%*%</span> bread.w)))</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>se.clustered.w <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(sandwich.clu.w))</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame with all standard errors</span></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>se.comparison.w<span class="sc">$</span>Non_Robust<span class="fl">.2</span> <span class="ot">&lt;-</span> se.non.robust.w</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>se.comparison.w<span class="sc">$</span>Robust<span class="fl">.2</span> <span class="ot">&lt;-</span> se.robust.w</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>se.comparison.w<span class="sc">$</span>Clustered<span class="fl">.2</span> <span class="ot">&lt;-</span> se.clustered.w</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Round all numeric columns to 4 decimal places</span></span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>se.comparison.w <span class="ot">&lt;-</span> se.comparison.w <span class="sc">%&gt;%</span></span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span><span class="fu">round</span>(., <span class="dv">4</span>)))</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the table</span></span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>se.comparison.w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Coef Non_Robust Robust Clustered Non_Robust.2 Robust.2
 (Intercept)  1.2316     0.0547 0.0653    0.3740       0.0541   0.0653
