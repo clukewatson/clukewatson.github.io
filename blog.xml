@@ -45,8 +45,8 @@ background-color: null;
 font-style: inherit;">gc</span>()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
-Ncells  616268 33.0    1254208   67         NA  1024826 54.8
-Vcells 1114948  8.6    8388608   64     102400  1840064 14.1</code></pre>
+Ncells  616268 33.0    1254160   67         NA  1024795 54.8
+Vcells 1114948  8.6    8388608   64     102400  1839961 14.1</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -1411,8 +1411,8 @@ background-color: null;
 font-style: inherit;">gc</span>()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
-Ncells  616068 33.0    1254482   67         NA   969032 51.8
-Vcells 1113308  8.5    8388608   64     102400  1840064 14.1</code></pre>
+Ncells  616068 33.0    1254402   67         NA   968968 51.8
+Vcells 1113308  8.5    8388608   64     102400  1839961 14.1</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -2982,8 +2982,8 @@ background-color: null;
 font-style: inherit;">gc</span>()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
-Ncells  615831 32.9    1254048   67         NA   954462 51.0
-Vcells 1109619  8.5    8388608   64     102400  1840064 14.1</code></pre>
+Ncells  615831 32.9    1254062   67         NA   954397 51.0
+Vcells 1109619  8.5    8388608   64     102400  1839961 14.1</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -3385,7 +3385,7 @@ $kkt2
 
 $xtimes
 user.self 
-    0.019 
+    0.016 
 
 Assemble the answers</code></pre>
 </div>
