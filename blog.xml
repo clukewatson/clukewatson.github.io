@@ -10,7 +10,83 @@
 <atom:link href="https://clukewatson.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Senior Financial Economist</description>
 <generator>quarto-1.3.340</generator>
-<lastBuildDate>Fri, 13 Sep 2024 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 17 Mar 2025 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>You Cannot Test the Exclusion Restriction</title>
+  <dc:creator>C. Luke Watson</dc:creator>
+  <link>https://clukewatson.github.io/posts/2025-03-17-cant-test-exclusion-restriction/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<section id="you-cannot-test-the-exclusion-restriction" class="level1">
+<h1>You Cannot Test the Exclusion Restriction</h1>
+<p>We all know that the exclusion restriction cannot really be tested. However, it seems very tempting to try.</p>
+<p>Suppose we have the following setup:</p>
+<ol type="1">
+<li>True Structural equation: <img src="https://latex.codecogs.com/png.latex?y%20=%20%5Cbeta%20x%20+%20u"><br>
+</li>
+<li>Endogeneity: <img src="https://latex.codecogs.com/png.latex?Cov(x,u)%20=%20%5Crho"> (non-zero)<br>
+</li>
+<li>First stage: <img src="https://latex.codecogs.com/png.latex?x%20=%20%5Cpi%20z%20+%20e"><br>
+</li>
+<li><img src="https://latex.codecogs.com/png.latex?z"> is exogenous: <img src="https://latex.codecogs.com/png.latex?Cov(z,u)%20=%200"> (instrument validity)</li>
+</ol>
+<p>What about regressing <img src="https://latex.codecogs.com/png.latex?y"> on <img src="https://latex.codecogs.com/png.latex?x"> and <img src="https://latex.codecogs.com/png.latex?z"> and then doing a hypothesis test of <img src="https://latex.codecogs.com/png.latex?z">’s coefficient? Specify the alternative model (augmented structural equation): <img src="https://latex.codecogs.com/png.latex?y%20=%20%5Cbeta%20x%20+%20%5Cgamma%20z%20+%20u">.</p>
+<p>Upshot: the coefficient in this case equals:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Chat%7B%5Cgamma%7D%20&amp;=%20%5Cgamma%20-%20%5Cfrac%7B%5Crho%20%5Cpi%20%5Csigma_z%5E2%7D%7B(%5Cpi%5E2%20%5Csigma_z%5E2%20+%20%5Csigma_e%5E2)%5Csigma_z%5E2%20-%20(%5Cpi%20%5Csigma_z%5E2)%5E2%7D%20%5C%5C%0A&amp;=%20%5Cgamma%20-%20%5Cfrac%7B%5Crho%20%5Cpi%7D%7B(%5Cpi%5E2%20%5Csigma_z%5E2%20+%20%5Csigma_e%5E2)%20-%20%5Cpi%5E2%7D%20%5C%5C%0A&amp;=%20%5Cgamma%20-%20%5Cfrac%7B%5Crho%20%5Cpi%7D%7B%5Cpi%5E2%20(%5Csigma_z%5E2%20-1)%20+%20%5Csigma_e%5E2%7D%20%5C%5C%0A%5Cend%7Balign%7D%0A"> where <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2_z%20=%20Var(z)">, <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2_e%20=%20Var(e)">.</p>
+<p>Even if <img src="https://latex.codecogs.com/png.latex?%5Cgamma=0">, <img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cgamma%7D"> is not zero unless (1) <img src="https://latex.codecogs.com/png.latex?%5Crho=0"> (no endogeneity) or (2) <img src="https://latex.codecogs.com/png.latex?%5Cpi=0"> (no relevance). If <img src="https://latex.codecogs.com/png.latex?%5Cgamma%5Cne%200">, then knife-edge cases can occur.</p>
+</section>
+<section id="derivation" class="level1">
+<h1>Derivation</h1>
+<section id="direct-substitution-approach" class="level2">
+<h2 class="anchored" data-anchor-id="direct-substitution-approach">Direct Substitution Approach</h2>
+<p>Let’s use a direct substitution approach.</p>
+<p>We estimate the equation:</p>
+<p><img src="https://latex.codecogs.com/png.latex?y%20=%20%5Ctheta_1%20x%20+%20%5Ctheta_2%20z%20+%20v"> Remember, this is a regression we are running, not the true model that we specified above.</p>
+<p>The OLS estimators <img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Ctheta%7D_1"> and <img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Ctheta%7D_2"> solve the normal equations:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Bbmatrix%7D%0A%5Csum%20x_i%5E2%20&amp;%20%5Csum%20x_i%20z_i%20%5C%5C%0A%5Csum%20x_i%20z_i%20&amp;%20%5Csum%20z_i%5E2%0A%5Cend%7Bbmatrix%7D%0A%5Cbegin%7Bbmatrix%7D%0A%5Chat%7B%5Ctheta%7D_1%20%5C%5C%0A%5Chat%7B%5Ctheta%7D_2%0A%5Cend%7Bbmatrix%7D%20=%0A%5Cbegin%7Bbmatrix%7D%0A%5Csum%20x_i%20y_i%20%5C%5C%0A%5Csum%20z_i%20y_i%0A%5Cend%7Bbmatrix%7D%0A"></p>
+<p>In large samples, these converge to:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Bbmatrix%7D%0AE%5Bx%5E2%5D%20&amp;%20E%5Bxz%5D%20%5C%5C%0AE%5Bxz%5D%20&amp;%20E%5Bz%5E2%5D%0A%5Cend%7Bbmatrix%7D%0A%5Cbegin%7Bbmatrix%7D%0A%5Ctext%7Bplim%7D(%5Chat%7B%5Ctheta%7D_1)%20%5C%5C%0A%5Ctext%7Bplim%7D(%5Chat%7B%5Ctheta%7D_2)%0A%5Cend%7Bbmatrix%7D%20=%0A%5Cbegin%7Bbmatrix%7D%0AE%5Bxy%5D%20%5C%5C%0AE%5Bzy%5D%0A%5Cend%7Bbmatrix%7D%0A"></p>
+<p>Let’s substitute our model equations. Recall: <img src="https://latex.codecogs.com/png.latex?x%20=%20%5Cpi%20z%20+%20e"> (first stage) and <img src="https://latex.codecogs.com/png.latex?y%20=%20%5Cbeta%20x%20+%20%5Cgamma%20z%20+%20u"> (augmented structural equation).</p>
+<p>Now let’s compute the relevant expectations:</p>
+<section id="exz" class="level3">
+<h3 class="anchored" data-anchor-id="exz"><img src="https://latex.codecogs.com/png.latex?E%5Bxz%5D"></h3>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0AE%5Bxz%5D%20&amp;=%20E%5B(%5Cpi%20z%20+%20e)z%5D%20%5C%5C%0A&amp;=%20%5Cpi%20E%5Bz%5E2%5D%20+%20E%5Bez%5D%20%5C%5C%0A&amp;=%20%5Cpi%20%5Csigma_z%5E2%0A%5Cend%7Balign%7D%0A"></p>
+<p>where <img src="https://latex.codecogs.com/png.latex?%5Csigma_z%5E2%20=%20E%5Bz%5E2%5D"> (assuming <img src="https://latex.codecogs.com/png.latex?E%5Bz%5D%20=%200"> for simplicity and <img src="https://latex.codecogs.com/png.latex?E%5Bez%5D%20=%200"> by construction)</p>
+</section>
+<section id="ex2" class="level3">
+<h3 class="anchored" data-anchor-id="ex2"><img src="https://latex.codecogs.com/png.latex?E%5Bx%5E2%5D"></h3>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0AE%5Bx%5E2%5D%20&amp;=%20E%5B(%5Cpi%20z%20+%20e)%5E2%5D%20%5C%5C%0A&amp;=%20%5Cpi%5E2%20E%5Bz%5E2%5D%20+%202%5Cpi%20E%5Bez%5D%20+%20E%5Be%5E2%5D%20%5C%5C%0A&amp;=%20%5Cpi%5E2%20%5Csigma_z%5E2%20+%20%5Csigma_e%5E2%0A%5Cend%7Balign%7D%0A"></p>
+<p>where <img src="https://latex.codecogs.com/png.latex?%5Csigma_e%5E2%20=%20E%5Be%5E2%5D"></p>
+</section>
+<section id="exy" class="level3">
+<h3 class="anchored" data-anchor-id="exy"><img src="https://latex.codecogs.com/png.latex?E%5Bxy%5D"></h3>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0AE%5Bxy%5D%20&amp;=%20E%5B(%5Cpi%20z%20+%20e)(%5Cbeta%20x%20+%20%5Cgamma%20z%20+%20u)%5D%20%5C%5C%0A&amp;=%20%5Cbeta%20E%5Bx%5E2%5D%20+%20%5Cgamma%20E%5Bxz%5D%20+%20E%5Bxu%5D%20%5C%5C%0A&amp;=%20%5Cbeta%20(%5Cpi%5E2%20%5Csigma_z%5E2%20+%20%5Csigma_e%5E2)%20+%20%5Cgamma%20%5Cpi%20%5Csigma_z%5E2%20+%20%5Crho%0A%5Cend%7Balign%7D%0A"></p>
+</section>
+<section id="ezy" class="level3">
+<h3 class="anchored" data-anchor-id="ezy"><img src="https://latex.codecogs.com/png.latex?E%5Bzy%5D"></h3>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0AE%5Bzy%5D%20&amp;=%20E%5Bz(%5Cbeta%20x%20+%20%5Cgamma%20z%20+%20u)%5D%20%5C%5C%0A&amp;=%20%5Cbeta%20E%5Bzx%5D%20+%20%5Cgamma%20E%5Bz%5E2%5D%20+%20E%5Bzu%5D%20%5C%5C%0A&amp;=%20%5Cbeta%20%5Cpi%20%5Csigma_z%5E2%20+%20%5Cgamma%20%5Csigma_z%5E2%20+%200%0A%5Cend%7Balign%7D%0A"></p>
+<p>(as <img src="https://latex.codecogs.com/png.latex?E%5Bzu%5D%20=%200"> by the exclusion restriction assumption)</p>
+<p>Now we can solve the system of equations:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Bbmatrix%7D%0A%5Cpi%5E2%20%5Csigma_z%5E2%20+%20%5Csigma_e%5E2%20&amp;%20%5Cpi%20%5Csigma_z%5E2%20%5C%5C%0A%5Cpi%20%5Csigma_z%5E2%20&amp;%20%5Csigma_z%5E2%0A%5Cend%7Bbmatrix%7D%0A%5Cbegin%7Bbmatrix%7D%0A%5Ctext%7Bplim%7D(%5Chat%7B%5Ctheta%7D_1)%20%5C%5C%0A%5Ctext%7Bplim%7D(%5Chat%7B%5Ctheta%7D_2)%0A%5Cend%7Bbmatrix%7D%20=%0A%5Cbegin%7Bbmatrix%7D%0A%5Cbeta%20(%5Cpi%5E2%20%5Csigma_z%5E2%20+%20%5Csigma_e%5E2)%20+%20%5Cgamma%20%5Cpi%20%5Csigma_z%5E2%20+%20%5Crho%20%5C%5C%0A%5Cbeta%20%5Cpi%20%5Csigma_z%5E2%20+%20%5Cgamma%20%5Csigma_z%5E2%0A%5Cend%7Bbmatrix%7D%0A"></p>
+<p>Using Cramer’s rule or matrix inversion to solve this system:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Ctext%7Bplim%7D(%5Chat%7B%5Ctheta%7D_1)%20=%20%5Cbeta%20+%20%5Cfrac%7B%5Crho%20%5Csigma_z%5E2%7D%7B(%5Cpi%5E2%20%5Csigma_z%5E2%20+%20%5Csigma_e%5E2)%5Csigma_z%5E2%20-%20(%5Cpi%20%5Csigma_z%5E2)%5E2%7D%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Ctext%7Bplim%7D(%5Chat%7B%5Ctheta%7D_2)%20=%20%5Cgamma%20-%20%5Cfrac%7B%5Crho%20%5Cpi%20%5Csigma_z%5E2%7D%7B(%5Cpi%5E2%20%5Csigma_z%5E2%20+%20%5Csigma_e%5E2)%5Csigma_z%5E2%20-%20(%5Cpi%20%5Csigma_z%5E2)%5E2%7D%0A"> Thus, when we include <img src="https://latex.codecogs.com/png.latex?z"> structural equation (some abuse of notation here), then the coefficient on the excluded instrument equals the true direct effect minus a bias term. Even when the exclusion restriction holds (<img src="https://latex.codecogs.com/png.latex?%5Cgamma%20=%200">), we would estimate <img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cgamma%7D_2%20%5Cneq%200"> as long as there is endogeneity (<img src="https://latex.codecogs.com/png.latex?%5Crho%20%5Cneq%200">) and the instrument is relevant (<img src="https://latex.codecogs.com/png.latex?%5Cpi%20%5Cneq%200">). This proves that including the instrument in the structural equation is not a valid test of the exclusion restriction.</p>
+<p>Note as well that the coefficient on the endogenous variable of interest is also inconsistent.</p>
+
+
+</section>
+</section>
+</section>
+
+ ]]></description>
+  <category>Notes</category>
+  <category>Exclusion Restriction</category>
+  <category>Instrumental Variables</category>
+  <guid>https://clukewatson.github.io/posts/2025-03-17-cant-test-exclusion-restriction/index.html</guid>
+  <pubDate>Mon, 17 Mar 2025 04:00:00 GMT</pubDate>
+</item>
 <item>
   <title>SE Side-Adventure - Traditional vs Bayesian Bootstrap SEs</title>
   <dc:creator>C. Luke Watson</dc:creator>
@@ -45,8 +121,8 @@ background-color: null;
 font-style: inherit;">gc</span>()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
-Ncells  616268 33.0    1254160   67         NA  1024795 54.8
-Vcells 1114948  8.6    8388608   64     102400  1839961 14.1</code></pre>
+Ncells  616268 33.0    1254208   67         NA  1024826 54.8
+Vcells 1114948  8.6    8388608   64     102400  1840064 14.1</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -1411,8 +1487,8 @@ background-color: null;
 font-style: inherit;">gc</span>()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
-Ncells  616068 33.0    1254402   67         NA   968968 51.8
-Vcells 1113308  8.5    8388608   64     102400  1839961 14.1</code></pre>
+Ncells  616068 33.0    1254482   67         NA   969032 51.8
+Vcells 1113308  8.5    8388608   64     102400  1840064 14.1</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -2982,8 +3058,8 @@ background-color: null;
 font-style: inherit;">gc</span>()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
-Ncells  615831 32.9    1254062   67         NA   954397 51.0
-Vcells 1109619  8.5    8388608   64     102400  1839961 14.1</code></pre>
+Ncells  615831 32.9    1254048   67         NA   954462 51.0
+Vcells 1109619  8.5    8388608   64     102400  1840064 14.1</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -3385,7 +3461,7 @@ $kkt2
 
 $xtimes
 user.self 
-    0.022 
+    0.023 
 
 Assemble the answers</code></pre>
 </div>
