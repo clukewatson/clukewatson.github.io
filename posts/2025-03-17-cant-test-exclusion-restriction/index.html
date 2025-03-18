@@ -177,8 +177,8 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="math display">\[
 \begin{align}
 \hat{\gamma} &amp;= \gamma - \frac{\rho \pi \sigma_z^2}{(\pi^2 \sigma_z^2 + \sigma_e^2)\sigma_z^2 - (\pi \sigma_z^2)^2} \\
-&amp;= \gamma - \frac{\rho \pi}{(\pi^2 \sigma_z^2 + \sigma_e^2) - \pi^2} \\
-&amp;= \gamma - \frac{\rho \pi}{\pi^2 (\sigma_z^2 -1) + \sigma_e^2} \\
+&amp;= \gamma - \frac{\rho \pi}{(\pi^2 \sigma_z^2 + \sigma_e^2) - \pi^2\sigma_z^2} \\
+&amp;= \gamma - \frac{\rho \pi}{\sigma_e^2} \\
 \end{align}
 \]</span> where <span class="math inline">\(\sigma^2_z = Var(z)\)</span>, <span class="math inline">\(\sigma^2_e = Var(e)\)</span>.</p>
 <p>Even if <span class="math inline">\(\gamma=0\)</span>, <span class="math inline">\(\hat{\gamma}\)</span> is not zero unless (1) <span class="math inline">\(\rho=0\)</span> (no endogeneity) or (2) <span class="math inline">\(\pi=0\)</span> (no relevance). If <span class="math inline">\(\gamma\ne 0\)</span>, then knife-edge cases can occur.</p>
@@ -279,13 +279,48 @@ E[zy] &amp;= E[z(\beta x + \gamma z + u)] \\
 \beta \pi \sigma_z^2 + \gamma \sigma_z^2
 \end{bmatrix}
 \]</span></p>
-<p>Using Cramer’s rule or matrix inversion to solve this system:</p>
+<p>To solve for <span class="math inline">\(\text{plim}(\hat{\theta}_1)\)</span> and <span class="math inline">\(\text{plim}(\hat{\theta}_2)\)</span>, use Cramer’s rule. First, find the determinant of the coefficient matrix:</p>
 <p><span class="math display">\[
-\text{plim}(\hat{\theta}_1) = \beta + \frac{\rho \sigma_z^2}{(\pi^2 \sigma_z^2 + \sigma_e^2)\sigma_z^2 - (\pi \sigma_z^2)^2}
+\begin{align}
+\det &amp;= (\pi^2\sigma^2_z + \sigma^2_e)(\sigma^2_z) - (\pi\sigma^2_z)(\pi\sigma^2_z) \\
+&amp;= \pi^2\sigma^4_z + \sigma^2_e\sigma^2_z - \pi^2\sigma^4_z \\
+&amp;= \sigma^2_e\sigma^2_z
+\end{align}
 \]</span></p>
-<p><span class="math display">\[
-\text{plim}(\hat{\theta}_2) = \gamma - \frac{\rho \pi \sigma_z^2}{(\pi^2 \sigma_z^2 + \sigma_e^2)\sigma_z^2 - (\pi \sigma_z^2)^2}
-\]</span> Thus, when we include <span class="math inline">\(z\)</span> structural equation (some abuse of notation here), then the coefficient on the excluded instrument equals the true direct effect minus a bias term. Even when the exclusion restriction holds (<span class="math inline">\(\gamma = 0\)</span>), we would estimate <span class="math inline">\(\hat{\gamma}_2 \neq 0\)</span> as long as there is endogeneity (<span class="math inline">\(\rho \neq 0\)</span>) and the instrument is relevant (<span class="math inline">\(\pi \neq 0\)</span>). This proves that including the instrument in the structural equation is not a valid test of the exclusion restriction.</p>
+<p>Next, to solve for <span class="math inline">\(\text{plim}(\hat{\theta}_1)\)</span>, replace the first column of the coefficient matrix with the right-hand side: <span class="math display">\[
+\begin{bmatrix}
+\beta(\pi^2\sigma^2_z + \sigma^2_e) + \gamma\pi\sigma^2_z + \rho &amp; \pi\sigma^2_z \\
+\beta\pi\sigma^2_z + \gamma\sigma^2_z &amp; \sigma^2_z
+\end{bmatrix}
+\]</span></p>
+<p>Thus, the determinant of this matrix is: <span class="math display">\[
+\begin{align}
+&amp;[\beta(\pi^2\sigma^2_z + \sigma^2_e) + \gamma\pi\sigma^2_z + \rho](\sigma^2_z) - (\pi\sigma^2_z)(\beta\pi\sigma^2_z + \gamma\sigma^2_z) \\
+&amp;= \beta(\pi^2\sigma^2_z + \sigma^2_e)\sigma^2_z + \gamma\pi\sigma^4_z + \rho\sigma^2_z - \pi^2\beta\sigma^4_z - \pi\gamma\sigma^4_z \\
+&amp;= \beta\pi^2\sigma^4_z + \beta\sigma^2_e\sigma^2_z + \gamma\pi\sigma^4_z + \rho\sigma^2_z - \pi^2\beta\sigma^4_z - \pi\gamma\sigma^4_z \\
+&amp;= \beta\sigma^2_e\sigma^2_z + \rho\sigma^2_z
+\end{align}
+\]</span></p>
+<p>Therefore: <span class="math display">\[
+\text{plim}(\hat{\theta}_1) = \frac{\beta\sigma^2_e\sigma^2_z + \rho\sigma^2_z}{\sigma^2_e\sigma^2_z} = \beta + \frac{\rho}{\sigma^2_e}
+\]</span></p>
+<p>Similarly, to solve for <span class="math inline">\(\text{plim}(\hat{\theta}_2)\)</span>, replace the second column of the original coefficient matrix with the right-hand side: <span class="math display">\[
+\begin{bmatrix}
+\pi^2\sigma^2_z + \sigma^2_e &amp; \beta(\pi^2\sigma^2_z + \sigma^2_e) + \gamma\pi\sigma^2_z + \rho \\
+\pi\sigma^2_z &amp; \beta\pi\sigma^2_z + \gamma\sigma^2_z
+\end{bmatrix}
+\]</span></p>
+<p>The determinant of this matrix is: <span class="math display">\[
+\begin{align}
+&amp;(\pi^2\sigma^2_z + \sigma^2_e)(\beta\pi\sigma^2_z + \gamma\sigma^2_z) - (\pi\sigma^2_z)[\beta(\pi^2\sigma^2_z + \sigma^2_e) + \gamma\pi\sigma^2_z + \rho] \\
+&amp;= (\pi^2\sigma^2_z + \sigma^2_e)(\beta\pi\sigma^2_z) + (\pi^2\sigma^2_z + \sigma^2_e)(\gamma\sigma^2_z) - (\pi\sigma^2_z)(\beta\pi^2\sigma^2_z) - (\pi\sigma^2_z)(\beta\sigma^2_e) - (\pi\sigma^2_z)(\gamma\pi\sigma^2_z) - (\pi\sigma^2_z)(\rho) \\
+&amp;= \beta\pi^3\sigma^4_z + \beta\pi\sigma^2_e\sigma^2_z + \gamma\pi^2\sigma^4_z + \gamma\sigma^2_e\sigma^2_z - \beta\pi^3\sigma^4_z - \beta\pi\sigma^2_e\sigma^2_z - \gamma\pi^2\sigma^4_z - \rho\pi\sigma^2_z \\
+&amp;= \gamma\sigma^2_e\sigma^2_z - \rho\pi\sigma^2_z
+\end{align}
+\]</span></p>
+<p>Therefore: <span class="math display">\[\text{plim}(\hat{\theta}_2) = \frac{\gamma\sigma^2_e\sigma^2_z - \rho\pi\sigma^2_z}{\sigma^2_e\sigma^2_z} = \gamma - \frac{\rho\pi}{\sigma^2_e}\]</span></p>
+<p>In summary: <span class="math display">\[\text{plim}(\hat{\theta}_1) = \beta + \frac{\rho}{\sigma^2_e}\]</span> <span class="math display">\[\text{plim}(\hat{\theta}_2) = \gamma - \frac{\rho\pi}{\sigma^2_e}\]</span></p>
+<p>Thus, when we include <span class="math inline">\(z\)</span> structural equation (some abuse of notation here), then the coefficient on the excluded instrument equals the true direct effect minus a bias term. Even when the exclusion restriction holds (<span class="math inline">\(\gamma = 0\)</span>), we would estimate <span class="math inline">\(\hat{\gamma}_2 \neq 0\)</span> as long as there is endogeneity (<span class="math inline">\(\rho \neq 0\)</span>) and the instrument is relevant (<span class="math inline">\(\pi \neq 0\)</span>). This proves that including the instrument in the structural equation is not a valid test of the exclusion restriction.</p>
 <p>Note as well that the coefficient on the endogenous variable of interest is also inconsistent.</p>
 
 
