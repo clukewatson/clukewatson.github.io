@@ -175,11 +175,9 @@ ul.task-list li input[type="checkbox"] {
 <p>What about regressing <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span> and then doing a hypothesis test of <span class="math inline">\(z\)</span>’s coefficient? Specify the alternative model (augmented structural equation): <span class="math inline">\(y = \beta x + \gamma z + u\)</span>.</p>
 <p>Upshot: the coefficient in this case equals:</p>
 <p><span class="math display">\[
-\begin{align}
-\hat{\gamma} &amp;= \gamma - \frac{\rho \pi \sigma_z^2}{(\pi^2 \sigma_z^2 + \sigma_e^2)\sigma_z^2 - (\pi \sigma_z^2)^2} \\
-&amp;= \gamma - \frac{\rho \pi}{(\pi^2 \sigma_z^2 + \sigma_e^2) - \pi^2\sigma_z^2} \\
-&amp;= \gamma - \frac{\rho \pi}{\sigma_e^2} \\
-\end{align}
+\begin{equation}
+\hat{\gamma} = \gamma - \frac{\rho \pi}{\sigma_e^2}
+\end{equation}
 \]</span> where <span class="math inline">\(\sigma^2_z = Var(z)\)</span>, <span class="math inline">\(\sigma^2_e = Var(e)\)</span>.</p>
 <p>Even if <span class="math inline">\(\gamma=0\)</span>, <span class="math inline">\(\hat{\gamma}\)</span> is not zero unless (1) <span class="math inline">\(\rho=0\)</span> (no endogeneity) or (2) <span class="math inline">\(\pi=0\)</span> (no relevance). If <span class="math inline">\(\gamma\ne 0\)</span>, then knife-edge cases can occur.</p>
 </section>

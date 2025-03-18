@@ -34,7 +34,7 @@
 </ol>
 <p>What about regressing <img src="https://latex.codecogs.com/png.latex?y"> on <img src="https://latex.codecogs.com/png.latex?x"> and <img src="https://latex.codecogs.com/png.latex?z"> and then doing a hypothesis test of <img src="https://latex.codecogs.com/png.latex?z">’s coefficient? Specify the alternative model (augmented structural equation): <img src="https://latex.codecogs.com/png.latex?y%20=%20%5Cbeta%20x%20+%20%5Cgamma%20z%20+%20u">.</p>
 <p>Upshot: the coefficient in this case equals:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Chat%7B%5Cgamma%7D%20&amp;=%20%5Cgamma%20-%20%5Cfrac%7B%5Crho%20%5Cpi%20%5Csigma_z%5E2%7D%7B(%5Cpi%5E2%20%5Csigma_z%5E2%20+%20%5Csigma_e%5E2)%5Csigma_z%5E2%20-%20(%5Cpi%20%5Csigma_z%5E2)%5E2%7D%20%5C%5C%0A&amp;=%20%5Cgamma%20-%20%5Cfrac%7B%5Crho%20%5Cpi%7D%7B(%5Cpi%5E2%20%5Csigma_z%5E2%20+%20%5Csigma_e%5E2)%20-%20%5Cpi%5E2%5Csigma_z%5E2%7D%20%5C%5C%0A&amp;=%20%5Cgamma%20-%20%5Cfrac%7B%5Crho%20%5Cpi%7D%7B%5Csigma_e%5E2%7D%20%5C%5C%0A%5Cend%7Balign%7D%0A"> where <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2_z%20=%20Var(z)">, <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2_e%20=%20Var(e)">.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Bequation%7D%0A%5Chat%7B%5Cgamma%7D%20=%20%5Cgamma%20-%20%5Cfrac%7B%5Crho%20%5Cpi%7D%7B%5Csigma_e%5E2%7D%0A%5Cend%7Bequation%7D%0A"> where <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2_z%20=%20Var(z)">, <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2_e%20=%20Var(e)">.</p>
 <p>Even if <img src="https://latex.codecogs.com/png.latex?%5Cgamma=0">, <img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cgamma%7D"> is not zero unless (1) <img src="https://latex.codecogs.com/png.latex?%5Crho=0"> (no endogeneity) or (2) <img src="https://latex.codecogs.com/png.latex?%5Cpi=0"> (no relevance). If <img src="https://latex.codecogs.com/png.latex?%5Cgamma%5Cne%200">, then knife-edge cases can occur.</p>
 </section>
 <section id="derivation" class="level1">
@@ -3468,7 +3468,7 @@ $kkt2
 
 $xtimes
 user.self 
-     0.02 
+    0.034 
 
 Assemble the answers</code></pre>
 </div>
