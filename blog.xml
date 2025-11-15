@@ -129,7 +129,7 @@ font-style: inherit;">gc</span>()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
 Ncells  575109 30.8    1308537 69.9         NA   669262 35.8
-Vcells 1056296  8.1    8388608 64.0     102400  1839961 14.1</code></pre>
+Vcells 1056299  8.1    8388608 64.0     102400  1839961 14.1</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -1495,7 +1495,7 @@ font-style: inherit;">gc</span>()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
 Ncells  574932 30.8    1308031 69.9         NA   669262 35.8
-Vcells 1054765  8.1    8388608 64.0     102400  1839961 14.1</code></pre>
+Vcells 1054767  8.1    8388608 64.0     102400  1839961 14.1</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -3066,7 +3066,7 @@ font-style: inherit;">gc</span>()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
 Ncells  574682 30.7    1307317 69.9         NA   669262 35.8
-Vcells 1051019  8.1    8388608 64.0     102400  1839961 14.1</code></pre>
+Vcells 1051021  8.1    8388608 64.0     102400  1839961 14.1</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -3468,7 +3468,7 @@ $kkt2
 
 $xtimes
 user.self 
-    0.022 
+    0.025 
 
 Assemble the answers</code></pre>
 </div>
