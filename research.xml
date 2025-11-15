@@ -323,7 +323,13 @@ font-style: inherit;">Year</span> = {2021}}</span></code></pre></div>
 <ul>
 <li>with Oren Ziv</li>
 <li>Accepted, Review of Economics and Statistics</li>
-<li>The presence of pricing power in housing markets significantly impacts our understanding of the housing supply. It biases estimates of housing production functions, supply elasticities, and the effects of land-use policies as well as the results of quantitative spatial models. We test for the existence of pricing power in the New York City rental market. Using tax policy changes, we conduct complementary difference-in-differences and instrumental variable analyses. An idiosyncratic increase in a single building’s costs leads to a proportional rent increase, holding market-level rents constant. Our findings support the existence of pricing power and challenge the prevailing perfect competition framework.</li>
+<li>Abstract: The presence of pricing power in housing markets significantly impacts our understanding of the housing supply. It biases estimates of housing production functions, supply elasticities, and the effects of land-use policies as well as the results of quantitative spatial models. We test for the existence of pricing power in the New York City rental market. Using tax policy changes, we conduct complementary difference-in-differences and instrumental variable analyses. An idiosyncratic increase in a single building’s costs leads to a proportional rent increase, holding market-level rents constant. Our findings support the existence of pricing power and challenge the prevailing perfect competition framework. <br><br></li>
+</ul></li>
+<li><a href="https://doi.org/10.1007/978-3-030-35622-4_1">Measuring the Demand for Land Under Sorting and Matching</a>
+<ul>
+<li>with Oren Ziv</li>
+<li>Chapter, <em>Measuring the Effectiveness of Real Estate Regulation</em>, Levine-Schnur, R. (eds)</li>
+<li>Abstract: This paper investigates nonparametric identification of demand in markets with two-sided sorting. We consider any situation where the price of a good depends on the sorting of buyers. Specifically, we consider the case where willingness to pay for local amenities differs by income group and monopolistic landlords use a pricing rule based on marginal cost and price elasticities. We first show that generally demand parameters cannot be identified, thus all identification is based on a priori exclusion restrictions or functional form on demand or pricing rules. One example is that if cost shifters are assumed additively separable in marginal cost, then the model can be identified. Such restrictions may be warranted in specific research questions, but researchers should consider and be clear about the implicit additional structure placed on the model.</li>
 </ul></li>
 </ul>
 </section>
@@ -334,25 +340,27 @@ font-style: inherit;">Year</span> = {2021}}</span></code></pre></div>
 <ul>
 <li>with Oren Ziv</li>
 <li>RR, Real Estate Economics</li>
-<li>Pricing power in real estate markets can reduce housing supply and redevelopment relative to the social optimum. We show how popular redevelopment subsidies and zoning regulations interact with pricing power. Using building-level rental income data from NYC, we find that increasing concentration is correlated with increasing prices.Finally, we use the model to estimate the first building-level housing elasticity, finding that markups account for between ten and thirty percent of rents in the city.</li>
+<li>Abstract: Pricing power in real estate markets can reduce housing supply and redevelopment relative to the social optimum. We show how popular redevelopment subsidies and zoning regulations interact with pricing power. Using building-level rental income data from NYC, we find that increasing concentration is correlated with increasing prices.Finally, we use the model to estimate the first building-level housing elasticity, finding that markups account for between ten and thirty percent of rents in the city.</li>
 </ul></li>
 </ul>
 </section>
 <section id="selected-work-in-progress" class="level1">
 <h1>Selected Work in Progress</h1>
 <ul>
-<li>Estimating Markups using Pass-Through Regressions
+<li><strong>Estimating Markups using Pass-Through Regressions</strong>
 <ul>
-<li>with Oren Ziv</li>
+<li>with Oren Ziv <br><br></li>
 </ul></li>
-<li>Competition for Neighborhood Deposits
+<li><strong>Competition for Neighborhood Deposits</strong>
 <ul>
-<li>with Mark Kutzbach, Gary Wagner</li>
+<li>with Mark Kutzbach, Gary Wagner<br>
+<br><br></li>
 </ul></li>
-<li>A Test for Market Definition in Aggregate Logit Models with an Application to Retail Banking</li>
-<li>CBDC News and Market Sentiment
+<li><strong>A Test for Market Definition in Aggregate Logit Models with an Application to Retail Banking</strong> <br><br></li>
+<li><strong>CBDC News and Market Sentiment</strong>
 <ul>
-<li>with Sam Borkhoche, Julieta Yung</li>
+<li>with Sam Borkhoche, Julieta Yung<br>
+</li>
 <li>Currently paused due to EO 14178</li>
 </ul></li>
 </ul>
@@ -362,11 +370,11 @@ font-style: inherit;">Year</span> = {2021}}</span></code></pre></div>
 <ul>
 <li><a href="ge-eitc/watson_geeitc.pdf">The General Equilibrium Incidence of the Earned Income Tax Credit</a>
 <ul>
-<li>The Earned Income Tax Credit is a $67 billion tax expenditure that subsidizes 20% of all workers. Yet all prior analysis uses partial equilibrium assumptions on gross wages. I derive the general equilibrium incidence of wage subsidies and quantify the importance of EITC spillovers in three ways. I calculate the GE incidence of the 1993 and 2009 EITC expansions using new elasticity estimates. I contrast the incidence of counterfactual EITC and Welfare expansions. I quantify the effect of equalizing the EITC for workers with and without children. In all cases, I find spillovers are economically meaningful.</li>
+<li>The Earned Income Tax Credit is a $67 billion tax expenditure that subsidizes 20% of all workers. Yet all prior analysis uses partial equilibrium assumptions on gross wages. I derive the general equilibrium incidence of wage subsidies and quantify the importance of EITC spillovers in three ways. I calculate the GE incidence of the 1993 and 2009 EITC expansions using new elasticity estimates. I contrast the incidence of counterfactual EITC and Welfare expansions. I quantify the effect of equalizing the EITC for workers with and without children. In all cases, I find spillovers are economically meaningful. <br><br></li>
 </ul></li>
 <li><a href="state-eitc/watson_state_eitc.pdf">The Local Effects of State EITC Expansions</a>
 <ul>
-<li>Twenty eight states spend $4 billion to supplement the federal Earned Income Tax Credit, with several justifying the tax expenditure as a pro-work incentive. Yet no systematic evaluation of these supplements exists. I use state border policy variation to identify state supplements effects. I first document that subsidy rates are greater when a state’s neighbor already has a supplement. Next, I assess whether supplements affect county level EITC take-up, migration, commuting, employment, and earnings. Estimates are sensitive to the estimation design and sample used. While supplements increase benefits to low-income workers, results fail to provide robust evidence of increased economic activity.</li>
+<li>Twenty eight states spend $4 billion to supplement the federal Earned Income Tax Credit, with several justifying the tax expenditure as a pro-work incentive. Yet no systematic evaluation of these supplements exists. I use state border policy variation to identify state supplements effects. I first document that subsidy rates are greater when a state’s neighbor already has a supplement. Next, I assess whether supplements affect county level EITC take-up, migration, commuting, employment, and earnings. Estimates are sensitive to the estimation design and sample used. While supplements increase benefits to low-income workers, results fail to provide robust evidence of increased economic activity. <br><br></li>
 </ul></li>
 <li><a href="tax-iv-ge/watson_tax_iv_ge.pdf">Estimating Both Supply and Demand Elasticities Using Variation in a Single Tax Rate with General Equilibrium Spillovers</a>
 <ul>
@@ -379,7 +387,7 @@ font-style: inherit;">Year</span> = {2021}}</span></code></pre></div>
 
  ]]></description>
   <guid>https://clukewatson.github.io/research/index.html</guid>
-  <pubDate>Sat, 15 Nov 2025 04:29:20 GMT</pubDate>
+  <pubDate>Sat, 15 Nov 2025 19:55:14 GMT</pubDate>
 </item>
 </channel>
 </rss>
