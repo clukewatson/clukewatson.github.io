@@ -9,13 +9,14 @@
 <link>https://clukewatson.github.io/blog.html</link>
 <atom:link href="https://clukewatson.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Senior Financial Economist</description>
-<generator>quarto-1.3.340</generator>
+<generator>quarto-1.8.27</generator>
 <lastBuildDate>Mon, 17 Mar 2025 04:00:00 GMT</lastBuildDate>
 <item>
   <title>You Cannot Test the Exclusion Restriction</title>
   <dc:creator>C. Luke Watson</dc:creator>
-  <link>https://clukewatson.github.io/posts/2025-03-17-cant-test-exclusion-restriction/index.html</link>
+  <link>https://clukewatson.github.io/posts/2025-03-17-cant-test-exclusion-restriction/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -34,7 +35,7 @@
 </ol>
 <p>What about regressing <img src="https://latex.codecogs.com/png.latex?y"> on <img src="https://latex.codecogs.com/png.latex?x"> and <img src="https://latex.codecogs.com/png.latex?z"> and then doing a hypothesis test of <img src="https://latex.codecogs.com/png.latex?z">’s coefficient? Specify the alternative model (augmented structural equation): <img src="https://latex.codecogs.com/png.latex?y%20=%20%5Cbeta%20x%20+%20%5Cgamma%20z%20+%20u">.</p>
 <p>Upshot: the coefficient in this case equals:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Bequation%7D%0A%5Chat%7B%5Cgamma%7D%20=%20%5Cgamma%20-%20%5Cfrac%7B%5Crho%20%5Cpi%7D%7B%5Csigma_e%5E2%7D%0A%5Cend%7Bequation%7D%0A"> where <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2_z%20=%20Var(z)">, <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2_e%20=%20Var(e)">.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Chat%7B%5Cgamma%7D%20=%20%5Cgamma%20-%20%5Cfrac%7B%5Crho%20%5Cpi%7D%7B%5Csigma_e%5E2%7D%0A"> where <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2_z%20=%20Var(z)">, <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2_e%20=%20Var(e)">.</p>
 <p>Even if <img src="https://latex.codecogs.com/png.latex?%5Cgamma=0">, <img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cgamma%7D"> is not zero unless (1) <img src="https://latex.codecogs.com/png.latex?%5Crho=0"> (no endogeneity) or (2) <img src="https://latex.codecogs.com/png.latex?%5Cpi=0"> (no relevance). If <img src="https://latex.codecogs.com/png.latex?%5Cgamma%5Cne%200">, then knife-edge cases can occur.</p>
 </section>
 <section id="derivation" class="level1">
@@ -50,22 +51,15 @@
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Bbmatrix%7D%0AE%5Bx%5E2%5D%20&amp;%20E%5Bxz%5D%20%5C%5C%0AE%5Bxz%5D%20&amp;%20E%5Bz%5E2%5D%0A%5Cend%7Bbmatrix%7D%0A%5Cbegin%7Bbmatrix%7D%0A%5Ctext%7Bplim%7D(%5Chat%7B%5Ctheta%7D_1)%20%5C%5C%0A%5Ctext%7Bplim%7D(%5Chat%7B%5Ctheta%7D_2)%0A%5Cend%7Bbmatrix%7D%20=%0A%5Cbegin%7Bbmatrix%7D%0AE%5Bxy%5D%20%5C%5C%0AE%5Bzy%5D%0A%5Cend%7Bbmatrix%7D%0A"></p>
 <p>Let’s substitute our model equations. Recall: <img src="https://latex.codecogs.com/png.latex?x%20=%20%5Cpi%20z%20+%20e"> (first stage) and <img src="https://latex.codecogs.com/png.latex?y%20=%20%5Cbeta%20x%20+%20%5Cgamma%20z%20+%20u"> (augmented structural equation).</p>
 <p>Now let’s compute the relevant expectations:</p>
-<section id="exz" class="level3">
-<h3 class="anchored" data-anchor-id="exz"><img src="https://latex.codecogs.com/png.latex?E%5Bxz%5D"></h3>
+<p><strong><img src="https://latex.codecogs.com/png.latex?E%5Bxz%5D"></strong></p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0AE%5Bxz%5D%20&amp;=%20E%5B(%5Cpi%20z%20+%20e)z%5D%20%5C%5C%0A&amp;=%20%5Cpi%20E%5Bz%5E2%5D%20+%20E%5Bez%5D%20%5C%5C%0A&amp;=%20%5Cpi%20%5Csigma_z%5E2%0A%5Cend%7Balign%7D%0A"></p>
 <p>where <img src="https://latex.codecogs.com/png.latex?%5Csigma_z%5E2%20=%20E%5Bz%5E2%5D"> (assuming <img src="https://latex.codecogs.com/png.latex?E%5Bz%5D%20=%200"> for simplicity and <img src="https://latex.codecogs.com/png.latex?E%5Bez%5D%20=%200"> by construction)</p>
-</section>
-<section id="ex2" class="level3">
-<h3 class="anchored" data-anchor-id="ex2"><img src="https://latex.codecogs.com/png.latex?E%5Bx%5E2%5D"></h3>
+<p><strong><img src="https://latex.codecogs.com/png.latex?E%5Bx%5E2%5D"></strong></p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0AE%5Bx%5E2%5D%20&amp;=%20E%5B(%5Cpi%20z%20+%20e)%5E2%5D%20%5C%5C%0A&amp;=%20%5Cpi%5E2%20E%5Bz%5E2%5D%20+%202%5Cpi%20E%5Bez%5D%20+%20E%5Be%5E2%5D%20%5C%5C%0A&amp;=%20%5Cpi%5E2%20%5Csigma_z%5E2%20+%20%5Csigma_e%5E2%0A%5Cend%7Balign%7D%0A"></p>
 <p>where <img src="https://latex.codecogs.com/png.latex?%5Csigma_e%5E2%20=%20E%5Be%5E2%5D"></p>
-</section>
-<section id="exy" class="level3">
-<h3 class="anchored" data-anchor-id="exy"><img src="https://latex.codecogs.com/png.latex?E%5Bxy%5D"></h3>
+<p><strong><img src="https://latex.codecogs.com/png.latex?E%5Bxy%5D"></strong></p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0AE%5Bxy%5D%20&amp;=%20E%5B(%5Cpi%20z%20+%20e)(%5Cbeta%20x%20+%20%5Cgamma%20z%20+%20u)%5D%20%5C%5C%0A&amp;=%20%5Cbeta%20E%5Bx%5E2%5D%20+%20%5Cgamma%20E%5Bxz%5D%20+%20E%5Bxu%5D%20%5C%5C%0A&amp;=%20%5Cbeta%20(%5Cpi%5E2%20%5Csigma_z%5E2%20+%20%5Csigma_e%5E2)%20+%20%5Cgamma%20%5Cpi%20%5Csigma_z%5E2%20+%20%5Crho%0A%5Cend%7Balign%7D%0A"></p>
-</section>
-<section id="ezy" class="level3">
-<h3 class="anchored" data-anchor-id="ezy"><img src="https://latex.codecogs.com/png.latex?E%5Bzy%5D"></h3>
+<p><strong><img src="https://latex.codecogs.com/png.latex?E%5Bzy%5D"></strong></p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0AE%5Bzy%5D%20&amp;=%20E%5Bz(%5Cbeta%20x%20+%20%5Cgamma%20z%20+%20u)%5D%20%5C%5C%0A&amp;=%20%5Cbeta%20E%5Bzx%5D%20+%20%5Cgamma%20E%5Bz%5E2%5D%20+%20E%5Bzu%5D%20%5C%5C%0A&amp;=%20%5Cbeta%20%5Cpi%20%5Csigma_z%5E2%20+%20%5Cgamma%20%5Csigma_z%5E2%20+%200%0A%5Cend%7Balign%7D%0A"></p>
 <p>(as <img src="https://latex.codecogs.com/png.latex?E%5Bzu%5D%20=%200"> by the exclusion restriction assumption)</p>
 <p>Now we can solve the system of equations:</p>
@@ -77,13 +71,12 @@
 <p>Therefore: <img src="https://latex.codecogs.com/png.latex?%0A%5Ctext%7Bplim%7D(%5Chat%7B%5Ctheta%7D_1)%20=%20%5Cfrac%7B%5Cbeta%5Csigma%5E2_e%5Csigma%5E2_z%20+%20%5Crho%5Csigma%5E2_z%7D%7B%5Csigma%5E2_e%5Csigma%5E2_z%7D%20=%20%5Cbeta%20+%20%5Cfrac%7B%5Crho%7D%7B%5Csigma%5E2_e%7D%0A"></p>
 <p>Similarly, to solve for <img src="https://latex.codecogs.com/png.latex?%5Ctext%7Bplim%7D(%5Chat%7B%5Ctheta%7D_2)">, replace the second column of the original coefficient matrix with the right-hand side: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Bbmatrix%7D%0A%5Cpi%5E2%5Csigma%5E2_z%20+%20%5Csigma%5E2_e%20&amp;%20%5Cbeta(%5Cpi%5E2%5Csigma%5E2_z%20+%20%5Csigma%5E2_e)%20+%20%5Cgamma%5Cpi%5Csigma%5E2_z%20+%20%5Crho%20%5C%5C%0A%5Cpi%5Csigma%5E2_z%20&amp;%20%5Cbeta%5Cpi%5Csigma%5E2_z%20+%20%5Cgamma%5Csigma%5E2_z%0A%5Cend%7Bbmatrix%7D%0A"></p>
 <p>The determinant of this matrix is: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A&amp;(%5Cpi%5E2%5Csigma%5E2_z%20+%20%5Csigma%5E2_e)(%5Cbeta%5Cpi%5Csigma%5E2_z%20+%20%5Cgamma%5Csigma%5E2_z)%20-%20(%5Cpi%5Csigma%5E2_z)%5B%5Cbeta(%5Cpi%5E2%5Csigma%5E2_z%20+%20%5Csigma%5E2_e)%20+%20%5Cgamma%5Cpi%5Csigma%5E2_z%20+%20%5Crho%5D%20%5C%5C%0A&amp;=%20(%5Cpi%5E2%5Csigma%5E2_z%20+%20%5Csigma%5E2_e)(%5Cbeta%5Cpi%5Csigma%5E2_z)%20+%20(%5Cpi%5E2%5Csigma%5E2_z%20+%20%5Csigma%5E2_e)(%5Cgamma%5Csigma%5E2_z)%20-%20(%5Cpi%5Csigma%5E2_z)(%5Cbeta%5Cpi%5E2%5Csigma%5E2_z)%20-%20(%5Cpi%5Csigma%5E2_z)(%5Cbeta%5Csigma%5E2_e)%20-%20(%5Cpi%5Csigma%5E2_z)(%5Cgamma%5Cpi%5Csigma%5E2_z)%20-%20(%5Cpi%5Csigma%5E2_z)(%5Crho)%20%5C%5C%0A&amp;=%20%5Cbeta%5Cpi%5E3%5Csigma%5E4_z%20+%20%5Cbeta%5Cpi%5Csigma%5E2_e%5Csigma%5E2_z%20+%20%5Cgamma%5Cpi%5E2%5Csigma%5E4_z%20+%20%5Cgamma%5Csigma%5E2_e%5Csigma%5E2_z%20-%20%5Cbeta%5Cpi%5E3%5Csigma%5E4_z%20-%20%5Cbeta%5Cpi%5Csigma%5E2_e%5Csigma%5E2_z%20-%20%5Cgamma%5Cpi%5E2%5Csigma%5E4_z%20-%20%5Crho%5Cpi%5Csigma%5E2_z%20%5C%5C%0A&amp;=%20%5Cgamma%5Csigma%5E2_e%5Csigma%5E2_z%20-%20%5Crho%5Cpi%5Csigma%5E2_z%0A%5Cend%7Balign%7D%0A"></p>
-<p>Therefore: <img src="https://latex.codecogs.com/png.latex?%5Ctext%7Bplim%7D(%5Chat%7B%5Ctheta%7D_2)%20=%20%5Cfrac%7B%5Cgamma%5Csigma%5E2_e%5Csigma%5E2_z%20-%20%5Crho%5Cpi%5Csigma%5E2_z%7D%7B%5Csigma%5E2_e%5Csigma%5E2_z%7D%20=%20%5Cgamma%20-%20%5Cfrac%7B%5Crho%5Cpi%7D%7B%5Csigma%5E2_e%7D"></p>
-<p>In summary: <img src="https://latex.codecogs.com/png.latex?%5Ctext%7Bplim%7D(%5Chat%7B%5Ctheta%7D_1)%20=%20%5Cbeta%20+%20%5Cfrac%7B%5Crho%7D%7B%5Csigma%5E2_e%7D"> <img src="https://latex.codecogs.com/png.latex?%5Ctext%7Bplim%7D(%5Chat%7B%5Ctheta%7D_2)%20=%20%5Cgamma%20-%20%5Cfrac%7B%5Crho%5Cpi%7D%7B%5Csigma%5E2_e%7D"></p>
+<p>Therefore: <img src="https://latex.codecogs.com/png.latex?%0A%5Ctext%7Bplim%7D(%5Chat%7B%5Ctheta%7D_2)%20=%20%5Cfrac%7B%5Cgamma%5Csigma%5E2_e%5Csigma%5E2_z%20-%20%5Crho%5Cpi%5Csigma%5E2_z%7D%7B%5Csigma%5E2_e%5Csigma%5E2_z%7D%20=%20%5Cgamma%20-%20%5Cfrac%7B%5Crho%5Cpi%7D%7B%5Csigma%5E2_e%7D%0A"></p>
+<p>In summary: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Ctext%7Bplim%7D(%5Chat%7B%5Ctheta%7D_1)%20&amp;=%20%5Cbeta%20+%20%5Cfrac%7B%5Crho%7D%7B%5Csigma%5E2_e%7D%20%5C%5C%0A%5Ctext%7Bplim%7D(%5Chat%7B%5Ctheta%7D_2)%20&amp;=%20%5Cgamma%20-%20%5Cfrac%7B%5Crho%5Cpi%7D%7B%5Csigma%5E2_e%7D%0A%5Cend%7Balign%7D%0A"></p>
 <p>Thus, when we include <img src="https://latex.codecogs.com/png.latex?z"> structural equation (some abuse of notation here), then the coefficient on the excluded instrument equals the true direct effect minus a bias term. Even when the exclusion restriction holds (<img src="https://latex.codecogs.com/png.latex?%5Cgamma%20=%200">), we would estimate <img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cgamma%7D_2%20%5Cneq%200"> as long as there is endogeneity (<img src="https://latex.codecogs.com/png.latex?%5Crho%20%5Cneq%200">) and the instrument is relevant (<img src="https://latex.codecogs.com/png.latex?%5Cpi%20%5Cneq%200">). This proves that including the instrument in the structural equation is not a valid test of the exclusion restriction.</p>
 <p>Note as well that the coefficient on the endogenous variable of interest is also inconsistent.</p>
 
 
-</section>
 </section>
 </section>
 
@@ -91,14 +84,15 @@
   <category>Notes</category>
   <category>Exclusion Restriction</category>
   <category>Instrumental Variables</category>
-  <guid>https://clukewatson.github.io/posts/2025-03-17-cant-test-exclusion-restriction/index.html</guid>
+  <guid>https://clukewatson.github.io/posts/2025-03-17-cant-test-exclusion-restriction/</guid>
   <pubDate>Mon, 17 Mar 2025 04:00:00 GMT</pubDate>
 </item>
 <item>
-  <title>SE Side-Adventure - Traditional vs Bayesian Bootstrap SEs</title>
+  <title>Traditional vs. Bayesian Bootstrap Standard Errors</title>
   <dc:creator>C. Luke Watson</dc:creator>
-  <link>https://clukewatson.github.io/posts/2024-09-13-bootstrap/index.html</link>
+  <link>https://clukewatson.github.io/posts/2024-09-13-bootstrap/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -113,7 +107,7 @@
 <h2 class="anchored" data-anchor-id="set-up-same-as-pt2">Set up (same as Pt2)</h2>
 <p>I will simulate the data the same as in Pt2.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># clear workspace</span></span>
 <span id="cb1-2"><span class="fu" style="color: #4758AB;
@@ -125,33 +119,33 @@ background-color: null;
 font-style: inherit;">ls</span>())</span>
 <span id="cb1-3"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">gc</span>()</span></code></pre></div>
+font-style: inherit;">gc</span>()</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
-Ncells  575109 30.8    1308537 69.9         NA   669262 35.8
-Vcells 1056299  8.1    8388608 64.0     102400  1839961 14.1</code></pre>
+Ncells 1075731 57.5    1668088 89.1         NA  1668088 89.1
+Vcells 1887725 14.5    8388608 64.0      49152  3381449 25.8</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># libraries</span></span>
 <span id="cb3-2"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(tidyverse)  <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># general data manipulation</span></span></code></pre></div>
+font-style: inherit;"># general data manipulation</span></span></code></pre></div></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-✔ purrr     1.0.1     
+✔ dplyr     1.1.4     ✔ readr     2.1.6
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.1     ✔ tibble    3.3.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.2
+✔ purrr     1.2.1     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(broom)      <span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -170,7 +164,7 @@ font-style: inherit;"># Adjust standard errors</span></span>
 background-color: null;
 font-style: inherit;">library</span>(lmtest)     <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># Recalculate model errors with sandwich functions with coeftest()</span></span></code></pre></div>
+font-style: inherit;"># Recalculate model errors with sandwich functions with coeftest()</span></span></code></pre></div></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: zoo
 
@@ -180,21 +174,21 @@ The following objects are masked from 'package:base':
 
     as.Date, as.Date.numeric</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(rlang)      <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># helps with functions</span></span></code></pre></div>
+font-style: inherit;"># helps with functions</span></span></code></pre></div></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'rlang'
 
 The following objects are masked from 'package:purrr':
 
-    %@%, flatten, flatten_chr, flatten_dbl, flatten_int, flatten_lgl,
+    flatten, flatten_chr, flatten_dbl, flatten_int, flatten_lgl,
     flatten_raw, invoke, splice</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Set random seed for reproducibility</span></span>
 <span id="cb9-2"><span class="fu" style="color: #4758AB;
@@ -416,14 +410,14 @@ font-style: inherit;">3</span>]<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">*</span>x2) <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">+</span> error</span></code></pre></div>
+font-style: inherit;">+</span> error</span></code></pre></div></div>
 </div>
 </section>
 <section id="canned-ses" class="level2">
 <h2 class="anchored" data-anchor-id="canned-ses">Canned SEs</h2>
 <p>Here, I’ll quickly show how to get non-robust, robust, and clustered SEs. Note, this approach uses <code>lmtest</code> and <code>sandwich</code>. If I had a lot of FEs, then I would likely use <code>feols</code> package.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Model, non robust</span></span>
 <span id="cb10-2">m1.nonrobust <span class="ot" style="color: #003B4F;
@@ -468,9 +462,11 @@ font-style: inherit;"># Function to extract standard errors</span></span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(model) {</span>
 <span id="cb10-11">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> (<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">class</span>(model)[<span class="dv" style="color: #AD0000;
@@ -491,6 +487,7 @@ background-color: null;
 font-style: inherit;">vcov</span>(model))))</span>
 <span id="cb10-13">  } <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span> {</span>
 <span id="cb10-14">    <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -555,7 +552,7 @@ font-style: inherit;">4</span>)))</span>
 <span id="cb10-30"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Display the table</span></span>
-<span id="cb10-31">se_comparison</span></code></pre></div>
+<span id="cb10-31">se_comparison</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Coef Non_Robust Robust Clustered
 (Intercept)  0.9445     0.0541 0.0482    0.2640
@@ -569,7 +566,7 @@ x2           2.0216     0.0181 0.0189    0.0456</code></pre>
 <h1>Traditional Bootstrap</h1>
 <p>First, I am going to show a traditional bootstrap. I am going to create a bootstrap function that can do either full-sample sampling or cluster-sampling. Cluster-sampling is best if we believe standard errors have cluster-dependence; else, if independent, then full-sample sampling is best.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1">df <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1">df <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -606,6 +603,7 @@ font-style: italic;">##### Traditional Bootstrap function</span></span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(arg.data,arg.model.formula, </span>
 <span id="cb12-11">                                    <span class="at" style="color: #657422;
 background-color: null;
@@ -633,6 +631,7 @@ background-color: null;
 font-style: inherit;"># do this only once but only if clustered</span></span>
 <span id="cb12-17">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> (<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">!</span>(<span class="fu" style="color: #4758AB;
@@ -688,8 +687,10 @@ background-color: null;
 font-style: inherit;"># Perform bootstrap</span></span>
 <span id="cb12-28">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
@@ -697,6 +698,7 @@ background-color: null;
 font-style: inherit;">:</span>arg.boots) {</span>
 <span id="cb12-29">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> (<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">is.null</span>(<span class="fu" style="color: #4758AB;
@@ -732,6 +734,7 @@ font-style: inherit;">replace =</span> T)</span>
 <span id="cb12-35">    } </span>
 <span id="cb12-36">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span> {</span>
 <span id="cb12-37">      <span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -878,7 +881,7 @@ font-style: inherit;">4</span>)))</span>
 <span id="cb12-67"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Display the table</span></span>
-<span id="cb12-68">se_comparison</span></code></pre></div>
+<span id="cb12-68">se_comparison</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Coef Non_Robust Robust Clustered trad.ind trad.clu
 (Intercept)  0.9445     0.0541 0.0482    0.2640   0.0497   0.2598
@@ -893,13 +896,14 @@ x2           2.0216     0.0181 0.0189    0.0456   0.0190   0.0447</code></pre>
 <h2 class="anchored" data-anchor-id="random-weights-via-dirichlet-distribution">Random Weights via Dirichlet distribution</h2>
 <p>Next, I want to show how to do the Bayesian Bootstrap. As discussed, the weights need to be drawn from a Dirichlet distribution. We can draw <img src="https://latex.codecogs.com/png.latex?x_%7Bi%7D%5Csim%20%5Ctext%7BDirichlet%7D(%5Cvec%7B%5Calpha%7D)"> by drawing <img src="https://latex.codecogs.com/png.latex?y_%7Bi%7D%20%5Csim%20%5Ctext%7BGamma%7D(%5Ctext%7Bshape%7D=%5Cvec%7B%5Calpha%7D,%20%5Ctext%7Brate%7D=1)"> and then calculating <img src="https://latex.codecogs.com/png.latex?x_%7Bi%7D%20=%20y_%7Bi%7D%20/%20%5Csum_%7Bj%5Cin%20N%7D%20y_%7Bj%7D">. Wikipedia says it can also be done assuming <img src="https://latex.codecogs.com/png.latex?%5Cvec%7B%5Calpha%7D=%5Cvec%7B1%7D"> using the uniform distribution, which it calls ‘Stick Breaking.’ Both are below.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Function to sample from Dirichlet distribution using base R</span></span>
 <span id="cb14-2">rdirichlet_base <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(num.vars, alpha) {</span>
 <span id="cb14-3">  K <span class="ot" style="color: #003B4F;
 background-color: null;
@@ -951,6 +955,7 @@ font-style: inherit;"># Function to sample from Dirichlet(1,...,1) using the sti
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(num.vars, num.draws) {</span>
 <span id="cb14-12">  <span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -969,8 +974,10 @@ background-color: null;
 font-style: inherit;">#</span></span>
 <span id="cb14-15">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
@@ -1129,38 +1136,51 @@ font-style: inherit;">.3</span>), <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">col=</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"blue"</span>)</span></code></pre></div>
+font-style: inherit;">"blue"</span>)</span></code></pre></div></div>
 <div class="cell-output-display">
-<p><img src="https://clukewatson.github.io/posts/2024-09-13-bootstrap/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://clukewatson.github.io/posts/2024-09-13-bootstrap/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><span class="fu" style="color: #4758AB;
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">hist</span>(sample<span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">.1</span>)</span></code></pre></div>
+font-style: inherit;">.1</span>)</span></code></pre></div></div>
 <div class="cell-output-display">
-<p><img src="https://clukewatson.github.io/posts/2024-09-13-bootstrap/index_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://clukewatson.github.io/posts/2024-09-13-bootstrap/index_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><span class="fu" style="color: #4758AB;
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">hist</span>(sample<span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">.3</span>)</span></code></pre></div>
+font-style: inherit;">.3</span>)</span></code></pre></div></div>
 <div class="cell-output-display">
-<p><img src="https://clukewatson.github.io/posts/2024-09-13-bootstrap/index_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://clukewatson.github.io/posts/2024-09-13-bootstrap/index_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="bayesian-bootstrap-1" class="level2">
 <h2 class="anchored" data-anchor-id="bayesian-bootstrap-1">Bayesian Bootstrap</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><span class="do" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><span class="do" style="color: #5E5E5E;
 background-color: null;
 font-style: italic;">##### Bayesian Bootstrap</span></span>
 <span id="cb17-2">f.bayesian.bootstrap <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(arg.data,arg.model.formula,<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">arg.boots =</span> <span class="dv" style="color: #AD0000;
@@ -1212,8 +1232,10 @@ background-color: null;
 font-style: inherit;"># Perform bootstrap</span></span>
 <span id="cb17-13">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> (i <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
@@ -1221,6 +1243,7 @@ background-color: null;
 font-style: inherit;">:</span>arg.boots) {</span>
 <span id="cb17-14">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> (<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">is.null</span>(<span class="fu" style="color: #4758AB;
@@ -1268,6 +1291,7 @@ font-style: inherit;">sum</span>(wts))</span>
 <span id="cb17-20">    } </span>
 <span id="cb17-21">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span> {</span>
 <span id="cb17-22">      <span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -1438,7 +1462,7 @@ font-style: inherit;">4</span>)))</span>
 <span id="cb17-50"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Display the table</span></span>
-<span id="cb17-51">se_comparison</span></code></pre></div>
+<span id="cb17-51">se_comparison</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Coef Non_Robust Robust Clustered trad.ind trad.clu bayes.ind
 (Intercept)  0.9445     0.0541 0.0482    0.2640   0.0497   0.2598    0.0485
@@ -1463,14 +1487,15 @@ x2             0.0401</code></pre>
   <category>Clustered</category>
   <category>Bayesian</category>
   <category>Random Weights</category>
-  <guid>https://clukewatson.github.io/posts/2024-09-13-bootstrap/index.html</guid>
+  <guid>https://clukewatson.github.io/posts/2024-09-13-bootstrap/</guid>
   <pubDate>Fri, 13 Sep 2024 04:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Manual Calculation of SEs from Optimization - Pt.2</title>
   <dc:creator>C. Luke Watson</dc:creator>
-  <link>https://clukewatson.github.io/posts/2024-09-13-robust-ses-manual-2/index.html</link>
+  <link>https://clukewatson.github.io/posts/2024-09-13-robust-ses-manual-2/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -1479,7 +1504,7 @@ x2             0.0401</code></pre>
 <section id="set-up" class="level2">
 <h2 class="anchored" data-anchor-id="set-up">Set up</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># clear workspace</span></span>
 <span id="cb1-2"><span class="fu" style="color: #4758AB;
@@ -1491,33 +1516,33 @@ background-color: null;
 font-style: inherit;">ls</span>())</span>
 <span id="cb1-3"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">gc</span>()</span></code></pre></div>
+font-style: inherit;">gc</span>()</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
-Ncells  574932 30.8    1308031 69.9         NA   669262 35.8
-Vcells 1054767  8.1    8388608 64.0     102400  1839961 14.1</code></pre>
+Ncells 1075507 57.5    1668088 89.1         NA  1668088 89.1
+Vcells 1888386 14.5    8388608 64.0      49152  3392005 25.9</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># libraries</span></span>
 <span id="cb3-2"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(tidyverse)  <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># general data manipulation</span></span></code></pre></div>
+font-style: inherit;"># general data manipulation</span></span></code></pre></div></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-✔ purrr     1.0.1     
+✔ dplyr     1.1.4     ✔ readr     2.1.6
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.1     ✔ tibble    3.3.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.2
+✔ purrr     1.2.1     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(broom)      <span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -1536,7 +1561,7 @@ font-style: inherit;"># Adjust standard errors</span></span>
 background-color: null;
 font-style: inherit;">library</span>(lmtest)     <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># Recalculate model errors with sandwich functions with coeftest()</span></span></code></pre></div>
+font-style: inherit;"># Recalculate model errors with sandwich functions with coeftest()</span></span></code></pre></div></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: zoo
 
@@ -1546,21 +1571,21 @@ The following objects are masked from 'package:base':
 
     as.Date, as.Date.numeric</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Set random seed for reproducibility</span></span>
 <span id="cb7-2"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">set.seed</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">101</span>)</span></code></pre></div>
+font-style: inherit;">101</span>)</span></code></pre></div></div>
 </div>
 </section>
 <section id="create-data" class="level2">
 <h2 class="anchored" data-anchor-id="create-data">Create Data</h2>
 <p>I am going to create data where clustering should matter.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># obs - high so that coeficients are well estimated</span></span>
 <span id="cb8-2">n <span class="ot" style="color: #003B4F;
@@ -1773,14 +1798,14 @@ font-style: inherit;">3</span>]<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">*</span>x2) <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">+</span> error</span></code></pre></div>
+font-style: inherit;">+</span> error</span></code></pre></div></div>
 </div>
 </section>
 <section id="canned-ses" class="level2">
 <h2 class="anchored" data-anchor-id="canned-ses">Canned SEs</h2>
 <p>Here, I’ll quickly show how to get non-robust, robust, and clustered SEs. Note, this approach uses <code>lmtest</code> and <code>sandwich</code>. If I had a lot of FEs, then I would likely use <code>feols</code> package.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Model, non robust</span></span>
 <span id="cb9-2">m1.nonrobust <span class="ot" style="color: #003B4F;
@@ -1825,9 +1850,11 @@ font-style: inherit;"># Function to extract standard errors</span></span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(model) {</span>
 <span id="cb9-11">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> (<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">class</span>(model)[<span class="dv" style="color: #AD0000;
@@ -1848,6 +1875,7 @@ background-color: null;
 font-style: inherit;">vcov</span>(model))))</span>
 <span id="cb9-13">  } <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span> {</span>
 <span id="cb9-14">    <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1912,7 +1940,7 @@ font-style: inherit;">4</span>)))</span>
 <span id="cb9-30"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Display the table</span></span>
-<span id="cb9-31">se_comparison</span></code></pre></div>
+<span id="cb9-31">se_comparison</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Coef Non_Robust Robust Clustered
 (Intercept)  0.9445     0.0541 0.0482    0.2640
@@ -1925,7 +1953,7 @@ x2           2.0216     0.0181 0.0189    0.0456</code></pre>
 <h2 class="anchored" data-anchor-id="estimating-via-optimization">Estimating via Optimization</h2>
 <p>As before, my goal is to write the functions as generally as possible. I do this by first writing a residual function, then a SSR function that calls the residual function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># We are going to code of our sum of squared residuals function</span></span>
 <span id="cb11-2"><span class="co" style="color: #5E5E5E;
@@ -1935,6 +1963,7 @@ font-style: inherit;"># first, write the residual function </span></span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(coef.arg){</span>
 <span id="cb11-4">  b0 <span class="ot" style="color: #003B4F;
 background-color: null;
@@ -1981,6 +2010,7 @@ font-style: inherit;">#       if we do not, then coefs are true but SEs are wron
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(coef.arg){</span>
 <span id="cb11-14">  <span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -2005,6 +2035,7 @@ background-color: null;
 font-style: inherit;">2</span></span>
 <span id="cb11-17">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">is.na</span>(ssr) <span class="sc" style="color: #5E5E5E;
@@ -2088,9 +2119,9 @@ background-color: null;
 font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">3</span>])</span>
-<span id="cb11-34">coef.fin</span></code></pre></div>
+<span id="cb11-34">coef.fin</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  0.9444571 -3.9659487  2.0215917</code></pre>
+<pre><code>[1]  0.9445 -3.9659  2.0216</code></pre>
 </div>
 </div>
 </section>
@@ -2098,7 +2129,7 @@ font-style: inherit;">3</span>])</span>
 <h2 class="anchored" data-anchor-id="manual-non-robust-ses">Manual Non-robust SEs</h2>
 <p>As before, non-robust SEs are the degrees-of-freedom adjusted residual SD scaled squared root of the inverse hessian.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># calculate residuals at final estimate</span></span>
 <span id="cb13-2">resid <span class="ot" style="color: #003B4F;
@@ -2156,14 +2187,14 @@ font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">solve</span>(hessian)))<span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">*</span>s2.hat</span></code></pre></div>
+font-style: inherit;">*</span>s2.hat</span></code></pre></div></div>
 </div>
 </section>
 <section id="manual-robust-ses" class="level2">
 <h2 class="anchored" data-anchor-id="manual-robust-ses">Manual Robust SEs</h2>
 <p>Note, for the robust SEs we need a more intensive estimator. It is called the sandwich estimator. First, we calculate the jacobian, <img src="https://latex.codecogs.com/png.latex?%5Cnabla%20g">, (vector valued gradient) of the residual function, <img src="https://latex.codecogs.com/png.latex?u">, which is in n-by-k. The ‘meat’ of the sandwich by calculating product of the score with itself, under the assumption of heteroskedasticity but independent draws. So, second, we calculate <img src="https://latex.codecogs.com/png.latex?m%20=%20%5Cnabla%20g%5E%5Cmathsf%7BT%7D%20%5Ctimes%20%5Cmathsf%7Bdiag%7D(u%5E2)%5Ctimes%20%5Cnabla%20g">. The ‘bread’ is the the inverse of the covariance of the jacobian. So, third, we calculate <img src="https://latex.codecogs.com/png.latex?b%20=%20%5Cnabla%20g%5E%5Cmathsf%7BT%7D%20%5Cnabla%20g">. Finally, we make a sandwich: <img src="https://latex.codecogs.com/png.latex?%5Cmathsf%7Bvcov%7D_%7B%5Cmathsf%7Brobust%7D%7D(%5Chat%7B%5Cbeta%7D)%20=%20b%5Ctimes%20m%5Ctimes%20b">. And that’s it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Robust SEs manual need the jacobian (multivalued function gradient) wrt the parameters</span></span>
 <span id="cb14-2"><span class="co" style="color: #5E5E5E;
@@ -2236,14 +2267,14 @@ font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">sqrt</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">diag</span>(sandwich.robust))</span></code></pre></div>
+font-style: inherit;">diag</span>(sandwich.robust))</span></code></pre></div></div>
 </div>
 </section>
 <section id="manual-cluster-robust-ses" class="level2">
 <h2 class="anchored" data-anchor-id="manual-cluster-robust-ses">Manual Cluster Robust SEs</h2>
 <p>The cluster robust SEs use the same sandwich principal as the robust; however, we allow the variance-covariance matrix of the errors, <img src="https://latex.codecogs.com/png.latex?%5COmega">, to have a block diagonal structure such that each cluster-group has a dense conditional variance-covariance matrix <img src="https://latex.codecogs.com/png.latex?%5COmega_%7Bc%7D">. Calculating the block diagonal matrix could be a little complicated, but it turns out that, assuming <img src="https://latex.codecogs.com/png.latex?%5COmega"> has the block diagonal structure, <img src="https://latex.codecogs.com/png.latex?g%5E%7B%5Cmathsf%7BT%7D%7D%5COmega%20g"> is <img src="https://latex.codecogs.com/png.latex?k%5Ctimes%20k"> and can be calculated by <img src="https://latex.codecogs.com/png.latex?%5Csum_%7Bc%5Cin%20C%7D%20%5Cnabla%20g_%7Bc%7D%5E%7B%5Cmathsf%7BT%7D%7D%5COmega_%7Bc%7D%20%5Cnabla%20g_%7Bc%7D"> (which are also <img src="https://latex.codecogs.com/png.latex?k%5Ctimes%20k">.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Cluster Robust estimate of V[\hat{\bbeta}]</span></span>
 <span id="cb15-2"><span class="co" style="color: #5E5E5E;
@@ -2284,8 +2315,10 @@ background-color: null;
 font-style: inherit;">ncol</span>(gradient.of.residual))</span>
 <span id="cb15-10"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> (g <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
@@ -2410,7 +2443,7 @@ font-style: inherit;">4</span>)))</span>
 <span id="cb15-31"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Display the table</span></span>
-<span id="cb15-32">se_comparison</span></code></pre></div>
+<span id="cb15-32">se_comparison</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Coef Non_Robust Robust Clustered Non_Robust.2 Robust.2
 (Intercept)  0.9445     0.0541 0.0482    0.2640       0.0541   0.0482
@@ -2429,7 +2462,7 @@ x2               0.0456</code></pre>
 <section id="first-lets-look-at-our-target" class="level2">
 <h2 class="anchored" data-anchor-id="first-lets-look-at-our-target">First Let’s look at our target</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># arbitrary weights for now to highlight difference</span></span>
 <span id="cb17-2">w <span class="ot" style="color: #003B4F;
@@ -2550,12 +2583,12 @@ font-style: inherit;">4</span>)))</span>
 <span id="cb17-23"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Display the table</span></span>
-<span id="cb17-24">se.comparison.w</span></code></pre></div>
+<span id="cb17-24">se.comparison.w</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>               Coef Non_Robust Robust Clustered
-(Intercept)  1.2316     0.0547 0.0653    0.3740
-x1          -3.8870     0.0362 0.0507    0.0642
-x2           2.0300     0.0184 0.0251    0.0586</code></pre>
+<pre><code>              Coef Non_Robust Robust Clustered
+(Intercept)  1.232     0.0547 0.0653    0.3740
+x1          -3.887     0.0362 0.0507    0.0642
+x2           2.030     0.0184 0.0251    0.0586</code></pre>
 </div>
 </div>
 </section>
@@ -2563,10 +2596,11 @@ x2           2.0300     0.0184 0.0251    0.0586</code></pre>
 <h2 class="anchored" data-anchor-id="manual-wls-estimates">Manual WLS estimates</h2>
 <p>Adding weights to our estimation set up is trivial for coefficients.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1">f.ssr.w <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1">f.ssr.w <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(coef.arg){</span>
 <span id="cb19-2">  <span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -2593,6 +2627,7 @@ background-color: null;
 font-style: inherit;">2</span></span>
 <span id="cb19-5">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">is.na</span>(ssr) <span class="sc" style="color: #5E5E5E;
@@ -2676,9 +2711,9 @@ background-color: null;
 font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">3</span>])</span>
-<span id="cb19-22">coef.fin.w</span></code></pre></div>
+<span id="cb19-22">coef.fin.w</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  1.231613 -3.887036  2.029959</code></pre>
+<pre><code>[1]  1.232 -3.887  2.030</code></pre>
 </div>
 </div>
 </section>
@@ -2686,7 +2721,7 @@ font-style: inherit;">3</span>])</span>
 <h2 class="anchored" data-anchor-id="non-robust-ses-of-wls">Non-Robust SEs of WLS</h2>
 <p>Non-robust weighed SEs only require adjusting the scaling factor for the weights.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># the residual function does not change but the estimates do!</span></span>
 <span id="cb21-2">resid.w <span class="ot" style="color: #003B4F;
@@ -2745,14 +2780,14 @@ font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">solve</span>(hessian.w)))<span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">*</span>s2.hat.w</span></code></pre></div>
+font-style: inherit;">*</span>s2.hat.w</span></code></pre></div></div>
 </div>
 </section>
 <section id="robust-ses-of-wls" class="level2">
 <h2 class="anchored" data-anchor-id="robust-ses-of-wls">Robust SEs of WLS</h2>
 <p>Robust weighed SEs require a weighting matrix be added to the sandwich formula.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># can use the same gradient function, but new coef! </span></span>
 <span id="cb22-2">gradient.of.residual.w <span class="ot" style="color: #003B4F;
@@ -2824,14 +2859,14 @@ font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">sqrt</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">diag</span>(vcov.w))</span></code></pre></div>
+font-style: inherit;">diag</span>(vcov.w))</span></code></pre></div></div>
 </div>
 </section>
 <section id="robust-clustered-ses-of-wls" class="level2">
 <h2 class="anchored" data-anchor-id="robust-clustered-ses-of-wls">Robust Clustered SEs of WLS</h2>
 <p>Cluster robust weighed SEs require a weighting matrix be added to the sandwich formula.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># can use the same gradient</span></span>
 <span id="cb23-2"><span class="co" style="color: #5E5E5E;
@@ -2869,8 +2904,10 @@ background-color: null;
 font-style: inherit;">ncol</span>(gradient.of.residual.w))</span>
 <span id="cb23-9"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> (g <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
@@ -3009,12 +3046,12 @@ font-style: inherit;">4</span>)))</span>
 <span id="cb23-30"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Display the table</span></span>
-<span id="cb23-31">se.comparison.w</span></code></pre></div>
+<span id="cb23-31">se.comparison.w</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>               Coef Non_Robust Robust Clustered Non_Robust.2 Robust.2
-(Intercept)  1.2316     0.0547 0.0653    0.3740       0.0541   0.0653
-x1          -3.8870     0.0362 0.0507    0.0642       0.0361   0.0506
-x2           2.0300     0.0184 0.0251    0.0586       0.0181   0.0251
+<pre><code>              Coef Non_Robust Robust Clustered Non_Robust.2 Robust.2
+(Intercept)  1.232     0.0547 0.0653    0.3740       0.0541   0.0653
+x1          -3.887     0.0362 0.0507    0.0642       0.0361   0.0506
+x2           2.030     0.0184 0.0251    0.0586       0.0181   0.0251
             Clustered.2
 (Intercept)      0.3740
 x1               0.0642
@@ -3035,14 +3072,15 @@ x2               0.0586</code></pre>
   <category>Sandwich</category>
   <category>Clustered</category>
   <category>Random Weights</category>
-  <guid>https://clukewatson.github.io/posts/2024-09-13-robust-ses-manual-2/index.html</guid>
+  <guid>https://clukewatson.github.io/posts/2024-09-13-robust-ses-manual-2/</guid>
   <pubDate>Thu, 12 Sep 2024 04:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Manual Calculation of SEs from Optimization</title>
   <dc:creator>C. Luke Watson</dc:creator>
-  <link>https://clukewatson.github.io/posts/2024-09-04-robust-ses-manual/index.html</link>
+  <link>https://clukewatson.github.io/posts/2024-09-04-robust-ses-manual/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -3050,7 +3088,7 @@ x2               0.0586</code></pre>
 <section id="set-up" class="level2">
 <h2 class="anchored" data-anchor-id="set-up">Set up</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># clear workspace</span></span>
 <span id="cb1-2"><span class="fu" style="color: #4758AB;
@@ -3062,33 +3100,33 @@ background-color: null;
 font-style: inherit;">ls</span>())</span>
 <span id="cb1-3"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">gc</span>()</span></code></pre></div>
+font-style: inherit;">gc</span>()</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
-Ncells  574682 30.7    1307317 69.9         NA   669262 35.8
-Vcells 1051021  8.1    8388608 64.0     102400  1839961 14.1</code></pre>
+Ncells 1075257 57.5    1668088 89.1         NA  1668088 89.1
+Vcells 1884654 14.4    8388608 64.0      49152  3363794 25.7</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># libraries</span></span>
 <span id="cb3-2"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(tidyverse)  <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># general data manipulation</span></span></code></pre></div>
+font-style: inherit;"># general data manipulation</span></span></code></pre></div></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-✔ purrr     1.0.1     
+✔ dplyr     1.1.4     ✔ readr     2.1.6
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.1     ✔ tibble    3.3.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.2
+✔ purrr     1.2.1     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(broom)      <span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -3107,7 +3145,7 @@ font-style: inherit;"># Adjust standard errors</span></span>
 background-color: null;
 font-style: inherit;">library</span>(lmtest)     <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># Recalculate model errors with sandwich functions with coeftest()</span></span></code></pre></div>
+font-style: inherit;"># Recalculate model errors with sandwich functions with coeftest()</span></span></code></pre></div></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: zoo
 
@@ -3117,21 +3155,21 @@ The following objects are masked from 'package:base':
 
     as.Date, as.Date.numeric</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Set random seed for reproducibility</span></span>
 <span id="cb7-2"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">set.seed</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">1701</span>)</span></code></pre></div>
+font-style: inherit;">1701</span>)</span></code></pre></div></div>
 </div>
 </section>
 <section id="create-data" class="level2">
 <h2 class="anchored" data-anchor-id="create-data">Create Data</h2>
 <p>I am adding heteroskedasticity so that I can see the difference between non-robust and robust SEs.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># obs - high so that coeficients are well estimated</span></span>
 <span id="cb8-2">n <span class="ot" style="color: #003B4F;
@@ -3239,13 +3277,13 @@ font-style: inherit;">3</span>]<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">*</span>x2) <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">+</span> error</span></code></pre></div>
+font-style: inherit;">+</span> error</span></code></pre></div></div>
 </div>
 </section>
 <section id="canned-ols" class="level2">
 <h2 class="anchored" data-anchor-id="canned-ols">Canned OLS</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># OLS with canned procedure </span></span>
 <span id="cb9-2">m1 <span class="ot" style="color: #003B4F;
@@ -3259,7 +3297,7 @@ background-color: null;
 font-style: inherit;">+</span> x2)</span>
 <span id="cb9-3"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">tidy</span>(m1)</span></code></pre></div>
+font-style: inherit;">tidy</span>(m1)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   term        estimate std.error statistic   p.value
@@ -3275,7 +3313,7 @@ font-style: inherit;">tidy</span>(m1)</span></code></pre></div>
 <p>This is really where I need the refresher. I found that most treatments wrote up the theory using general functions, but gave the examples with application specific functional forms. To me, this obscured more than helped. I find that the best thing to do is to directly code the theory to really get what is going on and get the most generalizable (application agnostic) code… plus I think it helps one understand the theory more.</p>
 <p>My goal is to replicate the standard errors using as general coding as possible. I think the key to this is by specifying a residual function directly and calling that within the SSR function. Even though I am doing OLS, I never actually use any functional form related to OLS outside of the residual function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># We are going to code of our sum of squared residuals function</span></span>
 <span id="cb11-2"><span class="co" style="color: #5E5E5E;
@@ -3285,6 +3323,7 @@ font-style: inherit;"># first, write the residual function </span></span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(coef.arg){</span>
 <span id="cb11-4">  b0 <span class="ot" style="color: #003B4F;
 background-color: null;
@@ -3331,6 +3370,7 @@ font-style: inherit;">#       if we do not, then coefs are true but SEs are wron
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(coef.arg){</span>
 <span id="cb11-14">  <span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -3355,6 +3395,7 @@ background-color: null;
 font-style: inherit;">2</span></span>
 <span id="cb11-17">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">is.na</span>(ssr) <span class="sc" style="color: #5E5E5E;
@@ -3420,7 +3461,7 @@ font-style: inherit;">1</span>),</span>
 <span id="cb11-29">                  <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">hessian=</span>T</span>
-<span id="cb11-30">)</span></code></pre></div>
+<span id="cb11-30">)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>fn is  fn1 
 Looking for method =  BFGS 
@@ -3438,10 +3479,10 @@ Compute Hessian approximation at finish of  BFGS
 Compute gradient approximation at finish of  BFGS 
 Save results from method  BFGS 
 $par
-[1]  1.007687 -3.977331  1.991223
+[1]  1.008 -3.977  1.991
 
 $value
-[1] 45464.22
+[1] 45464
 
 $message
 NULL
@@ -3451,7 +3492,7 @@ $convcode
 
 $fevals
 function 
-      31 
+      40 
 
 $gevals
 gradient 
@@ -3468,11 +3509,11 @@ $kkt2
 
 $xtimes
 user.self 
-    0.019 
+    0.005 
 
 Assemble the answers</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># final coefs</span></span>
 <span id="cb13-2">coef.fin <span class="ot" style="color: #003B4F;
@@ -3488,9 +3529,9 @@ background-color: null;
 font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">3</span>])</span>
-<span id="cb13-3">coef.fin</span></code></pre></div>
+<span id="cb13-3">coef.fin</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  1.007687 -3.977331  1.991223</code></pre>
+<pre><code>[1]  1.008 -3.977  1.991</code></pre>
 </div>
 </div>
 </section>
@@ -3498,7 +3539,7 @@ font-style: inherit;">3</span>])</span>
 <h2 class="anchored" data-anchor-id="non-robust-ses">Non-robust SEs</h2>
 <p>Non-robust SEs are the degrees-of-freedom adjusted residual SD scaled squared root of the inverse hessian.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># calculate residuals at final estimate</span></span>
 <span id="cb15-2">resid <span class="ot" style="color: #003B4F;
@@ -3563,7 +3604,7 @@ background-color: null;
 font-style: inherit;"># compare SEs from canned and manual</span></span>
 <span id="cb15-12"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">tidy</span>(m1)</span></code></pre></div>
+font-style: inherit;">tidy</span>(m1)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   term        estimate std.error statistic   p.value
@@ -3572,13 +3613,13 @@ font-style: inherit;">tidy</span>(m1)</span></code></pre></div>
 2 x1             -3.98    0.0299    -133.  0        
 3 x2              1.99    0.0152     131.  0        </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">print</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">round</span>(se.hessian,<span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">4</span>))</span></code></pre></div>
+font-style: inherit;">4</span>))</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.0450 0.0299 0.0152</code></pre>
 </div>
@@ -3587,7 +3628,7 @@ font-style: inherit;">4</span>))</span></code></pre></div>
 <section id="canned-robust-ses" class="level2">
 <h2 class="anchored" data-anchor-id="canned-robust-ses">Canned Robust SEs</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Robust standard errors with lm()</span></span>
 <span id="cb19-2">m1.robust <span class="ot" style="color: #003B4F;
@@ -3599,7 +3640,7 @@ background-color: null;
 font-style: inherit;">vcov =</span> vcovHC)</span>
 <span id="cb19-3"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">tidy</span>(m1)</span></code></pre></div>
+font-style: inherit;">tidy</span>(m1)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   term        estimate std.error statistic   p.value
@@ -3608,9 +3649,9 @@ font-style: inherit;">tidy</span>(m1)</span></code></pre></div>
 2 x1             -3.98    0.0299    -133.  0        
 3 x2              1.99    0.0152     131.  0        </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">tidy</span>(m1.robust)</span></code></pre></div>
+font-style: inherit;">tidy</span>(m1.robust)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   term        estimate std.error statistic   p.value
@@ -3626,7 +3667,7 @@ font-style: inherit;">tidy</span>(m1.robust)</span></code></pre></div>
 <p>Note, for the robust SEs we need a more intensive estimator. First, we needed the jacobian (vector valued gradient) of the residual function, which is in n-by-k. Second, we need to form the meat using that jacobian and the covariance matrix of the residuals. Third, we need to get the inverse of the covariance of the jacobian. Finally, we make a sandwich.</p>
 <p>And that’s it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Robust SEs manual need the jacobian (multivalued function gradient) wrt the parameters</span></span>
 <span id="cb23-2"><span class="co" style="color: #5E5E5E;
@@ -3727,7 +3768,7 @@ background-color: null;
 font-style: inherit;"># </span></span>
 <span id="cb23-26"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">tidy</span>(m1.robust)</span></code></pre></div>
+font-style: inherit;">tidy</span>(m1.robust)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   term        estimate std.error statistic   p.value
@@ -3736,13 +3777,13 @@ font-style: inherit;">tidy</span>(m1.robust)</span></code></pre></div>
 2 x1             -3.98    0.0312    -127.  0        
 3 x2              1.99    0.0155     129.  0        </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">print</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">round</span>(robust_se,<span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">4</span>))</span></code></pre></div>
+font-style: inherit;">4</span>))</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.0382 0.0312 0.0154</code></pre>
 </div>
@@ -3763,14 +3804,15 @@ font-style: inherit;">4</span>))</span></code></pre></div>
   <category>Gradient</category>
   <category>Hessian</category>
   <category>Sandwich</category>
-  <guid>https://clukewatson.github.io/posts/2024-09-04-robust-ses-manual/index.html</guid>
+  <guid>https://clukewatson.github.io/posts/2024-09-04-robust-ses-manual/</guid>
   <pubDate>Wed, 04 Sep 2024 04:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Nested Logit Gradient</title>
   <dc:creator>C. Luke Watson</dc:creator>
-  <link>https://clukewatson.github.io/posts/2024-04-18-nested-logit-gradient/index.html</link>
+  <link>https://clukewatson.github.io/posts/2024-04-18-nested-logit-gradient/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -3783,14 +3825,15 @@ font-style: inherit;">4</span>))</span></code></pre></div>
   <category>Notes</category>
   <category>Nested Logit</category>
   <category>Gradient</category>
-  <guid>https://clukewatson.github.io/posts/2024-04-18-nested-logit-gradient/index.html</guid>
+  <guid>https://clukewatson.github.io/posts/2024-04-18-nested-logit-gradient/</guid>
   <pubDate>Thu, 18 Apr 2024 04:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Regression Cumulative (Average) Abnormal Returns</title>
   <dc:creator>C. Luke Watson</dc:creator>
-  <link>https://clukewatson.github.io/posts/2024-02-26-abnormal-returns-es/index.html</link>
+  <link>https://clukewatson.github.io/posts/2024-02-26-abnormal-returns-es/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -3853,15 +3896,17 @@ font-style: inherit;">4</span>))</span></code></pre></div>
 <section id="stata" class="level3">
 <h3 class="anchored" data-anchor-id="stata">Stata</h3>
 <p>Let the training period be <img src="https://latex.codecogs.com/png.latex?%5Ctau%20%5Cin%20%5BY_0,Y_1%5D"> and the event period be <img src="https://latex.codecogs.com/png.latex?%5Ctau%20%5Cin%20%5BZ_0,Z_1%5D">.</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><span class="kw" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">reg</span> rj f* D* <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> firm==j &amp; ( <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">inrange</span>(et,Y0,Y1) | <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">inrange</span>(et,Z0,Z1) )</span></code></pre></div>
+font-style: inherit;">inrange</span>(et,Z0,Z1) )</span></code></pre></div></div>
 </section>
 </section>
 <section id="regression-for-car" class="level2">
@@ -3872,15 +3917,17 @@ font-style: inherit;">inrange</span>(et,Z0,Z1) )</span></code></pre></div>
 <section id="stata-1" class="level3">
 <h3 class="anchored" data-anchor-id="stata-1">Stata</h3>
 <p>Let the training period be <img src="https://latex.codecogs.com/png.latex?%5Ctau%20%5Cin%20%5BY_0,Y_1%5D"> and the event period be <img src="https://latex.codecogs.com/png.latex?%5Ctau%20%5Cin%20%5BZ_0,Z_1%5D">.</p>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><span class="kw" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">reg</span> rj f* Q* <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> firm==j &amp; ( <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">inrange</span>(et,Y0,Y1) | <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">inrange</span>(et,Z0,Z1) )</span></code></pre></div>
+font-style: inherit;">inrange</span>(et,Z0,Z1) )</span></code></pre></div></div>
 </section>
 </section>
 <section id="regressions-for-aar-and-caar" class="level2">
@@ -3889,30 +3936,36 @@ font-style: inherit;">inrange</span>(et,Z0,Z1) )</span></code></pre></div>
 <section id="stata-2" class="level3">
 <h3 class="anchored" data-anchor-id="stata-2">Stata</h3>
 <p>Let the training period be <img src="https://latex.codecogs.com/png.latex?%5Ctau%20%5Cin%20%5BY_0,Y_1%5D"> and the event period be <img src="https://latex.codecogs.com/png.latex?%5Ctau%20%5Cin%20%5BZ_0,Z_1%5D">. Let <img src="https://latex.codecogs.com/png.latex?G"> be an categorical (factor) variable for firms. Note, we are still letting the expectation function be firm-specific, but are forcing the variables on the dummies to be equal across firms, which has the effect of calculating the AAR and CAAR.</p>
-<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1">* AAR</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1">* AAR</span>
 <span id="cb3-2">reghdfe rj D* <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> ( <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">inrange</span>(et,Y0,Y1) | <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">inrange</span>(et,Z0,Z1) ), absorb(i.G##c.(f*)) <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">vce</span>(<span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">cluster</span> G)</span>
 <span id="cb3-3">* CAAR</span>
 <span id="cb3-4">reghdfe rj Q* <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> ( <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">inrange</span>(et,Y0,Y1) | <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">inrange</span>(et,Z0,Z1) ), absorb(i.G##c.(f*)) <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">vce</span>(<span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">cluster</span> G)</span></code></pre></div>
+font-weight: bold;
+font-style: inherit;">cluster</span> G)</span></code></pre></div></div>
 </section>
 </section>
 <section id="standard-errors" class="level2">
@@ -3930,14 +3983,15 @@ font-style: inherit;">cluster</span> G)</span></code></pre></div>
   <category>Abnormal Returns</category>
   <category>Regression</category>
   <category>Stata</category>
-  <guid>https://clukewatson.github.io/posts/2024-02-26-abnormal-returns-es/index.html</guid>
+  <guid>https://clukewatson.github.io/posts/2024-02-26-abnormal-returns-es/</guid>
   <pubDate>Mon, 26 Feb 2024 05:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Isolated Places</title>
   <dc:creator>C. Luke Watson</dc:creator>
-  <link>https://clukewatson.github.io/posts/2023-09-17-isolated-places/index.html</link>
+  <link>https://clukewatson.github.io/posts/2023-09-17-isolated-places/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -3972,7 +4026,7 @@ font-style: inherit;">cluster</span> G)</span></code></pre></div>
 </ol>
 <p>Thus, I will try to replicate his dataset. Point 1 highlights that I do not know how ACW geolocates the places and I use the NBER file. Although, I have done the analysis using population weighted centroids from GEOCORR, and find essentially no differences. Point 4 is actually a little tricky to deal with, so I am going to skip it for now and merge the ACW data with NBER distance data (and population data from NHGIS).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Load libraries</span></span>
 <span id="cb1-2"><span class="fu" style="color: #4758AB;
@@ -4463,7 +4517,7 @@ background-color: null;
 font-style: inherit;">4000</span>]))</span>
 <span id="cb1-72"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># = 20</span></span></code></pre></div>
+font-style: inherit;"># = 20</span></span></code></pre></div></div>
 </div>
 <p>So there are 20 places that seemingly violate the ACW rule. One example is Oak Grove city of KY (pop 7,064) and Clarksville city of TN (pop 103,455) that are 7.64 miles apart. Another is Two Rivers city of WI (pop 12,639) and Manitowoc city also of WI (pop 34,053) that are 6.34 miles apart. Ultimately, there are 82 places that have population above 4000 and between (1,20) miles based on NBER.</p>
 </section>
@@ -4471,7 +4525,7 @@ font-style: inherit;"># = 20</span></span></code></pre></div>
 <h2 class="anchored" data-anchor-id="taking-a-stab-at-isolated-towns">Taking a stab at isolated towns</h2>
 <p>The following code uses the first three rules to create a list of towns.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">clw.df <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">clw.df <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> place.<span class="fl" style="color: #AD0000;
 background-color: null;
@@ -4675,7 +4729,7 @@ background-color: null;
 font-style: inherit;">5000</span>])</span>
 <span id="cb2-31"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># =243</span></span></code></pre></div>
+font-style: inherit;"># =243</span></span></code></pre></div></div>
 </div>
 <p>But one thing that I noticed is that many of these towns still have many neighbors and high surrounding populations even if no place has a large population. The mean population within 20 miles of an isolated town is about 6,600 people and the median is about 5,800. There are 112 towns with over 10,000 around them () There are only 243 isolated towns using the three rules with a surrounding population less than 5,000. This issue is also present in the ACW data.</p>
 </section>
@@ -4683,7 +4737,7 @@ font-style: inherit;"># =243</span></span></code></pre></div>
 <h2 class="anchored" data-anchor-id="using-all-four-rules-to-make-isolated-towns">Using all four rules to make isolated towns</h2>
 <p>I am going to interpret rule 4 (again, this is if the centroid is within X miles then the same town) to include any place no matter the population (whereas, I expect that ACW meant it only for those places with over 4,000 population), I am going to do this in a network way (so that if A is close to B and B is close to C, then {A,B,C} are in a group together), and I am going to use 2 miles rather than 1 mile as in ACW. I am going to find groups by using the <code>igraph</code> package.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(igraph)</span>
 <span id="cb3-2"></span>
@@ -5199,7 +5253,7 @@ background-color: null;
 font-style: inherit;">5000</span>])</span>
 <span id="cb3-81"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># =316</span></span></code></pre></div>
+font-style: inherit;"># =316</span></span></code></pre></div></div>
 </div>
 <p>This increases the number of isolated towns because there are small close places that end up being added together to get above 4,000 population. There are 112 places that are in <strong>v.clw.df</strong> but not <strong>clw.df</strong> and two in <strong>clw.df</strong> but not in <strong>v.clw.df</strong>. The mean and median population around a town has gone down, likely because some have been absorbed into the new combined place. Finally, there are again 112 places that have surrounding populations over 10,000.</p>
 </section>
@@ -5216,66 +5270,15 @@ font-style: inherit;"># =316</span></span></code></pre></div>
   <category>Urban</category>
   <category>Entry Model</category>
   <category>Data</category>
-  <guid>https://clukewatson.github.io/posts/2023-09-17-isolated-places/index.html</guid>
+  <guid>https://clukewatson.github.io/posts/2023-09-17-isolated-places/</guid>
   <pubDate>Sun, 17 Sep 2023 04:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>A New Website</title>
-  <dc:creator>C. Luke Watson</dc:creator>
-  <link>https://clukewatson.github.io/posts/2022-07-31-something-new/index.html</link>
-  <description><![CDATA[ 
-
-
-
-<p><img src="https://clukewatson.github.io/posts/2022-07-31-something-new/jeffpeterson.png" class="img-fluid"></p>
-<p>I saw a couple of websites and thought mine could do with an update. In particular, <a href="https://www.andrewheiss.com">Andrew Heiss</a> has an <strong>amazing</strong> website… but I don’t know how to replicate it. Thus, I am borrowing from <a href="https://www.mm218.dev">Mike Mahoney</a> before <em>he</em> creates something too advanced for me to follow.</p>
-<section id="how-did-i-do-it" class="level2">
-<h2 class="anchored" data-anchor-id="how-did-i-do-it">How did I do it</h2>
-<section id="tools" class="level3">
-<h3 class="anchored" data-anchor-id="tools">Tools</h3>
-<ol type="1">
-<li>I used Rstudio + quarto, which I learned about through <a href="https://www.andrewheiss.com">Andrew Heiss</a>’s twitter.</li>
-<li>I saw <a href="https://www.mm218.dev">Mike Mahoney</a>’s website in the quarto gallery</li>
-<li>I already had Github account and the desktop app</li>
-</ol>
-</section>
-<section id="steps" class="level3">
-<h3 class="anchored" data-anchor-id="steps">Steps</h3>
-<ol type="1">
-<li>I downloaded <a href="https://www.mm218.dev">Mike Mahoney</a>’s website</li>
-<li>I changed all the content to match what I wanted</li>
-<li>I used the <a href="https://quarto.org/docs/publishing/github-pages.html">Quarto guide on Github Pages</a>, but I also had to google a bit to figure out some stuff
-<ol type="a">
-<li>Name the folder with the website content something (e.g., tmp_website)</li>
-<li>On Github, new repository named “username.github.io”, initialize with a readme file, then “create”</li>
-<li>On code-tab, create new branch called “gh-pages”, next, in same tab, click “2 branches”, next switch branch to “gh-pages” from “main”, and then delete “main”</li>
-<li>Create “username.github.io” folder, paste website contents into the folder</li>
-<li>Add the “Ignore Content” item to the .gitignore folder (will likely need to use ‘open with’ and pick a program)</li>
-<li>Using the Github desktop app, sync the new items to Github website</li>
-<li>In terminal (or command line), cd to username.github.io, next type quarto publish gh-pages and hit enter, and say yes to any questions</li>
-</ol></li>
-<li>The website should go live within a few minutes (as long as not uploading big data files)</li>
-</ol>
-<p><img src="https://clukewatson.github.io/posts/2022-07-31-something-new/name-it.png" class="img-fluid"></p>
-<p><img src="https://clukewatson.github.io/posts/2022-07-31-something-new/add-branch.png" class="img-fluid"></p>
-
-
-</section>
-</section>
-
- ]]></description>
-  <category>Website</category>
-  <category>Quarto</category>
-  <category>Tutorials</category>
-  <category>Github</category>
-  <guid>https://clukewatson.github.io/posts/2022-07-31-something-new/index.html</guid>
-  <pubDate>Sun, 31 Jul 2022 04:00:00 GMT</pubDate>
 </item>
 <item>
   <title>First year notes on preference relations</title>
   <dc:creator>C. Luke Watson</dc:creator>
-  <link>https://clukewatson.github.io/posts/2020-06-09_preference_relations/index.html</link>
+  <link>https://clukewatson.github.io/posts/2020-06-09_preference_relations/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -5287,14 +5290,15 @@ font-style: inherit;"># =316</span></span></code></pre></div>
   <category>Notes</category>
   <category>Preferences</category>
   <category>PHD Micro</category>
-  <guid>https://clukewatson.github.io/posts/2020-06-09_preference_relations/index.html</guid>
+  <guid>https://clukewatson.github.io/posts/2020-06-09_preference_relations/</guid>
   <pubDate>Tue, 09 Jun 2020 04:00:00 GMT</pubDate>
 </item>
 <item>
   <title>TFP Guide</title>
   <dc:creator>C. Luke Watson</dc:creator>
-  <link>https://clukewatson.github.io/posts/2018-06-18-tfp-guide/index.html</link>
+  <link>https://clukewatson.github.io/posts/2018-06-18-tfp-guide/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -5306,7 +5310,7 @@ font-style: inherit;"># =316</span></span></code></pre></div>
   <category>Notes</category>
   <category>TFP</category>
   <category>Production Function Estimation</category>
-  <guid>https://clukewatson.github.io/posts/2018-06-18-tfp-guide/index.html</guid>
+  <guid>https://clukewatson.github.io/posts/2018-06-18-tfp-guide/</guid>
   <pubDate>Mon, 18 Jun 2018 04:00:00 GMT</pubDate>
 </item>
 </channel>

@@ -43,6 +43,20 @@
   padding-right: 2rem;
 }
 
+/* Research page - tighten spacing */
+.page-layout-article h1 {
+  margin-bottom: 0.4rem;
+}
+
+.page-layout-article p {
+  margin-bottom: 0.2rem;
+}
+
+.page-layout-article details {
+  margin-top: 0.3rem;
+  margin-bottom: 1.1rem;
+}
+
 @media (max-width: 768px) {
   .profile-layout {
     grid-template-columns: 1fr;
