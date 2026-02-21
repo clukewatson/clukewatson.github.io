@@ -43,6 +43,12 @@
   padding-right: 2rem;
 }
 
+/* Disclaimer */
+.disclaimer {
+  font-size: 0.78rem;
+  color: #999;
+}
+
 /* Research page - tighten spacing */
 .page-layout-article h1 {
   margin-bottom: 0.4rem;

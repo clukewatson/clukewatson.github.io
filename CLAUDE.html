@@ -6,11 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="C. Luke Watson">
-<meta name="dcterms.date" content="2025-03-17">
-<meta name="description" content="A worked example showing why including an instrument in the structural equation is not a valid test of the exclusion restriction.">
 
-<title>You Cannot Test the Exclusion Restriction – C. Luke Watson</title>
+<title>claude – C. Luke Watson</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -26,24 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-08f77b25a02f10920d935ddb46a1957e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-08f77b25a02f10920d935ddb46a1957e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,37 +69,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed fullcontent quarto-light">
@@ -112,7 +80,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">C. Luke Watson</span>
     </a>
   </div>
@@ -123,23 +91,23 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../research/index.html"> 
+    <a class="nav-link" href="./research/index.html"> 
 <span class="menu-text">Research</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../teaching/index.html"> 
+    <a class="nav-link" href="./teaching/index.html"> 
 <span class="menu-text">Teaching</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="./blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../files/clw_cv.pdf"> 
+    <a class="nav-link" href="./files/clw_cv.pdf"> 
 <span class="menu-text">CV</span></a>
   </li>  
 </ul>
@@ -155,210 +123,63 @@ window.Quarto = {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">You Cannot Test the Exclusion Restriction</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">Notes</div>
-    <div class="quarto-category">Exclusion Restriction</div>
-    <div class="quarto-category">Instrumental Variables</div>
-  </div>
-  </div>
-
-<div>
-  <div class="description">
-    A worked example showing why including an instrument in the structural equation is not a valid test of the exclusion restriction.
-  </div>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>C. Luke Watson </p>
-          </div>
-  </div>
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">March 17, 2025</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
 
 
-</header>
-
-
-<section id="you-cannot-test-the-exclusion-restriction" class="level1">
-<h1>You Cannot Test the Exclusion Restriction</h1>
-<p>We all know that the exclusion restriction cannot really be tested. However, it seems very tempting to try.</p>
-<p>Suppose we have the following setup:</p>
-<ol type="1">
-<li>True Structural equation: <span class="math inline">\(y = \beta x + u\)</span><br>
-</li>
-<li>Endogeneity: <span class="math inline">\(Cov(x,u) = \rho\)</span> (non-zero)<br>
-</li>
-<li>First stage: <span class="math inline">\(x = \pi z + e\)</span><br>
-</li>
-<li><span class="math inline">\(z\)</span> is exogenous: <span class="math inline">\(Cov(z,u) = 0\)</span> (instrument validity)</li>
-</ol>
-<p>What about regressing <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span> and then doing a hypothesis test of <span class="math inline">\(z\)</span>’s coefficient? Specify the alternative model (augmented structural equation): <span class="math inline">\(y = \beta x + \gamma z + u\)</span>.</p>
-<p>Upshot: the coefficient in this case equals:</p>
-<p><span class="math display">\[
-\hat{\gamma} = \gamma - \frac{\rho \pi}{\sigma_e^2}
-\]</span> where <span class="math inline">\(\sigma^2_z = Var(z)\)</span>, <span class="math inline">\(\sigma^2_e = Var(e)\)</span>.</p>
-<p>Even if <span class="math inline">\(\gamma=0\)</span>, <span class="math inline">\(\hat{\gamma}\)</span> is not zero unless (1) <span class="math inline">\(\rho=0\)</span> (no endogeneity) or (2) <span class="math inline">\(\pi=0\)</span> (no relevance). If <span class="math inline">\(\gamma\ne 0\)</span>, then knife-edge cases can occur.</p>
+<section id="claude-code-prompt-add-teaching-page-to-clukewatson.github.io" class="level1">
+<h1>Claude Code Prompt: Add Teaching Page to clukewatson.github.io</h1>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Add a new Teaching page to my academic research website and update site-wide navigation to include it. See <code>teaching_page_context.md</code> for full content details and style guidance.</p>
+<hr>
 </section>
-<section id="derivation" class="level1">
-<h1>Derivation</h1>
-<section id="direct-substitution-approach" class="level2">
-<h2 class="anchored" data-anchor-id="direct-substitution-approach">Direct Substitution Approach</h2>
-<p>Let’s use a direct substitution approach.</p>
-<p>We estimate the equation:</p>
-<p><span class="math display">\[y = \theta_1 x + \theta_2 z + v\]</span> Remember, this is a regression we are running, not the true model that we specified above.</p>
-<p>The OLS estimators <span class="math inline">\(\hat{\theta}_1\)</span> and <span class="math inline">\(\hat{\theta}_2\)</span> solve the normal equations:</p>
-<p><span class="math display">\[
-\begin{bmatrix}
-\sum x_i^2 &amp; \sum x_i z_i \\
-\sum x_i z_i &amp; \sum z_i^2
-\end{bmatrix}
-\begin{bmatrix}
-\hat{\theta}_1 \\
-\hat{\theta}_2
-\end{bmatrix} =
-\begin{bmatrix}
-\sum x_i y_i \\
-\sum z_i y_i
-\end{bmatrix}
-\]</span></p>
-<p>In large samples, these converge to:</p>
-<p><span class="math display">\[
-\begin{bmatrix}
-E[x^2] &amp; E[xz] \\
-E[xz] &amp; E[z^2]
-\end{bmatrix}
-\begin{bmatrix}
-\text{plim}(\hat{\theta}_1) \\
-\text{plim}(\hat{\theta}_2)
-\end{bmatrix} =
-\begin{bmatrix}
-E[xy] \\
-E[zy]
-\end{bmatrix}
-\]</span></p>
-<p>Let’s substitute our model equations. Recall: <span class="math inline">\(x = \pi z + e\)</span> (first stage) and <span class="math inline">\(y = \beta x + \gamma z + u\)</span> (augmented structural equation).</p>
-<p>Now let’s compute the relevant expectations:</p>
-<p><strong><span class="math inline">\(E[xz]\)</span></strong></p>
-<p><span class="math display">\[
-\begin{align}
-E[xz] &amp;= E[(\pi z + e)z] \\
-&amp;= \pi E[z^2] + E[ez] \\
-&amp;= \pi \sigma_z^2
-\end{align}
-\]</span></p>
-<p>where <span class="math inline">\(\sigma_z^2 = E[z^2]\)</span> (assuming <span class="math inline">\(E[z] = 0\)</span> for simplicity and <span class="math inline">\(E[ez] = 0\)</span> by construction)</p>
-<p><strong><span class="math inline">\(E[x^2]\)</span></strong></p>
-<p><span class="math display">\[
-\begin{align}
-E[x^2] &amp;= E[(\pi z + e)^2] \\
-&amp;= \pi^2 E[z^2] + 2\pi E[ez] + E[e^2] \\
-&amp;= \pi^2 \sigma_z^2 + \sigma_e^2
-\end{align}
-\]</span></p>
-<p>where <span class="math inline">\(\sigma_e^2 = E[e^2]\)</span></p>
-<p><strong><span class="math inline">\(E[xy]\)</span></strong></p>
-<p><span class="math display">\[
-\begin{align}
-E[xy] &amp;= E[(\pi z + e)(\beta x + \gamma z + u)] \\
-&amp;= \beta E[x^2] + \gamma E[xz] + E[xu] \\
-&amp;= \beta (\pi^2 \sigma_z^2 + \sigma_e^2) + \gamma \pi \sigma_z^2 + \rho
-\end{align}
-\]</span></p>
-<p><strong><span class="math inline">\(E[zy]\)</span></strong></p>
-<p><span class="math display">\[
-\begin{align}
-E[zy] &amp;= E[z(\beta x + \gamma z + u)] \\
-&amp;= \beta E[zx] + \gamma E[z^2] + E[zu] \\
-&amp;= \beta \pi \sigma_z^2 + \gamma \sigma_z^2 + 0
-\end{align}
-\]</span></p>
-<p>(as <span class="math inline">\(E[zu] = 0\)</span> by the exclusion restriction assumption)</p>
-<p>Now we can solve the system of equations:</p>
-<p><span class="math display">\[
-\begin{bmatrix}
-\pi^2 \sigma_z^2 + \sigma_e^2 &amp; \pi \sigma_z^2 \\
-\pi \sigma_z^2 &amp; \sigma_z^2
-\end{bmatrix}
-\begin{bmatrix}
-\text{plim}(\hat{\theta}_1) \\
-\text{plim}(\hat{\theta}_2)
-\end{bmatrix} =
-\begin{bmatrix}
-\beta (\pi^2 \sigma_z^2 + \sigma_e^2) + \gamma \pi \sigma_z^2 + \rho \\
-\beta \pi \sigma_z^2 + \gamma \sigma_z^2
-\end{bmatrix}
-\]</span></p>
-<p>To solve for <span class="math inline">\(\text{plim}(\hat{\theta}_1)\)</span> and <span class="math inline">\(\text{plim}(\hat{\theta}_2)\)</span>, use Cramer’s rule. First, find the determinant of the coefficient matrix:</p>
-<p><span class="math display">\[
-\begin{align}
-\det &amp;= (\pi^2\sigma^2_z + \sigma^2_e)(\sigma^2_z) - (\pi\sigma^2_z)(\pi\sigma^2_z) \\
-&amp;= \pi^2\sigma^4_z + \sigma^2_e\sigma^2_z - \pi^2\sigma^4_z \\
-&amp;= \sigma^2_e\sigma^2_z
-\end{align}
-\]</span></p>
-<p>Next, to solve for <span class="math inline">\(\text{plim}(\hat{\theta}_1)\)</span>, replace the first column of the coefficient matrix with the right-hand side: <span class="math display">\[
-\begin{bmatrix}
-\beta(\pi^2\sigma^2_z + \sigma^2_e) + \gamma\pi\sigma^2_z + \rho &amp; \pi\sigma^2_z \\
-\beta\pi\sigma^2_z + \gamma\sigma^2_z &amp; \sigma^2_z
-\end{bmatrix}
-\]</span></p>
-<p>Thus, the determinant of this matrix is: <span class="math display">\[
-\begin{align}
-&amp;[\beta(\pi^2\sigma^2_z + \sigma^2_e) + \gamma\pi\sigma^2_z + \rho](\sigma^2_z) - (\pi\sigma^2_z)(\beta\pi\sigma^2_z + \gamma\sigma^2_z) \\
-&amp;= \beta(\pi^2\sigma^2_z + \sigma^2_e)\sigma^2_z + \gamma\pi\sigma^4_z + \rho\sigma^2_z - \pi^2\beta\sigma^4_z - \pi\gamma\sigma^4_z \\
-&amp;= \beta\pi^2\sigma^4_z + \beta\sigma^2_e\sigma^2_z + \gamma\pi\sigma^4_z + \rho\sigma^2_z - \pi^2\beta\sigma^4_z - \pi\gamma\sigma^4_z \\
-&amp;= \beta\sigma^2_e\sigma^2_z + \rho\sigma^2_z
-\end{align}
-\]</span></p>
-<p>Therefore: <span class="math display">\[
-\text{plim}(\hat{\theta}_1) = \frac{\beta\sigma^2_e\sigma^2_z + \rho\sigma^2_z}{\sigma^2_e\sigma^2_z} = \beta + \frac{\rho}{\sigma^2_e}
-\]</span></p>
-<p>Similarly, to solve for <span class="math inline">\(\text{plim}(\hat{\theta}_2)\)</span>, replace the second column of the original coefficient matrix with the right-hand side: <span class="math display">\[
-\begin{bmatrix}
-\pi^2\sigma^2_z + \sigma^2_e &amp; \beta(\pi^2\sigma^2_z + \sigma^2_e) + \gamma\pi\sigma^2_z + \rho \\
-\pi\sigma^2_z &amp; \beta\pi\sigma^2_z + \gamma\sigma^2_z
-\end{bmatrix}
-\]</span></p>
-<p>The determinant of this matrix is: <span class="math display">\[
-\begin{align}
-&amp;(\pi^2\sigma^2_z + \sigma^2_e)(\beta\pi\sigma^2_z + \gamma\sigma^2_z) - (\pi\sigma^2_z)[\beta(\pi^2\sigma^2_z + \sigma^2_e) + \gamma\pi\sigma^2_z + \rho] \\
-&amp;= (\pi^2\sigma^2_z + \sigma^2_e)(\beta\pi\sigma^2_z) + (\pi^2\sigma^2_z + \sigma^2_e)(\gamma\sigma^2_z) - (\pi\sigma^2_z)(\beta\pi^2\sigma^2_z) - (\pi\sigma^2_z)(\beta\sigma^2_e) - (\pi\sigma^2_z)(\gamma\pi\sigma^2_z) - (\pi\sigma^2_z)(\rho) \\
-&amp;= \beta\pi^3\sigma^4_z + \beta\pi\sigma^2_e\sigma^2_z + \gamma\pi^2\sigma^4_z + \gamma\sigma^2_e\sigma^2_z - \beta\pi^3\sigma^4_z - \beta\pi\sigma^2_e\sigma^2_z - \gamma\pi^2\sigma^4_z - \rho\pi\sigma^2_z \\
-&amp;= \gamma\sigma^2_e\sigma^2_z - \rho\pi\sigma^2_z
-\end{align}
-\]</span></p>
-<p>Therefore: <span class="math display">\[
-\text{plim}(\hat{\theta}_2) = \frac{\gamma\sigma^2_e\sigma^2_z - \rho\pi\sigma^2_z}{\sigma^2_e\sigma^2_z} = \gamma - \frac{\rho\pi}{\sigma^2_e}
-\]</span></p>
-<p>In summary: <span class="math display">\[
-\begin{align}
-\text{plim}(\hat{\theta}_1) &amp;= \beta + \frac{\rho}{\sigma^2_e} \\
-\text{plim}(\hat{\theta}_2) &amp;= \gamma - \frac{\rho\pi}{\sigma^2_e}
-\end{align}
-\]</span></p>
-<p>Thus, when we include <span class="math inline">\(z\)</span> structural equation (some abuse of notation here), then the coefficient on the excluded instrument equals the true direct effect minus a bias term. Even when the exclusion restriction holds (<span class="math inline">\(\gamma = 0\)</span>), we would estimate <span class="math inline">\(\hat{\gamma}_2 \neq 0\)</span> as long as there is endogeneity (<span class="math inline">\(\rho \neq 0\)</span>) and the instrument is relevant (<span class="math inline">\(\pi \neq 0\)</span>). This proves that including the instrument in the structural equation is not a valid test of the exclusion restriction.</p>
-<p>Note as well that the coefficient on the endogenous variable of interest is also inconsistent.</p>
+<section id="instructions" class="level2">
+<h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
+<section id="step-1-read-the-existing-site-first" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-read-the-existing-site-first">Step 1: Read the existing site first</h3>
+<p>Before writing any code, read the following files to understand the existing HTML structure, navigation pattern, CSS classes, and visual style:</p>
+<ul>
+<li><code>index.html</code></li>
+<li><code>research/index.html</code></li>
+<li>Any shared CSS or layout files</li>
+</ul>
+<p>Do not introduce any new frameworks, styles, or external dependencies. The new page must be visually indistinguishable from existing pages.</p>
+<hr>
+</section>
+<section id="step-2-create-teachingindex.html" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-create-teachingindex.html">Step 2: Create <code>teaching/index.html</code></h3>
+<p>Create a new file at <code>teaching/index.html</code>. Use the same HTML structure, header, footer, nav, and CSS as the existing pages.</p>
+<p>The page should contain four sections in this order:</p>
+<ol type="1">
+<li><strong>Instructor of Record</strong></li>
+<li><strong>Teaching Assistant</strong></li>
+<li><strong>Other Teaching Materials</strong></li>
+</ol>
+<p>Full content for each section is specified in <code>teaching_page_context.md</code>.</p>
+<p><strong>Placeholder links:</strong> For any item marked as a placeholder, use <code>href="#"</code> and include an inline HTML comment: <code>&lt;!-- TODO: add link when available --&gt;</code>. Do not omit the link element — leave it present so it is easy to find and update later.</p>
+<p><strong>No teaching philosophy or evaluations section.</strong> Keep the page simple.</p>
+<p>Include the standard site disclaimer in the footer: &gt; <em>The views and opinions expressed on this website do not reflect those of the FDIC, the United States, nor anyone else.</em></p>
+<hr>
+</section>
+<section id="step-3-update-navigation-on-all-existing-pages" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-update-navigation-on-all-existing-pages">Step 3: Update navigation on all existing pages</h3>
+<p>Add a “Teaching” nav link pointing to <code>/teaching/index.html</code> (or <code>../teaching/index.html</code> depending on relative path) in the nav bar of every page that contains the site navigation, including at minimum:</p>
+<ul>
+<li><code>index.html</code></li>
+<li><code>research/index.html</code></li>
+<li><code>blog.html</code> (if it exists and contains nav)</li>
+</ul>
+<p>Place “Teaching” after “Research” and before “Blog” in the nav order: <strong>Home · Research · Teaching · Blog · CV</strong></p>
+<hr>
+</section>
+<section id="step-4-verify-consistency" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-verify-consistency">Step 4: Verify consistency</h3>
+<p>Check that: - The Teaching page nav highlights “Teaching” as active (if the site uses active link styling) - All internal links are correct relative paths - The page renders cleanly with no broken links or missing styles</p>
 
 
+</section>
 </section>
 </section>
 
