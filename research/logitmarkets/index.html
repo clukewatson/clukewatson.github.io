@@ -6,8 +6,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="C. Luke Watson">
+<meta name="author" content="Oren Ziv">
+<meta name="dcterms.date" content="2025-08-01">
+<meta name="description" content="Building demand slopes down.">
 
-<title>index – C. Luke Watson</title>
+<title>A Test for Pricing Power in Urban Housing Markets – C. Luke Watson</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +24,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-08f77b25a02f10920d935ddb46a1957e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-08f77b25a02f10920d935ddb46a1957e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed fullcontent quarto-light">
@@ -80,7 +119,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">C. Luke Watson</span>
     </a>
   </div>
@@ -91,23 +130,23 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../research/index.html" aria-current="page"> 
+    <a class="nav-link" href="../../research/index.html"> 
 <span class="menu-text">Research</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../teaching/index.html"> 
+    <a class="nav-link" href="../../teaching/index.html"> 
 <span class="menu-text">Teaching</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../blog.html"> 
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../files/clw_cv.pdf"> 
+    <a class="nav-link" href="../../files/clw_cv.pdf"> 
 <span class="menu-text">CV</span></a>
   </li>  
 </ul>
@@ -123,95 +162,73 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">A Test for Pricing Power in Urban Housing Markets</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Rental Markets</div>
+    <div class="quarto-category">Markups</div>
+    <div class="quarto-category">Monopoly Power</div>
+    <div class="quarto-category">Housing Demand</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Building demand slopes down.
+  </div>
+</div>
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>C. Luke Watson </p>
+             <p>Oren Ziv </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 1, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
-<section id="published" class="level1">
-<h1>Published</h1>
-<p><strong><a href="tfpp/tfpp_watsonziv.pdf">A Test for Pricing Power in Urban Housing Markets</a></strong> <em>(2025)</em><br>
-with Oren Ziv<br>
-Accepted, <em>Review of Economics and Statistics</em></p>
-<details>
-<summary>
-Abstract
-</summary>
-The presence of pricing power in housing markets significantly impacts our understanding of the housing supply. It biases estimates of housing production functions, supply elasticities, and the effects of land-use policies as well as the results of quantitative spatial models. We test for the existence of pricing power in the New York City rental market. Using tax policy changes, we conduct complementary difference-in-differences and instrumental variable analyses. An idiosyncratic increase in a single building’s costs leads to a proportional rent increase, holding market-level rents constant. Our findings support the existence of pricing power and challenge the prevailing perfect competition framework.
-</details>
-<p><strong><a href="https://doi.org/10.1007/978-3-030-35622-4_1">Measuring the Demand for Land Under Sorting and Matching</a></strong> <em>(2020)</em><br>
-with Oren Ziv<br>
-Chapter, <em>Measuring the Effectiveness of Real Estate Regulation</em>, Levine-Schnur, R. (eds)</p>
-<details>
-<summary>
-Abstract
-</summary>
-This paper investigates nonparametric identification of demand in markets with two-sided sorting. We consider any situation where the price of a good depends on the sorting of buyers. Specifically, we consider the case where willingness to pay for local amenities differs by income group and monopolistic landlords use a pricing rule based on marginal cost and price elasticities. We first show that generally demand parameters cannot be identified, thus all identification is based on a priori exclusion restrictions or functional form on demand or pricing rules. One example is that if cost shifters are assumed additively separable in marginal cost, then the model can be identified. Such restrictions may be warranted in specific research questions, but researchers should consider and be clear about the implicit additional structure placed on the model.
-</details>
+</header>
+
+
+<p><img src="passthru_fig1.png" class="img-fluid"></p>
+<section id="pdf-links" class="level2">
+<h2 class="anchored" data-anchor-id="pdf-links">PDF links</h2>
+<ul>
+<li><a href="tfpp_watsonziv.pdf">Paper (Updated, August 2025)</a> – Accepted, Review of Economics and Statistics</li>
+</ul>
 </section>
-<section id="working-papers" class="level1">
-<h1>Working Papers</h1>
-<p><strong><a href="nyc-monopoly/monopoly-watsonziv.pdf">Is the Rent Too High: Land Ownership and Monopoly Power</a></strong> <em>(Updated January 2026)</em><br>
-with Oren Ziv<br>
-Revise &amp; Resubmit, <em>Real Estate Economics</em></p>
-<details>
-<summary>
-Abstract
-</summary>
-Pricing power in real estate markets can reduce housing supply and redevelopment relative to the social optimum. We show how popular redevelopment subsidies and zoning regulations interact with pricing power. Using building-level rental income data from NYC, we find that increasing concentration is correlated with increasing prices. Finally, we use the model to estimate the first building-level housing elasticity, finding that markups account for between ten and thirty percent of rents in the city.
-</details>
-<strong><a href="logitmarkets/watson_logit_markets.pdf">A Test of Market Definition in Logit Demand Models</a></strong> <em>(April 2026)</em>
-<details>
-<summary>
-Abstract
-</summary>
-Market definition is fundamental to demand estimation, yet in practice it is often chosen by researcher judgment. I recast market definition in aggregate logit models as a fixed-effects problem: the market-level term enters as a nuisance component that can be absorbed by sufficiently fine submarket fixed effects. As a result, demand parameters can be estimated consistently without specifying the true market in advance, provided the researcher can identify a grouping nested within the true market. I then adapt the test of Papke &amp; Wooldridge (2023) to compare this consistent-but-inefficient estimator with structural estimates based on explicit market definitions. Monte Carlo simulations show good size and power: the test rejects market definitions that are too coarse to satisfy the required moment conditions and does not reject correctly specified ones. An application to airline demand favors airport-pair markets over city-pair markets. The approach brings formal evidence to a choice that is usually left to researcher judgment.
-</details>
-<strong><a href="bankmarkets/KWW_Bank_Markets.pdf">Competition for Neighborhood Deposits</a></strong> <em>(February 2026)</em><br>
-with Mark Kutzbach, Gary Wagner<br>
-
-<details>
-<summary>
-Abstract
-</summary>
-Spatial markets are typically measured using administrative boundaries chosen for convenience rather than grounded in economic behavior. We estimate tract-level banking concentration using a structural model of household deposit allocation, yielding heterogeneous and overlapping catchment areas. This approach reveals that 89% of variation in local competitive conditions occurs across neighborhoods within MSAs rather than between MSAs. Monte Carlo merger simulations reveal that coarse market definitions can mask localized competitive harm: 2.6% of simulated mergers pass MSA-level screening thresholds while substantially increasing concentration in ten or more neighborhoods. These false negatives arise systematically when merging firms serve similar customers but operate spatially segmented networks. For understanding competition in any spatially differentiated market, knowing where a household lives within a market matters more than knowing which market it lives in.
-</details>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>The presence of pricing power in housing markets significantly impacts our understanding of the housing supply. It biases estimates of housing production functions, supply elasticities, and the effects of land-use policies as well as the results of quantitative spatial models. We test for the existence of pricing power in the New York City rental market. Using tax policy changes, we conduct complementary difference-in-differences and instrumental variable analyses. An idiosyncratic increase in a single building’s costs leads to a proportional rent increase, holding market-level rents constant.<br>
+Our findings support the existence of pricing power and challenge the prevailing perfect competition framework.</p>
 </section>
-<section id="selected-work-in-progress" class="level1">
-<h1>Selected Work in Progress</h1>
-<p><strong>Measuring Local Savings</strong><br>
-with M.Kutzbach, G.Wagner</p>
-<p><br></p>
-<p><strong>Estimating Markups using Pass-Through Regressions</strong><br>
-with Oren Ziv</p>
-<p><br></p>
-<p><strong>CBDC News and Market Sentiment</strong><br>
-with Sam Borkhoche, Julieta Yung<br>
-<em>(Paused)</em></p>
-</section>
-<section id="dissertation-work" class="level1">
-<h1>Dissertation Work</h1>
-<p><strong><a href="ge-eitc/watson_geeitc.pdf">The General Equilibrium Incidence of the Earned Income Tax Credit</a></strong></p>
-<details>
-<summary>
-Abstract
-</summary>
-The Earned Income Tax Credit is a $67 billion tax expenditure that subsidizes 20% of all workers. Yet all prior analysis uses partial equilibrium assumptions on gross wages. I derive the general equilibrium incidence of wage subsidies and quantify the importance of EITC spillovers in three ways. I calculate the GE incidence of the 1993 and 2009 EITC expansions using new elasticity estimates. I contrast the incidence of counterfactual EITC and Welfare expansions. I quantify the effect of equalizing the EITC for workers with and without children. In all cases, I find spillovers are economically meaningful.
-</details>
-<p><strong><a href="state-eitc/watson_state_eitc.pdf">The Local Effects of State EITC Expansions</a></strong></p>
-<details>
-<summary>
-Abstract
-</summary>
-Twenty eight states spend $4 billion to supplement the federal Earned Income Tax Credit, with several justifying the tax expenditure as a pro-work incentive. Yet no systematic evaluation of these supplements exists. I use state border policy variation to identify state supplements effects. I first document that subsidy rates are greater when a state’s neighbor already has a supplement. Next, I assess whether supplements affect county level EITC take-up, migration, commuting, employment, and earnings. Estimates are sensitive to the estimation design and sample used. While supplements increase benefits to low-income workers, results fail to provide robust evidence of increased economic activity.
-</details>
-<p><strong><a href="tax-iv-ge/watson_tax_iv_ge.pdf">Estimating Both Supply and Demand Elasticities Using Variation in a Single Tax Rate with General Equilibrium Spillovers</a></strong></p>
-<details>
-<summary>
-Abstract
-</summary>
-Zoutman, Gavrilova, &amp; Hopland (Econometrica, 2018) show that by knowing on ‘which side of the market’ an ‘exogenous’ tax is levied one can use a single tax instrument to estimate both a supply and a demand elasticity. This seemingly goes against the intuition that one needs two instruments for two parameters; i.e., a ‘supply’ and a ‘demand’ instrument. I show that the result is only true with partial equilibrium assumptions. Without further assumptions, tax reform induced general equilibrium price spillover effects imply that the tax rates are correlated with the unobserved structural errors. Thus, tax rates on their own are invalid instruments for at least one of the parameters. However, I show that if one can calculate a measure of spillovers, then one can still estimate the two elasticities using one tax reform, but with the spillover measure as an additional instrument.
-</details>
+<section id="bibtex-citation" class="level2">
+<h2 class="anchored" data-anchor-id="bibtex-citation">BibTeX citation</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">watsonziv_testforpricingpower:2025</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Author</span> = {Watson, C. Luke and Ziv, Oren},</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Title</span> = {A Test for Pricing Power in Urban Housing Markets},</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Journal</span> = {Review of Economics and Statistics},</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Year</span> = {2025},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Note</span> = {Accepted for publication}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 
 
 </section>

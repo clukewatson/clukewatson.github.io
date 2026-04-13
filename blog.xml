@@ -122,8 +122,8 @@ background-color: null;
 font-style: inherit;">gc</span>()</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
-Ncells 1075736 57.5    1668088 89.1         NA  1668088 89.1
-Vcells 1887842 14.5    8388608 64.0      49152  3381670 25.9</code></pre>
+Ncells 1075505 57.5    1668088 89.1         NA  1668088 89.1
+Vcells 1887387 14.4    8388608 64.0      49152  3386739 25.9</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -1519,8 +1519,8 @@ background-color: null;
 font-style: inherit;">gc</span>()</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
-Ncells 1075512 57.5    1668088 89.1         NA  1668088 89.1
-Vcells 1888504 14.5    8388608 64.0      49152  3392227 25.9</code></pre>
+Ncells 1075281 57.5    1668088 89.1         NA  1668088 89.1
+Vcells 1888049 14.5    8388608 64.0      49152  3397296 26.0</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -3103,8 +3103,8 @@ background-color: null;
 font-style: inherit;">gc</span>()</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
-Ncells 1075262 57.5    1668088 89.1         NA  1668088 89.1
-Vcells 1884771 14.4    8388608 64.0      49152  3364015 25.7</code></pre>
+Ncells 1075031 57.5    1668088 89.1         NA  1668088 89.1
+Vcells 1884317 14.4    8388608 64.0      49152  3369085 25.8</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -3509,7 +3509,7 @@ $kkt2
 
 $xtimes
 user.self 
-    0.005 
+    0.009 
 
 Assemble the answers</code></pre>
 </div>

@@ -15,6 +15,122 @@
   <title>A Test for Pricing Power in Urban Housing Markets</title>
   <dc:creator>C. Luke Watson</dc:creator>
   <dc:creator>Oren Ziv</dc:creator>
+  <link>https://clukewatson.github.io/research/logitmarkets/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p><img src="https://clukewatson.github.io/research/logitmarkets/passthru_fig1.png" class="img-fluid"></p>
+<section id="pdf-links" class="level2">
+<h2 class="anchored" data-anchor-id="pdf-links">PDF links</h2>
+<ul>
+<li><a href="tfpp_watsonziv.pdf">Paper (Updated, August 2025)</a> – Accepted, Review of Economics and Statistics</li>
+</ul>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>The presence of pricing power in housing markets significantly impacts our understanding of the housing supply. It biases estimates of housing production functions, supply elasticities, and the effects of land-use policies as well as the results of quantitative spatial models. We test for the existence of pricing power in the New York City rental market. Using tax policy changes, we conduct complementary difference-in-differences and instrumental variable analyses. An idiosyncratic increase in a single building’s costs leads to a proportional rent increase, holding market-level rents constant.<br>
+Our findings support the existence of pricing power and challenge the prevailing perfect competition framework.</p>
+</section>
+<section id="bibtex-citation" class="level2">
+<h2 class="anchored" data-anchor-id="bibtex-citation">BibTeX citation</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">@article</span>{<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">watsonziv_testforpricingpower:2025</span>,</span>
+<span id="cb1-2">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">Author</span> = {Watson, C. Luke and Ziv, Oren},</span>
+<span id="cb1-3">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">Title</span> = {A Test for Pricing Power in Urban Housing Markets},</span>
+<span id="cb1-4">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">Journal</span> = {Review of Economics and Statistics},</span>
+<span id="cb1-5">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">Year</span> = {2025},</span>
+<span id="cb1-6">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">Note</span> = {Accepted for publication}}</span></code></pre></div></div>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>Rental Markets</category>
+  <category>Markups</category>
+  <category>Monopoly Power</category>
+  <category>Housing Demand</category>
+  <guid>https://clukewatson.github.io/research/logitmarkets/</guid>
+  <pubDate>Fri, 01 Aug 2025 04:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>A Test for Pricing Power in Urban Housing Markets</title>
+  <dc:creator>C. Luke Watson</dc:creator>
+  <dc:creator>Oren Ziv</dc:creator>
+  <link>https://clukewatson.github.io/research/barkmarkets/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p><img src="https://clukewatson.github.io/research/barkmarkets/passthru_fig1.png" class="img-fluid"></p>
+<section id="pdf-links" class="level2">
+<h2 class="anchored" data-anchor-id="pdf-links">PDF links</h2>
+<ul>
+<li><a href="tfpp_watsonziv.pdf">Paper (Updated, August 2025)</a> – Accepted, Review of Economics and Statistics</li>
+</ul>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>The presence of pricing power in housing markets significantly impacts our understanding of the housing supply. It biases estimates of housing production functions, supply elasticities, and the effects of land-use policies as well as the results of quantitative spatial models. We test for the existence of pricing power in the New York City rental market. Using tax policy changes, we conduct complementary difference-in-differences and instrumental variable analyses. An idiosyncratic increase in a single building’s costs leads to a proportional rent increase, holding market-level rents constant.<br>
+Our findings support the existence of pricing power and challenge the prevailing perfect competition framework.</p>
+</section>
+<section id="bibtex-citation" class="level2">
+<h2 class="anchored" data-anchor-id="bibtex-citation">BibTeX citation</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">@article</span>{<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">watsonziv_testforpricingpower:2025</span>,</span>
+<span id="cb1-2">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">Author</span> = {Watson, C. Luke and Ziv, Oren},</span>
+<span id="cb1-3">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">Title</span> = {A Test for Pricing Power in Urban Housing Markets},</span>
+<span id="cb1-4">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">Journal</span> = {Review of Economics and Statistics},</span>
+<span id="cb1-5">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">Year</span> = {2025},</span>
+<span id="cb1-6">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">Note</span> = {Accepted for publication}}</span></code></pre></div></div>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>Rental Markets</category>
+  <category>Markups</category>
+  <category>Monopoly Power</category>
+  <category>Housing Demand</category>
+  <guid>https://clukewatson.github.io/research/barkmarkets/</guid>
+  <pubDate>Fri, 01 Aug 2025 04:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>A Test for Pricing Power in Urban Housing Markets</title>
+  <dc:creator>C. Luke Watson</dc:creator>
+  <dc:creator>Oren Ziv</dc:creator>
   <link>https://clukewatson.github.io/research/tfpp/</link>
   <description><![CDATA[ 
 
@@ -354,21 +470,30 @@ Abstract
 </summary>
 Pricing power in real estate markets can reduce housing supply and redevelopment relative to the social optimum. We show how popular redevelopment subsidies and zoning regulations interact with pricing power. Using building-level rental income data from NYC, we find that increasing concentration is correlated with increasing prices. Finally, we use the model to estimate the first building-level housing elasticity, finding that markups account for between ten and thirty percent of rents in the city.
 </details>
-<p><strong>A Test of Market Definition in Logit Demand Models</strong> <em>(2026)</em></p>
+<strong><a href="logitmarkets/watson_logit_markets.pdf">A Test of Market Definition in Logit Demand Models</a></strong> <em>(April 2026)</em>
 <details>
 <summary>
 Abstract
 </summary>
-Market definition is fundamental to demand estimation yet typically chosen based on researcher judgment. I reframe market definition as a fixed-effects problem: in aggregate logit models, the market-level component enters as a nuisance parameter that submarket fixed effects can absorb. Demand parameters can be consistently estimated without specifying a market definition, provided one can identify a submarket grouping nested within the true market. Using the test of Papke and Wooldridge (2023), I compare this consistent-but-inefficient estimator against structural estimates using explicit market definitions. The test rejects market definitions that are too coarse to satisfy the required moment conditions while failing to reject correctly specified ones. Monte Carlo simulations demonstrate good size and power. I illustrate the approach using an application to U.S. banking markets. The test disciplines a choice typically left to researcher judgment by providing formal grounds to rule out market definitions that are too coarse.
+Market definition is fundamental to demand estimation, yet in practice it is often chosen by researcher judgment. I recast market definition in aggregate logit models as a fixed-effects problem: the market-level term enters as a nuisance component that can be absorbed by sufficiently fine submarket fixed effects. As a result, demand parameters can be estimated consistently without specifying the true market in advance, provided the researcher can identify a grouping nested within the true market. I then adapt the test of Papke &amp; Wooldridge (2023) to compare this consistent-but-inefficient estimator with structural estimates based on explicit market definitions. Monte Carlo simulations show good size and power: the test rejects market definitions that are too coarse to satisfy the required moment conditions and does not reject correctly specified ones. An application to airline demand favors airport-pair markets over city-pair markets. The approach brings formal evidence to a choice that is usually left to researcher judgment.
+</details>
+<strong><a href="bankmarkets/KWW_Bank_Markets.pdf">Competition for Neighborhood Deposits</a></strong> <em>(February 2026)</em><br>
+with Mark Kutzbach, Gary Wagner<br>
+
+<details>
+<summary>
+Abstract
+</summary>
+Spatial markets are typically measured using administrative boundaries chosen for convenience rather than grounded in economic behavior. We estimate tract-level banking concentration using a structural model of household deposit allocation, yielding heterogeneous and overlapping catchment areas. This approach reveals that 89% of variation in local competitive conditions occurs across neighborhoods within MSAs rather than between MSAs. Monte Carlo merger simulations reveal that coarse market definitions can mask localized competitive harm: 2.6% of simulated mergers pass MSA-level screening thresholds while substantially increasing concentration in ten or more neighborhoods. These false negatives arise systematically when merging firms serve similar customers but operate spatially segmented networks. For understanding competition in any spatially differentiated market, knowing where a household lives within a market matters more than knowing which market it lives in.
 </details>
 </section>
 <section id="selected-work-in-progress" class="level1">
 <h1>Selected Work in Progress</h1>
+<p><strong>Measuring Local Savings</strong><br>
+with M.Kutzbach, G.Wagner</p>
+<p><br></p>
 <p><strong>Estimating Markups using Pass-Through Regressions</strong><br>
 with Oren Ziv</p>
-<p><br></p>
-<p><strong>Competition for Neighborhood Deposits</strong><br>
-with Mark Kutzbach, Gary Wagner</p>
 <p><br></p>
 <p><strong>CBDC News and Market Sentiment</strong><br>
 with Sam Borkhoche, Julieta Yung<br>
@@ -403,7 +528,7 @@ Zoutman, Gavrilova, &amp; Hopland (Econometrica, 2018) show that by knowing on �
 
  ]]></description>
   <guid>https://clukewatson.github.io/research/</guid>
-  <pubDate>Sat, 21 Feb 2026 22:02:12 GMT</pubDate>
+  <pubDate>Mon, 13 Apr 2026 02:02:04 GMT</pubDate>
 </item>
 </channel>
 </rss>
