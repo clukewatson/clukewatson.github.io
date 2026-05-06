@@ -438,8 +438,17 @@ font-style: inherit;">Year</span> = {2021}}</span></code></pre></div></div>
 
 
 
-<section id="published" class="level1">
-<h1>Published</h1>
+<section id="published-and-accepted" class="level1">
+<h1>Published and Accepted</h1>
+<p><strong><a href="nyc-monopoly/monopoly-watsonziv.pdf">Is the Rent Too High: Land Ownership and Monopoly Power</a></strong> <em>(2026)</em><br>
+with Oren Ziv<br>
+Accepted, <em>Real Estate Economics</em></p>
+<details>
+<summary>
+Abstract
+</summary>
+Pricing power in real estate markets can reduce housing supply and redevelopment relative to the social optimum. We show how popular redevelopment subsidies and zoning regulations interact with pricing power. Using building-level rental income data from NYC, we find that increasing concentration is correlated with increasing prices. Finally, we use the model to estimate the first building-level housing elasticity, finding that markups account for between ten and thirty percent of rents in the city.
+</details>
 <p><strong><a href="tfpp/tfpp_watsonziv.pdf">A Test for Pricing Power in Urban Housing Markets</a></strong> <em>(2025)</em><br>
 with Oren Ziv<br>
 Accepted, <em>Review of Economics and Statistics</em></p>
@@ -461,15 +470,6 @@ This paper investigates nonparametric identification of demand in markets with t
 </section>
 <section id="working-papers" class="level1">
 <h1>Working Papers</h1>
-<p><strong><a href="nyc-monopoly/monopoly-watsonziv.pdf">Is the Rent Too High: Land Ownership and Monopoly Power</a></strong> <em>(Updated January 2026)</em><br>
-with Oren Ziv<br>
-Revise &amp; Resubmit, <em>Real Estate Economics</em></p>
-<details>
-<summary>
-Abstract
-</summary>
-Pricing power in real estate markets can reduce housing supply and redevelopment relative to the social optimum. We show how popular redevelopment subsidies and zoning regulations interact with pricing power. Using building-level rental income data from NYC, we find that increasing concentration is correlated with increasing prices. Finally, we use the model to estimate the first building-level housing elasticity, finding that markups account for between ten and thirty percent of rents in the city.
-</details>
 <strong><a href="logitmarkets/watson_logit_markets.pdf">When Does Market Definition Matter for Identification?</a></strong> <em>(April 2026)</em>
 <details>
 <summary>
@@ -489,7 +489,7 @@ Spatial markets are typically measured using administrative boundaries chosen fo
 </section>
 <section id="selected-work-in-progress" class="level1">
 <h1>Selected Work in Progress</h1>
-<p><strong>Measuring Local Savings</strong><br>
+<p><strong>Measuring Local Liquid Savings</strong><br>
 with M.Kutzbach, G.Wagner</p>
 <p><br></p>
 <p><strong>Estimating Markups using Pass-Through Regressions</strong><br>
@@ -528,7 +528,7 @@ Zoutman, Gavrilova, &amp; Hopland (Econometrica, 2018) show that by knowing on â
 
  ]]></description>
   <guid>https://clukewatson.github.io/research/</guid>
-  <pubDate>Sun, 26 Apr 2026 23:16:33 GMT</pubDate>
+  <pubDate>Wed, 06 May 2026 22:24:16 GMT</pubDate>
 </item>
 </channel>
 </rss>
