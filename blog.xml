@@ -10,7 +10,123 @@
 <atom:link href="https://clukewatson.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Senior Financial Economist</description>
 <generator>quarto-1.8.27</generator>
-<lastBuildDate>Mon, 17 Mar 2025 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 31 May 2026 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>BLP Instruments Are a Mundlak Device, Used Backwards</title>
+  <dc:creator>C. Luke Watson</dc:creator>
+  <link>https://clukewatson.github.io/posts/2026-03-31-blpIVs/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="blp-instruments-are-a-mundlak-device-used-backwards" class="level1">
+<h1>BLP Instruments Are a Mundlak Device, Used Backwards</h1>
+<p>I recently noticed a connection between BLP-style demand instruments and the Mundlak device from panel econometrics that I think is underappreciated. The algebra is not hidden; the two ideas just live in literatures that rarely cite each other and describe the same object in opposite terms.</p>
+<p>The claim is this: BLP instruments are built from the same object as a correlated-random-effects (CRE) control, but they play the opposite role. The Mundlak device puts a group mean into the regression to absorb variation; BLP puts a close relative of that group mean on the excluded list to supply variation. Same object, opposite job. Most of the rest follows from that one reversal.</p>
+<section id="the-setup" class="level2">
+<h2 class="anchored" data-anchor-id="the-setup">The setup</h2>
+<p>Let’s focus on the linear Berry (1994) logit specificatio, so we can reason about ordinary linear IV rather than the nonlinear BLP (1995) inversion. After inverting shares,</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cdelta_%7Bjt%7D%20%5C;=%5C;%20%5Cln%20s_%7Bjt%7D%20-%20%5Cln%20s_%7B0t%7D%20%5C;=%5C;%20x_%7Bjt%7D%5Cbeta%20%5C;-%5C;%20%5Calpha%5C,%20p_%7Bjt%7D%20%5C;+%5C;%20%5Cxi_%7Bjt%7D.%0A"></p>
+<p>Let <img src="https://latex.codecogs.com/png.latex?%5Cxi_%7Bjt%7D"> be either some sort of unobserved demand shock or an unobserved quality index. Because firms price knowing the demand shock <img src="https://latex.codecogs.com/png.latex?%5Cxi_%7Bjt%7D">, there is correlation between prices and the unobservable: <img src="https://latex.codecogs.com/png.latex?%5Coperatorname%7Bcorr%7D(p_%7Bjt%7D,%5Cxi_%7Bjt%7D)%5Cneq%200">. We need an instrument that moves price for reasons unrelated to <img src="https://latex.codecogs.com/png.latex?%5Cxi_%7Bjt%7D">.</p>
+<p>The classic BLP instrument is the sum of rival characteristics:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Az_%7Bjt%7D%20%5C;=%5C;%20%5Csum_%7Bk%5Cneq%20j%7D%20x_%7Bkt%7D%20%5C;=%5C;%20%5Cunderbrace%7B%5Csum_k%20x_%7Bkt%7D%7D_%7BS_t%7D%20%5C;-%5C;%20x_%7Bjt%7D%0A%5C;=%5C;%20J_t%5C,%5Cbar%7Bx%7D_t%20%5C;-%5C;%20x_%7Bjt%7D.%0A"></p>
+<p>Clearly, <img src="https://latex.codecogs.com/png.latex?S_t%20=%20J_t%20%5Cbar%7Bx%7D_t">. The market aggregate of characteristics is close what a Mundlak device is built from, averages of <img src="https://latex.codecogs.com/png.latex?X"> variables. The rival sum is that aggregate with two adjustments: leave-one-out (the focal product is subtracted, since <img src="https://latex.codecogs.com/png.latex?x_%7Bjt%7D"> is already a regressor, so what is excluded is the rest of the market), and the own/rival split (with multiproduct firms, BLP separates the own-firm aggregate from the rival aggregate so the markup function can carry the oligopoly asymmetry). So a BLP instrument is a leave-one-out, own/rival-split Mundlak device built on characteristics.</p>
+</section>
+<section id="same-object-opposite-job" class="level2">
+<h2 class="anchored" data-anchor-id="same-object-opposite-job">Same object, opposite job</h2>
+<p>For a while, I thought that BLP and CRE are the same idea, but that’s not right. They use the same object under opposite identifying assumptions. The Mundlak route treats group-mean variation as a nuisance: it presumes <img src="https://latex.codecogs.com/png.latex?%5Cbar%7Bx%7D_t"> correlates with the error and soaks it up. Note, this is also the fixed-effects route by Mundlak’s own result: including group means of the regressors reproduces the fixed-effects estimator, so “control for <img src="https://latex.codecogs.com/png.latex?%5Cbar%7Bx%7D_t">” and “absorb a market fixed effect” are two descriptions of the same thing.</p>
+<p>The BLP route treats the leave-one-out version of that same variation as the instrument: it presumes rival characteristics are excludable from utility and uncorrelated with <img src="https://latex.codecogs.com/png.latex?%5Cxi_%7Bjt%7D">. The validity of the BLP instrument is the assumption the FE approach treats as false. Given this, we can see that the two approaches are different.</p>
+<p>If one fears endogenous product positioning or entry (e.g., characteristics chosen in response to demand shocks, so that <img src="https://latex.codecogs.com/png.latex?%5Cbar%7Bx%7D_t"> is correlated with <img src="https://latex.codecogs.com/png.latex?%5Cxi_%7Bjt%7D">), then one wants to absorb <img src="https://latex.codecogs.com/png.latex?%5Cbar%7Bx%7D_t"> as a control; however, the same correlation that motivates using <img src="https://latex.codecogs.com/png.latex?%5Cbar%7Bx%7D_t"> as a control would disqualify it as an instrument. If instead one is willing to assume rival characteristics are placed without regard to a firm’s own demand shock, <img src="https://latex.codecogs.com/png.latex?%5Cbar%7Bx%7D_t"> becomes a valid excluded instrument, and absorbing it would throw away exactly the variation used to identify <img src="https://latex.codecogs.com/png.latex?%5Calpha">.</p>
+<p>So <img src="https://latex.codecogs.com/png.latex?%5Cbar%7Bx%7D_t"> is either the thing to purge or the thing to exploit. Same decomposition, opposite bin.</p>
+<p>That reversal is the bridge between the two literatures. To an empirical IO economist, “BLP instruments are leave-one-out rival sums” is a definition. To a panel econometrician fluent in Mundlak and Chamberlain, the reversal is the news: the rival aggregate is the object their machinery exists to purge, and the BLP exclusion restriction is the negation of the CRE motivation.</p>
+</section>
+<section id="three-shortcuts-that-fail" class="level2">
+<h2 class="anchored" data-anchor-id="three-shortcuts-that-fail">Three shortcuts that fail</h2>
+<p>If BLP instruments are “just means,” three shortcuts suggest themselves. Each one fails in an instructive way.</p>
+<section id="means-as-controls" class="level3">
+<h3 class="anchored" data-anchor-id="means-as-controls">Means as controls</h3>
+<p>Putting market FEs or a Mundlak device into the regression as controls, with price left as a raw regressor, does not recover <img src="https://latex.codecogs.com/png.latex?%5Calpha">. An instrument and a control do opposite jobs: IV creates exogenous price variation; a control removes variation and leaves price still endogenous. Price endogeneity is within-market — even within one market, the high-<img src="https://latex.codecogs.com/png.latex?%5Cxi_%7Bjt%7D"> product carries a high price — and market FEs do nothing to within-market correlation. Thus, this approach is essentially running OLS on price. <!-- The bias has a known sign: positive $\xi_{jt}$ raises both price and quantity, so $\hat\alpha$ is pulled toward zero and demand looks too inelastic, which is the artifact instrumenting exists to remove. --></p>
+</section>
+<section id="mean-of-characteristics-as-an-instrument" class="level3">
+<h3 class="anchored" data-anchor-id="mean-of-characteristics-as-an-instrument">Mean of characteristics as an instrument</h3>
+<p>This works, but it is likely to be weaker than the BLP instruments. The exclusion restriction <img src="https://latex.codecogs.com/png.latex?E%5B%5Cbar%7Bx%7D_t%5C,%5Cxi_%7Bjt%7D%5D=0"> is the standard BLP assumption. After own <img src="https://latex.codecogs.com/png.latex?x_%7Bjt%7D"> is partialled out, the excluded content of <img src="https://latex.codecogs.com/png.latex?%5Cbar%7Bx%7D_t"> is rival characteristics, which shift markups. This approach treats own-firm and rival products symmetrically, and so it discards structure that give BLP IVs additional strength.</p>
+</section>
+<section id="market-fe-as-an-instrument" class="level3">
+<h3 class="anchored" data-anchor-id="market-fe-as-an-instrument">Market FE as an instrument</h3>
+<p>An off-the-wall idea is to instrument price with market dummies. There is a kinda-connection between BLP IVs and Mundlak device, and between Mundlak and Market FEs, so what about this? Can market FEs be like a nonparametric BLP instrument? Sadly, no.</p>
+<p>Using market FEs as instruments makes the fitted price the (<img src="https://latex.codecogs.com/png.latex?X"> adjusted) market average <img src="https://latex.codecogs.com/png.latex?%5Cbar%7Bp%7D_t">, so <img src="https://latex.codecogs.com/png.latex?%5Calpha"> is identified off between-market variation. The implied exclusion restriction is that market identity is orthogonal to <img src="https://latex.codecogs.com/png.latex?%5Cxi_%7Bjt%7D">. But the market dummies (our FEs) span contains <img src="https://latex.codecogs.com/png.latex?%5Cbar%5Cxi_t">, so the instrument is valid only if there is no market-level demand shock at all. Once high-demand markets also have high average prices, the instrument is correlated with the error. Note the mirror image of the BLP IV case: FE as a control needs the within piece clean; FE as an instrument needs the between piece clean.</p>
+</section>
+</section>
+<section id="why-characteristics-work-and-but-market-fes-do-not" class="level2">
+<h2 class="anchored" data-anchor-id="why-characteristics-work-and-but-market-fes-do-not">Why characteristics work and but market FEs do not</h2>
+<p>Price moves for two distinct reasons. Cost and competition (e.g., nearby rivals, many firms, a rival cost shock) move markups and have nothing to do with own <img src="https://latex.codecogs.com/png.latex?%5Cxi_%7Bjt%7D">. Demand (e.g., high <img src="https://latex.codecogs.com/png.latex?%5Cxi">, so the firm charges more because people want the product) is the endogenous channel. A valid instrument isolates the price variation from the first channel only.</p>
+<p>BLP instruments price with rival characteristics, which move price through the cost-and-competition channel, and, under the exclusion, are unrelated to own <img src="https://latex.codecogs.com/png.latex?%5Cxi_%7Bjt%7D">. Within-market variation survives to identify parameters. Rival characteristics are an input that exists (somewhat) independently of any one product’s demand shock, so they can shift the markup without touching <img src="https://latex.codecogs.com/png.latex?%5Cxi">. Mundlak mean-<img src="https://latex.codecogs.com/png.latex?x"> uses market-average characteristics, so, under the exclusion restriction, are like BLP IVs, but there is less variation within market.</p>
+<p>Market FE uses market identity, so the fitted price <img src="https://latex.codecogs.com/png.latex?%5Cbar%7Bp%7D_t"> mixes both channels, and this becomes the main issue with it. The next section clarifies the issue.</p>
+<section id="market-fe-includes-unobserved-correlation" class="level3">
+<h3 class="anchored" data-anchor-id="market-fe-includes-unobserved-correlation">Market FE includes unobserved correlation</h3>
+<p>This will get a little loose with notation, but I think it brings the point home.</p>
+<p>The exclusion restriction is: <img src="https://latex.codecogs.com/png.latex?%0AE%5B%5C,%5Cxi_%7Bjt%7D%5Cmid%20x_%7Bjt%7D,%5C,%20X_t%5C,%5D=0,%0A"> which is that unobservables are conditionally independent of observed covariates.</p>
+<p>Thus, the empirical target is to capture variation tied to <img src="https://latex.codecogs.com/png.latex?x">:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AE%5B%5C,p_%7Bjt%7D%5Cmid%20x_%7Bjt%7D,%5C,%20X_t%5C,%5D,%0A"></p>
+<p>which is only a function of characteristics.</p>
+<p>However, if we used market FEs, then we get:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AE%5B%5C,p_%7Bjt%7D%5Cmid%20x_%7Bjt%7D,%5C,%20%5Ctext%7Bmarket%7D_t%5C,%5D%0A%5C;=%5C;%20E%5B%5C,p_%7Bjt%7D%5Cmid%20x_%7Bjt%7D,%5C,%20X_t,%5C,%20%5Ctext%7BUnobserved%7D_t%5C,%5D,%0A"> which necessarily includes and market level trends, <img src="https://latex.codecogs.com/png.latex?%5Cbar%20%5Cxi_t">. That is, the market FE includes market level unobservable factors that are likely correlated with <img src="https://latex.codecogs.com/png.latex?%5Cxi_%7Bjt%7D">. Additionally, this is why the Mundlak device works: it only uses <img src="https://latex.codecogs.com/png.latex?X"> variables when making the market averages.</p>
+<!-- ## The control-function version -->
+<!-- The same point is most explicit in a control-function (CF) framing, which forces one to write down the fitted price.  -->
+<!-- Regress price on $X$ and market FEs and split -->
+<!-- $$ -->
+<!-- p_{jt} \;=\; \hat{p}^{\,FE}_{jt} \;+\; \hat{v}^{\,FE}_{jt}, -->
+<!-- \qquad \hat{p}^{\,FE}_{jt} = \bar{p}_t . -->
+<!-- $$ -->
+<!-- The CF puts price and the residual into the second stage: -->
+<!-- $$ -->
+<!-- \delta \;=\; X\beta - \alpha\, p + \rho\,\hat{v}^{\,FE} + u -->
+<!-- \;=\; X\beta - \alpha\, \hat{p}^{\,FE} + (\rho - \alpha)\,\hat{v}^{\,FE} + u. -->
+<!-- $$ -->
+<!-- Read the second line. The residual gets a free coefficient, so it absorbs the within-market price comovement and contributes nothing to $\alpha$.  -->
+<!-- That leaves $\alpha$ riding entirely on $\hat{p}^{\,FE} = \bar{p}_t$, and $\bar{p}_t$ embeds $\bar\xi_t \subset u$.  -->
+<!-- The control did not clean anything; it stepped aside and handed identification to the contaminated slice. -->
+<!-- The principle worth keeping: in a control function, $\alpha$ is identified off the fitted price, never off the residual.  -->
+<!-- The residual is quarantined, given its own slope to soak up endogenous comovement, so the quality of a CF reduces to whether the fitted part is clean.  -->
+<!-- The FE first stage produces $\hat{p}=\bar{p}_t$, conditioning on identity, contaminated.  -->
+<!-- The BLP first stage produces $\hat{p}=E[p_{jt}\mid x_{jt}, X_t]$, conditioning on characteristics, clean under the exclusion.  -->
+<!-- Same machine, same residual packaging; the only difference is what conditioning set builds the fitted price. -->
+<!-- One diagnostic note.  -->
+<!-- Three arrangements give the identical price coefficient: price plus residual in the second stage; price instrumented by the fitted value; fitted value plus residual entered directly.  -->
+<!-- The residual coefficient is not invariant, though — it differs by exactly $\alpha$ between the price-plus-residual and fitted-plus-residual forms.  -->
+<!-- Only the price-plus-residual arrangement gives the residual its Durbin–Wu–Hausman meaning, so testing $\rho=0$ there is the cluster-robust endogeneity test (the Papke–Wooldridge variable-addition form of Hausman) pointed at price.  -->
+<!-- Take $\alpha$'s standard error from the 2SLS form, since the CF residual is generated.  -->
+<!-- And the agreement across arrangements says nothing about validity: the three would agree just as well with a hopelessly endogenous instrument.  -->
+<!-- Numerical agreement is about coordinate systems; validity is a separate question about whether $\hat{p}\perp\xi$. -->
+</section>
+</section>
+<section id="what-if-all-firms-were-single-product" class="level2">
+<h2 class="anchored" data-anchor-id="what-if-all-firms-were-single-product">What if all firms were single-product</h2>
+<p>Suppose every firm has only one product per market, so the own/rival split has nothing to split. Do Mundlak-IV and BLP-IV coincide? Yes. BLP IVs are just leave-out sums; Mundak is (or can be) leave out averages (if we are not explicitly targting an FE equivalence). So with single-product firms, Mundlak-IV and BLP-IV become near-twins, both valid and differing only by count-weighting. However, if one includes market FEs as controls because one wants to control for market factors, then that will almost completely absorb all variation in the IVs.</p>
+<p>Recently, there is another set of rival-characteristic IVs one can use that would survive adding market FEs as controls. BLP IVs are really just one approximation to <img src="https://latex.codecogs.com/png.latex?E%5Bp%5Cmid%20x,%20X%5D"> that one could form, and there are technically infinite versions one could use. Differentiation instruments such as <img src="https://latex.codecogs.com/png.latex?%5Csum_%7Bk%5Cneq%20j%7D(x_%7Bjt%7D-x_%7Bkt%7D)%5E2"> still have variation. These IVs are still built as functions of rival characteristics (i.e., measure local competition in characteristic space), but there is stronger variation across products within a market. Their nonlinearity keeps them out of the span of <img src="https://latex.codecogs.com/png.latex?%5C%7B">market FE, own <img src="https://latex.codecogs.com/png.latex?x%5C%7D">.</p>
+<!-- Sum versus mean also survives: the linear BLP between-market object is the sum $S_t = J_t\bar{x}_t$, while Mundlak's is the mean $\bar{x}_t$, and the two differ by the count $J_t$, the number of competitors, which is a basic markup shifter. -->
+<!-- They coincide only when $J_t$ is constant across markets, as in a symmetric Monte Carlo design. -->
+<!-- And validity survives: the FE first stage is the saturated one, fitting $\bar{p}_t$ exactly and nesting the others' between-market content, but saturating onto identity is what makes it dirty, while the other two project onto characteristics. -->
+</section>
+<section id="takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
+<p>Every method here builds a fitted price from some conditioning set and identifies the price coefficient off that fitted price. The methods differ only in the conditioning set:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cunderbrace%7Bx_%7Bjt%7D,%5C,%20X_t%7D_%7B%5Ctext%7BBLP%20and%20Mundlak-%7Dx:%5C%20%5Ctext%7Bclean%7D%7D%0A%5Cqquad%5Ctext%7Bversus%7D%5Cqquad%0A%5Cunderbrace%7Bx_%7Bjt%7D,%5C,%20X_t,%5C,%20%5Ctext%7BUnobserved%7D_t%7D_%7B%5Ctext%7Bmarket%20FE:%5C%20dirty%7D%7D.%0A"></p>
+<p>“Being in market <img src="https://latex.codecogs.com/png.latex?t">” conditions on a set that contains the unobserved demand shock; “<img src="https://latex.codecogs.com/png.latex?x_%7Bjt%7D,%20X_t">” does not. BLP instruments are a Mundlak device run backwards, and they work for the same reason the Mundlak device, run forwards, would have removed the wrong thing.</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>Notes</category>
+  <category>BLP IVs</category>
+  <category>Mundlak Device</category>
+  <category>Instrumental Variables</category>
+  <guid>https://clukewatson.github.io/posts/2026-03-31-blpIVs/</guid>
+  <pubDate>Sun, 31 May 2026 04:00:00 GMT</pubDate>
+</item>
 <item>
   <title>You Cannot Test the Exclusion Restriction</title>
   <dc:creator>C. Luke Watson</dc:creator>
@@ -122,8 +238,8 @@ background-color: null;
 font-style: inherit;">gc</span>()</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
-Ncells 1075502 57.5    1668111 89.1         NA  1668111 89.1
-Vcells 1887382 14.4    8388608 64.0      49152  3386668 25.9</code></pre>
+Ncells 1075503 57.5    1668111 89.1         NA  1668111 89.1
+Vcells 1887413 14.4    8388608 64.0      49152  3386701 25.9</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -1519,8 +1635,8 @@ background-color: null;
 font-style: inherit;">gc</span>()</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
-Ncells 1075278 57.5    1668111 89.1         NA  1668111 89.1
-Vcells 1888045 14.5    8388608 64.0      49152  3397226 26.0</code></pre>
+Ncells 1075279 57.5    1668111 89.1         NA  1668111 89.1
+Vcells 1888074 14.5    8388608 64.0      49152  3397257 26.0</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -3103,8 +3219,8 @@ background-color: null;
 font-style: inherit;">gc</span>()</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
-Ncells 1075028 57.5    1668111 89.1         NA  1668111 89.1
-Vcells 1884312 14.4    8388608 64.0      49152  3369014 25.8</code></pre>
+Ncells 1075029 57.5    1668111 89.1         NA  1668111 89.1
+Vcells 1884342 14.4    8388608 64.0      49152  3369046 25.8</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -3509,7 +3625,7 @@ $kkt2
 
 $xtimes
 user.self 
-    0.008 
+    0.009 
 
 Assemble the answers</code></pre>
 </div>
