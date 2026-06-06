@@ -477,9 +477,15 @@ Abstract
 </summary>
 Market definition is central to demand estimation, merger simulation, and welfare analysis, yet in practice it is often chosen by researcher judgment. This paper asks when that choice matters for identification of the price coefficient. The utility parameters of aggregate logit demand can be estimated consistently without specifying the true market, provided the researcher observes a finer nested grouping and uses sufficiently fine fixed effects. This delivers a consistent benchmark against which candidate market definitions can be compared via a cluster-robust extension of the test of Papke &amp; Wooldridge (2023) to instrumental variables. The diagnostic rejects when candidate misspecification distorts the relevant IV moment for the coefficient of interest, and remains silent when it does not. Monte Carlo evidence and an application to U.S. domestic airline demand illustrate the framework. The approach brings a foundational modeling choice within the econometric analysis rather than treating it as a maintained assumption.
 </details>
+<!-- **[Competition for Neighborhood Deposits](bankmarkets/KWW_Bank_Markets.pdf)** *(February 2026)*\ -->
+<!-- with Mark Kutzbach, Gary Wagner\ -->
+<!-- <details> -->
+<!-- <summary>Abstract</summary> -->
+<!-- Spatial markets are typically measured using administrative boundaries chosen for convenience rather than grounded in economic behavior. We estimate tract-level banking concentration using a structural model of household deposit allocation, yielding heterogeneous and overlapping catchment areas. This approach reveals that 89\% of variation in local competitive conditions occurs across neighborhoods within MSAs rather than between MSAs. Monte Carlo merger simulations reveal that coarse market definitions can mask localized competitive harm: 2.6\% of simulated mergers pass MSA-level screening thresholds while substantially increasing concentration in ten or more neighborhoods. These false negatives arise systematically when merging firms serve similar customers but operate spatially segmented networks. For understanding competition in any spatially differentiated market, knowing where a household lives within a market matters more than knowing which market it lives in. -->
+<!-- </details> -->
 <strong><a href="bankmarkets/KWW_Bank_Markets.pdf">Competition for Neighborhood Deposits</a></strong> <em>(February 2026)</em><br>
 with Mark Kutzbach, Gary Wagner<br>
-
+<a href="bankmarkets/watson_bank_competition_20260606.pdf">[Slides]</a>
 <details>
 <summary>
 Abstract
@@ -560,7 +566,7 @@ Zoutman, Gavrilova, &amp; Hopland (Econometrica, 2018) show that by knowing on â
 
  ]]></description>
   <guid>https://clukewatson.github.io/research/</guid>
-  <pubDate>Mon, 01 Jun 2026 01:15:11 GMT</pubDate>
+  <pubDate>Sat, 06 Jun 2026 11:44:04 GMT</pubDate>
 </item>
 </channel>
 </rss>

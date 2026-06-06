@@ -1636,7 +1636,7 @@ font-style: inherit;">gc</span>()</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
 Ncells 1075279 57.5    1668111 89.1         NA  1668111 89.1
-Vcells 1888074 14.5    8388608 64.0      49152  3397257 26.0</code></pre>
+Vcells 1888075 14.5    8388608 64.0      49152  3397258 26.0</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -3625,7 +3625,7 @@ $kkt2
 
 $xtimes
 user.self 
-    0.009 
+    0.008 
 
 Assemble the answers</code></pre>
 </div>
