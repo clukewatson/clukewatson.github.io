@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="C. Luke Watson, Claude">
+<meta name="dcterms.date" content="2026-08-09">
+<meta name="description" content="Importance of distance on which branches close after mergers">
 
-<title>research – C. Luke Watson</title>
+<title>What Happens to Branches When Banks Merge – C. Luke Watson</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,26 +26,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-08f77b25a02f10920d935ddb46a1957e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-08f77b25a02f10920d935ddb46a1957e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,35 +71,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -130,17 +102,17 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
-<link rel="alternate" type="application/rss+xml" title="C. Luke Watson" href="research.xml" data-external="1"></head>
+<link rel="stylesheet" href="../../styles.css">
+</head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">C. Luke Watson</span>
     </a>
   </div>
@@ -151,23 +123,23 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./research/index.html"> 
+    <a class="nav-link" href="../../research/index.html"> 
 <span class="menu-text">Research</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./teaching/index.html"> 
+    <a class="nav-link" href="../../teaching/index.html"> 
 <span class="menu-text">Teaching</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./files/clw_cv.pdf"> 
+    <a class="nav-link" href="../../files/clw_cv.pdf"> 
 <span class="menu-text">CV</span></a>
   </li>  
 </ul>
@@ -178,308 +150,259 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block"></header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(8)</span></div><div class="category" data-category="QXBwbGllZCUyMEVjb25vbWV0cmljcw==">Applied Econometrics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Qm9yZGVyJTIwRGlzY29udGludWl0eQ==">Border Discontinuity <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RUlUQw==">EITC <span class="quarto-category-count">(2)</span></div><div class="category" data-category="SG91c2luZyUyMERlbWFuZA==">Housing Demand <span class="quarto-category-count">(4)</span></div><div class="category" data-category="SVY=">IV <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TGFib3IlMjBEZW1hbmQ=">Labor Demand <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TGFib3IlMjBTdXBwbHk=">Labor Supply <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TWFya3Vwcw==">Markups <span class="quarto-category-count">(4)</span></div><div class="category" data-category="TW9ub3BvbHklMjBQb3dlcg==">Monopoly Power <span class="quarto-category-count">(4)</span></div><div class="category" data-category="UmVudGFsJTIwTWFya2V0cw==">Rental Markets <span class="quarto-category-count">(4)</span></div><div class="category" data-category="U3BpbGxvdmVycw==">Spillovers <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VGF4JTIwSW5jaWRlbmNl">Tax Incidence <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Wm9uaW5n">Zoning <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block page-columns page-full column-body" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">What Happens to Branches When Banks Merge</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Notes</div>
+    <div class="quarto-category">Banking</div>
+    <div class="quarto-category">Mergers</div>
+    <div class="quarto-category">Branch Networks</div>
+  </div>
+  </div>
 
-
-
-<div class="column-page">
-
+<div>
+  <div class="description">
+    Importance of distance on which branches close after mergers
+  </div>
 </div>
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>C. Luke Watson, Claude </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 9, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1787784812253" data-listing-reading-time-sort="8" data-listing-word-count-sort="1446">
-<div class="thumbnail"><a href="./research/index.html" class="no-external">
+</header>
 
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./research/index.html" class="no-external">Published and Accepted</a>
-</h3>
-<div class="delink listing-description"><a href="./research/index.html" class="no-external">
-<strong>Is the Rent Too High: Land Ownership and Monopoly Power</strong> <em>(2026)</em><br>
-with Oren Ziv<br>
-Accepted, <em>Real Estate Economics</em><br>
-Prepublication PDF
-</a></div>
-</div>
-<div class="metadata">
-<a href="./research/index.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="UmVudGFsJTIwTWFya2V0cyUyQ01hcmt1cHMlMkNNb25vcG9seSUyMFBvd2VyJTJDSG91c2luZyUyMERlbWFuZA==" data-listing-date-sort="1754020800000" data-listing-file-modified-sort="1754707348000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="164">
-<div class="thumbnail"><a href="./research/logitmarkets/index.html" class="no-external">
+<section id="what-happens-to-branches-when-banks-merge" class="level1">
+<h1>What Happens to Branches When Banks Merge</h1>
+<p>For the merger simulation the bank deposit demand paper (Bank Competition for Neighborhood Deposits), I wanted to include an endogenous rule for which branches close and I wanted to base it on reality. How many, and which ones? For this, I use the FDIC Summary of Deposits and the FDIC structure change files from 2000 through 2025.</p>
+<section id="the-short-version-distance" class="level2">
+<h2 class="anchored" data-anchor-id="the-short-version-distance">The short version: Distance</h2>
+<p>Almost everything is distance.</p>
+<p>For every branch owned by either party to a merger, I measured how far it sat from the nearest branch belonging to the <em>other</em> party, as of the last Summary of Deposits before the deal closed. Below is the probability of being closed conditional on distance to the <em>other</em> merger-party.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Distance to nearest counterparty branch</th>
+<th>Target side</th>
+<th>Acquirer side</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0–250 m</td>
+<td>53%</td>
+<td>24%</td>
+</tr>
+<tr class="even">
+<td>500 m–1 km</td>
+<td>40%</td>
+<td>22%</td>
+</tr>
+<tr class="odd">
+<td>1–2 km</td>
+<td>40%</td>
+<td>22%</td>
+</tr>
+<tr class="even">
+<td>2–5 km</td>
+<td>22%</td>
+<td>12%</td>
+</tr>
+<tr class="odd">
+<td>5–10 km</td>
+<td>15%</td>
+<td>5%</td>
+</tr>
+<tr class="even">
+<td>25 km +</td>
+<td>8%</td>
+<td>6%</td>
+</tr>
+</tbody>
+</table>
+<p>If a target branch across the street from an acquirer branch is closed, then it has a 53% of being closed after three years. Another kilometer or two leads to a 40% closure rate, but after 25 there is no real difference in the closure rate with a random branch. Interestingly, we also see acquirer branch closures decay with distance from target branches. Condition on distance and the acquirer closes its own branches too, at roughly half the target rate rather than not at all. Thus, only pruning the target’s network will fail to accurately account for the total branch closures and likely get many wrong.</p>
+<!-- In aggregate, acquirer branches close at about 9% overall against 23% for targets. -->
+</section>
+<section id="closures-are-substitutes" class="level2">
+<h2 class="anchored" data-anchor-id="closures-are-substitutes">Closures are substitutes</h2>
+<p>The table above gives two marginal probabilities. Below, I show the the joint distribution of closures at within 250m of each other.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Outcome for a pair within 250 m</th>
+<th>Share</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Neither closes</td>
+<td>38%</td>
+</tr>
+<tr class="even">
+<td>Target closes only</td>
+<td>47%</td>
+</tr>
+<tr class="odd">
+<td>Acquirer closes only</td>
+<td>10%</td>
+</tr>
+<tr class="even">
+<td>Both close</td>
+<td>5%</td>
+</tr>
+</tbody>
+</table>
+<p>Conditional on the target office closing, the acquirer’s nearby office is <em>less</em> likely to close, 9% against 21%. That is what you would expect if the merged bank is keeping one office and shutting the other, which is presumably what is going on.</p>
+</section>
+<section id="three-things-that-nearly-fooled-me" class="level2">
+<h2 class="anchored" data-anchor-id="three-things-that-nearly-fooled-me">Three things that nearly fooled me</h2>
+<p>The headline result is tidy. Getting to it was not, and the detours are the more useful part of the exercise.</p>
+<p><strong>The branch identifier.</strong> The Summary of Deposits gives every branch a <code>UNINUMBR</code> and also a <code>BRNUM</code>, which is the branch’s number within its owning bank. <code>BRNUM</code> is the obvious key and it is wrong. When Wells Fargo bought Wachovia, I can follow 3,116 of Wachovia’s 3,338 branches into Wells Fargo’s 2010 filing using <code>UNINUMBR</code> — and <em>every single one</em> of those branches got a new <code>BRNUM</code>. A panel keyed on the bank-branch number reads that acquisition as 3,338 closures followed by 3,116 openings. If you are working with this data, this is the first thing to get right.</p>
+<p>There is a catch. <code>UNINUMBR</code> is blank for 18% of rows in 2000, 7% in 2010, and 0% from 2011 onward. The blanks are not random: they cluster inside particular banks, so where any of a bank’s branches are missing an identifier the median bank is missing two thirds of them. That also means the usual fallback of matching on address does not help much, because there is no identified branch at the same address to match to.</p>
+<p><strong>Sales cannot be separated from noise.</strong> I wanted to split “closed” from “sold to a third party,” since a branch sold to a rival is very different for competition than a branch shut down. I infer a sale from the branch showing up under a different holding company. The problem is that holding company identifiers change on their own. Banks that are never party to any recorded combination — no merger, no failure, no charter reorganization — show their holding company identifier changing for 4.06% of branch-years per year. For banks that <em>are</em> merger parties, it is 4.14%.</p>
+<p>Those are the same number. Over three years that is a floor of roughly 12%, which is larger than any merger-related sale share I measured. So the sale margin is not identified here. The closure margin is clean and large; the sale margin I can only bound.</p>
+<p><strong>Silicon Valley Bank’s main office.</strong> Late in this I looked at which closures accounted for the most deposits and found that the top ten closures held 78% of all closed deposits. The largest single one was Silicon Valley Bank’s main office, booking $120 billion.</p>
+<p>A main office in this data books deposits for the whole institution, not for the people who walk into that building. It is an accounting location, not a retail catchment. Five of the eight largest “closures” in my sample were main offices. Drop them and the deposit share closed falls from 28% to 11%, and the top-ten concentration falls from 78% to 21%.</p>
+<p>I nearly calibrated a rule against that 28%. It would have been a number about where large banks book deposits, dressed up as a fact about branch closures.</p>
+</section>
+<section id="is-any-of-it-predictable" class="level2">
+<h2 class="anchored" data-anchor-id="is-any-of-it-predictable">Is any of it predictable?</h2>
+<p>Here is the honest part. At the level of an individual county, closures look close to random, and I wanted to know how much of that is my rule being bad versus the outcome being genuinely noisy.</p>
+<p>Branch closure is a coin flip with a known bias. Even a rule that knew every branch’s true probability would still miss the realized count, because a coin flip is a coin flip. You can decompose the variance in the county-level count into the part a rule could in principle explain and the part that is irreducible:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Component</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Variance in closures across counties</td>
+<td>1.99</td>
+</tr>
+<tr class="even">
+<td>Irreducible binomial variance</td>
+<td>0.71</td>
+</tr>
+<tr class="odd">
+<td>Best <span class="math inline">\(R^2\)</span> any rule could achieve</td>
+<td>0.65</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(R^2\)</span> from distance and relative size</td>
+<td>0.28</td>
+</tr>
+</tbody>
+</table>
+<p>So 35% of the county-level variation is unreachable by construction. Of the 65% that is knowable, distance and relative branch size recover a little under half.</p>
+<p>That sounds discouraging until you remember what a simulation needs. It does not need to predict any particular county. It needs the expectation right so that closures aggregate correctly, and on that the rule is close to exact:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Predicted closures in a county</th>
+<th>Counties</th>
+<th>Predicted</th>
+<th>Actual</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>under 0.25</td>
+<td>111</td>
+<td>0.24</td>
+<td>0.24</td>
+</tr>
+<tr class="even">
+<td>0.25–0.5</td>
+<td>323</td>
+<td>0.37</td>
+<td>0.43</td>
+</tr>
+<tr class="odd">
+<td>0.5–1</td>
+<td>403</td>
+<td>0.72</td>
+<td>0.74</td>
+</tr>
+<tr class="even">
+<td>1–2</td>
+<td>252</td>
+<td>1.38</td>
+<td>1.40</td>
+</tr>
+<tr class="odd">
+<td>2–4</td>
+<td>84</td>
+<td>2.67</td>
+<td>2.64</td>
+</tr>
+</tbody>
+</table>
+<p>Being wrong about individual counties while being right on average is the correct behavior here, not a defect.</p>
+</section>
+<section id="the-rule-i-ended-up-with" class="level2">
+<h2 class="anchored" data-anchor-id="the-rule-i-ended-up-with">The rule I ended up with</h2>
+<p>In a county where both banks have branches, with <span class="math inline">\(n_A\)</span> and <span class="math inline">\(n_T\)</span> branches each:</p>
+<p><span class="math display">\[
+n_{\text{closed}} \;=\; 0.6 \times \min(n_A, n_T)
+\]</span></p>
+<p>or equivalently, the number surviving is</p>
+<p><span class="math display">\[
+n_{\text{post}} \;=\; (n_A + n_T) - 0.6 \times \min(n_A, n_T) \;=\; \max(n_A,n_T) + 0.4 \times \min(n_A,n_T).
+\]</span></p>
+<p>About 60% of the smaller network goes. Not all of it, which is what “the acquirer absorbs the target locally” would imply and which overshoots by two thirds. Not none of it either.</p>
+<p>The form is worth writing out carefully because the natural-looking version is wrong. I first wrote it as <span class="math inline">\(\max - 0.5\min\)</span>, which subtracts from the larger network instead of from the combined total, and closes two and a half times too many branches. That version does worse than assuming nothing closes at all.</p>
+<p>For picking <em>which</em> branches, a two-line rule does about as well as anything: take the target’s branches before the acquirer’s, and within that take the smallest by deposits. That identifies 56% of the branches that actually closed, against 38% for picking at random and 57% for a rule that uses the full empirical probability table. Sorting by distance instead is barely better than random, which surprised me given that distance drives the <em>rate</em> so strongly. The county count already encodes the rate; what is left for the selection step is which office within the county, and size answers that better than proximity does.</p>
+<p>One caveat on the selection rule. When exactly one office of a nearby pair closes, it is the smaller one about two thirds of the time. But when the two are similar in size, or far apart, it is 54% — a coin flip. So “the smaller one closes” is a decent default and a bad certainty.</p>
+</section>
+<section id="what-this-cannot-tell-you" class="level2">
+<h2 class="anchored" data-anchor-id="what-this-cannot-tell-you">What this cannot tell you</h2>
+<p>The timing is annual. The Summary of Deposits is a June 30 snapshot, so “within one year” really means “by the next June,” and I cannot separate a merger’s effect from anything else that happened in the same twelve months.</p>
+<p>I cannot distinguish an antitrust-mandated divestiture from a voluntary one. Neither data source flags them, so the numbers blend the two.</p>
+<p>I cannot see closures that were announced and then abandoned, only ones that happened.</p>
+<p>And the whole thing is a reduced-form correlation, not a causal closure rule. It tells you which branches were closed historically. Using it inside a simulation assumes that the same rule carries over to the counterfactual merger you are simulating, which is an assumption, not a finding.</p>
+<p>The last one is worth sitting with. I started this wanting to replace an assumption with a fact and ended up replacing a bad assumption with a better-calibrated one. That is still progress, but it is a different thing than it felt like at the outset.</p>
+<hr>
+<p><em>The views and opinions expressed on this website do not reflect those of the FDIC, the United States, nor anyone else.</em></p>
 
-<p class="card-img-top"><img src="research/logitmarkets/passthru_fig1.png"  class="thumbnail-image card-img"/></p>
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./research/logitmarkets/index.html" class="no-external">A Test for Pricing Power in Urban Housing Markets</a>
-</h3>
-<div class="listing-categories">
+</section>
+</section>
 
-<div class="listing-category" onclick="window.quartoListingCategory('UmVudGFsJTIwTWFya2V0cw=='); return false;">Rental Markets</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWFya3Vwcw=='); return false;">Markups</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TW9ub3BvbHklMjBQb3dlcg=='); return false;">Monopoly Power</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SG91c2luZyUyMERlbWFuZA=='); return false;">Housing Demand</div>
-
-</div>
-<div class="delink listing-description"><a href="./research/logitmarkets/index.html" class="no-external">
-<p>Building demand slopes down.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./research/logitmarkets/index.html" class="no-external">
-<div class="listing-date">
-Aug 1, 2025
-</div>
-<div class="listing-author">
-C. Luke Watson, Oren Ziv
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="UmVudGFsJTIwTWFya2V0cyUyQ01hcmt1cHMlMkNNb25vcG9seSUyMFBvd2VyJTJDSG91c2luZyUyMERlbWFuZA==" data-listing-date-sort="1754020800000" data-listing-file-modified-sort="1754707348000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="164">
-<div class="thumbnail"><a href="./research/bankmarkets/index.html" class="no-external">
-
-<p class="card-img-top"><img src="research/bankmarkets/passthru_fig1.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./research/bankmarkets/index.html" class="no-external">A Test for Pricing Power in Urban Housing Markets</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVudGFsJTIwTWFya2V0cw=='); return false;">Rental Markets</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWFya3Vwcw=='); return false;">Markups</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TW9ub3BvbHklMjBQb3dlcg=='); return false;">Monopoly Power</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SG91c2luZyUyMERlbWFuZA=='); return false;">Housing Demand</div>
-
-</div>
-<div class="delink listing-description"><a href="./research/bankmarkets/index.html" class="no-external">
-<p>Building demand slopes down.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./research/bankmarkets/index.html" class="no-external">
-<div class="listing-date">
-Aug 1, 2025
-</div>
-<div class="listing-author">
-C. Luke Watson, Oren Ziv
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="UmVudGFsJTIwTWFya2V0cyUyQ01hcmt1cHMlMkNNb25vcG9seSUyMFBvd2VyJTJDSG91c2luZyUyMERlbWFuZA==" data-listing-date-sort="1754020800000" data-listing-file-modified-sort="1754707348000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="164">
-<div class="thumbnail"><a href="./research/tfpp/index.html" class="no-external">
-
-<p class="card-img-top"><img src="research/tfpp/passthru_fig1.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./research/tfpp/index.html" class="no-external">A Test for Pricing Power in Urban Housing Markets</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVudGFsJTIwTWFya2V0cw=='); return false;">Rental Markets</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWFya3Vwcw=='); return false;">Markups</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TW9ub3BvbHklMjBQb3dlcg=='); return false;">Monopoly Power</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SG91c2luZyUyMERlbWFuZA=='); return false;">Housing Demand</div>
-
-</div>
-<div class="delink listing-description"><a href="./research/tfpp/index.html" class="no-external">
-<p>Building demand slopes down.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./research/tfpp/index.html" class="no-external">
-<div class="listing-date">
-Aug 1, 2025
-</div>
-<div class="listing-author">
-C. Luke Watson, Oren Ziv
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="UmVudGFsJTIwTWFya2V0cyUyQ01hcmt1cHMlMkNNb25vcG9seSUyMFBvd2VyJTJDSG91c2luZyUyMERlbWFuZCUyQ1pvbmluZw==" data-listing-date-sort="1738386000000" data-listing-file-modified-sort="1754707146000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="130">
-<div class="thumbnail"><a href="./research/nyc-monopoly/index.html" class="no-external">
-
-<p class="card-img-top"><img src="research/nyc-monopoly/ope_markups.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./research/nyc-monopoly/index.html" class="no-external">Is the Rent Too High? Land Ownership and Monopoly Power</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVudGFsJTIwTWFya2V0cw=='); return false;">Rental Markets</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWFya3Vwcw=='); return false;">Markups</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TW9ub3BvbHklMjBQb3dlcg=='); return false;">Monopoly Power</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SG91c2luZyUyMERlbWFuZA=='); return false;">Housing Demand</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Wm9uaW5n'); return false;">Zoning</div>
-
-</div>
-<div class="delink listing-description"><a href="./research/nyc-monopoly/index.html" class="no-external">
-<p>Is it?</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./research/nyc-monopoly/index.html" class="no-external">
-<div class="listing-date">
-Feb 1, 2025
-</div>
-<div class="listing-author">
-C. Luke Watson, Oren Ziv
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="SVYlMkNUYXglMjBJbmNpZGVuY2UlMkNTcGlsbG92ZXJzJTJDQXBwbGllZCUyMEVjb25vbWV0cmljcw==" data-listing-date-sort="1633060800000" data-listing-file-modified-sort="1730666764000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="329">
-<div class="thumbnail"><a href="./research/tax-iv-ge/index.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./research/tax-iv-ge/index.html" class="no-external">Estimating Both Supply and Demand Elasticities Using Variation in a Single Tax Rate with General Equilibrium Spillovers</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('SVY='); return false;">IV</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('VGF4JTIwSW5jaWRlbmNl'); return false;">Tax Incidence</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3BpbGxvdmVycw=='); return false;">Spillovers</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QXBwbGllZCUyMEVjb25vbWV0cmljcw=='); return false;">Applied Econometrics</div>
-
-</div>
-<div class="delink listing-description"><a href="./research/tax-iv-ge/index.html" class="no-external">
-<p>A note about using tax IVs</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./research/tax-iv-ge/index.html" class="no-external">
-<div class="listing-date">
-Oct 1, 2021
-</div>
-<div class="listing-author">
-C. Luke Watson
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="RUlUQyUyQ0xhYm9yJTIwU3VwcGx5JTJDTGFib3IlMjBEZW1hbmQlMkNJViUyQ1RheCUyMEluY2lkZW5jZQ==" data-listing-date-sort="1630468800000" data-listing-file-modified-sort="1730666962000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="143">
-<div class="thumbnail"><a href="./research/ge-eitc/index.html" class="no-external">
-
-<p class="card-img-top"><img src="research/ge-eitc/ge-eitc-plot-1.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./research/ge-eitc/index.html" class="no-external">The General Equilibrium Incidence of the Earned Income Tax Credit</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('RUlUQw=='); return false;">EITC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TGFib3IlMjBTdXBwbHk='); return false;">Labor Supply</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TGFib3IlMjBEZW1hbmQ='); return false;">Labor Demand</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SVY='); return false;">IV</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('VGF4JTIwSW5jaWRlbmNl'); return false;">Tax Incidence</div>
-
-</div>
-<div class="delink listing-description"><a href="./research/ge-eitc/index.html" class="no-external">
-<p>My JMP</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./research/ge-eitc/index.html" class="no-external">
-<div class="listing-date">
-Sep 1, 2021
-</div>
-<div class="listing-author">
-C. Luke Watson
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-categories="RUlUQyUyQ0xhYm9yJTIwU3VwcGx5JTJDTGFib3IlMjBEZW1hbmQlMkNCb3JkZXIlMjBEaXNjb250aW51aXR5" data-listing-date-sort="1627790400000" data-listing-file-modified-sort="1730666862000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="168">
-<div class="thumbnail"><a href="./research/state-eitc/index.html" class="no-external">
-
-<p class="card-img-top"><img src="research/state-eitc/timing.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./research/state-eitc/index.html" class="no-external">The Local Effects of State EITC Expansions</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('RUlUQw=='); return false;">EITC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TGFib3IlMjBTdXBwbHk='); return false;">Labor Supply</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TGFib3IlMjBEZW1hbmQ='); return false;">Labor Demand</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Qm9yZGVyJTIwRGlzY29udGludWl0eQ=='); return false;">Border Discontinuity</div>
-
-</div>
-<div class="delink listing-description"><a href="./research/state-eitc/index.html" class="no-external">
-<p>Chapter 2 of my dissertation</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./research/state-eitc/index.html" class="no-external">
-<div class="listing-date">
-Aug 1, 2021
-</div>
-<div class="listing-author">
-C. Luke Watson
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
