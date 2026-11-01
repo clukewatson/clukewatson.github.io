@@ -239,7 +239,7 @@ font-style: inherit;">gc</span>()</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
 Ncells 1075503 57.5    1668111 89.1         NA  1668111 89.1
-Vcells 1887413 14.4    8388608 64.0      49152  3386701 25.9</code></pre>
+Vcells 1887410 14.4    8388608 64.0      49152  3386702 25.9</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -1636,7 +1636,7 @@ font-style: inherit;">gc</span>()</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
 Ncells 1075279 57.5    1668111 89.1         NA  1668111 89.1
-Vcells 1888075 14.5    8388608 64.0      49152  3397258 26.0</code></pre>
+Vcells 1888072 14.5    8388608 64.0      49152  3397259 26.0</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -3220,7 +3220,7 @@ font-style: inherit;">gc</span>()</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
 Ncells 1075029 57.5    1668111 89.1         NA  1668111 89.1
-Vcells 1884342 14.4    8388608 64.0      49152  3369046 25.8</code></pre>
+Vcells 1884339 14.4    8388608 64.0      49152  3369047 25.8</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
