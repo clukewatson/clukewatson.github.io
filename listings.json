@@ -18,6 +18,7 @@
     "listing": "/research.html",
     "items": [
       "/research/index.html",
+      "/research/ge_incidence/index.html",
       "/research/logitmarkets/index.html",
       "/research/bankmarkets/index.html",
       "/research/tfpp/index.html",

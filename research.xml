@@ -10,7 +10,59 @@
 <atom:link href="https://clukewatson.github.io/research.xml" rel="self" type="application/rss+xml"/>
 <description>Senior Financial Economist</description>
 <generator>quarto-1.8.27</generator>
-<lastBuildDate>Fri, 01 Aug 2025 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 01 Nov 2026 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Is the NIT Better Than the EITC? Targeted Transfers in General Equilibrium</title>
+  <dc:creator>C. Luke Watson</dc:creator>
+  <link>https://clukewatson.github.io/research/ge_incidence/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p><img src="https://clukewatson.github.io/research/ge_incidence/incidence_comparison.png" class="img-fluid"></p>
+<section id="pdf-links" class="level2">
+<h2 class="anchored" data-anchor-id="pdf-links">PDF links</h2>
+<ul>
+<li><a href="watson_ge_incidence.pdf">Paper</a></li>
+</ul>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>A targeted labor subsidy meant to raise employment can unintentionally lower recipients’ wages. I derive incidence with imperfectly substitutable labor and capital supply. Measurable elasticities, cost shares, and policy shocks are sufficient statistics. Factor-price incidence extends beyond recipients to capital owners and untargeted workers; with free entry, it becomes a redistribution among workers. I apply the model to a 1992 Earned Income Tax Credit (EITC) expansion and an equal-cost negative income tax (NIT). At baseline, the NIT delivers more net transfers to women; the EITC yields more disposable income and a higher marginal value of public funds, 1.04 versus 0.89.</p>
+</section>
+<section id="bibtex-citation" class="level2">
+<h2 class="anchored" data-anchor-id="bibtex-citation">BibTeX citation</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">@article</span>{<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">watson_ge_incidence:2026</span>,</span>
+<span id="cb1-2">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">Author</span> = {Watson, C. Luke},</span>
+<span id="cb1-3">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">Title</span> = {Is the NIT Better Than the EITC? Targeted Transfers in General Equilibrium},</span>
+<span id="cb1-4">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">Journal</span> = {Manuscript},</span>
+<span id="cb1-5">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">Year</span> = {2026}</span></code></pre></div></div>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>Incidence</category>
+  <category>General Equilibrium</category>
+  <category>EITC</category>
+  <guid>https://clukewatson.github.io/research/ge_incidence/</guid>
+  <pubDate>Sun, 01 Nov 2026 04:00:00 GMT</pubDate>
+</item>
 <item>
   <title>A Test for Pricing Power in Urban Housing Markets</title>
   <dc:creator>C. Luke Watson</dc:creator>
@@ -473,26 +525,28 @@ This paper investigates nonparametric identification of demand in markets with t
 </section>
 <section id="working-papers" class="level1">
 <h1>Working Papers</h1>
-<!-- **[Competition for Neighborhood Deposits](bankmarkets/KWW_Bank_Markets.pdf)** *(February 2026)*\ -->
-<!-- with Mark Kutzbach, Gary Wagner\ -->
-<!-- <details> -->
-<!-- <summary>Abstract</summary> -->
-<!-- Spatial markets are typically measured using administrative boundaries chosen for convenience rather than grounded in economic behavior. We estimate tract-level banking concentration using a structural model of household deposit allocation, yielding heterogeneous and overlapping catchment areas. This approach reveals that 89\% of variation in local competitive conditions occurs across neighborhoods within MSAs rather than between MSAs. Monte Carlo merger simulations reveal that coarse market definitions can mask localized competitive harm: 2.6\% of simulated mergers pass MSA-level screening thresholds while substantially increasing concentration in ten or more neighborhoods. These false negatives arise systematically when merging firms serve similar customers but operate spatially segmented networks. For understanding competition in any spatially differentiated market, knowing where a household lives within a market matters more than knowing which market it lives in. -->
-<!-- </details> -->
-<strong><a href="bankmarkets/KWW_Bank_Markets.pdf">Competition for Neighborhood Deposits</a></strong> <em>(February 2026)</em><br>
+<strong><a href="bankmarkets/KWW_Bank_Markets.pdf">Competition for Neighborhood Deposits</a></strong> <em>(October 2026)</em><br>
 with Mark Kutzbach, Gary Wagner<br>
-<a href="bankmarkets/watson_bank_competition_20260606.pdf">[Slides]</a>
+<a href="bankmarkets/watson_bank_competition_20260606.pdf">[Slides (April 2026 version)]</a>
 <details>
 <summary>
 Abstract
 </summary>
 Spatial markets are typically measured using administrative boundaries chosen for convenience rather than grounded in economic behavior. We estimate tract-level banking concentration using a structural model of household deposit allocation, yielding heterogeneous and overlapping catchment areas. This approach reveals that 89% of variation in local competitive conditions occurs across neighborhoods within MSAs rather than between MSAs. Monte Carlo merger simulations reveal that coarse market definitions can mask localized competitive harm: 2.6% of simulated mergers pass MSA-level screening thresholds while substantially increasing concentration in ten or more neighborhoods. These false negatives arise systematically when merging firms serve similar customers but operate spatially segmented networks. For understanding competition in any spatially differentiated market, knowing where a household lives within a market matters more than knowing which market it lives in.
 </details>
+<strong><a href="ge_incidence/watson_ge_incidence.pdf">Is the NIT Better Than the EITC? Targeted Transfers in General Equilibrium</a></strong> <em>(November 2026)</em><br>
+<!-- [[Slides]](bankmarkets/watson_bank_competition_20260606.pdf) -->
+<details>
+<summary>
+Abstract
+</summary>
+A targeted labor subsidy meant to raise employment can unintentionally lower recipients’ wages. I derive incidence with imperfectly substitutable labor and capital supply. Measurable elasticities, cost shares, and policy shocks are sufficient statistics. Factor-price incidence extends beyond recipients to capital owners and untargeted workers; with free entry, it becomes a redistribution among workers. I apply the model to a 1992 Earned Income Tax Credit (EITC) expansion and an equal-cost negative income tax (NIT). At baseline, the NIT delivers more net transfers to women; the EITC yields more disposable income and a higher marginal value of public funds, 1.04 versus 0.89.
+</details>
 </section>
 <section id="selected-work-in-progress" class="level1">
 <h1>Selected Work in Progress</h1>
 <!-- **[When Does Market Definition Matter for Identification?](logitmarkets/watson_logit_markets.pdf)** *(April 2026)* -->
-<strong>When Does Market Definition Matter for Identification?</strong> <em>(April 2026)</em>
+<strong>When Does Market Definition Matter for Identification?</strong> <em>(Draft Available Upon Request)</em>
 <details>
 <summary>
 Abstract
@@ -570,7 +624,7 @@ Zoutman, Gavrilova, &amp; Hopland (Econometrica, 2018) show that by knowing on �
 
  ]]></description>
   <guid>https://clukewatson.github.io/research/</guid>
-  <pubDate>Sun, 01 Nov 2026 13:20:38 GMT</pubDate>
+  <pubDate>Fri, 06 Nov 2026 02:45:39 GMT</pubDate>
 </item>
 </channel>
 </rss>
